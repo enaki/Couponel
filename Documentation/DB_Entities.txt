@@ -1,0 +1,70 @@
+TABELE:
+	STUDENTI
+		Id
+		nume
+		prenume
+		...
+	FACULTATI
+		Id
+		adresa
+		nume
+		...
+	UNIVERSITATI
+		Id
+		adresa
+		nume
+		...
+		
+	CUPOANE
+		Id
+		nume_magazin
+		categorie
+		descriere
+		data_adaugare
+		data_expirare
+		link_imagine/ imagine(byte array)
+		//cantitate_disponibila ???
+
+		
+	CUPOANE_RASCUMPARATE(partea de cos)
+		Id
+		status(folosit,nefolosit,expirat)
+		cod_rascumparare
+	
+	//to do
+		Adresa
+			tara
+			oras
+			strada
+			numar
+	
+		
+Functionalitati:
+	
+	Fiecare student adauga cupoane
+	Un student poate avea mai multe cupoane
+	
+	Tabela cupoane tine evidenta cupoanelor adaugate de useri,
+		dar codul de rascumparare pentru fiecare cupon este generat doar cand
+		userul il adauga in propriul cos
+		
+	
+Relatii:
+	(1-1 or zero)
+		-
+		
+	(1-many/ many-1)
+		UNIVERSITATI - FACULTATI
+		FACULTATI - STUDENTI
+		
+		CUPOANE - CUPOANE_RASCUMPARATE
+			(FK de la CUPOANE  la CUPOANE_RASCUMPARATE)
+		
+		STUDENTI - CUPOANE_RASCUMPARATE
+			(FK de la STUDENTI la CUPOANE_RASCUMPARATE)
+			
+		STUDENTI - CUPOANE
+			(FK de la STUDENTI la CUPOANE, ca sa stim ID-ul studentului ce a adaugat cuponul)
+		
+	(many-many)
+		
