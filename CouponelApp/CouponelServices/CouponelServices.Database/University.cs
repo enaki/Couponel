@@ -15,10 +15,13 @@ namespace CouponelServices.Entities
             PhoneNumber = phoneNumber;
             Faculties = new List<Faculty>();
         }
+
         [Required]
         public string Name { get; private set; }
+
         [Required]
         public string Email { get; private set; }
+
         [Required]
         public string PhoneNumber { get; private set; }
 
