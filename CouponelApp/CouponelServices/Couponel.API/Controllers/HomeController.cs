@@ -22,7 +22,7 @@ namespace Couponel.API.Controllers
         [HttpGet]
         public string Get()
         {
-            return "Hello world";
+            return "Hello world before Mess";
         }
     }
 }
