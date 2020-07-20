@@ -15,12 +15,16 @@ namespace CouponelServices.Entities
             PhoneNumber = phoneNumber;
 
         }
+
         [Required]
         public string Name { get; private set; }
+
         [Required]
         public string Address { get; private set; }
+
         [Required]
         public string Email { get; private set; }
+
         [Required]
         public string PhoneNumber { get; private set; }
 
