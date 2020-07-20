@@ -5,21 +5,24 @@ using System.Text;
 
 namespace CouponelServices.Entities
 {
-    public sealed class Student: Entity
+    public sealed class Faculty: Entity
     {
-        public Student(string firstName, string lastName, string email, string phoneNumber)
+        public Faculty(string name, string address, string email, string phoneNumber)
         {
-            FirstName = firstName;
-            LastName = lastName;
+            Name = name;
+            Address = address;
             Email = email;
             PhoneNumber = phoneNumber;
         }
         [Required]
-        public string FirstName { get; private set; }
+        public string Name { get; private set; }
+
         [Required]
-        public string LastName { get; private set; }
+        public string Address { get; private set; }
+
         [Required]
         public string Email { get; private set; }
+
         [Required]
         public string PhoneNumber { get; private set; }
     }
