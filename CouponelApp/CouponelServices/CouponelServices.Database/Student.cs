@@ -13,6 +13,7 @@ namespace CouponelServices.Entities
             LastName = lastName;
             Email = email;
             PhoneNumber = phoneNumber;
+            Addresses = new List<Address>();
         }
         [Required]
         public string FirstName { get; private set; }
@@ -22,5 +23,11 @@ namespace CouponelServices.Entities
         public string Email { get; private set; }
         [Required]
         public string PhoneNumber { get; private set; }
+
+        #region Database Relations
+
+        [Required]
+        public ICollection<Address> Addresses { get; private set; }
+        #endregion
     }
 }
