@@ -1,0 +1,2 @@
+add-migration Migration_v01
+update-database
