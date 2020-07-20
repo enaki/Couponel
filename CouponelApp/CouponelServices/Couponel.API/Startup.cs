@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using CouponelServices.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace Couponel.API
 {
@@ -26,6 +28,9 @@ namespace Couponel.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services
+                .AddDbContext<CouponelContext>(config =>
+                    config.UseSqlServer(Configuration.GetConnectionString("CouponelConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
