@@ -13,6 +13,8 @@ using Microsoft.Extensions.Logging;
 using CouponelServices.Persistence;
 using Microsoft.EntityFrameworkCore;
 using CouponelServices.Persistence.Repository;
+using CouponelServices.Persistence.StudentsRepository;
+using CouponelServices.Persistence.AddressesRepository;
 
 namespace Couponel.API
 {
@@ -31,6 +33,10 @@ namespace Couponel.API
             services.AddCors();
 
             services.AddControllers();
+
+            services
+                .AddScoped<IStudentsRepository, StudentsRepository>()
+                .AddScoped<IAddressesRepository, AddressesRepository>();
 
             services
                 .AddDbContext<CouponelContext>(config =>
