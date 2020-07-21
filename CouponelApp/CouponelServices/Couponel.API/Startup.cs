@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using CouponelServices.Persistence;
 using Microsoft.EntityFrameworkCore;
+using CouponelServices.Persistence.Repository;
 
 namespace Couponel.API
 {
@@ -27,7 +28,10 @@ namespace Couponel.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
+
             services.AddControllers();
+
             services
                 .AddDbContext<CouponelContext>(config =>
                     config.UseSqlServer(Configuration.GetConnectionString("CouponelConnection")));
