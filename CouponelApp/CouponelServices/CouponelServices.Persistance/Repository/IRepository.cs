@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using LinqBuilder.Core;
+
 
 namespace CouponelServices.Persistence.Repository
 {
@@ -18,5 +20,7 @@ namespace CouponelServices.Persistence.Repository
         void Delete(T entity);
 
         Task SaveChanges();
+
+        Task<IList<T>> Get(ISpecification<T> spec);
     }
 }
