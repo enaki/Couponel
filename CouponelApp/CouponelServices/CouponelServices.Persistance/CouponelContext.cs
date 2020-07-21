@@ -23,19 +23,6 @@ namespace CouponelServices.Persistence
                 .HasMany<Student>(faculty=> faculty.Students)
                 .WithOne();
 
-
-            modelBuilder.Entity<Student>()
-                .HasMany<Address>(student => student.Addresses)
-                .WithOne();
-
-
-            modelBuilder.Entity<University>()
-                .HasMany<Address>(university => university.Addresses)
-                .WithOne();
-
-            modelBuilder.Entity<Faculty>()
-                .HasMany<Address>(faculty => faculty.Addresses)
-                .WithOne();
         }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Address> Coupons { get; set; }

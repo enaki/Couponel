@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace CouponelServices.Entities
@@ -10,7 +11,6 @@ namespace CouponelServices.Entities
         public University(string name, string email, string phoneNumber)
         {
             Name = name;
-            Addresses = new List<Address>();
             Email = email;
             PhoneNumber = phoneNumber;
             Faculties = new List<Faculty>();
@@ -30,9 +30,12 @@ namespace CouponelServices.Entities
 
         [Required]
         public ICollection<Faculty> Faculties { get; private set; }
-        
+
         [Required]
-        public ICollection<Address> Addresses { get; private set; }
+        [ForeignKey("Address")]
+        public Guid AddressId { get; private set; }
+        [Required]
+        public Address Address { get; private set; }
 
         #endregion
     }
