@@ -14,6 +14,8 @@ using CouponelServices.Persistence;
 using CouponelServices.Persistence.FacultyRepository;
 using Microsoft.EntityFrameworkCore;
 using CouponelServices.Persistence.Repository;
+using CouponelServices.Persistence.StudentsRepository;
+using CouponelServices.Persistence.AddressesRepository;
 using CouponelServices.Persistence.UniversityRepository;
 
 namespace Couponel.API
@@ -35,6 +37,8 @@ namespace Couponel.API
             services.AddControllers();
 
             services
+                .AddScoped<IStudentsRepository, StudentsRepository>()
+                .AddScoped<IAddressesRepository, AddressesRepository>()
                 .AddScoped<IUniversityRepository, UniversityRepository>()
                 .AddScoped<IFacultyRepository, FacultyRepository>();
 
