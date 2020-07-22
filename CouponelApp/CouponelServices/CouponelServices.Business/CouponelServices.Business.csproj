@@ -5,13 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Institutions\Address\Services\Implementations\" />
-    <Folder Include="Institutions\Address\Services\Interfaces\" />
-    <Folder Include="Institutions\Faculty\Services\Implementations\" />
-    <Folder Include="Institutions\Faculty\Services\Interfaces\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.0.0" />
     <PackageReference Include="FluentValidation" Version="9.0.1" />
     <PackageReference Include="LinqBuilder.OrderBy" Version="0.16.1" />
@@ -23,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CouponelServices.Database\CouponelServices.Entities.csproj" />
+    <ProjectReference Include="..\CouponelServices.Persistance\CouponelServices.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

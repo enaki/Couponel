@@ -2,22 +2,21 @@
 using CouponelServices.Business.Institutions.Address.Models;
 using CouponelServices.Business.Institutions.Faculty.Models;
 using CouponelServices.Business.Institutions.University.Models;
-using CouponelServices.Entities;
 
-namespace CouponelServices.Business
+namespace CouponelServices.Business.Institutions
 {
     public class InstitutionMappingProfile: Profile
     {
         public InstitutionMappingProfile()
         {
-            CreateMap<CreateAddressModel, Address>();
-            CreateMap<Address, AddressModel>();
+            CreateMap<CreateAddressModel, Entities.Address>();
+            CreateMap<Entities.Address, AddressModel>();
 
-            CreateMap<CreateFacultyModel, Faculty>();
-            CreateMap<Faculty, FacultyModel>();
+            CreateMap<CreateFacultyModel, Entities.Faculty>();
+            CreateMap<Entities.Faculty, FacultyModel>();
 
-            CreateMap<CreateUniversityModel, University>();
-            CreateMap<University, UniversityModel>();
+            CreateMap<CreateUniversityModel, Entities.University>();
+            CreateMap<Entities.University, UniversityModel>();
         }
     }
 }
