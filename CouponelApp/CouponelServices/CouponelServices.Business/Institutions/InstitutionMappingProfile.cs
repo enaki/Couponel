@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using CouponelServices.Business.Institutions.Address.Models;
-using CouponelServices.Business.Institutions.Faculty.Models;
-using CouponelServices.Business.Institutions.University.Models;
+using CouponelServices.Business.Institutions.Addresses.Models;
+using CouponelServices.Business.Institutions.Faculties.Models;
+using CouponelServices.Business.Institutions.Universities.Models;
 
 namespace CouponelServices.Business.Institutions
 {

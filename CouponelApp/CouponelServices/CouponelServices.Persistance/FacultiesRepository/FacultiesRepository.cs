@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CouponelServices.Entities;
+﻿using CouponelServices.Entities;
 using CouponelServices.Persistence.Repository;
 
-namespace CouponelServices.Persistence.FacultyRepository
+namespace CouponelServices.Persistence.FacultiesRepository
 {
-    public sealed class FacultyRepository: Repository<Faculty>, IFacultyRepository
+    public sealed class FacultiesRepository: Repository<Faculty>, IFacultiesRepository
     {
-        public FacultyRepository(CouponelContext context) : base(context)
+        public FacultiesRepository(CouponelContext context) : base(context)
         {
         }
     }

@@ -1,5 +1,5 @@
 ﻿
-namespace CouponelServices.Business.Institutions.Address.Models
+namespace CouponelServices.Business.Institutions.Addresses.Models
 {
     public sealed class CreateAddressModel
     {

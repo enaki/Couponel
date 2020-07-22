@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CouponelServices.Business.Institutions.Addresses.Models;
+using CouponelServices.Business.Institutions.Addresses.Services.Interfaces;
 using CouponelServices.Business.Institutions.Universities.Models;
 using CouponelServices.Business.Institutions.Universities.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -14,37 +16,37 @@ namespace Couponel.API.Controllers
     [Route("[controller]")]
     [ApiController]
     [Authorize]
-    public class UniversityController : ControllerBase
+    public class AddressController : ControllerBase
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IUniversityService _universityService;
+        private readonly IAddressService _addressService;
 
-        public UniversityController(ILogger<HomeController> logger, IUniversityService universityService)
+        public AddressController(ILogger<HomeController> logger, IAddressService addressService)
         {
             _logger = logger;
-            _universityService = universityService;
+            _addressService = addressService;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetById([FromRoute] Guid universityId)
+        public async Task<IActionResult> GetById([FromRoute] Guid addressId)
         {
-            var result = await _universityService.GetById(universityId);
+            var result = await _addressService.GetById(addressId);
 
             return Ok(result);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add([FromBody] CreateUniversityModel model)
+        public async Task<IActionResult> Add([FromBody] CreateAddressModel model)
         {
-            var result = await _universityService.Add(model);
+            var result = await _addressService.Add(model);
 
             return Created(result.Id.ToString(), null);
         }
 
-        [HttpDelete("{universityId}")]
-        public async Task<IActionResult> Delete([FromRoute] Guid universityId)
+        [HttpDelete("{addressId}")]
+        public async Task<IActionResult> Delete([FromRoute] Guid addressId)
         {
-            await _universityService.Delete(universityId);
+            await _addressService.Delete(addressId);
 
             return NoContent();
         }

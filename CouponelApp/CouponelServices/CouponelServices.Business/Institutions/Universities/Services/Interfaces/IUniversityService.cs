@@ -1,10 +1,9 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using CouponelServices.Business.Institutions.University.Models;
+using CouponelServices.Business.Institutions.Universities.Models;
 
-namespace CouponelServices.Business.Institutions.University.Services.Interfaces
+namespace CouponelServices.Business.Institutions.Universities.Services.Interfaces
 {
     public interface IUniversityService
     {

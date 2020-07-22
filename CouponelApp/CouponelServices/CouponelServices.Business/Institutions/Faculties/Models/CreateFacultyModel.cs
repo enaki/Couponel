@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CouponelServices.Business.Institutions.Faculty.Models
+namespace CouponelServices.Business.Institutions.Faculties.Models
 {
     public sealed class CreateFacultyModel
     {

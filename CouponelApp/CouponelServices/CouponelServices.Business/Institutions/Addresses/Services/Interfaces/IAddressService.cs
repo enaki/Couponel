@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using CouponelServices.Business.Institutions.Address.Models;
+using CouponelServices.Business.Institutions.Addresses.Models;
 
-namespace CouponelServices.Business.Institutions.Address.Services.Interfaces
+namespace CouponelServices.Business.Institutions.Addresses.Services.Interfaces
 {
     public interface IAddressService
     {

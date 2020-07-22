@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CouponelServices.Business.Institutions.University.Models;
-using CouponelServices.Business.Institutions.University.Services.Interfaces;
+using CouponelServices.Business.Institutions.Universities.Models;
+using CouponelServices.Business.Institutions.Universities.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
