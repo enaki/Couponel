@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using LinqBuilder.Core;
 using Microsoft.EntityFrameworkCore;
 
 namespace CouponelServices.Persistence.Repository
@@ -32,7 +31,7 @@ namespace CouponelServices.Persistence.Repository
         public Task SaveChanges()
             => this.context.SaveChangesAsync();
 
-        public async Task<IList<T>> Get(ISpecification<T> spec)
-            => await this.context.Set<T>().ExeSpec(spec).ToListAsync();
+        public async Task<IList<T>> GetAll()
+            => await this.context.Set<T>().ToListAsync();
     }
 }

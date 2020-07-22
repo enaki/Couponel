@@ -4,4 +4,25 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Institutions\Address\Services\Implementations\" />
+    <Folder Include="Institutions\Address\Services\Interfaces\" />
+    <Folder Include="Institutions\Faculty\Services\Implementations\" />
+    <Folder Include="Institutions\Faculty\Services\Interfaces\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.0.0" />
+    <PackageReference Include="FluentValidation" Version="9.0.1" />
+    <PackageReference Include="LinqBuilder.OrderBy" Version="0.16.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="3.1.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.7.1" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.7.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CouponelServices.Database\CouponelServices.Entities.csproj" />
+  </ItemGroup>
+
 </Project>
