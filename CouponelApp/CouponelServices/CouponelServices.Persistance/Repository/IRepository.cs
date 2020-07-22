@@ -21,6 +21,6 @@ namespace CouponelServices.Persistence.Repository
 
         Task SaveChanges();
 
-        Task<IList<T>> Get(ISpecification<T> spec);
+        Task<IList<T>> GetAll();
     }
 }

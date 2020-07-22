@@ -1,7 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using AutoMapper;
+using Couponel.API.Extensions;
+using CouponelServices.Business.Institutions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,12 +10,14 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using CouponelServices.Persistence;
-using CouponelServices.Persistence.FacultyRepository;
 using Microsoft.EntityFrameworkCore;
 using CouponelServices.Persistence.Repository;
 using CouponelServices.Persistence.StudentsRepository;
 using CouponelServices.Persistence.AddressesRepository;
-using CouponelServices.Persistence.UniversityRepository;
+using CouponelServices.Persistence.FacultiesRepository;
+using CouponelServices.Persistence.UniversitiesRepository;
+using FluentValidation.AspNetCore;
+using Newtonsoft.Json;
 
 namespace Couponel.API
 {
@@ -39,12 +40,26 @@ namespace Couponel.API
             services
                 .AddScoped<IStudentsRepository, StudentsRepository>()
                 .AddScoped<IAddressesRepository, AddressesRepository>()
-                .AddScoped<IUniversityRepository, UniversityRepository>()
-                .AddScoped<IFacultyRepository, FacultyRepository>();
+                .AddScoped<IUniversitiesRepository, UniversitiesRepository>()
+                .AddScoped<IFacultiesRepository, FacultiesRepository>();
 
             services
                 .AddDbContext<CouponelContext>(config =>
                     config.UseSqlServer(Configuration.GetConnectionString("CouponelConnection")));
+            
+            services
+                .AddAutoMapper(c =>
+                {
+                    c.AddProfile<InstitutionMappingProfile>();
+                })
+                .AddHttpContextAccessor()
+                .AddSwagger()
+                .AddControllers()
+                .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
+            
+            services
+                .AddMvc()
+                .AddFluentValidation();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,16 +70,20 @@ namespace Couponel.API
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            app
+                .UseSwagger()
+                .UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Couponel API"));
 
-            app.UseRouting();
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app
+                .UseHttpsRedirection()
+                .UseRouting()
+                .UseCors(options => options
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader())
+                .UseAuthentication()
+                .UseAuthorization()
+                .UseEndpoints(endpoints => endpoints.MapControllers());
         }
     }
 }
