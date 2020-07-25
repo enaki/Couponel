@@ -1,7 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using AutoMapper;
+using Couponel.API.Extensions;
+using CouponelServices.Business.Institutions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -12,6 +11,19 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using CouponelServices.Persistence;
 using Microsoft.EntityFrameworkCore;
+using CouponelServices.Persistence.Repository;
+using CouponelServices.Persistence.StudentsRepository;
+using CouponelServices.Persistence.AddressesRepository;
+using CouponelServices.Persistence.FacultiesRepository;
+using CouponelServices.Persistence.UniversitiesRepository;
+using FluentValidation.AspNetCore;
+using Newtonsoft.Json;
+using CouponelServices.Business.Institutions.Faculties.Services.Interfaces;
+using CouponelServices.Business.Institutions.Faculties.Services.Implementations;
+using CouponelServices.Business.Institutions.Addresses.Services.Implementations;
+using CouponelServices.Business.Institutions.Addresses.Services.Interfaces;
+using CouponelServices.Business.Institutions.Universities.Services.Interfaces;
+using CouponelServices.Business.Institutions.Universities.Services.Implementations;
 
 namespace Couponel.API
 {
@@ -27,10 +39,38 @@ namespace Couponel.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
+
             services.AddControllers();
+
+            services
+                .AddScoped<IFacultyService,FacultyService>()
+                .AddScoped<IAddressService, AddressService>()
+                .AddScoped<IUniversityService, UniversityService>()
+
+
+                .AddScoped<IStudentsRepository, StudentsRepository>()
+                .AddScoped<IAddressesRepository, AddressesRepository>()
+                .AddScoped<IUniversitiesRepository, UniversitiesRepository>()
+                .AddScoped<IFacultiesRepository, FacultiesRepository>();
+
             services
                 .AddDbContext<CouponelContext>(config =>
                     config.UseSqlServer(Configuration.GetConnectionString("CouponelConnection")));
+            
+            services
+                .AddAutoMapper(c =>
+                {
+                    c.AddProfile<InstitutionMappingProfile>();
+                })
+                .AddHttpContextAccessor()
+                .AddSwagger()
+                .AddControllers()
+                .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
+            
+            services
+                .AddMvc()
+                .AddFluentValidation();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,16 +81,20 @@ namespace Couponel.API
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            app
+                .UseSwagger()
+                .UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Couponel API"));
 
-            app.UseRouting();
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app
+                .UseHttpsRedirection()
+                .UseRouting()
+                .UseCors(options => options
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader())
+                .UseAuthentication()
+                .UseAuthorization()
+                .UseEndpoints(endpoints => endpoints.MapControllers());
         }
     }
 }
