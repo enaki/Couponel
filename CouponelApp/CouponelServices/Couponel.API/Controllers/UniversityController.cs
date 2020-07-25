@@ -13,7 +13,6 @@ namespace Couponel.API.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    [Authorize]
     public class UniversityController : ControllerBase
     {
         private readonly ILogger<HomeController> _logger;
@@ -25,7 +24,7 @@ namespace Couponel.API.Controllers
             _universityService = universityService;
         }
 
-        [HttpGet]
+        [HttpGet("{universityId}")]
         public async Task<IActionResult> GetById([FromRoute] Guid universityId)
         {
             var result = await _universityService.GetById(universityId);

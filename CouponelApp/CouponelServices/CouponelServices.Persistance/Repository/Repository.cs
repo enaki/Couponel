@@ -33,5 +33,6 @@ namespace CouponelServices.Persistence.Repository
 
         public async Task<IList<T>> GetAll()
             => await this.context.Set<T>().ToListAsync();
+
     }
 }

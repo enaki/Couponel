@@ -38,8 +38,7 @@ namespace CouponelServices.Business.Institutions.Universities.Services.Implement
 
         public async Task Delete(Guid universityId)
         {
-            var university = await _repository.GetById(universityId);
-
+            var university = await _repository.GetByIdWithAddressAndFaculties(universityId);
             _repository.Delete(university);
             await _repository.SaveChanges();
         }

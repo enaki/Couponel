@@ -15,7 +15,6 @@ namespace Couponel.API.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    [Authorize]
     public class AddressController : ControllerBase
     {
         private readonly ILogger<HomeController> _logger;
@@ -27,7 +26,7 @@ namespace Couponel.API.Controllers
             _addressService = addressService;
         }
 
-        [HttpGet]
+        [HttpGet("{addressId}")]
         public async Task<IActionResult> GetById([FromRoute] Guid addressId)
         {
             var result = await _addressService.GetById(addressId);

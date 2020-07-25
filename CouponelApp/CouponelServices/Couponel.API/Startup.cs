@@ -18,6 +18,12 @@ using CouponelServices.Persistence.FacultiesRepository;
 using CouponelServices.Persistence.UniversitiesRepository;
 using FluentValidation.AspNetCore;
 using Newtonsoft.Json;
+using CouponelServices.Business.Institutions.Faculties.Services.Interfaces;
+using CouponelServices.Business.Institutions.Faculties.Services.Implementations;
+using CouponelServices.Business.Institutions.Addresses.Services.Implementations;
+using CouponelServices.Business.Institutions.Addresses.Services.Interfaces;
+using CouponelServices.Business.Institutions.Universities.Services.Interfaces;
+using CouponelServices.Business.Institutions.Universities.Services.Implementations;
 
 namespace Couponel.API
 {
@@ -38,6 +44,11 @@ namespace Couponel.API
             services.AddControllers();
 
             services
+                .AddScoped<IFacultyService,FacultyService>()
+                .AddScoped<IAddressService, AddressService>()
+                .AddScoped<IUniversityService, UniversityService>()
+
+
                 .AddScoped<IStudentsRepository, StudentsRepository>()
                 .AddScoped<IAddressesRepository, AddressesRepository>()
                 .AddScoped<IUniversitiesRepository, UniversitiesRepository>()
