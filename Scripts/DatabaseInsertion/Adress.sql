@@ -1,4 +1,7 @@
-INSERT INTO [dbo].[Address]
+USE [Couponel]
+GO
+
+INSERT INTO [dbo].[Addresses]
            ([Id]
            ,[Country]
            ,[City]
@@ -11,7 +14,7 @@ INSERT INTO [dbo].[Address]
            ,'Piata Romană'
            ,'6')
 		   
-INSERT INTO [dbo].[Address]
+INSERT INTO [dbo].[Addresses]
            ([Id]
            ,[Country]
            ,[City]
@@ -25,7 +28,7 @@ INSERT INTO [dbo].[Address]
            ,'4')
 		   
 		   
-INSERT INTO [dbo].[Address]
+INSERT INTO [dbo].[Addresses]
            ([Id]
            ,[Country]
            ,[City]
@@ -39,7 +42,7 @@ INSERT INTO [dbo].[Address]
            ,'16')
 		   
 		   
-INSERT INTO [dbo].[Address]
+INSERT INTO [dbo].[Addresses]
            ([Id]
            ,[Country]
            ,[City]
@@ -53,7 +56,7 @@ INSERT INTO [dbo].[Address]
            ,'14')
 		   
 		   
-INSERT INTO [dbo].[Address]
+INSERT INTO [dbo].[Addresses]
            ([Id]
            ,[Country]
            ,[City]
@@ -67,7 +70,7 @@ INSERT INTO [dbo].[Address]
            ,'2')
 		   
 		   
-INSERT INTO [dbo].[Address]
+INSERT INTO [dbo].[Addresses]
            ([Id]
            ,[Country]
            ,[City]
@@ -81,7 +84,7 @@ INSERT INTO [dbo].[Address]
            ,'37')
 		   
 		   
-INSERT INTO [dbo].[Address]
+INSERT INTO [dbo].[Addresses]
            ([Id]
            ,[Country]
            ,[City]
@@ -94,7 +97,7 @@ INSERT INTO [dbo].[Address]
            ,'Bulevardul Profesor Dr. doc. Dimitrie Mangeron'
            ,'27')
 		   
-INSERT INTO [dbo].[Address]
+INSERT INTO [dbo].[Addresses]
            ([Id]
            ,[Country]
            ,[City]
@@ -108,7 +111,7 @@ INSERT INTO [dbo].[Address]
            ,'2')
 		   
 		   
-INSERT INTO [dbo].[Address]
+INSERT INTO [dbo].[Addresses]
            ([Id]
            ,[Country]
            ,[City]
@@ -122,7 +125,7 @@ INSERT INTO [dbo].[Address]
            ,'16')
 		   
 		   
-INSERT INTO [dbo].[Address]
+INSERT INTO [dbo].[Addresses]
            ([Id]
            ,[Country]
            ,[City]
@@ -134,3 +137,4 @@ INSERT INTO [dbo].[Address]
            ,'Iasi'
            ,'Dumbrava Roșie'
            ,'35')
+GO
