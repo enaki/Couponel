@@ -29,10 +29,8 @@ namespace CouponelServices.Entities
         [Required]
         public ICollection<Student> Students { get; private set; }
 
-        [Required]
         [ForeignKey("Address")]
         public Guid AddressId { get; private set; }
-        [Required]
         public Address Address { get; private set; }
 
         #endregion

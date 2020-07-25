@@ -4,11 +4,11 @@ namespace CouponelServices.Business.Institutions.Addresses.Models
 {
     public sealed class AddressModel
     {
-        public Guid Id { get; private set; }
+        public Guid Id { get; set; }
 
-        public string Country { get; private set; }
-        public string City { get; private set; }
-        public string Street { get; private set; }
-        public string Number { get; private set; }
+        public string Country { get; set; }
+        public string City { get; set; }
+        public string Street { get; set; }
+        public string Number { get; set; }
     }
 }

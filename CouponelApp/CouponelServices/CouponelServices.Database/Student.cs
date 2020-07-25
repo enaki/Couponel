@@ -26,10 +26,8 @@ namespace CouponelServices.Entities
 
         #region Database Relations
 
-        [Required]
         [ForeignKey("Address")]
         public Guid AddressId { get; private set; }
-        [Required]
         public Address Address { get; private set; }
 
         #endregion
