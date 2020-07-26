@@ -53,6 +53,282 @@
       "Number": "4"
     },
     "Faculties": [
+      {
+        "FacultyId": "23B51624-E181-434D-9B43-17152DC1A9F5",
+        "Name": "Facultatea de Matematica si Informatica",
+        "Email": "secretariat.mateinfo@e-uvt.ro",
+        "PhoneNumber": "+40-(0)256-592155",
+        "FacultyAddress": {
+          "Id": "DD33D84B-51E7-49D5-8C83-914F80CFF938",
+          "Country": "Romania",
+          "City": "Timisoara",
+          "Street": "Bulevardul V. Pârvan",
+          "Number": "4"
+        }
+      }
+    ]
+  },
+  {
+    "Id": "C46F8BC2-05C9-400F-8118-536A8A93699D",
+    "Name": "Universitatea din Bucuresti",
+    "Email": "office@g.unibuc.ro",
+    "PhoneNumber": " +4021-313.17.60",
+    "UniversityAddress": {
+      "Id": "C44C5B59-23EB-4FCB-9BD3-7DBA7627949B",
+      "Country": "Romania",
+      "City": "Bucuresti",
+      "Street": "Academiei",
+      "Number": "14"
+    },
+    "Faculties": [
+      {
+        "FacultyId": "BF470F70-6796-4624-BF46-5215A82ED69C",
+        "Name": "Facultatea de Matematica si Informatica",
+        "Email": "secretariat@fmi.unibuc.ro",
+        "PhoneNumber": " +4021–314.28.63",
+        "FacultyAddress": {
+          "Id": "C44C5B59-23EB-4FCB-9BD3-7DBA7627949B",
+          "Country": "Romania",
+          "City": "Bucuresti",
+          "Street": "Academiei",
+          "Number": "14"
+        }
+      }
+    ]
+  },
+  {
+    "Id": "C2C82FDA-6221-4A36-9586-5CDF741EB0B4",
+    "Name": "Universitatea de Medicina si Farmacie Carol Davila",
+    "Email": "rectorat@umfcd.ro",
+    "PhoneNumber": "+4021 3180719",
+    "UniversityAddress": {
+      "Id": "DA590317-3B53-4EC4-9BCB-7982FB43E801",
+      "Country": "Romania",
+      "City": "Bucuresti",
+      "Street": "Dionisie Lupu",
+      "Number": "37"
+    },
+    "Faculties": [
+      {
+        "FacultyId": "D9BF3497-C5BC-416E-A42E-86184FBAAABF",
+        "Name": "Facultatea de Medicina",
+        "Email": "rectorat@umfcd.ro",
+        "PhoneNumber": "+4021 3180719",
+        "FacultyAddress": {
+          "Id": "DA590317-3B53-4EC4-9BCB-7982FB43E801",
+          "Country": "Romania",
+          "City": "Bucuresti",
+          "Street": "Dionisie Lupu",
+          "Number": "37"
+        }
+      }
+    ]
+  },
+  {
+    "Id": "A99EC720-CEF6-41A3-A5F8-63432D3F76D5",
+    "Name": "Universitatea de Stiinte Agricole si Medicina Veterinara \"Ion Ionescu de la Brad\"",
+    "Email": "rectorat@uaiasi.ro",
+    "PhoneNumber": " 0232 407.407",
+    "UniversityAddress": {
+      "Id": "869022AC-F363-4E5E-BAA2-261C6971F57D",
+      "Country": "Romania",
+      "City": "Iasi",
+      "Street": "Dumbrava Roșie",
+      "Number": "35"
+    },
+    "Faculties": [
+      {
+        "FacultyId": "2DFF3497-C5BC-416E-A42E-86184FBAAABF",
+        "Name": "Facultatea de Agricultura",
+        "Email": "secr_agr@uaiasi.ro",
+        "PhoneNumber": "0232 407 424",
+        "FacultyAddress": {
+          "Id": "869022AC-F363-4E5E-BAA2-261C6971F57D",
+          "Country": "Romania",
+          "City": "Iasi",
+          "Street": "Dumbrava Roșie",
+          "Number": "35"
+        }
+      }
+    ]
+  },
+  {
+    "Id": "35D19BC6-FEE9-41CF-A64F-ABB9C8CD891C",
+    "Name": "Academia de Studii Economice din Bucuresti",
+    "Email": "rectorat@ase.ro",
+    "PhoneNumber": " +40213191900",
+    "UniversityAddress": {
+      "Id": "29A7FB75-0BC7-422E-996A-CCDD763BE963",
+      "Country": "Romania",
+      "City": "Bucuresti",
+      "Street": "Piata Romana",
+      "Number": "6"
+    },
+    "Faculties": [
+      {
+        "FacultyId": "11E55B49-087E-4105-BEB6-0B01CE682121",
+        "Name": "Facultatea de Drept",
+        "Email": "ovidiu.dumitru@drept.ase.ro",
+        "PhoneNumber": "+04 021 319 19 00",
+        "FacultyAddress": {
+          "Id": "29A7FB75-0BC7-422E-996A-CCDD763BE963",
+          "Country": "Romania",
+          "City": "Bucuresti",
+          "Street": "Piata Romana",
+          "Number": "6"
+        }
+      }
+    ]
+  },
+  {
+    "Id": "F63C98A8-D6A7-44F1-9F8C-C1B7FD93B1C5",
+    "Name": "Universitatea de Medicina si Farmacie Victor Babes",
+    "Email": "rector@umft.ro",
+    "PhoneNumber": "+40.0256.204.400",
+    "UniversityAddress": {
+      "Id": "17736749-A379-4757-AAEB-A339557B325B",
+      "Country": "Romania",
+      "City": "Timisoara",
+      "Street": "Piata Eftimie Murgu",
+      "Number": "2"
+    },
+    "Faculties": [
+      {
+        "FacultyId": "D2DF3769-A91B-4502-BEE3-B0AF1B6F4945",
+        "Name": "Facultatea de Medicina",
+        "Email": "decanat.mg@umft.ro",
+        "PhoneNumber": "0256/220 484",
+        "FacultyAddress": {
+          "Id": "DA590317-3B53-4EC4-9BCB-7982FB43E801",
+          "Country": "Romania",
+          "City": "Timisoara",
+          "Street": "Piata Eftimie Murgu",
+          "Number": "2"
+        }
+      }
+    ]
+  },
+  {
+    "Id": "21C36828-EF02-44F2-B5A7-E3A16250A39E",
+    "Name": "Universitatea de Medicina Grigore T. Popa",
+    "Email": "rectorat@umfiasi.ro",
+    "PhoneNumber": " +40.232.301.603",
+    "UniversityAddress": {
+      "Id": "8B54A373-7314-4EEE-933C-00E119930821",
+      "Country": "Romania",
+      "City": "Iasi",
+      "Street": "Universității",
+      "Number": "16"
+    },
+    "Faculties": [
+      {
+        "FacultyId": "F83F6AB6-9CB4-41B0-8CB0-B567F6B9150B",
+        "Name": "Facultatea de Medicina",
+        "Email": "oana.crasmaru@umfiasi.ro",
+        "PhoneNumber": "0232 30 16 15",
+        "FacultyAddress": {
+          "Id": "8B54A373-7314-4EEE-933C-00E119930821",
+          "Country": "Romania",
+          "City": "Iasi",
+          "Street": "Universității",
+          "Number": "16"
+        }
+      }
+    ]
+  },
+  {
+    "Id": "B00CF8CF-C6E9-4438-BE39-E97515E6B649",
+    "Name": "Universitatea Politehnica Timisoara",
+    "Email": "rector@upt.ro",
+    "PhoneNumber": "0256 - 403021",
+    "UniversityAddress": {
+      "Id": "F1910C0A-5D8E-402C-9E86-652D355F07EB",
+      "Country": "Romania",
+      "City": "Timisoara",
+      "Street": "Bulevardul V. Pârvan",
+      "Number": "2"
+    },
+    "Faculties": [
+      {
+        "FacultyId": "6C679218-A79E-4CD2-B26E-562FEC7AB4BE",
+        "Name": "Facultatea Automatica si calculatoare",
+        "Email": "ac@upt.ro",
+        "PhoneNumber": "0256 - 403.211",
+        "FacultyAddress": {
+          "Id": "F1910C0A-5D8E-402C-9E86-652D355F07EB",
+          "Country": "Romania",
+          "City": "Timisoara",
+          "Street": "Bulevardul V. Pârvan",
+          "Number": "2"
+        }
+      }
+    ]
+  },
+  {
+    "Id": "8D5F24CC-56B5-468C-B797-F84DF5A666AB",
+    "Name": "Universitatea Alexandru Ioan Cuza",
+    "Email": "contact@uaic.ro",
+    "PhoneNumber": " 0232 20 1000",
+    "UniversityAddress": {
+      "Id": "05AD0DB3-DBA9-432C-A1E4-9B95ACDE901A",
+      "Country": "Romania",
+      "City": "Iasi",
+      "Street": "General Berthelot",
+      "Number": "16"
+    },
+    "Faculties": [
+      {
+        "FacultyId": "1F898FAE-2BB9-408D-ACD3-190C14DB46F4",
+        "Name": "Facultatea de Informatica",
+        "Email": "secretariat@info.uaic.ro",
+        "PhoneNumber": "+40 232 201090",
+        "FacultyAddress": {
+          "Id": "05AD0DB3-DBA9-432C-A1E4-9B95ACDE901A",
+          "Country": "Romania",
+          "City": "Iasi",
+          "Street": "General Berthelot",
+          "Number": "16"
+        }
+      },
+      {
+        "FacultyId": "c0297ca7-eb95-4aba-bf92-4f712e6e81bb",
+        "Name": "Facultatea de Drept",
+        "Email": "secretariatzi.drept@uaic.ro",
+        "PhoneNumber": "0232 201 058",
+        "FacultyAddress": {
+          "Id": "80e56482-9d78-43ae-8955-5ca91c3033e4",
+          "Country": "Romania",
+          "City": "Iasi",
+          "Street": "Bulevardul Carol I",
+          "Number": "11"
+        }
+      },
+      {
+        "FacultyId": "14b8fb18-21a2-4ece-b283-0830c1a06a99",
+        "Name": "Facultatea de Chimie",
+        "Email": "infochem@chem.uaic.ro",
+        "PhoneNumber": "+ 40 232 201063",
+        "FacultyAddress": {
+           "Id": "80e56482-9d78-43ae-8955-5ca91c3033e4",
+            "Country": "Romania",
+            "City": "Iasi",
+            "Street": "Bulevardul Carol I",
+            "Number": "11"
+        }
+      },
+      {
+        "FacultyId": "8332679f-98c6-4ad8-832f-45ea0db3f75b",
+        "Name": "Facultatea de Educație Fizică și Sport",
+        "Email": "admefs@uaic.ro",
+        "PhoneNumber": "0232 20 1026",
+        "FacultyAddress": {
+          "Id": "9f07131a-ea13-428e-b043-1af182f948aa",
+          "Country": "Romania",
+          "City": "Iasi",
+          "Street": "Toma Cozma",
+          "Number": "3"
+        }
+      }
     ]
   }
 ]

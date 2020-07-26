@@ -119,7 +119,7 @@ def main():
     university_string_builder_sql += "GO"
     # print(university_string_builder_sql)
 
-    with open("output/Adress.sql", mode="w", encoding="utf-8") as address_file:
+    with open("output/Address.sql", mode="w", encoding="utf-8") as address_file:
         address_file.write(address_string_builder_sql)
     with open("output/Faculty.sql", mode="w", encoding="utf-8") as faculty_file:
         faculty_file.write(faculty_string_builder_sql)
