@@ -60,6 +60,19 @@ INSERT INTO [dbo].[Addresses]
            ,[Street]
            ,[Number])
         VALUES
+           ('5d73b9d5-678b-470b-8021-ceec663b41c5'
+           ,'Romania'
+           ,'Bucuresti'
+           ,'Dionisie Lupu'
+           ,'37')
+
+INSERT INTO [dbo].[Addresses]
+           ([Id]
+           ,[Country]
+           ,[City]
+           ,[Street]
+           ,[Number])
+        VALUES
            ('869022AC-F363-4E5E-BAA2-261C6971F57D'
            ,'Romania'
            ,'Iasi'
@@ -152,6 +165,19 @@ INSERT INTO [dbo].[Addresses]
            ,[Number])
         VALUES
            ('80e56482-9d78-43ae-8955-5ca91c3033e4'
+           ,'Romania'
+           ,'Iasi'
+           ,'Bulevardul Carol I'
+           ,'11')
+
+INSERT INTO [dbo].[Addresses]
+           ([Id]
+           ,[Country]
+           ,[City]
+           ,[Street]
+           ,[Number])
+        VALUES
+           ('0d999463-60fa-406b-8349-90309f5ec66f'
            ,'Romania'
            ,'Iasi'
            ,'Bulevardul Carol I'

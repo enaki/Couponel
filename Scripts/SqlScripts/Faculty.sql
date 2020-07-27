@@ -74,7 +74,7 @@ INSERT INTO [dbo].[Faculties]
            ,'rectorat@umfcd.ro'
            ,'+4021 3180719'
            ,'C2C82FDA-6221-4A36-9586-5CDF741EB0B4'
-           ,'DA590317-3B53-4EC4-9BCB-7982FB43E801')
+           ,'5d73b9d5-678b-470b-8021-ceec663b41c5')
 
 INSERT INTO [dbo].[Faculties]
            ([Id]
@@ -194,7 +194,7 @@ INSERT INTO [dbo].[Faculties]
            ,'infochem@chem.uaic.ro'
            ,'+ 40 232 201063'
            ,'8D5F24CC-56B5-468C-B797-F84DF5A666AB'
-           ,'80e56482-9d78-43ae-8955-5ca91c3033e4')
+           ,'0d999463-60fa-406b-8349-90309f5ec66f')
 
 INSERT INTO [dbo].[Faculties]
            ([Id]
