@@ -17,6 +17,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Couponel.Business", "Coupon
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Couponel.API", "Couponel.API\Couponel.API.csproj", "{D78322F2-3EC2-498C-AD4B-2D88166505A1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "99. Tests", "99. Tests", "{EC0A9A07-2CD2-4CCE-9997-8EDCE488BA1F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Couponel.UnitTests", "Couponel.UnitTests\Couponel.UnitTests.csproj", "{EDA20255-4A66-4F0F-958A-6AA94483779B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,10 @@ Global
 		{D78322F2-3EC2-498C-AD4B-2D88166505A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D78322F2-3EC2-498C-AD4B-2D88166505A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D78322F2-3EC2-498C-AD4B-2D88166505A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDA20255-4A66-4F0F-958A-6AA94483779B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDA20255-4A66-4F0F-958A-6AA94483779B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDA20255-4A66-4F0F-958A-6AA94483779B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDA20255-4A66-4F0F-958A-6AA94483779B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +56,7 @@ Global
 		{84A89BA3-DAA0-48A6-8749-3594489AF2F0} = {BF088CED-DDA1-4C0D-B6BE-301EE3E33AB7}
 		{6D31F4DA-F618-45AC-8E84-A2AAD14DA56B} = {4682D113-EFD2-4345-ADFD-33C6576DEFFF}
 		{D78322F2-3EC2-498C-AD4B-2D88166505A1} = {C7B2DCE5-BA07-4B4C-8BB0-9A8BE2ED1FF4}
+		{EDA20255-4A66-4F0F-958A-6AA94483779B} = {EC0A9A07-2CD2-4CCE-9997-8EDCE488BA1F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CF19F7E2-694C-4EFF-BD0E-B48906486947}
