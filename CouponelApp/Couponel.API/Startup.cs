@@ -1,5 +1,6 @@
 using AutoMapper;
 using Couponel.API.Extensions;
+using Couponel.Business.Identities;
 using Couponel.Business.Institutions;
 using Couponel.Business.Institutions.Addresses.Services.Implementations;
 using Couponel.Business.Institutions.Addresses.Services.Interfaces;
@@ -8,18 +9,17 @@ using Couponel.Business.Institutions.Faculties.Services.Interfaces;
 using Couponel.Business.Institutions.Universities.Services.Implementations;
 using Couponel.Business.Institutions.Universities.Services.Interfaces;
 using Couponel.Persistence;
-using Couponel.Persistence.AddressesRepository;
-using Couponel.Persistence.FacultiesRepository;
-using Couponel.Persistence.StudentsRepository;
-using Couponel.Persistence.UniversitiesRepository;
+using Couponel.Persistence.IdentitiesRepositories.AdminsRepository;
+using Couponel.Persistence.IdentitiesRepositories.OfferersRepository;
+using Couponel.Persistence.IdentitiesRepositories.StudentsRepository;
+using Couponel.Persistence.InstitutionsRepositories.AddressesRepository;
+using Couponel.Persistence.InstitutionsRepositories.FacultiesRepository;
+using Couponel.Persistence.InstitutionsRepositories.UniversitiesRepository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using FluentValidation.AspNetCore;
 using Newtonsoft.Json;
@@ -49,6 +49,8 @@ namespace Couponel.API
 
 
                 .AddScoped<IStudentsRepository, StudentsRepository>()
+                .AddScoped<IAdminsRepository, AdminsRepository>()
+                .AddScoped<IOfferorsRepository, OfferorsRepository>()
                 .AddScoped<IAddressesRepository, AddressesRepository>()
                 .AddScoped<IUniversitiesRepository, UniversitiesRepository>()
                 .AddScoped<IFacultiesRepository, FacultiesRepository>();
@@ -61,6 +63,7 @@ namespace Couponel.API
                 .AddAutoMapper(c =>
                 {
                     c.AddProfile<InstitutionMappingProfile>();
+                    c.AddProfile<IdentityMappingProfile>();
                 })
                 .AddHttpContextAccessor()
                 .AddSwagger()
