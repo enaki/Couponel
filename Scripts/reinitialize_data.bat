@@ -3,8 +3,8 @@ echo Y | del SqlScripts\*
 
 :: Run python scripts
 cd SqlScriptGenerator
-python3 generate_delete_data_script.py
-python3 generate_insert_data_script.py
+python generate_delete_data_script.py
+python generate_insert_data_script.py
 cd ..
 
 :: Move generated python scripts to SqlScripts
