@@ -5,7 +5,7 @@ using AutoMapper;
 using Couponel.Business.Identities.Admins.Models;
 using Couponel.Business.Identities.Admins.Services.Interfaces;
 using Couponel.Entities.Identities.UserTypes;
-using Couponel.Persistence.IdentitiesRepositories.AdminsRepository;
+using Couponel.Persistence.Repositories.IdentitiesRepositories.AdminsRepository;
 
 namespace Couponel.Business.Identities.Admins.Services.Implementations
 {

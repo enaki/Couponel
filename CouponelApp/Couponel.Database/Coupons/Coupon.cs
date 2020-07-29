@@ -47,5 +47,13 @@ namespace Couponel.Entities.Coupons
                 Comments.Remove(comment);
             }
         }
+
+        public void Update(string name, string category, DateTime expirationDate, string description)
+        {
+            Name = name;
+            Category = category;
+            ExpirationDate = expirationDate;
+            Description = description;
+        }
     }
 }

@@ -1,6 +1,20 @@
 using AutoMapper;
 using Couponel.API.Extensions;
+using Couponel.Business.Authentications;
+using Couponel.Business.Authentications.Services.Implementations;
+using Couponel.Business.Authentications.Services.Interfaces;
+using Couponel.Business.Coupons;
+using Couponel.Business.Coupons.Comments.Services.Implementations;
+using Couponel.Business.Coupons.Comments.Services.Interfaces;
+using Couponel.Business.Coupons.Coupons.Services.Implementations;
+using Couponel.Business.Coupons.Coupons.Services.Interfaces;
 using Couponel.Business.Identities;
+using Couponel.Business.Identities.Admins.Services.Implementations;
+using Couponel.Business.Identities.Admins.Services.Interfaces;
+using Couponel.Business.Identities.Offerors.Services.Implementations;
+using Couponel.Business.Identities.Offerors.Services.Interfaces;
+using Couponel.Business.Identities.Students.Services.Implementations;
+using Couponel.Business.Identities.Students.Services.Interfaces;
 using Couponel.Business.Institutions;
 using Couponel.Business.Institutions.Addresses.Services.Implementations;
 using Couponel.Business.Institutions.Addresses.Services.Interfaces;
@@ -9,12 +23,15 @@ using Couponel.Business.Institutions.Faculties.Services.Interfaces;
 using Couponel.Business.Institutions.Universities.Services.Implementations;
 using Couponel.Business.Institutions.Universities.Services.Interfaces;
 using Couponel.Persistence;
-using Couponel.Persistence.IdentitiesRepositories.AdminsRepository;
-using Couponel.Persistence.IdentitiesRepositories.OfferersRepository;
-using Couponel.Persistence.IdentitiesRepositories.StudentsRepository;
-using Couponel.Persistence.InstitutionsRepositories.AddressesRepository;
-using Couponel.Persistence.InstitutionsRepositories.FacultiesRepository;
-using Couponel.Persistence.InstitutionsRepositories.UniversitiesRepository;
+using Couponel.Persistence.Repositories.CouponsRepositories.CommentsRepository;
+using Couponel.Persistence.Repositories.CouponsRepositories.CouponsRepository;
+using Couponel.Persistence.Repositories.IdentitiesRepositories.AdminsRepository;
+using Couponel.Persistence.Repositories.IdentitiesRepositories.OfferersRepository;
+using Couponel.Persistence.Repositories.IdentitiesRepositories.StudentsRepository;
+using Couponel.Persistence.Repositories.IdentitiesRepositories.UsersRepository;
+using Couponel.Persistence.Repositories.InstitutionsRepositories.AddressesRepository;
+using Couponel.Persistence.Repositories.InstitutionsRepositories.FacultiesRepository;
+using Couponel.Persistence.Repositories.InstitutionsRepositories.UniversitiesRepository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -43,14 +60,32 @@ namespace Couponel.API
             services.AddControllers();
 
             services
-                .AddScoped<IFacultyService,FacultyService>()
+                .AddScoped<IFacultyService, FacultyService>()
                 .AddScoped<IAddressService, AddressService>()
                 .AddScoped<IUniversityService, UniversityService>()
+
+
+                .AddScoped<ICouponService, CouponService>()
+                .AddScoped<ICommentsService, CommentsService>()
+
+                .AddScoped<IStudentService, StudentService>()
+                .AddScoped<IOffererService, OffererService>()
+                .AddScoped<IAdminService, AdminService>()
+
+                .AddScoped<IPasswordHasher, PasswordHasher>()
+                .AddScoped<IAuthenticationService, AuthenticationService>()
+
 
 
                 .AddScoped<IStudentsRepository, StudentsRepository>()
                 .AddScoped<IAdminsRepository, AdminsRepository>()
                 .AddScoped<IOfferorsRepository, OfferorsRepository>()
+
+                .AddScoped<IUsersRepository, UsersRepository>()
+
+                .AddScoped<ICouponsRepository, CouponsRepository>()
+                .AddScoped<ICommentsRepository, CommentsRepository>()
+
                 .AddScoped<IAddressesRepository, AddressesRepository>()
                 .AddScoped<IUniversitiesRepository, UniversitiesRepository>()
                 .AddScoped<IFacultiesRepository, FacultiesRepository>();
@@ -64,6 +99,8 @@ namespace Couponel.API
                 {
                     c.AddProfile<InstitutionMappingProfile>();
                     c.AddProfile<IdentityMappingProfile>();
+                    c.AddProfile<CouponMappingProfile>();
+                    c.AddProfile<AuthenticationMappingProfile>();
                 })
                 .AddHttpContextAccessor()
                 .AddSwagger()

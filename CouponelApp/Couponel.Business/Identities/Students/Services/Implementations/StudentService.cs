@@ -5,7 +5,7 @@ using AutoMapper;
 using Couponel.Business.Identities.Students.Models;
 using Couponel.Business.Identities.Students.Services.Interfaces;
 using Couponel.Entities.Identities.UserTypes;
-using Couponel.Persistence.IdentitiesRepositories.StudentsRepository;
+using Couponel.Persistence.Repositories.IdentitiesRepositories.StudentsRepository;
 
 namespace Couponel.Business.Identities.Students.Services.Implementations
 {

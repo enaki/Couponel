@@ -5,7 +5,7 @@ using AutoMapper;
 using Couponel.Business.Institutions.Addresses.Models;
 using Couponel.Business.Institutions.Addresses.Services.Interfaces;
 using Couponel.Entities.Institutions;
-using Couponel.Persistence.InstitutionsRepositories.AddressesRepository;
+using Couponel.Persistence.Repositories.InstitutionsRepositories.AddressesRepository;
 
 namespace Couponel.Business.Institutions.Addresses.Services.Implementations
 {

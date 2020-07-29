@@ -6,7 +6,7 @@ using Couponel.Business.Institutions.Universities.Models;
 using Couponel.Business.Institutions.Universities.Services.Interfaces;
 using Couponel.Entities;
 using Couponel.Entities.Institutions;
-using Couponel.Persistence.InstitutionsRepositories.UniversitiesRepository;
+using Couponel.Persistence.Repositories.InstitutionsRepositories.UniversitiesRepository;
 
 namespace Couponel.Business.Institutions.Universities.Services.Implementations
 {

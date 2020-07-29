@@ -53,6 +53,7 @@ namespace Couponel.Persistence
         }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Coupon> Coupons { get; set; }
+        public DbSet<Comment> Comments { get; set; }
         public DbSet<Faculty> Faculties { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Offerer> Offerors { get; set; }

@@ -6,7 +6,7 @@ using Couponel.Business.Identities.Offerors.Models;
 using Couponel.Business.Identities.Offerors.Services.Interfaces;
 using Couponel.Entities.Identities.UserTypes;
 using Couponel.Entities.Institutions;
-using Couponel.Persistence.IdentitiesRepositories.OfferersRepository;
+using Couponel.Persistence.Repositories.IdentitiesRepositories.OfferersRepository;
 
 
 namespace Couponel.Business.Identities.Offerors.Services.Implementations
