@@ -18,7 +18,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Couponel.AP": {
+    "Couponel.API": {
       "commandName": "IISExpress",
       "launchBrowser": true,
       "launchUrl": "home",
