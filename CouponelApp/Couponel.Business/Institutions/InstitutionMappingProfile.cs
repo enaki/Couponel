@@ -2,6 +2,7 @@
 using Couponel.Business.Institutions.Addresses.Models;
 using Couponel.Business.Institutions.Faculties.Models;
 using Couponel.Business.Institutions.Universities.Models;
+using Couponel.Entities.Institutions;
 
 namespace Couponel.Business.Institutions
 {
@@ -9,14 +10,14 @@ namespace Couponel.Business.Institutions
     {
         public InstitutionMappingProfile()
         {
-            CreateMap<CreateAddressModel, Entities.Address>();
-            CreateMap<Entities.Address, AddressModel>();
+            CreateMap<CreateAddressModel, Address>();
+            CreateMap<Address, AddressModel>();
 
-            CreateMap<CreateFacultyModel, Entities.Faculty>();
-            CreateMap<Entities.Faculty, FacultyModel>();
+            CreateMap<CreateFacultyModel, Faculty>();
+            CreateMap<Faculty, FacultyModel>();
 
-            CreateMap<CreateUniversityModel, Entities.University>();
-            CreateMap<Entities.University, UniversityModel>();
+            CreateMap<CreateUniversityModel, University>();
+            CreateMap<University, UniversityModel>();
         }
     }
 }

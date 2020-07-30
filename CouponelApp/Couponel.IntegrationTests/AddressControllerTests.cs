@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Couponel.Business.Institutions.Addresses.Models;
 using Couponel.Entities;
+using Couponel.Entities.Institutions;
 using FluentAssertions;
 using Xunit;
 
