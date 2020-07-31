@@ -13,10 +13,10 @@ namespace Couponel.Business.Identities.Offerors.Services.Implementations
 {
     public sealed class OffererService: IOffererService
     {
-        private readonly IOfferorsRepository _repository;
+        private readonly IOfferersRepository _repository;
         private readonly IMapper _mapper;
 
-        public OffererService(IOfferorsRepository repository, IMapper mapper)
+        public OffererService(IOfferersRepository repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
