@@ -2,7 +2,10 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using Couponel.API;
+using Couponel.Business.Institutions.Addresses.Models;
+using Couponel.Entities.Institutions;
 using Couponel.Persistence;
+using FluentAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
@@ -34,8 +37,11 @@ namespace Couponel.IntegrationTests
         public async Task CleanupDatabase(CouponelContext couponelContext)
         {
             couponelContext.Addresses.RemoveRange(couponelContext.Addresses);
+            couponelContext.Admins.RemoveRange(couponelContext.Admins);
+            couponelContext.Comments.RemoveRange(couponelContext.Comments);
             couponelContext.Coupons.RemoveRange(couponelContext.Coupons);
             couponelContext.Faculties.RemoveRange(couponelContext.Faculties);
+            couponelContext.Offerors.RemoveRange(couponelContext.Offerors);
             couponelContext.Students.RemoveRange(couponelContext.Students);
             couponelContext.Universities.RemoveRange(couponelContext.Universities);
             couponelContext.Users.RemoveRange(couponelContext.Users);

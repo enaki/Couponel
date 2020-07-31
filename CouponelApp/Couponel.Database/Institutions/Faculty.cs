@@ -9,12 +9,13 @@ namespace Couponel.Entities.Institutions
 {
     public sealed class Faculty: Entity
     {
-        public Faculty(string name, string email, string phoneNumber)
+        public Faculty(string name, string email, string phoneNumber, Guid addressId)
         {
             Name = name;
             Email = email;
             PhoneNumber = phoneNumber;
             Students = new List<Student>();
+            AddressId = addressId;
         }
         [Required]
         public string Name { get; private set; }

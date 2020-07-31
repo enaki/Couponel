@@ -6,9 +6,10 @@ namespace Couponel.Entities.Identities.UserTypes
 {
     public sealed class Student: Person
     {
-        public Student(string firstName, string lastName, string email, string phoneNumber) : 
+        public Student(string firstName, string lastName, string email, string phoneNumber, Guid addressId) : 
             base(firstName, lastName, email, phoneNumber)
         {
+            AddressId = addressId;
         }
 
         #region Database Relations
