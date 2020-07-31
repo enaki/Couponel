@@ -12,12 +12,33 @@ namespace Couponel.Persistence.Repositories.InstitutionsRepositories.Universitie
         {
         }
 
-        public async Task<University> GetByIdWithAddressAndFaculties(Guid id)
+        public async Task<University> GetByIdWithAddressFacultiesAndStudents(Guid id)
             => await this.context.Universities
                 .Include(university => university.Faculties)
                     .ThenInclude(faculty => faculty.Students)
                 .Include(university => university.Address)
                 .FirstAsync(university => university.Id == id);
+        public async Task<University> GetByIdWithAddressAndFaculties(Guid id)
+        => await this.context.Universities
+            .Include(university => university.Faculties)
+            .Include(university => university.Address)
+            .FirstAsync(university => university.Id == id);
+
+        public async Task<University> GetByIdWithFacultiesAndStudents(Guid id)
+                => await this.context.Universities
+                    .Include(university => university.Faculties)
+                        .ThenInclude(faculty => faculty.Students)
+                    .FirstAsync(university => university.Id == id);
+
+        public async Task<University> GetByIdWithFaculties(Guid id)
+        => await this.context.Universities
+            .Include(university => university.Faculties)
+            .FirstAsync(university => university.Id == id);
+
+        public async Task<University> GetByIdWithAddress(Guid id)
+                => await this.context.Universities
+                    .Include(university => university.Address)
+                    .FirstAsync(university => university.Id == id);
 
     }
 }
