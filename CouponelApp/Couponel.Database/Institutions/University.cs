@@ -5,14 +5,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Couponel.Entities.Institutions
 {
-    public sealed class University: Entity
+    public sealed class University : Entity
     {
-        public University(string name, string email, string phoneNumber)
+        public University(string name, string email, string phoneNumber, Guid addressId)
         {
             Name = name;
             Email = email;
             PhoneNumber = phoneNumber;
             Faculties = new List<Faculty>();
+            AddressId = addressId;
         }
 
         [Required]

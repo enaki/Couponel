@@ -48,7 +48,7 @@ namespace Couponel.Business.Authentications.Services.Implementations
                 return null;
             }
 
-            var newUser = new User(userRegisterModel.UserName, userRegisterModel.FirstName, userRegisterModel.LastName, userRegisterModel.Email, _passwordHasher.CreateHash(userRegisterModel.Password), userRegisterModel.UserType);
+            var newUser = new User(userRegisterModel.UserName, userRegisterModel.Email, _passwordHasher.CreateHash(userRegisterModel.Password), userRegisterModel.UserType);
             await _userRepository.Add(newUser);
             await _userRepository.SaveChanges();
 
@@ -70,7 +70,7 @@ namespace Couponel.Business.Authentications.Services.Implementations
                 expires: DateTime.Now.AddHours(hours),
                 signingCredentials: credentials);
 
-            return new AuthenticationResponse(user.UserName, user.FirstName, user.LastName, new JwtSecurityTokenHandler().WriteToken(token));
+            return new AuthenticationResponse(user.UserName, new JwtSecurityTokenHandler().WriteToken(token));
         }
     }
 }
