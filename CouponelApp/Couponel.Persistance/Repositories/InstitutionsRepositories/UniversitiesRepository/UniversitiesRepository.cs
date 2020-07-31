@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Couponel.Persistence.Repositories.InstitutionsRepositories.UniversitiesRepository
 {
-    public sealed class UniversitiesRepository: Repository<University>, IUniversitiesRepository
+    public sealed class UniversitiesRepository : Repository<University>, IUniversitiesRepository
     {
         public UniversitiesRepository(CouponelContext context) : base(context)
         {
@@ -18,5 +18,6 @@ namespace Couponel.Persistence.Repositories.InstitutionsRepositories.Universitie
                     .ThenInclude(faculty => faculty.Students)
                 .Include(university => university.Address)
                 .FirstAsync(university => university.Id == id);
+
     }
 }

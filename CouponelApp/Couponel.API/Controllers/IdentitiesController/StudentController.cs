@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Couponel.Business.Identities.Students.Models;
 using Couponel.Business.Identities.Students.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -24,7 +25,6 @@ namespace Couponel.API.Controllers.IdentitiesController
         public async Task<IActionResult> GetById([FromRoute] Guid studentId)
         {
             var result = await _studentService.GetById(studentId);
-
             return Ok(result);
         }
 
