@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Couponel.Entities.Identities;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Couponel.Entities.Coupons
 {
@@ -10,8 +13,12 @@ namespace Couponel.Entities.Coupons
             UserId = userId;
         }
 
-        public string Content { get; set; }
+        public string Content { get; private set; }
 
-        public Guid UserId { get; set; }
+        [Required]
+        [ForeignKey("Student")]
+        public Guid UserId { get; private set; }
+        [Required]
+        public User User { get; private set; }
     }
 }

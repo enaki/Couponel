@@ -21,37 +21,44 @@ namespace Couponel.Persistence
             modelBuilder.Entity<University>()
                 .HasMany<Faculty>(university => university.Faculties)
                 .WithOne()
+                .IsRequired(true)
                 .OnDelete(DeleteBehavior.ClientCascade);
 
 
             modelBuilder.Entity<Faculty>()
                 .HasMany<Student>(faculty => faculty.Students)
                 .WithOne()
+                .IsRequired(true)
                 .OnDelete(DeleteBehavior.ClientCascade);
             #endregion
-
             #region Coupons
             modelBuilder.Entity<Offerer>()
                 .HasMany<Coupon>(offerer => offerer.Coupons)
                 .WithOne()
-                .OnDelete(DeleteBehavior.Cascade);
+                .IsRequired(true)
+                .OnDelete(DeleteBehavior.ClientCascade);
 
             modelBuilder.Entity<Coupon>()
                 .HasMany<RedeemedCoupon>(coupon => coupon.RedeemedCoupons)
                 .WithOne()
-                .OnDelete(DeleteBehavior.Cascade);
+                .IsRequired(true)
+                .OnDelete(DeleteBehavior.ClientCascade);
 
             modelBuilder.Entity<Student>()
                 .HasMany<RedeemedCoupon>(student => student.RedeemedCoupons)
                 .WithOne()
-                .OnDelete(DeleteBehavior.Cascade);
+                .IsRequired(true)
+                .OnDelete(DeleteBehavior.ClientCascade);
 
+            modelBuilder.Entity<Coupon>()
+                .HasMany<Comment>(coupon => coupon.Comments)
+                .WithOne()
+                .IsRequired(true)
+                .OnDelete(DeleteBehavior.ClientCascade);
             #endregion
-
             #endregion
 
             #region One to one relations 
-
             #region Address Relations
             modelBuilder.Entity<Student>()
                 .HasOne<Address>(student => student.Address)
@@ -96,6 +103,14 @@ namespace Couponel.Persistence
                 .HasForeignKey<Offerer>(offerer => offerer.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
             #endregion
+
+            modelBuilder.Entity<Comment>()
+                .HasOne<User>(comment=> comment.User)
+                .WithOne()
+                .IsRequired(true)
+                .HasForeignKey<Comment>(comment => comment.UserId)
+                .OnDelete(DeleteBehavior.NoAction);
+
             #endregion
 
         }
