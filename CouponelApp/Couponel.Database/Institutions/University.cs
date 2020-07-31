@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace Couponel.Entities.Institutions
 {
@@ -25,6 +26,26 @@ namespace Couponel.Entities.Institutions
         [Required]
         public string PhoneNumber { get; private set; }
 
+        public void AddFaculty(Faculty faculty)
+        {
+            Faculties.Add(faculty);
+        }
+
+        public void RemoveFaculty(Guid facultyId)
+        {
+            var faculty = this.Faculties.FirstOrDefault(rc => rc.Id == facultyId);
+            if (faculty != null)
+            {
+                Faculties.Remove(faculty);
+            }
+        }
+        public void Update(string name, string email, string phoneNumber, Guid addressId)
+        {
+            Name = name;
+            Email = email;
+            PhoneNumber = phoneNumber;
+            AddressId = addressId;
+        }
 
         #region Database Relations
 

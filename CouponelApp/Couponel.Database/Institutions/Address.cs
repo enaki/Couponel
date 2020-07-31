@@ -23,5 +23,12 @@ namespace Couponel.Entities.Institutions
         
         [Required]
         public string Number { get; private set; }
+        public void Update(string country, string city, string street, string number)
+        {
+            Country = country;
+            City = city;
+            Street = street;
+            Number = number;
+        }
     }
 }

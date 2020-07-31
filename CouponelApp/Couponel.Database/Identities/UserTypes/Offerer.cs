@@ -3,6 +3,7 @@ using Couponel.Entities.Institutions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace Couponel.Entities.Identities.UserTypes
 {
@@ -25,6 +26,20 @@ namespace Couponel.Entities.Identities.UserTypes
         public User User { get; private set; }
 
         public ICollection<Coupon> Coupons { get; private set; }
+        public void AddCoupon(Coupon coupon)
+        {
+            Coupons.Add(coupon);
+        }
+
+        public void RemoveCoupon(Guid couponId)
+        {
+            var coupon = this.Coupons.FirstOrDefault(rc => rc.Id == couponId);
+
+            if (coupon != null)
+            {
+                Coupons.Remove(coupon);
+            }
+        }
 
         #endregion
     }

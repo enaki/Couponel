@@ -24,5 +24,12 @@ namespace Couponel.Entities.Identities
 
         [Required]
         public string Role { get; set; }
+        public void Update(string userName, string email, string passwordHash, string role)
+        {
+            UserName = userName;
+            Email = email;
+            PasswordHash = passwordHash;
+            Role = role;
+        }
     }
 }

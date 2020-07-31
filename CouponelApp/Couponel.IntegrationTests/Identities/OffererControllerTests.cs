@@ -21,7 +21,7 @@ namespace Couponel.IntegrationTests.Identities
 
             await ExecuteDatabaseAction(async couponelContext =>
             {
-                await couponelContext.Offerors.AddAsync(offerer);
+                await couponelContext.Offerers.AddAsync(offerer);
                 await couponelContext.SaveChangesAsync();
             });
 
@@ -45,7 +45,7 @@ namespace Couponel.IntegrationTests.Identities
 
             await ExecuteDatabaseAction(async couponelContext =>
             {
-                await couponelContext.Offerors.AddAsync(offerer);
+                await couponelContext.Offerers.AddAsync(offerer);
                 await couponelContext.SaveChangesAsync();
             });
 
