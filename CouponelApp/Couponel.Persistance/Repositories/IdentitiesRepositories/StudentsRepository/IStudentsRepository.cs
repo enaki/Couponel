@@ -5,11 +5,7 @@ using System.Threading.Tasks;
 
 namespace Couponel.Persistence.Repositories.IdentitiesRepositories.StudentsRepository
 {
-    public interface IStudentsRepository : IRepository<Student>
+    public interface IStudentsRepository : IPersonRepository<Student>
     {
-        public Task<IList<Student>> GetAllByFirstName(string firstName);
-        public Task<IList<Student>> GetAllByLastName(string lastName);
-        public Task<Student> GetByEmail(string email);
-        public Task<Student> GetByPhoneNumber(string phoneNumber);
     }
 }
