@@ -11,8 +11,8 @@ using Couponel.Business.Coupons.Coupons.Services.Interfaces;
 using Couponel.Business.Identities;
 using Couponel.Business.Identities.Admins.Services.Implementations;
 using Couponel.Business.Identities.Admins.Services.Interfaces;
-using Couponel.Business.Identities.Offerors.Services.Implementations;
-using Couponel.Business.Identities.Offerors.Services.Interfaces;
+using Couponel.Business.Identities.Offerers.Services.Implementations;
+using Couponel.Business.Identities.Offerers.Services.Interfaces;
 using Couponel.Business.Identities.Students.Services.Implementations;
 using Couponel.Business.Identities.Students.Services.Interfaces;
 using Couponel.Business.Institutions;
@@ -40,6 +40,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using FluentValidation.AspNetCore;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Couponel.Business.Authentications.Models;
 
 namespace Couponel.API
 {
@@ -63,37 +67,31 @@ namespace Couponel.API
                 .AddScoped<IFacultyService, FacultyService>()
                 .AddScoped<IAddressService, AddressService>()
                 .AddScoped<IUniversityService, UniversityService>()
-
-
                 .AddScoped<ICouponService, CouponService>()
                 .AddScoped<ICommentsService, CommentsService>()
-
                 .AddScoped<IStudentService, StudentService>()
                 .AddScoped<IOffererService, OffererService>()
                 .AddScoped<IAdminService, AdminService>()
-
-                .AddScoped<IPasswordHasher, PasswordHasher>()
                 .AddScoped<IAuthenticationService, AuthenticationService>()
 
-
+                .AddScoped<IPasswordHasher, PasswordHasher>()
 
                 .AddScoped<IStudentsRepository, StudentsRepository>()
                 .AddScoped<IAdminsRepository, AdminsRepository>()
                 .AddScoped<IOfferorsRepository, OfferorsRepository>()
-
                 .AddScoped<IUsersRepository, UsersRepository>()
-
                 .AddScoped<ICouponsRepository, CouponsRepository>()
                 .AddScoped<ICommentsRepository, CommentsRepository>()
-
                 .AddScoped<IAddressesRepository, AddressesRepository>()
                 .AddScoped<IUniversitiesRepository, UniversitiesRepository>()
                 .AddScoped<IFacultiesRepository, FacultiesRepository>();
 
+            AddAuthentication(services);
+
             services
                 .AddDbContext<CouponelContext>(config =>
                     config.UseSqlServer(Configuration.GetConnectionString("CouponelConnection")));
-            
+
             services
                 .AddAutoMapper(c =>
                 {
@@ -106,7 +104,11 @@ namespace Couponel.API
                 .AddSwagger()
                 .AddControllers()
                 .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
-            
+
+
+
+
+
             services
                 .AddMvc()
                 .AddFluentValidation();
@@ -134,6 +136,32 @@ namespace Couponel.API
                 .UseAuthentication()
                 .UseAuthorization()
                 .UseEndpoints(endpoints => endpoints.MapControllers());
+        }
+        private void AddAuthentication(IServiceCollection services)
+        {
+            var jwtOptions = Configuration.GetSection("JwtOptions").Get<JwtOptions>();
+            services.Configure<JwtOptions>(Configuration.GetSection("JwtOptions"));
+
+            services
+                .AddAuthentication(options =>
+                {
+                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer(options =>
+                {
+                    options.RequireHttpsMetadata = true;
+                    options.SaveToken = true;
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtOptions.Key)),
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidIssuer = jwtOptions.Issuer,
+                        ValidAudience = jwtOptions.Audience
+                    };
+                });
         }
     }
 }

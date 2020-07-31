@@ -7,7 +7,7 @@ using Couponel.Entities.Identities.UserTypes;
 
 namespace Couponel.Entities.Institutions
 {
-    public sealed class Faculty: Entity
+    public sealed class Faculty : Entity
     {
         public Faculty(string name, string email, string phoneNumber, Guid addressId)
         {

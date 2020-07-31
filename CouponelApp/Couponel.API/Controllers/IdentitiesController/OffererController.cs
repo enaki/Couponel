@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Couponel.Business.Identities.Offerors.Models;
-using Couponel.Business.Identities.Offerors.Services.Interfaces;
+using Couponel.Business.Identities.Offerers.Models;
+using Couponel.Business.Identities.Offerers.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
