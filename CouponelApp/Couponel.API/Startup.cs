@@ -78,7 +78,7 @@ namespace Couponel.API
 
                 .AddScoped<IStudentsRepository, StudentsRepository>()
                 .AddScoped<IAdminsRepository, AdminsRepository>()
-                .AddScoped<IOfferorsRepository, OfferorsRepository>()
+                .AddScoped<IOfferersRepository, OfferersRepository>()
                 .AddScoped<IUsersRepository, UsersRepository>()
                 .AddScoped<ICouponsRepository, CouponsRepository>()
                 .AddScoped<ICommentsRepository, CommentsRepository>()

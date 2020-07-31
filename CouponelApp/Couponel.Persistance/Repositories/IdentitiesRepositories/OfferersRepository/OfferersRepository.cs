@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Couponel.Persistence.Repositories.IdentitiesRepositories.OfferersRepository
 {
-    public sealed class OfferorsRepository : Repository<Offerer>, IOfferorsRepository
+    public sealed class OfferersRepository : Repository<Offerer>, IOfferersRepository
     {
-        public OfferorsRepository(CouponelContext context) : base(context) { }
+        public OfferersRepository(CouponelContext context) : base(context) { }
 
         public async Task<IList<Offerer>> GetAllByFirstName(string firstName) =>
                 await this.context.Offerers.Where(x=> x.FirstName== firstName).ToListAsync();
