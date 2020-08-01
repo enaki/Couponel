@@ -1,4 +1,0 @@
-USE[Couponel]
-GO
-
-GO
