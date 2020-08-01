@@ -1,7 +1,7 @@
-rm - r SqlScripts
-mkdir SqlScripts
 :: Delete existing scrips
 echo Y | del SqlScripts\*
+rmdir SqlScripts
+mkdir SqlScripts
 
 :: Run python scripts
 cd SqlScriptGenerator

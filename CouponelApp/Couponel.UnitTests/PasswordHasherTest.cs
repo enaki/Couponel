@@ -35,7 +35,7 @@ namespace Couponel.UnitTests
             IPasswordHasher passHasherService = new PasswordHasher();
 
 
-            var passwordToTest = "george";
+            var passwordToTest = "ion";
             var passHash = passHasherService.CreateHash(passwordToTest);
             _testOutputHelper.WriteLine($"{passwordToTest} -> {passHash}");
 

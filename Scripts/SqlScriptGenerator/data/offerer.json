@@ -1,0 +1,102 @@
+[
+  {
+    "Id": "9c56567a-888b-404d-8b72-99589ce4f3b5",
+    "FirstName": "Mircea",
+    "LastName": "Bravo",
+    "PhoneNumber": "0799632145",
+    "Address": {
+        "Id": "a2d7698f-7c2e-466d-b822-30a602c7d0fa",
+        "Country": "Romania",
+        "City": "Cluj",
+        "Street": "str. Eternitate",
+        "Number": "120"
+      },
+    "User": {
+      "Id": "09155a60-1dbe-4485-b101-ff430d41abda",
+      "UserName": "mirciulake",
+      "Email": "mircea.bravo@gmail.com",
+      "PasswordHash": "MCo+GAiurP1BOGPiOnES+g==.fsYTnpcu6bZTHw5MLJXMiHyR9SC8KKIwzoJedhhXJ4c=",
+      "Role": "offerer"
+    }
+  },
+  {
+    "Id": "a64a0020-e0f2-46fa-a7a9-1e657f02d83f",
+    "FirstName": "Mihai",
+    "LastName": "Bendeac",
+    "PhoneNumber": "0763215978",
+    "Address": {
+        "Id": "f959e4a7-6939-4e13-81be-50321cf3945f",
+        "Country": "Romania",
+        "City": "Bucuresti",
+        "Street": "str. Lascăr Catargi",
+        "Number": "14"
+      },
+    "User": {
+      "Id": "9aee5d6a-1bc0-43ed-8c68-a6688367dd88",
+      "UserName": "mihaitab",
+      "Email": "mihaibendeac@gmail.com",
+      "PasswordHash": "m5UnwbDWHcTeEzAS6s6n2w==.vbEOGT00VXTcECjW0wOKeGSVC6F66cOg+Z939Cmftj4=",
+      "Role": "offerer"
+    }
+  },
+  {
+    "Id": "e46b79d0-dfcd-4cd0-a608-c0934bbb3cad",
+    "FirstName": "Horia",
+    "LastName": "Tecău",
+    "PhoneNumber": "0766632145",
+    "Address": {
+        "Id": "fafc51b0-9da1-4a1f-acfc-c67da3fdb27d",
+        "Country": "Romania",
+        "City": "Cluj",
+        "Street": "str. Bivolilor",
+        "Number": "17"
+      },
+    "User": {
+      "Id": "0354050e-5d12-49ef-a25e-b72bb75481cf",
+      "UserName": "horia",
+      "Email": "horiatecau@gmail.com",
+      "PasswordHash": "lQ/1spsbYw3cNKh9CdbnPA==.vXpoIPeFh99V+fpV37ETGjXdFhRMIVysenAYw8UQnWY=",
+      "Role": "offerer"
+    }
+  },
+  {
+    "Id": "b8f48fda-c366-4917-828f-17b2b363556e",
+    "FirstName": "Simona",
+    "LastName": "Halep",
+    "PhoneNumber": "0766662145",
+    "Address": {
+        "Id": "f4ce3c8f-e14b-40e5-8f65-f48cbfc71871",
+        "Country": "Romania",
+        "City": "Bucuresti",
+        "Street": "str. Costache",
+        "Number": "39"
+      },
+    "User": {
+      "Id": "2d0cbc09-57d4-4259-8b45-02b1580207c2",
+      "UserName": "simona",
+      "Email": "simonahalep@gmail.com",
+      "PasswordHash": "E2VxhqjTIGMik7BezBLN7Q==.guBW9zSTbZiNdUR5nkMEhYy95yWeTlgtVsC/dH9BXEw=",
+      "Role": "offerer"
+    }
+  },
+  {
+    "Id": "47c4cec2-3498-4c7d-a709-141b43deb644",
+    "FirstName": "Ion",
+    "LastName": "Țiriac",
+    "PhoneNumber": "0746231897",
+    "Address": {
+        "Id": "98083e2c-25cc-4a40-91ed-b65b8b1d17cd",
+        "Country": "Romania",
+        "City": "Cluj",
+        "Street": "str. Bogaților",
+        "Number": "1"
+      },
+    "User": {
+      "Id": "b4928ca2-6c15-4078-9178-12ac53012035",
+      "UserName": "ion",
+      "Email": "tiriacion@gmail.com",
+      "PasswordHash": "dPSHHgdU0KUgXjvJe9toYg==.UkvArLALOJHEfbAE0DHzHzeeLPfC5SFRBB+ASmyYhZM=",
+      "Role": "offerer"
+    }
+  }
+]
