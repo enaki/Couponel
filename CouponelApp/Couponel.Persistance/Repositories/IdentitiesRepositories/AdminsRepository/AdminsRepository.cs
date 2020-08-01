@@ -18,7 +18,7 @@ namespace Couponel.Persistence.Repositories.IdentitiesRepositories.AdminsReposit
             await this.context.Admins.Where(x => x.LastName == lastName).ToListAsync();
 
         public async Task<Admin> GetByEmail(string email) =>
-            await this.context.Admins.Where(x => x.Email == email).FirstOrDefaultAsync();
+            await this.context.Admins.Where(x => x.User.Email == email).FirstOrDefaultAsync();
 
         public async Task<Admin> GetByPhoneNumber(string phoneNumber) =>
             await this.context.Admins.Where(x => x.PhoneNumber == phoneNumber).FirstOrDefaultAsync();

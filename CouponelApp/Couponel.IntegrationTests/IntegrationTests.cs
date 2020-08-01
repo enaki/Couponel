@@ -41,7 +41,7 @@ namespace Couponel.IntegrationTests
             couponelContext.Comments.RemoveRange(couponelContext.Comments);
             couponelContext.Coupons.RemoveRange(couponelContext.Coupons);
             couponelContext.Faculties.RemoveRange(couponelContext.Faculties);
-            couponelContext.Offerors.RemoveRange(couponelContext.Offerors);
+            couponelContext.Offerers.RemoveRange(couponelContext.Offerers);
             couponelContext.Students.RemoveRange(couponelContext.Students);
             couponelContext.Universities.RemoveRange(couponelContext.Universities);
             couponelContext.Users.RemoveRange(couponelContext.Users);

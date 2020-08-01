@@ -18,7 +18,7 @@ namespace Couponel.Persistence.Repositories.IdentitiesRepositories.OfferersRepos
                 await this.context.Offerers.Where(x => x.LastName == lastName).ToListAsync();
 
         public async Task<Offerer> GetByEmail(string email)=>
-            await this.context.Offerers.Where(x => x.Email == email).FirstOrDefaultAsync();
+            await this.context.Offerers.Where(x => x.User.Email == email).FirstOrDefaultAsync();
 
         public async Task<Offerer> GetByPhoneNumber(string phoneNumber)=>
             await this.context.Offerers.Where(x => x.PhoneNumber == phoneNumber).FirstOrDefaultAsync();

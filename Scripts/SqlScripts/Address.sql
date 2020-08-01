@@ -1,4 +1,4 @@
-USE [Couponel]
+USE[Couponel]
 GO
 
 INSERT INTO [dbo].[Addresses]
@@ -8,7 +8,7 @@ INSERT INTO [dbo].[Addresses]
            ,[Street]
            ,[Number])
         VALUES
-           ('3785829D-8604-4F13-AD5E-4C84B3D95190'
+           (CONVERT(uniqueidentifier,'3785829D-8604-4F13-AD5E-4C84B3D95190')
            ,'Romania'
            ,'Iasi'
            ,'Bulevardul Profesor Dr. doc. Dimitrie Mangeron'
@@ -21,7 +21,7 @@ INSERT INTO [dbo].[Addresses]
            ,[Street]
            ,[Number])
         VALUES
-           ('77596d2d-f06c-4135-ac7a-7e0d7919acda'
+           (CONVERT(uniqueidentifier,'77596d2d-f06c-4135-ac7a-7e0d7919acda')
            ,'Romania'
            ,'Iasi'
            ,'Bulevardul Profesor Dr. doc. Dimitrie Mangeron'
@@ -34,7 +34,7 @@ INSERT INTO [dbo].[Addresses]
            ,[Street]
            ,[Number])
         VALUES
-           ('DD33D84B-51E7-49D5-8C83-914F80CFF938'
+           (CONVERT(uniqueidentifier,'DD33D84B-51E7-49D5-8C83-914F80CFF938')
            ,'Romania'
            ,'Timisoara'
            ,'Bulevardul V. Pârvan'
@@ -47,7 +47,7 @@ INSERT INTO [dbo].[Addresses]
            ,[Street]
            ,[Number])
         VALUES
-           ('C44C5B59-23EB-4FCB-9BD3-7DBA7627949B'
+           (CONVERT(uniqueidentifier,'C44C5B59-23EB-4FCB-9BD3-7DBA7627949B')
            ,'Romania'
            ,'Bucuresti'
            ,'Academiei'
@@ -60,7 +60,7 @@ INSERT INTO [dbo].[Addresses]
            ,[Street]
            ,[Number])
         VALUES
-           ('5d73b9d5-678b-470b-8021-ceec663b41c5'
+           (CONVERT(uniqueidentifier,'5d73b9d5-678b-470b-8021-ceec663b41c5')
            ,'Romania'
            ,'Bucuresti'
            ,'Dionisie Lupu'
@@ -73,7 +73,7 @@ INSERT INTO [dbo].[Addresses]
            ,[Street]
            ,[Number])
         VALUES
-           ('869022AC-F363-4E5E-BAA2-261C6971F57D'
+           (CONVERT(uniqueidentifier,'869022AC-F363-4E5E-BAA2-261C6971F57D')
            ,'Romania'
            ,'Iasi'
            ,'Dumbrava Roșie'
@@ -86,7 +86,7 @@ INSERT INTO [dbo].[Addresses]
            ,[Street]
            ,[Number])
         VALUES
-           ('29A7FB75-0BC7-422E-996A-CCDD763BE963'
+           (CONVERT(uniqueidentifier,'29A7FB75-0BC7-422E-996A-CCDD763BE963')
            ,'Romania'
            ,'Bucuresti'
            ,'Piata Romana'
@@ -99,7 +99,7 @@ INSERT INTO [dbo].[Addresses]
            ,[Street]
            ,[Number])
         VALUES
-           ('17736749-A379-4757-AAEB-A339557B325B'
+           (CONVERT(uniqueidentifier,'17736749-A379-4757-AAEB-A339557B325B')
            ,'Romania'
            ,'Timisoara'
            ,'Piata Eftimie Murgu'
@@ -112,7 +112,7 @@ INSERT INTO [dbo].[Addresses]
            ,[Street]
            ,[Number])
         VALUES
-           ('DA590317-3B53-4EC4-9BCB-7982FB43E801'
+           (CONVERT(uniqueidentifier,'DA590317-3B53-4EC4-9BCB-7982FB43E801')
            ,'Romania'
            ,'Timisoara'
            ,'Piata Eftimie Murgu'
@@ -125,7 +125,7 @@ INSERT INTO [dbo].[Addresses]
            ,[Street]
            ,[Number])
         VALUES
-           ('8B54A373-7314-4EEE-933C-00E119930821'
+           (CONVERT(uniqueidentifier,'8B54A373-7314-4EEE-933C-00E119930821')
            ,'Romania'
            ,'Iasi'
            ,'Universității'
@@ -138,7 +138,7 @@ INSERT INTO [dbo].[Addresses]
            ,[Street]
            ,[Number])
         VALUES
-           ('F1910C0A-5D8E-402C-9E86-652D355F07EB'
+           (CONVERT(uniqueidentifier,'F1910C0A-5D8E-402C-9E86-652D355F07EB')
            ,'Romania'
            ,'Timisoara'
            ,'Bulevardul V. Pârvan'
@@ -151,7 +151,7 @@ INSERT INTO [dbo].[Addresses]
            ,[Street]
            ,[Number])
         VALUES
-           ('05AD0DB3-DBA9-432C-A1E4-9B95ACDE901A'
+           (CONVERT(uniqueidentifier,'05AD0DB3-DBA9-432C-A1E4-9B95ACDE901A')
            ,'Romania'
            ,'Iasi'
            ,'General Berthelot'
@@ -164,7 +164,7 @@ INSERT INTO [dbo].[Addresses]
            ,[Street]
            ,[Number])
         VALUES
-           ('80e56482-9d78-43ae-8955-5ca91c3033e4'
+           (CONVERT(uniqueidentifier,'80e56482-9d78-43ae-8955-5ca91c3033e4')
            ,'Romania'
            ,'Iasi'
            ,'Bulevardul Carol I'
@@ -177,7 +177,7 @@ INSERT INTO [dbo].[Addresses]
            ,[Street]
            ,[Number])
         VALUES
-           ('0d999463-60fa-406b-8349-90309f5ec66f'
+           (CONVERT(uniqueidentifier,'0d999463-60fa-406b-8349-90309f5ec66f')
            ,'Romania'
            ,'Iasi'
            ,'Bulevardul Carol I'
@@ -190,10 +190,23 @@ INSERT INTO [dbo].[Addresses]
            ,[Street]
            ,[Number])
         VALUES
-           ('9f07131a-ea13-428e-b043-1af182f948aa'
+           (CONVERT(uniqueidentifier,'9f07131a-ea13-428e-b043-1af182f948aa')
            ,'Romania'
            ,'Iasi'
            ,'Toma Cozma'
            ,'3')
+
+INSERT INTO [dbo].[Addresses]
+           ([Id]
+           ,[Country]
+           ,[City]
+           ,[Street]
+           ,[Number])
+        VALUES
+           (CONVERT(uniqueidentifier,'E7D2CE46-D6AF-4FF8-8FE6-FE5C3ED31DA6')
+           ,'Romania'
+           ,'Iasi'
+           ,'str. Mihai Eminescu'
+           ,'27')
 
 GO
