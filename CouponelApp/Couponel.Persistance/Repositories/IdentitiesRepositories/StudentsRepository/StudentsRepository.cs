@@ -18,7 +18,7 @@ namespace Couponel.Persistence.Repositories.IdentitiesRepositories.StudentsRepos
                 await this.context.Students.Where(x => x.LastName == lastName).ToListAsync();
 
         public async Task<Student> GetByEmail(string email) =>
-            await this.context.Students.Where(x => x.Email == email).FirstOrDefaultAsync();
+            await this.context.Students.Where(x => x.User.Email == email).FirstOrDefaultAsync();
         
         public async Task<Student> GetByPhoneNumber(string phoneNumber) =>
             await this.context.Students.Where(x => x.PhoneNumber == phoneNumber).FirstOrDefaultAsync();

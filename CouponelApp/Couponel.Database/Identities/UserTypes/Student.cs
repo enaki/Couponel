@@ -9,8 +9,8 @@ namespace Couponel.Entities.Identities.UserTypes
 {
     public sealed class Student : Person
     {
-        public Student(string firstName, string lastName, string email, string phoneNumber, Guid addressId) :
-            base(firstName, lastName, email, phoneNumber)
+        public Student(string firstName, string lastName, string phoneNumber, Guid addressId) :
+            base(firstName, lastName, phoneNumber)
         {
             AddressId = addressId;
             RedeemedCoupons = new List<RedeemedCoupon>();
