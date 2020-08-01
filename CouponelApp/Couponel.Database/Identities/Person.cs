@@ -16,5 +16,12 @@ namespace Couponel.Entities.Identities
         public string LastName { get; private set; }
         [Required]
         public string PhoneNumber { get; private set; }
+        public void Update(string firstName, string lastName, string email, string phoneNumber)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            Email = email;
+            PhoneNumber = phoneNumber;
+        }
     }
 }

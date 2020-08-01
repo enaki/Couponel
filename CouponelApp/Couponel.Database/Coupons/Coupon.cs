@@ -15,7 +15,6 @@ namespace Couponel.Entities.Coupons
             ExpirationDate = expirationDate;
             Description = description;
             Comments = new List<Comment>();
-            RedeemedCoupons = new List<RedeemedCoupon>();
         }
 
         [Required]
@@ -33,10 +32,7 @@ namespace Couponel.Entities.Coupons
         [Required]
         public string Description { get; private set; }
 
-
-
         public ICollection<Comment> Comments { get; private set; }
-        public ICollection<RedeemedCoupon> RedeemedCoupons { get; private set; }
 
         public void AddComment(Comment comment)
         {
@@ -50,20 +46,6 @@ namespace Couponel.Entities.Coupons
             if (comment != null)
             {
                 Comments.Remove(comment);
-            }
-        }
-        public void AddRedeemedCoupon(RedeemedCoupon redeemedCoupon)
-        {
-            RedeemedCoupons.Add(redeemedCoupon);
-        }
-
-        public void RemoveRedeemedCoupon(Guid redeemedCouponId)
-        {
-            var redeemedCoupon = this.RedeemedCoupons.FirstOrDefault(rc => rc.Id == redeemedCouponId);
-
-            if (redeemedCoupon != null)
-            {
-                RedeemedCoupons.Remove(redeemedCoupon);
             }
         }
         public void Update(string name, string category, DateTime expirationDate, string description)

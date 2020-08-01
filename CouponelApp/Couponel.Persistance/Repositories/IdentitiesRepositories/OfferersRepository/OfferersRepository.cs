@@ -14,14 +14,35 @@ namespace Couponel.Persistence.Repositories.IdentitiesRepositories.OfferersRepos
         public async Task<IList<Offerer>> GetAllByFirstName(string firstName) =>
                 await this.context.Offerers.Where(x=> x.FirstName== firstName).ToListAsync();
 
-        public async Task<IList<Offerer>> GetAllByLastName(string lastName) =>
+        public async Task<IList<Offerer>> GetAllByFirstNameWithUser(string firstName) =>
+                await this.context.Offerers.Where(x => x.FirstName == firstName)
+                            .Include(x=>x.User)
+                            .ToListAsync();
+
+        public async Task<IList<Offerer>> GetAllByLastName(string lastName)=>
                 await this.context.Offerers.Where(x => x.LastName == lastName).ToListAsync();
 
-        public async Task<Offerer> GetByEmail(string email)=>
+        public async Task<IList<Offerer>> GetAllByLastNameWithUser(string lastName) =>
+                await this.context.Offerers.Where(x => x.LastName == lastName)
+                            .Include(x => x.User)
+                            .ToListAsync();
+
+        public async Task<Offerer> GetByEmail(string email) =>
             await this.context.Offerers.Where(x => x.User.Email == email).FirstOrDefaultAsync();
 
-        public async Task<Offerer> GetByPhoneNumber(string phoneNumber)=>
+
+        public async Task<Offerer> GetByEmailWithUser(string email) =>
+            await this.context.Offerers.Where(x => x.User.Email == email)
+                            .Include(x => x.User)
+                            .FirstOrDefaultAsync();
+
+        public async Task<Offerer> GetByPhoneNumber(string phoneNumber) =>
             await this.context.Offerers.Where(x => x.PhoneNumber == phoneNumber).FirstOrDefaultAsync();
+
+        public async Task<Offerer> GetByPhoneNumberWithUser(string phoneNumber) =>
+            await this.context.Offerers.Where(x => x.PhoneNumber == phoneNumber)
+                            .Include(x => x.User)
+                            .FirstOrDefaultAsync();
 
     }
 }

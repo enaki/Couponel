@@ -38,12 +38,6 @@ namespace Couponel.Persistence
                 .IsRequired(true)
                 .OnDelete(DeleteBehavior.ClientCascade);
 
-            modelBuilder.Entity<Coupon>()
-                .HasMany<RedeemedCoupon>(coupon => coupon.RedeemedCoupons)
-                .WithOne()
-                .IsRequired(true)
-                .OnDelete(DeleteBehavior.ClientCascade);
-
             modelBuilder.Entity<Student>()
                 .HasMany<RedeemedCoupon>(student => student.RedeemedCoupons)
                 .WithOne()
@@ -109,6 +103,13 @@ namespace Couponel.Persistence
                 .WithOne()
                 .IsRequired(true)
                 .HasForeignKey<Comment>(comment => comment.UserId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<RedeemedCoupon>()
+                .HasOne<Coupon>(redeemedCoupon => redeemedCoupon.Coupon)
+                .WithOne()
+                .IsRequired(true)
+                .HasForeignKey<RedeemedCoupon>(redeemedCoupon => redeemedCoupon.CouponId)
                 .OnDelete(DeleteBehavior.NoAction);
 
             #endregion

@@ -26,11 +26,17 @@ namespace Couponel.Entities.Institutions
         [Required]
         public string PhoneNumber { get; private set; }
 
-        #region Database Relations
-
         [Required]
         public ICollection<Student> Students { get; private set; }
 
+        public void Update(string name, string email, string phoneNumber)
+        {
+            Name = name;
+            Email = email;
+            PhoneNumber = phoneNumber;
+        }
+
+        #region Database Relations
         [ForeignKey("Address")]
         public Guid AddressId { get; private set; }
         public Address Address { get; private set; }
