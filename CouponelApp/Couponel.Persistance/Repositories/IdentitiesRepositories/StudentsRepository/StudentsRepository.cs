@@ -30,10 +30,10 @@ namespace Couponel.Persistence.Repositories.IdentitiesRepositories.StudentsRepos
                             .ToListAsync();
 
         public async Task<Student> GetByEmail(string email) =>
-            await this.context.Students.Where(x => x.Email == email).FirstOrDefaultAsync();
+            await this.context.Students.Where(x => x.User.Email == email).FirstOrDefaultAsync();
 
         public async Task<Student> GetByEmailWithUser(string email) =>
-            await this.context.Students.Where(x => x.Email == email)
+            await this.context.Students.Where(x => x.User.Email == email)
                             .Include(x => x.User)
                             .FirstOrDefaultAsync();
 

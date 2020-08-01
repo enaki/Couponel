@@ -24,7 +24,7 @@ namespace Couponel.IntegrationTests.Identities
                 await couponelContext.Addresses.AddAsync(address);
                 await couponelContext.SaveChangesAsync();
             });
-            var student = new Student("student","student","student@gmail.com","0321384234",address.Id);
+            var student = new Student("student","student","0321384234",address.Id);
 
             await ExecuteDatabaseAction(async couponelContext =>
             {
@@ -54,7 +54,7 @@ namespace Couponel.IntegrationTests.Identities
                 await couponelContext.Addresses.AddAsync(address);
                 await couponelContext.SaveChangesAsync();
             });
-            var student = new Student("student", "student", "student@gmail.com", "0321384234", address.Id);
+            var student = new Student("student", "student", "0321384234", address.Id);
 
             await ExecuteDatabaseAction(async couponelContext =>
             {

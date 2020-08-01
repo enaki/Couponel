@@ -28,10 +28,11 @@ namespace Couponel.Persistence.Repositories.IdentitiesRepositories.OfferersRepos
                             .ToListAsync();
 
         public async Task<Offerer> GetByEmail(string email) =>
-            await this.context.Offerers.Where(x => x.Email == email).FirstOrDefaultAsync();
+            await this.context.Offerers.Where(x => x.User.Email == email).FirstOrDefaultAsync();
+
 
         public async Task<Offerer> GetByEmailWithUser(string email) =>
-            await this.context.Offerers.Where(x => x.Email == email)
+            await this.context.Offerers.Where(x => x.User.Email == email)
                             .Include(x => x.User)
                             .FirstOrDefaultAsync();
 

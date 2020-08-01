@@ -1,0 +1,21 @@
+{
+  "Id": "6e8f8ea2-f78a-41db-95e8-8edc1a878b0a",
+  "FirstName": "George",
+  "LastName": "Bacovia",
+  "PhoneNumber": "0701234123",
+  "Address": {
+      "Id": "08a84c4a-5d7c-4f4d-a0cb-8cdbdcc06ec9",
+      "Country": "Romania",
+      "City": "Brasov",
+      "Street": "str. Mihai Viteazul",
+      "Number": "37"
+    },
+  "User": {
+    "Id": "9f99a1c8-6d2d-4cab-949e-c6496d890c04",
+    "UserName": "george",
+    "Email": "george@yahoo.com",
+    "PasswordHash": "RvkBQonRuC/4DEliU2PKvg==.nB+xgBChPJP0WhR/3JyH1CLCpie584mY2P0LE0qHo9M=",
+    "Role": "student"
+  },
+  "FacultyId": "939E1D38-5A17-4144-A497-89E3A39303D6"
+}

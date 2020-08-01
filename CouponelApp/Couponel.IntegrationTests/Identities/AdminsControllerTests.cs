@@ -13,7 +13,7 @@ namespace Couponel.IntegrationTests.Identities
         public async Task GetAdmin()
         {
             // Arrange
-            var admin = new Admin("Admin", "Admin", "admin@gmail.com", "43213213122");
+            var admin = new Admin("Admin", "Admin", "43213213122");
 
             await ExecuteDatabaseAction(async couponelContext =>
             {
@@ -35,7 +35,7 @@ namespace Couponel.IntegrationTests.Identities
         [Fact]
         public async Task DeleteAdmin()
         {
-            var admin = new Admin("Admin", "Admin", "admin@gmail.com", "43213213122");
+            var admin = new Admin("Admin", "Admin", "43213213122");
 
             await ExecuteDatabaseAction(async couponelContext =>
             {

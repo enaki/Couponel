@@ -17,7 +17,7 @@ namespace Couponel.IntegrationTests.Identities
         public async Task GetOfferers()
         {
             // Arrange
-            var offerer = new Offerer("Nume", "prenume", "email@gmail.com", "43213213122");
+            var offerer = new Offerer("Nume", "prenume", "43213213122");
 
             await ExecuteDatabaseAction(async couponelContext =>
             {
@@ -41,7 +41,7 @@ namespace Couponel.IntegrationTests.Identities
         public async Task DeleteOfferers()
         {
             // Arrange
-            var offerer = new Offerer("Nume", "prenume", "email@gmail.com", "43213213122");
+            var offerer = new Offerer("Nume", "prenume", "43213213122");
 
             await ExecuteDatabaseAction(async couponelContext =>
             {
