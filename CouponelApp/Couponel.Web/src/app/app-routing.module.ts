@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AuthenticationComponent } from './authentication/authentication/authentication.component';
-import { TripDetailsComponent } from './trip/trip-details/trip-details.component';
-import { TripListComponent } from './trip/trip-list/trip-list.component';
-import { TopComponent } from './trip/top/top.component';
+import { VoucherDetailsComponent } from './voucher/voucher-details/voucher-details.component';
+import { VoucherListComponent } from './voucher/voucher-list/voucher-list.component';
+import { TopComponent } from './voucher/top/top.component';
 
 const routes: Routes = [
   {
@@ -19,8 +19,8 @@ const routes: Routes = [
         (m) => m.AuthenticationModule
       ),
   },
-  { path: 'list', component: TripListComponent },
-  { path: 'create-trip', component: TripDetailsComponent },
+  { path: 'list', component: VoucherListComponent },
+  { path: 'create-voucher', component: VoucherDetailsComponent },
   { path: 'topList', component: TopComponent},
   {
     path: 'notifications',
@@ -35,8 +35,8 @@ const routes: Routes = [
       import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
   },
   {
-    path: 'trip',
-    loadChildren: () => import('./trip/trip.module').then((m) => m.TripModule),
+    path: 'voucher',
+    loadChildren: () => import('./voucher/voucher.module').then((m) => m.VoucherModule),
   },
   {
     path: 'welcome',

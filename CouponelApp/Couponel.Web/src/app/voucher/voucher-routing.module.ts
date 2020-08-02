@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { TripDetailsComponent } from './trip-details/trip-details.component';
-import { TripListComponent } from './trip-list/trip-list.component';
+import { VoucherDetailsComponent } from './voucher-details/voucher-details.component';
+import { VoucherListComponent } from './voucher-list/voucher-list.component';
 import { TopComponent } from './top/top.component';
 
 
@@ -10,12 +10,12 @@ const routes: Routes = [
   {
     path: 'list',
     pathMatch: 'full',
-    component: TripListComponent,
+    component: VoucherListComponent,
   },
   {
     path: 'details/:id',
     pathMatch: 'full',
-    component: TripDetailsComponent,
+    component: VoucherDetailsComponent,
   }
 ];
 
@@ -23,4 +23,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class TripRoutingModule { }
+export class VoucherRoutingModule { }

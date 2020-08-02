@@ -4,9 +4,9 @@
   </h1>
 
   <div class="cards">
-    <app-tile *ngFor="let trip of tripList"
-              label="{{trip.title}}"
+    <app-tile *ngFor="let voucher of voucherList"
+              label="{{voucher.title}}"
               background="../../assets/images/travel_logo.png"
-              (click)="goToTrip(trip.id)"></app-tile>
+              (click)="goToVoucher(voucher.id)"></app-tile>
   </div>
 </div>

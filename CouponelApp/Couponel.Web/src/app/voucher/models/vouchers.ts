@@ -1,4 +1,4 @@
-export type TripsModel = {
+export type VouchersModel = {
   title: string;
   description: string;
   private: boolean;

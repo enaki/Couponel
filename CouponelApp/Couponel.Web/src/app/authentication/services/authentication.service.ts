@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthenticationService {
+  //!!! endpoint to change !!! //
   public endpoint: string =
     'http://trip-looking.ashbell-platform.com/api/v1/auth';
   constructor(private readonly httpClient: HttpClient) {}

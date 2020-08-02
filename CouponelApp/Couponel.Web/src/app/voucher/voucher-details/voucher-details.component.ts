@@ -3,16 +3,16 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import { TripModel } from '../models';
-import { TripService } from '../services/trip.service';
+import { VoucherModel } from '../models';
+import { VoucherService } from '../services/voucher.service';
 
 @Component({
-  selector: 'app-trip-details',
-  templateUrl: './trip-details.component.html',
-  styleUrls: ['./trip-details.component.scss'],
+  selector: 'app-voucher-details',
+  templateUrl: './voucher-details.component.html',
+  styleUrls: ['./voucher-details.component.scss'],
   providers: [FormBuilder]
 })
-export class TripDetailsComponent implements OnInit, OnDestroy {
+export class VoucherDetailsComponent implements OnInit, OnDestroy {
   fileToUpload: any;
   imageUrl: any;
 
@@ -35,7 +35,7 @@ export class TripDetailsComponent implements OnInit, OnDestroy {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private service: TripService) { }
+    private service: VoucherService) { }
 
   ngOnInit(): void {
     this.formGroup = this.formBuilder.group({
@@ -45,13 +45,13 @@ export class TripDetailsComponent implements OnInit, OnDestroy {
       private: new FormControl(false)
     });
 
-    if (this.router.url === '/create-trip') {
+    if (this.router.url === '/create-voucher') {
       this.isAddMode = true;
     } else {
       //Getting id from url
       this.routeSub = this.activatedRoute.params.subscribe(params => {
         //Getting details for the trip with the id found
-        this.service.get(params['id']).subscribe((data: TripModel) => {
+        this.service.get(params['id']).subscribe((data: VoucherModel) => {
           this.formGroup.patchValue(data);
         })
         this.formGroup.disable();
