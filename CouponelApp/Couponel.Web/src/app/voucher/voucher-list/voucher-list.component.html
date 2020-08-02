@@ -1,0 +1,12 @@
+<div class="page-container">
+  <h1>
+    All Vouchers
+  </h1>
+
+  <div class="cards">
+    <app-tile *ngFor="let voucher of voucherList"
+              label="{{voucher.title}}"
+              background="../../assets/images/travel_logo.png"
+              (click)="goToVoucher(voucher.id)"></app-tile>
+  </div>
+</div>
