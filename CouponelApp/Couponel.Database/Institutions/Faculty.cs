@@ -35,6 +35,10 @@ namespace Couponel.Entities.Institutions
             Email = email;
             PhoneNumber = phoneNumber;
         }
+        public void UpdateAddress(Address address)
+        {
+            Address = address;
+        }
 
         #region Database Relations
         [ForeignKey("Address")]

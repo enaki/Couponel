@@ -7,12 +7,13 @@ namespace Couponel.Business.Institutions.Faculties.Services.Interfaces
 {
     public interface IFacultyService
     {
-        Task<FacultyModel> GetById(Guid facultyId);
+        Task<FacultyModel> GetByIdWithAddressStudentsAndUser(Guid facultyId);
 
         Task<FacultyModel> Add(CreateFacultyModel model);
 
         Task Delete(Guid facultyId);
 
-        Task<IEnumerable<FacultyModel>> GetAll();
+        Task<IEnumerable<ListFacultyModel>> GetAllByUniversityId(Guid Id);
+        Task Update(UpdateFacultyModel model);
     }
 }
