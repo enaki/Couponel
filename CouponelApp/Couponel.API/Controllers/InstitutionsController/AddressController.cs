@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Couponel.API.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/address")]
     [ApiController]
     public class AddressController : ControllerBase
     {
