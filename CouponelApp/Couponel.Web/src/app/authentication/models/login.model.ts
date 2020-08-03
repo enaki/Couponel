@@ -1,4 +1,4 @@
 export type LoginModel = {
-  email: string;
+  username: string;
   password: string;
 };

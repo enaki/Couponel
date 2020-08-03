@@ -10,8 +10,7 @@ import { VouchersModel } from '../models/vouchers.model';
 })
 export class VoucherService {
 
-  //!!! endpoint to change !!//
-  private endpoint: string = 'http://trip-looking.ashbell-platform.com/api/v1/trips';
+  private endpoint: string = 'https://localhost:5001//api/v1/coupons';
 
   private httpOptions = {
     headers: new HttpHeaders({

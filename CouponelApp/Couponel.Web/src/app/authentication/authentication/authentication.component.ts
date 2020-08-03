@@ -25,9 +25,12 @@ export class AuthenticationComponent {
     private readonly userService: UserService
   ) {
     this.formGroup = this.formBuilder.group({
+      username: new FormControl(null),
+      firstName: new FormControl(null),
+      lastName: new FormControl(null),
       email: new FormControl(null),
       password: new FormControl(null),
-      fullName: new FormControl(null),
+      userType: new FormControl(null),
     });
     this.userService.username.next('');
   }
@@ -42,19 +45,23 @@ export class AuthenticationComponent {
 
   public authenticate(): void {
     if (this.isSetRegistered) {
-      const data: LoginModel = this.formGroup.getRawValue();
+      const data: RegisterModel = this.formGroup.getRawValue();
 
       this.authenticationService.register(data).subscribe(() => {
-        this.userService.username.next(data.email);
+        this.userService.username.next(data.username);
         this.router.navigate(['dashboard']);
       });
     } else {
-      const data: RegisterModel = this.formGroup.getRawValue();
-      this.formGroup.removeControl('fullName');
+      this.formGroup.removeControl('firstName');
+      this.formGroup.removeControl('lastName');
+      this.formGroup.removeControl('email');
+      this.formGroup.removeControl('userType');
+
+      const data: LoginModel = this.formGroup.getRawValue();
 
       this.authenticationService.login(data).subscribe((logData: any) => {
         localStorage.setItem('userToken', JSON.stringify(logData.token));
-        this.userService.username.next(data.email);
+        this.userService.username.next(data.username);
         this.router.navigate(['dashboard']);
       });
     }

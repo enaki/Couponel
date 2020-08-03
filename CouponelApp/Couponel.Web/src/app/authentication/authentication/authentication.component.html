@@ -3,15 +3,26 @@
   <form class="authentication-content"
         [formGroup]="formGroup">
     <span class="login-label">{{isSetRegistered? 'Register': 'Log in'}} </span>
-    <label>Email</label>
-    <input formControlName="email"
+    <label>Username</label>
+    <input formControlName="username"
            type="email" />
+    <ng-container *ngIf="isSetRegistered">
+      <label>First name</label>
+      <input formControlName="firstName"
+              type="text" />
+      <label>Last name</label>
+      <input formControlName="lastName"
+              type="text" />
+      <label>Email</label>
+      <input formControlName="email"
+              type="text" />
+    </ng-container>
     <label>Password</label>
     <input formControlName="password"
            type="password" />
     <ng-container *ngIf="isSetRegistered">
-      <label>Full name</label>
-      <input formControlName="fullName"
+      <label>User Type</label>
+      <input formControlName="userType"
              type="text" />
     </ng-container>
 
@@ -20,11 +31,6 @@
       <p>{{isSetRegistered? 'Go back to log in': 'I am not registered yet'}}</p>
     </span>
 
-    <span class="admin">
-      <input type="checkbox"
-             (click)="setAdmin()">
-      <p>I want to be an admin</p>
-    </span>
     <button type="button"
             (click)="authenticate()"><span>{{isSetRegistered? 'Register': 'Login'}}</span></button>
   </form>
