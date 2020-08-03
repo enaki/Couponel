@@ -39,12 +39,11 @@ namespace Couponel.Entities.Institutions
                 Faculties.Remove(faculty);
             }
         }
-        public void Update(string name, string email, string phoneNumber, Guid addressId)
+        public void Update(string name, string email, string phoneNumber)
         {
             Name = name;
             Email = email;
             PhoneNumber = phoneNumber;
-            AddressId = addressId;
         }
 
         #region Database Relations

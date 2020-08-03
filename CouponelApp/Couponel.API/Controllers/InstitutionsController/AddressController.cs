@@ -5,9 +5,9 @@ using Couponel.Business.Institutions.Addresses.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace Couponel.API.Controllers.InstitutionsController
+namespace Couponel.API.Controllers
 {
-    [Route("api/address")]
+    [Route("[controller]")]
     [ApiController]
     public class AddressController : ControllerBase
     {
@@ -41,6 +41,14 @@ namespace Couponel.API.Controllers.InstitutionsController
         {
             await _addressService.Delete(addressId);
 
+            return NoContent();
+        }
+
+        [HttpPatch("{addressId}")]
+        public async Task<IActionResult> Update([FromRoute] Guid addressId, [FromBody] UpdateAddressModel model)
+        {
+            model.Id = addressId;
+            await _addressService.Update(model);
             return NoContent();
         }
     }

@@ -12,7 +12,6 @@ namespace Couponel.Business.Institutions.Addresses.Services.Interfaces
         Task<AddressModel> Add(CreateAddressModel model);
 
         Task Delete(Guid addressId);
-
-        Task<IEnumerable<AddressModel>> GetAll();
+        Task Update(UpdateAddressModel model);
     }
 }

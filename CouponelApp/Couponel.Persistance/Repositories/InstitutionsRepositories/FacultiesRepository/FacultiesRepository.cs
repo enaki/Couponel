@@ -16,19 +16,35 @@ namespace Couponel.Persistence.Repositories.InstitutionsRepositories.FacultiesRe
                 .Include(faculty => faculty.Students)
                     .ThenInclude(student => student.Address)
                 .Include(faculty => faculty.Address)
-                .FirstAsync(faculty => faculty.Id == id);
+                .FirstOrDefaultAsync(faculty => faculty.Id == id);
         public async Task<Faculty> GetByIdWithAddressAndStudents(Guid id)
             => await this.context.Faculties
                 .Include(faculty => faculty.Students)
                 .Include(faculty => faculty.Address)
-                .FirstAsync(faculty => faculty.Id == id);
+                .FirstOrDefaultAsync(faculty => faculty.Id == id);
         public async Task<Faculty> GetByIdWithStudents(Guid id)
             => await this.context.Faculties
                 .Include(faculty => faculty.Students)
-                .FirstAsync(faculty => faculty.Id == id);
+                .FirstOrDefaultAsync(faculty => faculty.Id == id);
         public async Task<Faculty> GetByIdWithAddress(Guid id)
             => await this.context.Faculties
                 .Include(faculty => faculty.Address)
-                .FirstAsync(faculty => faculty.Id == id);
+                .FirstOrDefaultAsync(faculty => faculty.Id == id);
+
+        public async Task<Faculty> GetByIdWithAddressStudentsAndUser(Guid id)
+                => await this.context.Faculties
+                    .Include(faculty => faculty.Students)
+                        .ThenInclude(student => student.User)
+                    .Include(faculty => faculty.Address)
+                    .FirstOrDefaultAsync(faculty => faculty.Id == id);
+
+        public async Task<Faculty> GetAllDependenciesById(Guid id)
+            => await this.context.Faculties
+                    .Include(faculty => faculty.Students)
+                        .ThenInclude(student => student.Address)
+                     .Include(faculty => faculty.Students)
+                        .ThenInclude(student => student.RedeemedCoupons)
+                    .Include(faculty => faculty.Address)
+                    .FirstOrDefaultAsync(faculty => faculty.Id == id);
     }
 }

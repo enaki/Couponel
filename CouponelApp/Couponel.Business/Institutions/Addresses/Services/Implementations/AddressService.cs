@@ -44,10 +44,15 @@ namespace Couponel.Business.Institutions.Addresses.Services.Implementations
             await _repository.SaveChanges();
         }
 
-        public async Task<IEnumerable<AddressModel>> GetAll()
+        public async Task Update(UpdateAddressModel model)
         {
-            var addresses = _repository.GetAll();
-            return await (Task<IEnumerable<AddressModel>>)_mapper.Map<IEnumerable<AddressModel>>(addresses);
+            var address = await _repository.GetById(model.Id);
+
+            address.Update(model.Country, model.City, model.Street, model.Number);
+            _repository.Update(address);
+
+            await _repository.SaveChanges();
         }
+
     }
 }

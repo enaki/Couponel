@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Couponel.Entities.Institutions;
 using Couponel.Persistence.Repositories.Repository;
@@ -17,28 +18,59 @@ namespace Couponel.Persistence.Repositories.InstitutionsRepositories.Universitie
                 .Include(university => university.Faculties)
                     .ThenInclude(faculty => faculty.Students)
                 .Include(university => university.Address)
-                .FirstAsync(university => university.Id == id);
+                .FirstOrDefaultAsync(university => university.Id == id);
+
         public async Task<University> GetByIdWithAddressAndFaculties(Guid id)
         => await this.context.Universities
-            .Include(university => university.Faculties)
             .Include(university => university.Address)
-            .FirstAsync(university => university.Id == id);
+            .Include(university => university.Faculties)
+            .FirstOrDefaultAsync(university => university.Id == id);
 
         public async Task<University> GetByIdWithFacultiesAndStudents(Guid id)
                 => await this.context.Universities
                     .Include(university => university.Faculties)
                         .ThenInclude(faculty => faculty.Students)
-                    .FirstAsync(university => university.Id == id);
+                    .FirstOrDefaultAsync(university => university.Id == id);
 
         public async Task<University> GetByIdWithFaculties(Guid id)
         => await this.context.Universities
             .Include(university => university.Faculties)
-            .FirstAsync(university => university.Id == id);
+            .FirstOrDefaultAsync(university => university.Id == id);
 
         public async Task<University> GetByIdWithAddress(Guid id)
                 => await this.context.Universities
                     .Include(university => university.Address)
-                    .FirstAsync(university => university.Id == id);
+                    .FirstOrDefaultAsync(university => university.Id == id);
 
+        public async Task<University> GetAllDependenciesById(Guid id)
+            => await this.context.Universities
+                // get address for students
+                .Include(university => university.Faculties)
+                    .ThenInclude(faculty => faculty.Students)
+                    .ThenInclude(student=> student.Address)
+                //get user for students
+                .Include(university => university.Faculties)
+                    .ThenInclude(faculty => faculty.Students)
+                    .ThenInclude(student => student.User)
+
+                //get redeemedCoupons for students
+                .Include(university => university.Faculties)
+                    .ThenInclude(faculty => faculty.Students)
+                    .ThenInclude(student => student.RedeemedCoupons)
+                    .ThenInclude(rc => rc.Coupon)
+                    .ThenInclude(c => c.Comments)
+
+                .Include(university => university.Faculties)
+                    .ThenInclude(faculty => faculty.Address)
+
+                .Include(university => university.Address)
+
+                .FirstOrDefaultAsync(university => university.Id == id);
+
+        public Task SaveAddedFaculty(Faculty faculty)
+        {
+             context.Entry(faculty).State = EntityState.Added;
+             return context.SaveChangesAsync();
+        }
     }
 }

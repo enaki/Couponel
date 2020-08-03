@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Couponel.Entities.Institutions;
+using System;
+using System.Text.Json.Serialization;
 
 namespace Couponel.Business.Institutions.Faculties.Models
 {
@@ -7,6 +9,9 @@ namespace Couponel.Business.Institutions.Faculties.Models
         public string Name { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
+        [JsonIgnore]
+        public Address Address { get; set; }
+        [JsonIgnore]
         public Guid UniversityId { get; set; }
         public Guid AddressId { get; set; }
     }
