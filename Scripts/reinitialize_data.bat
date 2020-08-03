@@ -22,3 +22,5 @@ sqlcmd -S localhost\SQLEXPRESS -i SqlScripts\User.sql
 sqlcmd -S localhost\SQLEXPRESS -i SqlScripts\Admin.sql
 sqlcmd -S localhost\SQLEXPRESS -i SqlScripts\Offerer.sql
 sqlcmd -S localhost\SQLEXPRESS -i SqlScripts\Student.sql
+sqlcmd -S localhost\SQLEXPRESS -i SqlScripts\Coupon.sql
+sqlcmd -S localhost\SQLEXPRESS -i SqlScripts\Comment.sql

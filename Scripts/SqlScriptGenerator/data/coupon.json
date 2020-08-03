@@ -1,0 +1,38 @@
+[
+  {
+    "Id": "f1eae80c-238b-4cc9-8eb3-0743d2178493",
+    "Name": "Reducere 20% la telefoane",
+    "Category": "Electronice",
+    "DateAdded": "2020-12-24 12:31",
+    "ExpirationDate": "2020-09-25 19:20",
+    "Description": "Ai reducere de 20% la toate telefoanele samsung.",
+    "OffererId": "9c56567a-888b-404d-8b72-99589ce4f3b5"
+  },
+  {
+    "Id": "320c211a-e30a-4df5-a453-e49c3d5c0e8b",
+    "Name": "Reducere 50% la tablete",
+    "Category": "Electronice",
+    "DateAdded": "2020-11-21 21:30",
+    "ExpirationDate": "2021-12-25 00:30",
+    "Description": "Ai reducere de 50% la toate tabletele huawei.",
+    "OffererId": "e46b79d0-dfcd-4cd0-a608-c0934bbb3cad"
+  },
+  {
+    "Id": "85921d14-14e5-440d-a0be-d7477948361a",
+    "Name": "Reducere 33% la biciclete",
+    "Category": "Sport",
+    "DateAdded": "2020-09-30 17:30",
+    "ExpirationDate": "2022-11-25 19:30",
+    "Description": "Ai reducere de 33% la toate bicicletele.",
+    "OffererId": "a64a0020-e0f2-46fa-a7a9-1e657f02d83f"
+  },
+  {
+    "Id": "8b506e26-2b7e-4cb6-8db4-d1f5e90cb189",
+    "Name": "Reducere 51% la perne",
+    "Category": "Home",
+    "DateAdded": "2020-08-21 12:31",
+    "ExpirationDate": "2023-09-25 15:20",
+    "Description": "Ai reducere de 51% la toate pernele cu spuma de memorie.",
+    "OffererId": "b8f48fda-c366-4917-828f-17b2b363556e"
+  }
+]

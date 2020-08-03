@@ -25,6 +25,9 @@ def init():
     initialize("output/Offerer.sql")
     initialize("output/User.sql")
 
+    initialize("output/Coupon.sql")
+    initialize("output/Comment.sql")
+
 
 def finish():
     finalize("output/Address.sql")
@@ -35,6 +38,11 @@ def finish():
     finalize("output/Student.sql")
     finalize("output/Offerer.sql")
     finalize("output/User.sql")
+
+    finalize("output/Coupon.sql")
+    finalize("output/Comment.sql")
+
+
 
 
 def generate_institutions():
@@ -445,10 +453,103 @@ def generate_students():
         student_file.write(student_string_builder_sql)
 
 
+def generate_coupons():
+    coupon_list = []
+
+    with open("data/coupon.json", encoding='utf-8') as data_file:
+        coupons = json.load(data_file)
+        for coupon in coupons:
+            coupon_list.append({
+                "Id": coupon["Id"],
+                "Name": coupon["Name"],
+                "Category": coupon["Category"],
+                "DateAdded": coupon["DateAdded"],
+                "ExpirationDate": coupon["ExpirationDate"],
+                "Description": coupon["Description"],
+                "OffererId": coupon["OffererId"]
+            })
+
+    # filter duplicated id in coupons
+    coupon_list = [dict_item for i, dict_item in enumerate(coupon_list)
+                    if dict_item["Id"] not in [coupon["Id"] for coupon in coupon_list[i + 1:]]]
+
+    print(coupon_list)
+    coupon_string_builder_sql = ""
+    for coupon in coupon_list:
+        coupon_string_builder_sql += """INSERT INTO [dbo].[Coupons]
+               ([Id]
+               ,[Name]
+               ,[Category]
+               ,[DateAdded]
+               ,[ExpirationDate]
+               ,[Description]
+               ,[OffererId])
+            VALUES
+               (CONVERT(uniqueidentifier,'{}')
+               ,'{}'
+               ,'{}'
+               ,'{}'
+               ,'{}'
+               ,'{}'
+               ,'{}')\n\n""".format(coupon["Id"],
+                                    coupon["Name"],
+                                    coupon["Category"],
+                                    coupon["DateAdded"],
+                                    coupon["ExpirationDate"],
+                                    coupon["Description"],
+                                    coupon["OffererId"])
+
+
+    with open("output/Coupon.sql", mode="a", encoding="utf-8") as coupon_file:
+        coupon_file.write(coupon_string_builder_sql)
+
+
+def generate_comments():
+    comment_list = []
+
+    with open("data/comment.json", encoding='utf-8') as data_file:
+        comments = json.load(data_file)
+        for comment in comments:
+            comment_list.append({
+                "Id": comment["Id"],
+                "[Content]": comment["[Content]"],
+                "UserId": comment["UserId"],
+                "CouponId": comment["CouponId"]
+            })
+
+    # filter duplicated id in comments
+    coupon_list = [dict_item for i, dict_item in enumerate(comment_list)
+                    if dict_item["Id"] not in [coupon["Id"] for coupon in comment_list[i + 1:]]]
+
+    print(comment_list)
+    comment_string_builder_sql = ""
+    for comment in comment_list:
+        comment_string_builder_sql += """INSERT INTO [dbo].[Comments]
+               ([Id]
+               ,[Content]
+               ,[UserId]
+               ,[CouponId])
+            VALUES
+               (CONVERT(uniqueidentifier,'{}')
+               ,'{}'
+               ,'{}'
+               ,(CONVERT (uniqueidentifier,'{}')))\n\n""".format(comment["Id"],
+                                    comment["[Content]"],
+                                    comment["UserId"],
+                                    comment["CouponId"])
+
+
+    with open("output/Comment.sql", mode="a", encoding="utf-8") as comment_file:
+        comment_file.write(comment_string_builder_sql)
+
+
+
 if __name__ == '__main__':
     init()
     generate_institutions()
     generate_admins()
     generate_offerers()
     generate_students()
+    generate_coupons()
+    generate_comments()
     finish()
