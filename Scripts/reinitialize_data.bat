@@ -24,3 +24,4 @@ sqlcmd -S localhost\SQLEXPRESS -i SqlScripts\Offerer.sql
 sqlcmd -S localhost\SQLEXPRESS -i SqlScripts\Student.sql
 sqlcmd -S localhost\SQLEXPRESS -i SqlScripts\Coupon.sql
 sqlcmd -S localhost\SQLEXPRESS -i SqlScripts\Comment.sql
+sqlcmd -S localhost\SQLEXPRESS -i SqlScripts\RedeemedCoupon.sql
