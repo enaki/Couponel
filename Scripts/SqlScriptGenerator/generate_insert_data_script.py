@@ -27,6 +27,7 @@ def init():
 
     initialize("output/Coupon.sql")
     initialize("output/Comment.sql")
+    initialize("output/RedeemedCoupon.sql")
 
 
 def finish():
@@ -41,6 +42,7 @@ def finish():
 
     finalize("output/Coupon.sql")
     finalize("output/Comment.sql")
+    finalize("output/RedeemedCoupon.sql")
 
 
 
@@ -542,6 +544,48 @@ def generate_comments():
     with open("output/Comment.sql", mode="a", encoding="utf-8") as comment_file:
         comment_file.write(comment_string_builder_sql)
 
+def generate_redeemedcoupons():
+    redeemedcoupons_list = []
+
+    with open("data/redeemedcoupon.json", encoding='utf-8') as data_file:
+        redeemedcoupons = json.load(data_file)
+        for reedemedcoupon in redeemedcoupons:
+            redeemedcoupons_list.append({
+                "Id": reedemedcoupon["Id"],
+                "ReedemedDate": reedemedcoupon["ReedemedDate"],
+                "Status": reedemedcoupon["Status"],
+                "CouponId": reedemedcoupon["CouponId"],
+                "StudentId": reedemedcoupon["StudentId"]
+            })
+
+    # filter duplicated id in comments
+    coupon_list = [dict_item for i, dict_item in enumerate(redeemedcoupons_list)
+                    if dict_item["Id"] not in [redeemedcoupon["Id"] for redeemedcoupon in redeemedcoupons_list[i + 1:]]]
+
+    print(redeemedcoupons_list)
+    redeemedcoupons_string_builder_sql = ""
+    for redeemedcoupon in redeemedcoupons_list:
+        redeemedcoupons_string_builder_sql += """INSERT INTO [dbo].[RedeemedCoupons]
+               ([Id]
+               ,[ReedemedDate]
+               ,[Status]
+               ,[CouponId]
+               ,[StudentId])
+            VALUES
+               (CONVERT(uniqueidentifier,'{}')
+               ,'{}'
+               ,'{}'
+               ,(CONVERT(uniqueidentifier,'{}'))
+               ,(CONVERT (uniqueidentifier,'{}')))\n\n""".format(redeemedcoupon["Id"],
+                                    redeemedcoupon["ReedemedDate"],
+                                    redeemedcoupon["Status"],
+                                    redeemedcoupon["CouponId"],
+                                    redeemedcoupon["StudentId"])
+
+
+    with open("output/RedeemedCoupon.sql", mode="a", encoding="utf-8") as redeemedcoupon_file:
+        redeemedcoupon_file.write(redeemedcoupons_string_builder_sql)
+
 
 
 if __name__ == '__main__':
@@ -552,4 +596,5 @@ if __name__ == '__main__':
     generate_students()
     generate_coupons()
     generate_comments()
+    generate_redeemedcoupons()
     finish()
