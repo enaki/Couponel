@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Couponel.Business.Institutions.Faculties.Models;
 using Couponel.Entities.Institutions;
@@ -14,27 +15,46 @@ namespace Couponel.IntegrationTests.Institutions
         public async Task GetFaculty()
         {
             // Arrange
-            var address = new Address("Romania", "Iasi", "Bucuriei", "42");
+            var university = new University("university", "university@yahoo.com", "0456324862");
+            var faculty = new Faculty("facultate", "facultate@yahoo.com", "0745624578");
+            university.AddFaculty(faculty);
             await ExecuteDatabaseAction(async couponelContext =>
             {
-                await couponelContext.Addresses.AddAsync(address);
-                await couponelContext.SaveChangesAsync();
-            });
-            var faculty = new Faculty("facultate", "facultate@yahoo.com", "0745624578", address.Id);
-
-            await ExecuteDatabaseAction(async couponelContext =>
-            {
-                await couponelContext.Faculties.AddAsync(faculty);
+                await couponelContext.Universities.AddAsync(university);
                 await couponelContext.SaveChangesAsync();
             });
 
             //Act
-            var response = await HttpClient.GetAsync($"api/faculty/{faculty.Id}");
+            var response = await HttpClient.GetAsync($"api/universities/{university.Id}/faculties/{faculty.Id}");
 
             // Assert
             response.IsSuccessStatusCode.Should().BeTrue();
             var faculties = await response.Content.ReadAsAsync<FacultyModel>();
             faculties.Should().NotBeNull();
+
+        }
+        [Fact]
+        public async Task UpdateFaculty()
+        {
+            // Arrange
+            var university = new University("university", "university@yahoo.com", "0456324862");
+            var faculty = new Faculty("facultate", "facultate@yahoo.com", "0745624578");
+            faculty.Update("faculty","facultate@yahoo.com", "0745624578", new Address("Romania", "Iasi", "Bucuriei", "42"));
+            university.AddFaculty(faculty);
+            await ExecuteDatabaseAction(async couponelContext =>
+            {
+                await couponelContext.Universities.AddAsync(university);
+                await couponelContext.SaveChangesAsync();
+            });
+
+            //Act
+            var response = await HttpClient.GetAsync($"api/universities/{university.Id}/faculties/{faculty.Id}");
+
+            // Assert
+            response.IsSuccessStatusCode.Should().BeTrue();
+            var faculties = await response.Content.ReadAsAsync<FacultyModel>();
+            faculties.Should().NotBeNull();
+            faculties.Name.Should().BeEquivalentTo("faculty");
 
         }
 
@@ -43,22 +63,18 @@ namespace Couponel.IntegrationTests.Institutions
         public async Task DeleteFaculty()
         {
             // Arrange
-            var address = new Address("Romania", "Iasi", "Bucuriei", "42");
-            await ExecuteDatabaseAction(async couponelContext =>
-            {
-                await couponelContext.Addresses.AddAsync(address);
-                await couponelContext.SaveChangesAsync();
-            });
-            var faculty = new Faculty("facultate", "facultate@yahoo.com", "0745624578",address.Id);
+            var university = new University("university", "university@yahoo.com", "0456324862");
+            var faculty = new Faculty("facultate", "facultate@yahoo.com", "0745624578");
+            university.AddFaculty(faculty);
 
             await ExecuteDatabaseAction(async couponelContext =>
             {
-                await couponelContext.Faculties.AddAsync(faculty);
+                await couponelContext.Universities.AddAsync(university);
                 await couponelContext.SaveChangesAsync();
             });
 
             //Act
-            var response = await HttpClient.DeleteAsync($"api/faculty/{faculty.Id}");
+            var response = await HttpClient.DeleteAsync($"api/universities/{university.Id}/faculties/{faculty.Id}");
 
             // Assert
             response.IsSuccessStatusCode.Should().BeTrue();
