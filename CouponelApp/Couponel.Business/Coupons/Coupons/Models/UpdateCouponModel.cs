@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Couponel.Business.Coupons.Coupons.Models
 {
-    public sealed class UpsertCouponModel
+    public sealed class UpdateCouponModel
     {
         public string Name { get; set; }
         public string Category { get; set; }

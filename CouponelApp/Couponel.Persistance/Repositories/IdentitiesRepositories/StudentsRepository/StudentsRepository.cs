@@ -14,18 +14,18 @@ namespace Couponel.Persistence.Repositories.IdentitiesRepositories.StudentsRepos
         public StudentsRepository(CouponelContext context) : base(context) { }
 
         public async Task<IList<Student>> GetAllByFirstName(string firstName) =>
-                await this.context.Students.Where(x=> x.FirstName== firstName).ToListAsync();
+                await this.context.Students.Where(x => x.User.FirstName == firstName).ToListAsync();
 
         public async Task<IList<Student>> GetAllByFirstNameWithUser(string firstName) =>
-                await this.context.Students.Where(x => x.FirstName == firstName)
-                            .Include(x=>x.User)
+                await this.context.Students.Where(x => x.User.FirstName == firstName)
+                            .Include(x => x.User)
                             .ToListAsync();
 
-        public async Task<IList<Student>> GetAllByLastName(string lastName)=>
-                await this.context.Students.Where(x => x.LastName == lastName).ToListAsync();
+        public async Task<IList<Student>> GetAllByLastName(string lastName) =>
+                await this.context.Students.Where(x => x.User.LastName == lastName).ToListAsync();
 
         public async Task<IList<Student>> GetAllByLastNameWithUser(string lastName) =>
-                await this.context.Students.Where(x => x.LastName == lastName)
+                await this.context.Students.Where(x => x.User.LastName == lastName)
                             .Include(x => x.User)
                             .ToListAsync();
 
@@ -38,10 +38,10 @@ namespace Couponel.Persistence.Repositories.IdentitiesRepositories.StudentsRepos
                             .FirstOrDefaultAsync();
 
         public async Task<Student> GetByPhoneNumber(string phoneNumber) =>
-            await this.context.Students.Where(x => x.PhoneNumber == phoneNumber).FirstOrDefaultAsync();
+            await this.context.Students.Where(x => x.User.PhoneNumber == phoneNumber).FirstOrDefaultAsync();
 
         public async Task<Student> GetByPhoneNumberWithUser(string phoneNumber) =>
-            await this.context.Students.Where(x => x.PhoneNumber == phoneNumber)
+            await this.context.Students.Where(x => x.User.PhoneNumber == phoneNumber)
                             .Include(x => x.User)
                             .FirstOrDefaultAsync();
 

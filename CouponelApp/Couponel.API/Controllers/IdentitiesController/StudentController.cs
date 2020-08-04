@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Couponel.API.Controllers.IdentitiesController
 {
-    [Route("student")]
+    [Route("api/{userid}/students")]
     [ApiController]
     public class StudentController : ControllerBase
     {

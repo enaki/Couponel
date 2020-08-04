@@ -7,30 +7,17 @@ using Couponel.Entities.Institutions;
 
 namespace Couponel.Entities.Identities.UserTypes
 {
-    public sealed class Student : Person
+    public sealed class Student : Entity
     {
-        public Student(string firstName, string lastName, string phoneNumber, Guid addressId) :
-            base(firstName, lastName, phoneNumber)
+        public Student()
+            : base()
         {
-            AddressId = addressId;
             RedeemedCoupons = new List<RedeemedCoupon>();
         }
-
-        public ICollection<RedeemedCoupon> RedeemedCoupons { get; private set; }
-
-        #region Database Relations
-
-        [ForeignKey("Address")]
-        public Guid AddressId { get; private set; }
-        public Address Address { get; private set; }
-
-
-        [ForeignKey("User")]
         public Guid UserId { get; private set; }
         public User User { get; private set; }
 
-        #endregion
-
+        public ICollection<RedeemedCoupon> RedeemedCoupons { get; private set; }
         public void AddRedeemedCoupon(RedeemedCoupon redeemedCoupon)
         {
             RedeemedCoupons.Add(redeemedCoupon);

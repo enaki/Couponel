@@ -9,6 +9,6 @@ namespace Couponel.Persistence.Repositories.IdentitiesRepositories.UsersReposito
     {
         Task<User> GetByUsername(string username);
         Task<User> GetByEmail(string email);
-        Task<IList<User>> GetAllByRole(string role);
+        Task<IList<User>> GetAllByRole(UserRole role);
     }
 }

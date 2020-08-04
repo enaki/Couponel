@@ -12,7 +12,6 @@ namespace Couponel.Business.Authentications.Models
             Token = token;
         }
         public string Username { get; private set; }
-
         public string Token { get; private set; }
     }
 }

@@ -28,8 +28,8 @@ namespace Couponel.Persistence.Repositories.Repository
         public void Delete(T entity)
             => this.context.Set<T>().Remove(entity);
 
-        public Task SaveChanges()
-            => this.context.SaveChangesAsync();
+        public async Task SaveChanges()
+            => await this.context.SaveChangesAsync();
 
         public async Task<IList<T>> GetAll()
             => await this.context.Set<T>().ToListAsync();

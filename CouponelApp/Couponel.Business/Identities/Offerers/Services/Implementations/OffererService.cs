@@ -7,8 +7,6 @@ using Couponel.Business.Identities.Offerers.Services.Interfaces;
 using Couponel.Entities.Identities.UserTypes;
 using Couponel.Entities.Institutions;
 using Couponel.Persistence.Repositories.IdentitiesRepositories.OfferersRepository;
-
-
 namespace Couponel.Business.Identities.Offerers.Services.Implementations
 {
     public sealed class OffererService: IOffererService

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Couponel.Business.Institutions.Addresses.Models;
 using Couponel.Business.Institutions.Universities.Models;
 
 namespace Couponel.Business.Institutions.Universities.Services.Interfaces

@@ -50,7 +50,7 @@ namespace Couponel.Business.Coupons.Coupons.Services.Implementations
             return await (Task<IEnumerable<CouponModel>>)_mapper.Map<IEnumerable<CouponModel>>(admins);
         }
 
-        public async Task Update(Guid id, UpsertCouponModel model)
+        public async Task Update(Guid id, UpdateCouponModel model)
         {
             var coupon = await _repository.GetById(id);
 

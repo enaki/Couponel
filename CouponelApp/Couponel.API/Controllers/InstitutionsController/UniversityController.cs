@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Couponel.Business.Institutions.Addresses.Models;
 using Couponel.Business.Institutions.Universities.Models;
 using Couponel.Business.Institutions.Universities.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;

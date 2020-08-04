@@ -7,21 +7,13 @@ using System.Linq;
 
 namespace Couponel.Entities.Identities.UserTypes
 {
-    public sealed class Offerer : Person
+    public sealed class Offerer : Entity
     {
-        public Offerer(string firstName, string lastName, string phoneNumber)
-            : base(firstName, lastName, phoneNumber)
+        public Offerer()
+            : base()
         {
             Coupons = new List<Coupon>();
         }
-        #region Database Relations
-
-        [ForeignKey("Address")]
-        public Guid AddressId { get; private set; }
-        public Address Address { get; private set; }
-
-
-        [ForeignKey("User")]
         public Guid UserId { get; private set; }
         public User User { get; private set; }
 
@@ -30,7 +22,6 @@ namespace Couponel.Entities.Identities.UserTypes
         {
             Coupons.Add(coupon);
         }
-
         public void RemoveCoupon(Guid couponId)
         {
             var coupon = this.Coupons.FirstOrDefault(rc => rc.Id == couponId);
@@ -40,7 +31,5 @@ namespace Couponel.Entities.Identities.UserTypes
                 Coupons.Remove(coupon);
             }
         }
-
-        #endregion
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Threading.Tasks;
 using Couponel.Business.Identities.Admins.Models;
 using Couponel.Business.Identities.Admins.Services.Interfaces;
@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Couponel.API.Controllers.IdentitiesController
 {
-    [Route("admin")]
+    [Route("api/{userid}/admins")]
     [ApiController]
     public class AdminController : ControllerBase
     {
@@ -45,3 +45,4 @@ namespace Couponel.API.Controllers.IdentitiesController
         }
     }
 }
+*/

@@ -12,18 +12,18 @@ namespace Couponel.Persistence.Repositories.IdentitiesRepositories.OfferersRepos
         public OfferersRepository(CouponelContext context) : base(context) { }
 
         public async Task<IList<Offerer>> GetAllByFirstName(string firstName) =>
-                await this.context.Offerers.Where(x=> x.FirstName== firstName).ToListAsync();
+                await this.context.Offerers.Where(x => x.User.FirstName == firstName).ToListAsync();
 
         public async Task<IList<Offerer>> GetAllByFirstNameWithUser(string firstName) =>
-                await this.context.Offerers.Where(x => x.FirstName == firstName)
-                            .Include(x=>x.User)
+                await this.context.Offerers.Where(x => x.User.FirstName == firstName)
+                            .Include(x => x.User)
                             .ToListAsync();
 
-        public async Task<IList<Offerer>> GetAllByLastName(string lastName)=>
-                await this.context.Offerers.Where(x => x.LastName == lastName).ToListAsync();
+        public async Task<IList<Offerer>> GetAllByLastName(string lastName) =>
+                await this.context.Offerers.Where(x => x.User.LastName == lastName).ToListAsync();
 
         public async Task<IList<Offerer>> GetAllByLastNameWithUser(string lastName) =>
-                await this.context.Offerers.Where(x => x.LastName == lastName)
+                await this.context.Offerers.Where(x => x.User.LastName == lastName)
                             .Include(x => x.User)
                             .ToListAsync();
 
@@ -37,10 +37,10 @@ namespace Couponel.Persistence.Repositories.IdentitiesRepositories.OfferersRepos
                             .FirstOrDefaultAsync();
 
         public async Task<Offerer> GetByPhoneNumber(string phoneNumber) =>
-            await this.context.Offerers.Where(x => x.PhoneNumber == phoneNumber).FirstOrDefaultAsync();
+            await this.context.Offerers.Where(x => x.User.PhoneNumber == phoneNumber).FirstOrDefaultAsync();
 
         public async Task<Offerer> GetByPhoneNumberWithUser(string phoneNumber) =>
-            await this.context.Offerers.Where(x => x.PhoneNumber == phoneNumber)
+            await this.context.Offerers.Where(x => x.User.PhoneNumber == phoneNumber)
                             .Include(x => x.User)
                             .FirstOrDefaultAsync();
 

@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Couponel.API.Controllers.IdentitiesController
 {
-    [Route("offerer")]
+    [Route("api/{userid}/offerers")]
     [ApiController]
     public class OffererController : ControllerBase
     {
