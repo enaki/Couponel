@@ -1,6 +1,7 @@
 export type VoucherModel = {
   id?: string;
-  title: string;
+  name: string;
+  category:string;
+  expirationDate:string;
   description: string;
-  private: boolean;
 };

@@ -5,6 +5,8 @@ import { AuthenticationComponent } from './authentication/authentication/authent
 import { VoucherDetailsComponent } from './voucher/voucher-details/voucher-details.component';
 import { VoucherListComponent } from './voucher/voucher-list/voucher-list.component';
 import { TopComponent } from './voucher/top/top.component';
+import { ProfileInfoComponent } from './profile/profile-info/profile-info.component';
+import { SavedVouchersComponent } from './profile/saved-vouchers/saved-vouchers.component';
 
 const routes: Routes = [
   {
@@ -20,8 +22,10 @@ const routes: Routes = [
       ),
   },
   { path: 'list', component: VoucherListComponent },
-  { path: 'create-voucher', component: VoucherDetailsComponent },
+  { path: 'create-voucher', component: VoucherDetailsComponent},
   { path: 'topList', component: TopComponent},
+  { path: 'profile-info', component: ProfileInfoComponent},
+  { path: 'saved-vouchers', component: SavedVouchersComponent},
   {
     path: 'notifications',
     loadChildren: () =>
@@ -44,7 +48,13 @@ const routes: Routes = [
       import('./welcome/welcome.module').then(
         (m) => m.WelcomeModule
       ),
-  }
+  },
+  {
+    path: 'profile',
+    loadChildren: () =>
+      import('./profile/profile.module').then((m) => m.ProfileModule),
+  },
+
 ];
 
 @NgModule({
