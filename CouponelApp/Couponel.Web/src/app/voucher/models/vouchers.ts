@@ -1,5 +1,4 @@
 export type VouchersModel = {
-  title: string;
+  name: string;
   description: string;
-  private: boolean;
 };

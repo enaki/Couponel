@@ -10,12 +10,12 @@ import { VouchersModel } from '../models/vouchers.model';
 })
 export class VoucherService {
 
-  private endpoint: string = 'https://localhost:5001//api/v1/coupons';
+  private endpoint: string = 'https://localhost:5001/api/v1/coupons';
 
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${JSON.parse(localStorage.getItem('userToken'))}`
+      //'Authorization': `Bearer ${JSON.parse(localStorage.getItem('userToken'))}`
     })
   };
 
