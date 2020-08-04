@@ -44,7 +44,7 @@ def finish():
     finalize("output/Comment.sql")
     finalize("output/RedeemedCoupon.sql")
 
-
+    finalize("output/AllInOne.sql")
 
 
 def generate_institutions():
@@ -97,14 +97,14 @@ def generate_institutions():
            ,[Number])
         VALUES
            (CONVERT(uniqueidentifier,'{}')
-           ,'{}'
-           ,'{}'
-           ,'{}'
-           ,'{}')\n\n""".format(address["Id"],
-                                address["Country"],
-                                address["City"],
-                                address["Street"],
-                                address["Number"])
+           ,N'{}'
+           ,N'{}'
+           ,N'{}'
+           ,N'{}')\n\n""".format(address["Id"],
+                                 address["Country"],
+                                 address["City"],
+                                 address["Street"],
+                                 address["Number"])
 
     # print(address_string_builder_sql)
 
@@ -119,16 +119,16 @@ def generate_institutions():
            ,[AddressId])
      VALUES
            (CONVERT(uniqueidentifier,'{}')
-           ,'{}'
-           ,'{}'
-           ,'{}'
+           ,N'{}'
+           ,N'{}'
+           ,N'{}'
            ,CONVERT(uniqueidentifier,'{}')
            ,CONVERT(uniqueidentifier,'{}'))\n\n""".format(faculty["Id"],
-                                faculty["Name"],
-                                faculty["Email"],
-                                faculty["PhoneNumber"],
-                                faculty["UniversityId"],
-                                faculty["AddressId"])
+                                                          faculty["Name"],
+                                                          faculty["Email"],
+                                                          faculty["PhoneNumber"],
+                                                          faculty["UniversityId"],
+                                                          faculty["AddressId"])
 
     # print(faculty_string_builder_sql)
 
@@ -142,14 +142,14 @@ def generate_institutions():
            ,[AddressId])
      VALUES
            (CONVERT(uniqueidentifier,'{}')
-           ,'{}'
-           ,'{}' 
-           ,'{}'
+           ,N'{}'
+           ,N'{}' 
+           ,N'{}'
            ,CONVERT(uniqueidentifier,'{}'))\n\n""".format(university["Id"],
-                                university["Name"],
-                                university["Email"],
-                                university["PhoneNumber"],
-                                university["AddressId"])
+                                                          university["Name"],
+                                                          university["Email"],
+                                                          university["PhoneNumber"],
+                                                          university["AddressId"])
     # print(university_string_builder_sql)
 
     with open("output/Address.sql", mode="a", encoding="utf-8") as address_file:
@@ -158,6 +158,10 @@ def generate_institutions():
         faculty_file.write(faculty_string_builder_sql)
     with open("output/University.sql", mode="a", encoding="utf-8") as university_file:
         university_file.write(university_string_builder_sql)
+    with open("output/AllInOne.sql", mode="a", encoding="utf-8") as all_in_one_file:
+        all_in_one_file.write("\n\n{}\n\n{}\n\n{}".format(address_string_builder_sql,
+                                                          university_string_builder_sql,
+                                                          faculty_string_builder_sql))
 
 
 def generate_admins():
@@ -199,14 +203,14 @@ def generate_admins():
            ,[Number])
         VALUES
            (CONVERT(uniqueidentifier,'{}')
-           ,'{}'
-           ,'{}'
-           ,'{}'
-           ,'{}')\n\n""".format(address["Id"],
-                                address["Country"],
-                                address["City"],
-                                address["Street"],
-                                address["Number"])
+           ,N'{}'
+           ,N'{}'
+           ,N'{}'
+           ,N'{}')\n\n""".format(address["Id"],
+                                 address["Country"],
+                                 address["City"],
+                                 address["Street"],
+                                 address["Number"])
 
     user_string_builder_sql = ""
     for user in user_list:
@@ -218,14 +222,14 @@ def generate_admins():
            ,[Role])
      VALUES
            (CONVERT(uniqueidentifier,'{}')
-           ,'{}'
-           ,'{}'
-           ,'{}'
-           ,'{}')\n\n""".format(user["Id"],
-                                user["UserName"],
-                                user["Email"],
-                                user["PasswordHash"],
-                                user["Role"])
+           ,N'{}'
+           ,N'{}'
+           ,N'{}'
+           ,N'{}')\n\n""".format(user["Id"],
+                                 user["UserName"],
+                                 user["Email"],
+                                 user["PasswordHash"],
+                                 user["Role"])
 
     admin_string_builder_sql = ""
     for admin in admin_list:
@@ -238,16 +242,16 @@ def generate_admins():
            ,[UserId])
      VALUES
            (CONVERT(uniqueidentifier,'{}')
-           ,'{}'
-           ,'{}' 
-           ,'{}'
+           ,N'{}'
+           ,N'{}' 
+           ,N'{}'
            ,CONVERT(uniqueidentifier,'{}')
            ,CONVERT(uniqueidentifier,'{}'))\n\n""".format(admin["Id"],
-                                admin["FirstName"],
-                                admin["LastName"],
-                                admin["PhoneNumber"],
-                                admin["AddressId"],
-                                admin["UserId"])
+                                                          admin["FirstName"],
+                                                          admin["LastName"],
+                                                          admin["PhoneNumber"],
+                                                          admin["AddressId"],
+                                                          admin["UserId"])
 
     with open("output/Address.sql", mode="a", encoding="utf-8") as address_file:
         address_file.write(address_string_builder_sql)
@@ -255,6 +259,10 @@ def generate_admins():
         user_file.write(user_string_builder_sql)
     with open("output/Admin.sql", mode="a", encoding="utf-8") as admin_file:
         admin_file.write(admin_string_builder_sql)
+    with open("output/AllInOne.sql", mode="a", encoding="utf-8") as all_in_one_file:
+        all_in_one_file.write("\n\n{}\n\n{}\n\n{}".format(address_string_builder_sql,
+                                                          user_string_builder_sql,
+                                                          admin_string_builder_sql))
 
 
 def generate_offerers():
@@ -281,7 +289,7 @@ def generate_offerers():
     user_list = [dict_item for i, dict_item in enumerate(user_list)
                  if dict_item["Id"] not in [user["Id"] for user in user_list[i + 1:]]]
     offerer_list = [dict_item for i, dict_item in enumerate(offerer_list)
-                  if dict_item["Id"] not in [offerer["Id"] for offerer in offerer_list[i + 1:]]]
+                    if dict_item["Id"] not in [offerer["Id"] for offerer in offerer_list[i + 1:]]]
 
     print(address_list)
     print(user_list)
@@ -296,14 +304,14 @@ def generate_offerers():
            ,[Number])
         VALUES
            (CONVERT(uniqueidentifier,'{}')
-           ,'{}'
-           ,'{}'
-           ,'{}'
-           ,'{}')\n\n""".format(address["Id"],
-                                address["Country"],
-                                address["City"],
-                                address["Street"],
-                                address["Number"])
+           ,N'{}'
+           ,N'{}'
+           ,N'{}'
+           ,N'{}')\n\n""".format(address["Id"],
+                                 address["Country"],
+                                 address["City"],
+                                 address["Street"],
+                                 address["Number"])
 
     user_string_builder_sql = ""
     for user in user_list:
@@ -315,14 +323,14 @@ def generate_offerers():
            ,[Role])
      VALUES
            (CONVERT(uniqueidentifier,'{}')
-           ,'{}'
-           ,'{}'
-           ,'{}'
-           ,'{}')\n\n""".format(user["Id"],
-                                user["UserName"],
-                                user["Email"],
-                                user["PasswordHash"],
-                                user["Role"])
+           ,N'{}'
+           ,N'{}'
+           ,N'{}'
+           ,N'{}')\n\n""".format(user["Id"],
+                                 user["UserName"],
+                                 user["Email"],
+                                 user["PasswordHash"],
+                                 user["Role"])
 
     offerer_string_builder_sql = ""
     for offerer in offerer_list:
@@ -335,16 +343,16 @@ def generate_offerers():
            ,[UserId])
      VALUES
            (CONVERT(uniqueidentifier,'{}')
-           ,'{}'
-           ,'{}' 
-           ,'{}'
+           ,N'{}'
+           ,N'{}' 
+           ,N'{}'
            ,CONVERT(uniqueidentifier,'{}')
            ,CONVERT(uniqueidentifier,'{}'))\n\n""".format(offerer["Id"],
-                                offerer["FirstName"],
-                                offerer["LastName"],
-                                offerer["PhoneNumber"],
-                                offerer["AddressId"],
-                                offerer["UserId"])
+                                                          offerer["FirstName"],
+                                                          offerer["LastName"],
+                                                          offerer["PhoneNumber"],
+                                                          offerer["AddressId"],
+                                                          offerer["UserId"])
 
     with open("output/Address.sql", mode="a", encoding="utf-8") as address_file:
         address_file.write(address_string_builder_sql)
@@ -352,6 +360,10 @@ def generate_offerers():
         user_file.write(user_string_builder_sql)
     with open("output/Offerer.sql", mode="a", encoding="utf-8") as offerer_file:
         offerer_file.write(offerer_string_builder_sql)
+    with open("output/AllInOne.sql", mode="a", encoding="utf-8") as all_in_one_file:
+        all_in_one_file.write("\n\n{}\n\n{}\n\n{}".format(address_string_builder_sql,
+                                                          user_string_builder_sql,
+                                                          offerer_string_builder_sql))
 
 
 def generate_students():
@@ -394,14 +406,14 @@ def generate_students():
                ,[Number])
             VALUES
                (CONVERT(uniqueidentifier,'{}')
-               ,'{}'
-               ,'{}'
-               ,'{}'
-               ,'{}')\n\n""".format(address["Id"],
-                                    address["Country"],
-                                    address["City"],
-                                    address["Street"],
-                                    address["Number"])
+               ,N'{}'
+               ,N'{}'
+               ,N'{}'
+               ,N'{}')\n\n""".format(address["Id"],
+                                     address["Country"],
+                                     address["City"],
+                                     address["Street"],
+                                     address["Number"])
 
     user_string_builder_sql = ""
     for user in user_list:
@@ -413,14 +425,14 @@ def generate_students():
                ,[Role])
          VALUES
                (CONVERT(uniqueidentifier,'{}')
-               ,'{}'
-               ,'{}'
-               ,'{}'
-               ,'{}')\n\n""".format(user["Id"],
-                                    user["UserName"],
-                                    user["Email"],
-                                    user["PasswordHash"],
-                                    user["Role"])
+               ,N'{}'
+               ,N'{}'
+               ,N'{}'
+               ,N'{}')\n\n""".format(user["Id"],
+                                     user["UserName"],
+                                     user["Email"],
+                                     user["PasswordHash"],
+                                     user["Role"])
 
     student_string_builder_sql = ""
     for student in student_list:
@@ -434,9 +446,9 @@ def generate_students():
                ,[UserId])
          VALUES
                (CONVERT(uniqueidentifier,'{}')
-               ,'{}'
-               ,'{}' 
-               ,'{}'
+               ,N'{}'
+               ,N'{}' 
+               ,N'{}'
                ,CONVERT(uniqueidentifier,'{}')
                ,CONVERT(uniqueidentifier,'{}')
                ,CONVERT(uniqueidentifier,'{}'))\n\n""".format(student["Id"],
@@ -453,6 +465,10 @@ def generate_students():
         user_file.write(user_string_builder_sql)
     with open("output/Student.sql", mode="a", encoding="utf-8") as student_file:
         student_file.write(student_string_builder_sql)
+    with open("output/AllInOne.sql", mode="a", encoding="utf-8") as all_in_one_file:
+        all_in_one_file.write("\n\n{}\n\n{}\n\n{}".format(address_string_builder_sql,
+                                                          user_string_builder_sql,
+                                                          student_string_builder_sql))
 
 
 def generate_coupons():
@@ -473,7 +489,7 @@ def generate_coupons():
 
     # filter duplicated id in coupons
     coupon_list = [dict_item for i, dict_item in enumerate(coupon_list)
-                    if dict_item["Id"] not in [coupon["Id"] for coupon in coupon_list[i + 1:]]]
+                   if dict_item["Id"] not in [coupon["Id"] for coupon in coupon_list[i + 1:]]]
 
     print(coupon_list)
     coupon_string_builder_sql = ""
@@ -488,22 +504,23 @@ def generate_coupons():
                ,[OffererId])
             VALUES
                (CONVERT(uniqueidentifier,'{}')
-               ,'{}'
-               ,'{}'
-               ,'{}'
-               ,'{}'
-               ,'{}'
-               ,'{}')\n\n""".format(coupon["Id"],
-                                    coupon["Name"],
-                                    coupon["Category"],
-                                    coupon["DateAdded"],
-                                    coupon["ExpirationDate"],
-                                    coupon["Description"],
-                                    coupon["OffererId"])
-
+               ,N'{}'
+               ,N'{}'
+               ,N'{}'
+               ,N'{}'
+               ,N'{}'
+               ,N'{}')\n\n""".format(coupon["Id"],
+                                     coupon["Name"],
+                                     coupon["Category"],
+                                     coupon["DateAdded"],
+                                     coupon["ExpirationDate"],
+                                     coupon["Description"],
+                                     coupon["OffererId"])
 
     with open("output/Coupon.sql", mode="a", encoding="utf-8") as coupon_file:
         coupon_file.write(coupon_string_builder_sql)
+    with open("output/AllInOne.sql", mode="a", encoding="utf-8") as all_in_one_file:
+        all_in_one_file.write("\n\n{}".format(coupon_string_builder_sql))
 
 
 def generate_comments():
@@ -521,7 +538,7 @@ def generate_comments():
 
     # filter duplicated id in comments
     coupon_list = [dict_item for i, dict_item in enumerate(comment_list)
-                    if dict_item["Id"] not in [coupon["Id"] for coupon in comment_list[i + 1:]]]
+                   if dict_item["Id"] not in [coupon["Id"] for coupon in comment_list[i + 1:]]]
 
     print(comment_list)
     comment_string_builder_sql = ""
@@ -536,13 +553,15 @@ def generate_comments():
                ,'{}'
                ,'{}'
                ,(CONVERT (uniqueidentifier,'{}')))\n\n""".format(comment["Id"],
-                                    comment["[Content]"],
-                                    comment["UserId"],
-                                    comment["CouponId"])
-
+                                                                 comment["[Content]"],
+                                                                 comment["UserId"],
+                                                                 comment["CouponId"])
 
     with open("output/Comment.sql", mode="a", encoding="utf-8") as comment_file:
         comment_file.write(comment_string_builder_sql)
+    with open("output/AllInOne.sql", mode="a", encoding="utf-8") as all_in_one_file:
+        all_in_one_file.write("\n\n{}".format(comment_string_builder_sql))
+
 
 def generate_redeemedcoupons():
     redeemedcoupons_list = []
@@ -560,7 +579,7 @@ def generate_redeemedcoupons():
 
     # filter duplicated id in comments
     coupon_list = [dict_item for i, dict_item in enumerate(redeemedcoupons_list)
-                    if dict_item["Id"] not in [redeemedcoupon["Id"] for redeemedcoupon in redeemedcoupons_list[i + 1:]]]
+                   if dict_item["Id"] not in [redeemedcoupon["Id"] for redeemedcoupon in redeemedcoupons_list[i + 1:]]]
 
     print(redeemedcoupons_list)
     redeemedcoupons_string_builder_sql = ""
@@ -573,19 +592,19 @@ def generate_redeemedcoupons():
                ,[StudentId])
             VALUES
                (CONVERT(uniqueidentifier,'{}')
-               ,'{}'
-               ,'{}'
+               ,N'{}'
+               ,N'{}'
                ,(CONVERT(uniqueidentifier,'{}'))
                ,(CONVERT (uniqueidentifier,'{}')))\n\n""".format(redeemedcoupon["Id"],
-                                    redeemedcoupon["ReedemedDate"],
-                                    redeemedcoupon["Status"],
-                                    redeemedcoupon["CouponId"],
-                                    redeemedcoupon["StudentId"])
-
+                                                                 redeemedcoupon["ReedemedDate"],
+                                                                 redeemedcoupon["Status"],
+                                                                 redeemedcoupon["CouponId"],
+                                                                 redeemedcoupon["StudentId"])
 
     with open("output/RedeemedCoupon.sql", mode="a", encoding="utf-8") as redeemedcoupon_file:
         redeemedcoupon_file.write(redeemedcoupons_string_builder_sql)
-
+    with open("output/AllInOne.sql", mode="a", encoding="utf-8") as all_in_one_file:
+        all_in_one_file.write("\n\n{}".format(redeemedcoupons_string_builder_sql))
 
 
 if __name__ == '__main__':
