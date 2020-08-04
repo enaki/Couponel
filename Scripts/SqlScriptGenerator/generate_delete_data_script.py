@@ -13,10 +13,11 @@ def main():
 
     delete_data_query += "DELETE FROM [dbo].[Admins]\n"
     delete_data_query += "DELETE FROM [dbo].[Users]\n\n"
-    delete_data_query += "GO"
 
     with open("output/DeleteData.sql", mode="w", encoding="utf-8") as delete_data_file:
-        delete_data_file.write(delete_data_query)
+        delete_data_file.write("USE [Couponel] \nGO\n\n" + delete_data_query + "GO")
+    with open("output/AllInOne.sql", mode="w", encoding="utf-8") as all_in_one_file:
+        all_in_one_file.write(delete_data_query)
 
 
 if __name__ == '__main__':
