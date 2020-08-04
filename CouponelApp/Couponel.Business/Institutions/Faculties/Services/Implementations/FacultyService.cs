@@ -38,7 +38,26 @@ namespace Couponel.Business.Institutions.Faculties.Services.Implementations
             await _repository.SaveChanges();
             return _mapper.Map<FacultyModel>(faculty);
         }
+        public async Task<IEnumerable<ListFacultyModel>> GetAllByUniversityId(Guid id)
+        {
+            var university = await _repository.GetByIdWithFaculties(id);
+            var faculties = new List<ListFacultyModel>();
+            foreach (var faculty in university.Faculties)
+            {
+                faculties.Add(_mapper.Map<ListFacultyModel>(faculty));
+            }
+            return faculties;
+        }
+        public async Task Update(UpdateFacultyModel model)
+        {
+            var university = await _repository.GetByIdWithFaculties(model.UniversityId);
 
+            university.UpdateFaculty(model.Id, _mapper.Map<Faculty>(model));
+
+            _repository.Update(university);
+
+            await _repository.SaveChanges();
+        }
         public async Task Delete(Guid universityId, Guid facultyId)
         {
             var university = await _repository.GetAllDependenciesById(universityId);
@@ -46,39 +65,9 @@ namespace Couponel.Business.Institutions.Faculties.Services.Implementations
             university.RemoveFaculty(facultyId);
             _repository.Update(university);
 
-/*          var faculty = await GetByIdWithAddressStudentsAndUser(universityId, facultyId);
-           _addressesRepository.Delete(faculty.Address);
-            foreach(var student in faculty.Students)
-            {
-                if (student != null)
-                    _addressesRepository.Delete(student.Address);
-            }
-            */
-
-
-
             await _repository.SaveChanges();
         }
 
-        public async Task<IEnumerable<ListFacultyModel>> GetAllByUniversityId(Guid id)
-        {
-            var university = await _repository.GetByIdWithFaculties(id);
-            var faculties = new List<ListFacultyModel>();
-            foreach(var faculty in university.Faculties)
-            {
-                faculties.Add(_mapper.Map<ListFacultyModel>(faculty));
-            }                      
-            return faculties;
-        }
 
-        public async Task Update(UpdateFacultyModel model)
-        {
-            var university = await _repository.GetById(model.UniversityId);
-
-            university.UpdateFaculty(model.Id, _mapper.Map<Faculty>(model));
-            _repository.Update(university);
-
-            await _repository.SaveChanges();
-        }
     }
 }
