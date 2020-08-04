@@ -6,7 +6,6 @@ using Couponel.Business.Institutions.Universities.Models;
 using Couponel.Business.Institutions.Universities.Services.Interfaces;
 using Couponel.Entities;
 using Couponel.Entities.Institutions;
-using Couponel.Persistence.Repositories.InstitutionsRepositories.AddressesRepository;
 using Couponel.Persistence.Repositories.InstitutionsRepositories.UniversitiesRepository;
 
 namespace Couponel.Business.Institutions.Universities.Services.Implementations
@@ -15,12 +14,10 @@ namespace Couponel.Business.Institutions.Universities.Services.Implementations
     {
         private readonly IUniversitiesRepository _univiersitiesRepository;
         private readonly IMapper _mapper;
-        private readonly IAddressesRepository _addressesRepository;
 
-        public UniversityService(IUniversitiesRepository univiersitiesRepository,IAddressesRepository addressesRepository, IMapper mapper)
+        public UniversityService(IUniversitiesRepository univiersitiesRepository, IMapper mapper)
         {
             _univiersitiesRepository = univiersitiesRepository;
-            _addressesRepository = addressesRepository;
             _mapper = mapper;
         }
 
@@ -45,7 +42,6 @@ namespace Couponel.Business.Institutions.Universities.Services.Implementations
             var university = await _univiersitiesRepository.GetAllDependenciesById(universityId);
             
             _univiersitiesRepository.Delete(university);
-            DeleteAllAdressesRefferedByUniversity(university);
 
             await _univiersitiesRepository.SaveChanges();
         }
@@ -53,8 +49,7 @@ namespace Couponel.Business.Institutions.Universities.Services.Implementations
         public async Task Update(Guid universityId, UpdateUniversityModel model)
         {
             var university = await _univiersitiesRepository.GetById(universityId);
-
-            university.Update(model.Name, model.Email, model.PhoneNumber);
+            university.Update(model.Name, model.Email, model.PhoneNumber, model.Address);
 
             _univiersitiesRepository.Update(university);
             await _univiersitiesRepository.SaveChanges();
@@ -70,19 +65,6 @@ namespace Couponel.Business.Institutions.Universities.Services.Implementations
                     mappedUniversities.Add(_mapper.Map<ListUniversityModel>(university));
             }
             return mappedUniversities;
-        }
-
-        private void DeleteAllAdressesRefferedByUniversity(University university) {
-            foreach (var faculty in university.Faculties)
-            {
-                foreach (var student in faculty.Students)
-                {
-                    if (student.Address != null)
-                        _addressesRepository.Delete(student.Address);
-                }
-                _addressesRepository.Delete(faculty.Address);
-            }
-            _addressesRepository.Delete(university.Address);
         }
     }
 }

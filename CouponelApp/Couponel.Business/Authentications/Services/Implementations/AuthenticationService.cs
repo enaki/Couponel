@@ -48,7 +48,14 @@ namespace Couponel.Business.Authentications.Services.Implementations
                 return null;
             }
 
-            var newUser = new User(userRegisterModel.UserName, userRegisterModel.Email, _passwordHasher.CreateHash(userRegisterModel.Password), userRegisterModel.UserType);
+            var newUser = new User(
+                userRegisterModel.UserName,
+                userRegisterModel.Email,
+                _passwordHasher.CreateHash(userRegisterModel.Password),
+                userRegisterModel.Role,
+                userRegisterModel.FirstName,
+                userRegisterModel.LastName,
+                userRegisterModel.PhoneNumber);
             await _userRepository.Add(newUser);
             await _userRepository.SaveChanges();
 

@@ -9,15 +9,12 @@ using Couponel.Business.Coupons.Comments.Services.Interfaces;
 using Couponel.Business.Coupons.Coupons.Services.Implementations;
 using Couponel.Business.Coupons.Coupons.Services.Interfaces;
 using Couponel.Business.Identities;
-using Couponel.Business.Identities.Admins.Services.Implementations;
 using Couponel.Business.Identities.Admins.Services.Interfaces;
 using Couponel.Business.Identities.Offerers.Services.Implementations;
 using Couponel.Business.Identities.Offerers.Services.Interfaces;
 using Couponel.Business.Identities.Students.Services.Implementations;
 using Couponel.Business.Identities.Students.Services.Interfaces;
 using Couponel.Business.Institutions;
-using Couponel.Business.Institutions.Addresses.Services.Implementations;
-using Couponel.Business.Institutions.Addresses.Services.Interfaces;
 using Couponel.Business.Institutions.Faculties.Services.Implementations;
 using Couponel.Business.Institutions.Faculties.Services.Interfaces;
 using Couponel.Business.Institutions.Universities.Services.Implementations;
@@ -25,12 +22,9 @@ using Couponel.Business.Institutions.Universities.Services.Interfaces;
 using Couponel.Persistence;
 using Couponel.Persistence.Repositories.CouponsRepositories.CommentsRepository;
 using Couponel.Persistence.Repositories.CouponsRepositories.CouponsRepository;
-using Couponel.Persistence.Repositories.IdentitiesRepositories.AdminsRepository;
 using Couponel.Persistence.Repositories.IdentitiesRepositories.OfferersRepository;
 using Couponel.Persistence.Repositories.IdentitiesRepositories.StudentsRepository;
 using Couponel.Persistence.Repositories.IdentitiesRepositories.UsersRepository;
-using Couponel.Persistence.Repositories.InstitutionsRepositories.AddressesRepository;
-using Couponel.Persistence.Repositories.InstitutionsRepositories.FacultiesRepository;
 using Couponel.Persistence.Repositories.InstitutionsRepositories.UniversitiesRepository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -65,26 +59,21 @@ namespace Couponel.API
 
             services
                 .AddScoped<IFacultyService, FacultyService>()
-                .AddScoped<IAddressService, AddressService>()
                 .AddScoped<IUniversityService, UniversityService>()
                 .AddScoped<ICouponService, CouponService>()
                 .AddScoped<ICommentsService, CommentsService>()
                 .AddScoped<IStudentService, StudentService>()
                 .AddScoped<IOffererService, OffererService>()
-                .AddScoped<IAdminService, AdminService>()
                 .AddScoped<IAuthenticationService, AuthenticationService>()
 
                 .AddScoped<IPasswordHasher, PasswordHasher>()
 
                 .AddScoped<IStudentsRepository, StudentsRepository>()
-                .AddScoped<IAdminsRepository, AdminsRepository>()
                 .AddScoped<IOfferersRepository, OfferersRepository>()
-                .AddScoped<IUsersRepository, UsersRepository>()
                 .AddScoped<ICouponsRepository, CouponsRepository>()
                 .AddScoped<ICommentsRepository, CommentsRepository>()
-                .AddScoped<IAddressesRepository, AddressesRepository>()
                 .AddScoped<IUniversitiesRepository, UniversitiesRepository>()
-                .AddScoped<IFacultiesRepository, FacultiesRepository>();
+                .AddScoped<IUsersRepository, UsersRepository>();
 
             AddAuthentication(services);
 

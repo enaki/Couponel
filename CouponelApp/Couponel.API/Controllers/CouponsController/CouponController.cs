@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Couponel.API.Controllers.CouponsController
 {
-    [Route("api/v1/coupons")]
+    [Route("api/coupons")]
     [ApiController]
     public class CouponController : ControllerBase
     {
@@ -23,25 +23,37 @@ namespace Couponel.API.Controllers.CouponsController
         [HttpGet("{couponId}")]
         public async Task<IActionResult> GetById([FromRoute] Guid couponId)
         {
-            var result = await _couponService.GetById(couponId);
+            throw new NotImplementedException();
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetAll([FromRoute] Guid couponId)
+        {
+            throw new NotImplementedException();
 
-            return Ok(result);
         }
 
+        [Route("api/offerers/{offererId}/coupons")]
         [HttpPost]
-        public async Task<IActionResult> Add([FromBody] CreateCouponModel model)
+        public async Task<IActionResult> Add([FromRoute] Guid offererId,[FromBody] CreateCouponModel model)
         {
-            var result = await _couponService.Add(model);
+            throw new NotImplementedException();
 
-            return Created(result.Id.ToString(), null);
         }
 
-        [HttpDelete("{couponId}")]
-        public async Task<IActionResult> Delete([FromRoute] Guid couponId)
+        [Route("api/offerers/{offererId}/{couponId}")]
+        [HttpPatch]
+        public async Task<IActionResult> Update([FromRoute] Guid offererId,[FromRoute] Guid couponId, UpdateCouponModel model)
         {
-            await _couponService.Delete(couponId);
+            throw new NotImplementedException();
 
-            return NoContent();
+        }
+
+        [Route("api/offerers/{offererId}/{couponId}")]
+        [HttpDelete]
+        public async Task<IActionResult> Delete([FromRoute] Guid offererId,[FromRoute] Guid couponId)
+        {
+            throw new NotImplementedException();
+
         }
     }
 }

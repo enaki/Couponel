@@ -9,11 +9,12 @@ namespace Couponel.Persistence.Repositories.InstitutionsRepositories.Universitie
     {
         public Task<University> GetByIdWithAddress(Guid id);
         public Task<University> GetByIdWithFaculties(Guid id);
+        public Task<University> GetByIdWithFacultyAddressStudentsAndUsers(Guid universityId, Guid facultyId);
         public Task<University> GetByIdWithFacultiesAndStudents(Guid id);
         public Task<University> GetByIdWithAddressAndFaculties(Guid id);
         public Task<University> GetByIdWithAddressFacultiesAndStudents(Guid id);
         public Task<University> GetAllDependenciesById(Guid id);
-        public Task SaveAddedFaculty(Faculty faculty);
+        public Task<University> GetByIdWithFacultyAndFacultyAddress(Guid universityId, Guid facultyId);
     }
     
 }

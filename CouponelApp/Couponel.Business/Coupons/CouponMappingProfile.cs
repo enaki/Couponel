@@ -10,7 +10,7 @@ namespace Couponel.Business.Coupons
         public CouponMappingProfile()
         {
             CreateMap<CreateCouponModel, Coupon>();
-            CreateMap<UpsertCouponModel, Coupon>();
+            CreateMap<UpdateCouponModel, Coupon>();
             CreateMap<Coupon, CouponModel>();
 
 

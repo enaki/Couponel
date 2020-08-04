@@ -1,20 +1,20 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Couponel.Business.Identities.Admins.Models;
 using Couponel.Business.Identities.Admins.Services.Interfaces;
 using Couponel.Entities.Identities.UserTypes;
-using Couponel.Persistence.Repositories.IdentitiesRepositories.AdminsRepository;
+using Couponel.Persistence.Repositories.IdentitiesRepositories.UsersRepository;
 
 namespace Couponel.Business.Identities.Admins.Services.Implementations
 {
     public sealed class AdminService: IAdminService
     {
-        private readonly IAdminsRepository _repository;
+        private readonly IIdentitiesRepository _repository;
         private readonly IMapper _mapper;
 
-        public AdminService(IAdminsRepository repository, IMapper mapper)
+        public AdminService(IIdentitiesRepository repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
@@ -51,3 +51,4 @@ namespace Couponel.Business.Identities.Admins.Services.Implementations
         }
     }
 }
+*/

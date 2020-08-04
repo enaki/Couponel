@@ -1,18 +1,22 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Couponel.Entities.Institutions;
+using System.ComponentModel.DataAnnotations;
 
 namespace Couponel.Entities.Identities
 {
+    public enum UserRole { Student=1, Offerer, Admin}
     public sealed class User : Entity
     {
-        public User(string userName, string email, string passwordHash, string role)
+        public User(string userName, string email, string passwordHash, UserRole role, string firstName, string lastName, string phoneNumber)
+               :base()
         {
             UserName = userName;
             Email = email;
             PasswordHash = passwordHash;
             Role = role;
+            FirstName = firstName;
+            LastName = lastName;
+            PhoneNumber = phoneNumber;
         }
-
-
         [Required]
         public string UserName { get; set; }
 
@@ -21,15 +25,26 @@ namespace Couponel.Entities.Identities
 
         [Required]
         public string PasswordHash { get; set; }
-
         [Required]
-        public string Role { get; set; }
-        public void Update(string userName, string email, string passwordHash, string role)
+        public UserRole Role { get; set; }
+        [Required]
+        public string FirstName { get; private set; }
+        [Required]
+        public string LastName { get; private set; }
+        [Required]
+        public string PhoneNumber { get; private set; }
+        public Address Address { get; private set; }
+        public void Update(string userName, string email, string passwordHash, UserRole role,
+            string firstName, string lastName, string phoneNumber, Address address)
         {
             UserName = userName;
             Email = email;
             PasswordHash = passwordHash;
             Role = role;
+            FirstName = firstName;
+            LastName = lastName;
+            PhoneNumber = phoneNumber;
+            Address = address;
         }
     }
 }

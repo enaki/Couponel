@@ -9,42 +9,27 @@ namespace Couponel.Entities.Institutions
 {
     public sealed class Faculty : Entity
     {
-        public Faculty(string name, string email, string phoneNumber, Guid addressId)
+        public Faculty(string name, string email, string phoneNumber)
         {
             Name = name;
             Email = email;
             PhoneNumber = phoneNumber;
             Students = new List<Student>();
-            AddressId = addressId;
         }
         [Required]
         public string Name { get; private set; }
-
         [Required]
         public string Email { get; private set; }
-
         [Required]
         public string PhoneNumber { get; private set; }
-
-        [Required]
+        public Address Address { get; private set; }
         public ICollection<Student> Students { get; private set; }
-
-        public void Update(string name, string email, string phoneNumber)
+        public void Update(string name, string email, string phoneNumber, Address address)
         {
             Name = name;
             Email = email;
             PhoneNumber = phoneNumber;
-        }
-        public void UpdateAddress(Address address)
-        {
             Address = address;
         }
-
-        #region Database Relations
-        [ForeignKey("Address")]
-        public Guid AddressId { get; private set; }
-        public Address Address { get; private set; }
-
-        #endregion
     }
 }

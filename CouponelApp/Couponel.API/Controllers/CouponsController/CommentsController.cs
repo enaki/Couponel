@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Couponel.API.Controllers.CouponsController
 {
     [ApiController]
-    [Route("api/v1/coupons/{couponId}/comments")]
+    [Route("api/coupons/{couponId}/comments")]
     public sealed class CommentsController : ControllerBase
     {
         private readonly ICommentsService _commentsService;
@@ -18,25 +18,25 @@ namespace Couponel.API.Controllers.CouponsController
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get([FromRoute] Guid tripId)
+        public async Task<IActionResult> Get([FromRoute] Guid couponId)
         {
-            var result = await _commentsService.Get(tripId);
+            var result = await _commentsService.Get(couponId);
 
             return Ok(result);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Add([FromRoute] Guid tripId, [FromBody] CreateCommentModel model)
+        [HttpPost("{userId}")]
+        public async Task<IActionResult> Add([FromRoute] Guid couponId, [FromBody] CreateCommentModel model)
         {
-            var result = await _commentsService.Add(tripId, model);
+            var result = await _commentsService.Add(couponId, model);
 
             return Created(result.Id.ToString(), null);
         }
 
         [HttpDelete("{commentId}")]
-        public async Task<IActionResult> Delete([FromRoute] Guid tripId, [FromRoute] Guid commentId)
+        public async Task<IActionResult> Delete([FromRoute] Guid couponId, [FromRoute] Guid commentId)
         {
-            await _commentsService.Delete(tripId, commentId);
+            await _commentsService.Delete(couponId, commentId);
 
             return NoContent();
         }

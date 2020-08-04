@@ -6,88 +6,68 @@ using Couponel.Business.Institutions.Faculties.Models;
 using Couponel.Business.Institutions.Faculties.Services.Interfaces;
 using Couponel.Entities;
 using Couponel.Entities.Institutions;
-using Couponel.Persistence.Repositories.CouponsRepositories.RedeemedCouponsRepository;
-using Couponel.Persistence.Repositories.InstitutionsRepositories.AddressesRepository;
-using Couponel.Persistence.Repositories.InstitutionsRepositories.FacultiesRepository;
+using System.Linq;
 using Couponel.Persistence.Repositories.InstitutionsRepositories.UniversitiesRepository;
 
 namespace Couponel.Business.Institutions.Faculties.Services.Implementations
 {
     public sealed class FacultyService: IFacultyService
     {
-        private readonly IFacultiesRepository _facultiesRepository;
-        private readonly IUniversitiesRepository _universitiesRepository;
-        private readonly IAddressesRepository _addressesRepository;
+        private readonly IUniversitiesRepository _repository;
         private readonly IMapper _mapper;
 
-        public FacultyService(IFacultiesRepository facultiesRepository, IAddressesRepository addressesRepository, IUniversitiesRepository universitiesRepository, IMapper mapper)
+        public FacultyService(IUniversitiesRepository repository, IMapper mapper)
         {
-            _facultiesRepository = facultiesRepository;
-            _addressesRepository = addressesRepository;
-            _universitiesRepository = universitiesRepository;
+            _repository = repository;
             _mapper = mapper;
         }
 
-        public async Task<FacultyModel> GetByIdWithAddressStudentsAndUser(Guid facultyId)
+        public async Task<FacultyModel> GetByIdWithAddressStudentsAndUser(Guid univeristyId, Guid facultyId)
         {
-            var faculty = await _facultiesRepository.GetByIdWithAddressStudentsAndUser(facultyId);
-            return _mapper.Map<FacultyModel>(faculty);
+            var university= await _repository.GetByIdWithFacultyAddressStudentsAndUsers(univeristyId, facultyId);
+            var faculty = (IList<Faculty>)university.Faculties;
+            return _mapper.Map<FacultyModel>(faculty.FirstOrDefault());
         }
 
         public async Task<FacultyModel> Add(CreateFacultyModel model)
         {
-            var university = await _universitiesRepository.GetAllDependenciesById(model.UniversityId);
-            var address = await _addressesRepository.GetById(model.AddressId);
-            
+            var university = await _repository.GetAllDependenciesById(model.UniversityId);
             var faculty = _mapper.Map<Faculty>(model);
-            faculty.UpdateAddress(address);
-
             university.AddFaculty(faculty);
-
-            _universitiesRepository.Update(university);
-            await _universitiesRepository.SaveAddedFaculty(faculty);
-
+            _repository.Update(university);
+            await _repository.SaveChanges();
             return _mapper.Map<FacultyModel>(faculty);
         }
-
-        public async Task Delete(Guid facultyId)
-        {
-            var faculty = await _facultiesRepository.GetAllDependenciesById(facultyId);
-
-            _facultiesRepository.Delete(faculty);
-            DeleteAllAdressesRefferedByFaculty(faculty);
-
-            await _facultiesRepository.SaveChanges();
-        }
-
         public async Task<IEnumerable<ListFacultyModel>> GetAllByUniversityId(Guid id)
         {
-            var university = await _universitiesRepository.GetByIdWithFaculties(id);
+            var university = await _repository.GetByIdWithFaculties(id);
             var faculties = new List<ListFacultyModel>();
-
-            foreach(var faculty in university.Faculties)
+            foreach (var faculty in university.Faculties)
             {
                 faculties.Add(_mapper.Map<ListFacultyModel>(faculty));
             }
-                                        
             return faculties;
         }
-
         public async Task Update(UpdateFacultyModel model)
         {
-            var faculty = await _facultiesRepository.GetById(model.Id);
+            var university = await _repository.GetByIdWithFaculties(model.UniversityId);
 
-            faculty.Update(model.Name,model.PhoneNumber,model.PhoneNumber);
-            _facultiesRepository.Update(faculty);
-            await _facultiesRepository.SaveChanges();
+            university.UpdateFaculty(model.Id, _mapper.Map<Faculty>(model));
+
+            _repository.Update(university);
+
+            await _repository.SaveChanges();
         }
-        private void DeleteAllAdressesRefferedByFaculty(Faculty faculty)
+        public async Task Delete(Guid universityId, Guid facultyId)
         {
-            foreach (var student in faculty.Students)
-            {
-                _addressesRepository.Delete(student.Address);
-            }
-            _addressesRepository.Delete(faculty.Address);
+            var university = await _repository.GetAllDependenciesById(universityId);
+
+            university.RemoveFaculty(facultyId);
+            _repository.Update(university);
+
+            await _repository.SaveChanges();
         }
+
+
     }
 }

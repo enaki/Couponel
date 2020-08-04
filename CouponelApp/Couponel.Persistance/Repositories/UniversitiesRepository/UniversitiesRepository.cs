@@ -47,7 +47,8 @@ namespace Couponel.Persistence.Repositories.InstitutionsRepositories.Universitie
                 // get address for students
                 .Include(university => university.Faculties)
                     .ThenInclude(faculty => faculty.Students)
-                    .ThenInclude(student=> student.Address)
+                    .ThenInclude(student=> student.User.Address)
+
                 //get user for students
                 .Include(university => university.Faculties)
                     .ThenInclude(faculty => faculty.Students)
@@ -67,10 +68,29 @@ namespace Couponel.Persistence.Repositories.InstitutionsRepositories.Universitie
 
                 .FirstOrDefaultAsync(university => university.Id == id);
 
-        public Task SaveAddedFaculty(Faculty faculty)
-        {
-             context.Entry(faculty).State = EntityState.Added;
-             return context.SaveChangesAsync();
-        }
+        public async Task<University> GetByIdWithFacultyAddressStudentsAndUsers(Guid universityId, Guid facultyId)
+        => await this.context.Universities
+                .Include(university => university.Address)
+                .Include(university => university.Faculties)
+                    .ThenInclude(faculty => faculty.Students)
+                    .ThenInclude(student => student.User.Address)
+
+                .Include(university => university.Faculties)
+                    .ThenInclude(faculty => faculty.Students)
+                    .ThenInclude(student => student.User)
+
+                .Include(university => university.Faculties)
+                        .ThenInclude(faculty => faculty.Address)
+
+                .FirstOrDefaultAsync((university => university.Id == universityId &&
+                                                    university.Faculties.Any(faculty => faculty.Id == facultyId)));
+        public async Task<University> GetByIdWithFacultyAndFacultyAddress(Guid universityId, Guid facultyId)
+        => await this.context.Universities
+            .Include(university => university.Address)
+            .Include(university => university.Faculties)
+                .ThenInclude(faculty => faculty.Address)
+
+            .FirstOrDefaultAsync((university => university.Id == universityId &&
+                                                university.Faculties.Any(faculty => faculty.Id == facultyId)));
     }
 }
