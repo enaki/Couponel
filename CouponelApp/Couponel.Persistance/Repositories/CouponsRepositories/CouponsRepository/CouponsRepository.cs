@@ -9,9 +9,14 @@ namespace Couponel.Persistence.Repositories.CouponsRepositories.CouponsRepositor
     public sealed class CouponsRepository: Repository<Coupon>, ICouponsRepository
     {
         public CouponsRepository(CouponelContext context) : base(context) { }
-        public async Task<Coupon> GetByIdWithComments(Guid id)
+        public async Task<Coupon> GetByIdWithComments(Guid couponId)
             => await this.context.Coupons
                 .Include(coupon => coupon.Comments)
-                .FirstAsync(coupon => coupon.Id == id);
+                .FirstAsync(coupon => coupon.Id == couponId);
+
+        public async Task<Coupon> GetByIdWithPhotos(Guid couponId)
+            => await this.context.Coupons
+                .Include(coupon => coupon.Photos)
+                .FirstAsync(coupon => coupon.Id == couponId);
     }
 }

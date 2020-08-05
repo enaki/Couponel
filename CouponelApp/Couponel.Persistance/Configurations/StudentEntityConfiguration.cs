@@ -1,6 +1,5 @@
 ﻿using Couponel.Entities.Coupons;
 using Couponel.Entities.Identities;
-using Couponel.Entities.Identities.UserTypes;
 using Couponel.Entities.Institutions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;

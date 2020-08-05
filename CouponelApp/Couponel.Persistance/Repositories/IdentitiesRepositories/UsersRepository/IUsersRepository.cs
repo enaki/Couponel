@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Couponel.Entities.Identities;
-using Couponel.Entities.Identities.UserTypes;
 using Couponel.Persistence.Repositories.Repository;
 
 namespace Couponel.Persistence.Repositories.IdentitiesRepositories.UsersRepository

@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Couponel.Entities.Identities.UserTypes;
 using Couponel.Entities.Institutions;
 using Couponel.Persistence.Repositories.Repository;
 using Microsoft.EntityFrameworkCore;
 
-namespace Couponel.Persistence.Repositories.InstitutionsRepositories.UniversitiesRepository
+namespace Couponel.Persistence.Repositories.UniversitiesRepository
 {
     public sealed class UniversitiesRepository : Repository<University>, IUniversitiesRepository
     {

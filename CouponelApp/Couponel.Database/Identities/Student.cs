@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using Couponel.Entities.Coupons;
-using Couponel.Entities.Institutions;
 
-namespace Couponel.Entities.Identities.UserTypes
+namespace Couponel.Entities.Identities
 {
     public sealed class Student : Entity
     {

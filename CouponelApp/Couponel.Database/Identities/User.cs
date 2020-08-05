@@ -2,6 +2,7 @@
 using Couponel.Entities.Institutions;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Couponel.Entities.ValueObjects;
 
 namespace Couponel.Entities.Identities
 {

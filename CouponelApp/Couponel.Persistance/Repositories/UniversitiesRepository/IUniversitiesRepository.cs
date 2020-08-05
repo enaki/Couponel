@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Couponel.Entities.Institutions;
 using Couponel.Persistence.Repositories.Repository;
 
-namespace Couponel.Persistence.Repositories.InstitutionsRepositories.UniversitiesRepository
+namespace Couponel.Persistence.Repositories.UniversitiesRepository
 {
     public interface IUniversitiesRepository: IRepository<University>
     {

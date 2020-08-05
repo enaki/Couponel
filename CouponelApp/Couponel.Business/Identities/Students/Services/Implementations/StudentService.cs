@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Couponel.Business.Identities.Students.Models;
 using Couponel.Business.Identities.Students.Services.Interfaces;
-using Couponel.Entities.Identities.UserTypes;
-using Couponel.Persistence.Repositories.InstitutionsRepositories.UniversitiesRepository;
+using Couponel.Entities.Identities;
+using Couponel.Persistence.Repositories.UniversitiesRepository;
 
 namespace Couponel.Business.Identities.Students.Services.Implementations
 {

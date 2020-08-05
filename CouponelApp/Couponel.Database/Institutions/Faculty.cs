@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using Couponel.Entities.Identities;
-using Couponel.Entities.Identities.UserTypes;
+using Couponel.Entities.ValueObjects;
 
 namespace Couponel.Entities.Institutions
 {

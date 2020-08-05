@@ -1,4 +1,5 @@
-﻿using System;
+﻿/*
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Couponel.API;
@@ -58,3 +59,4 @@ namespace Couponel.IntegrationTests
         }
     }
 }
+*/
