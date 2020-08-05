@@ -16,11 +16,9 @@ def finalize(filename):
 
 
 def init():
-    initialize("output/Address.sql")
     initialize("output/Faculty.sql")
     initialize("output/University.sql")
 
-    initialize("output/Admin.sql")
     initialize("output/Student.sql")
     initialize("output/Offerer.sql")
     initialize("output/User.sql")
@@ -31,11 +29,9 @@ def init():
 
 
 def finish():
-    finalize("output/Address.sql")
     finalize("output/Faculty.sql")
     finalize("output/University.sql")
 
-    finalize("output/Admin.sql")
     finalize("output/Student.sql")
     finalize("output/Offerer.sql")
     finalize("output/User.sql")
@@ -66,7 +62,6 @@ def generate_institutions():
             })
 
             for faculty in university["Faculties"]:
-
                 faculty_list.append({
                     "Id": faculty["FacultyId"],
                     "Name": faculty["Name"],
@@ -110,15 +105,14 @@ def generate_institutions():
            ,N'{}'
            ,N'{}'
            ,N'{}')\n\n""".format(faculty["Id"],
-                                faculty["Name"],
-                                faculty["Email"],
-                                faculty["PhoneNumber"],
-                                faculty["UniversityId"],
-                                faculty["Country"],
-                                faculty["City"],
-                                faculty["Street"],
-                                faculty["Number"])
-
+                                 faculty["Name"],
+                                 faculty["Email"],
+                                 faculty["PhoneNumber"],
+                                 faculty["UniversityId"],
+                                 faculty["Country"],
+                                 faculty["City"],
+                                 faculty["Street"],
+                                 faculty["Number"])
 
     # print(faculty_string_builder_sql)
     university_string_builder_sql = ""
@@ -141,13 +135,13 @@ def generate_institutions():
            ,N'{}'
            ,N'{}'
            ,N'{}')\n\n""".format(university["Id"],
-                                university["Name"],
-                                university["Email"],
-                                university["PhoneNumber"],
-                                university["Country"],
-                                university["City"],
-                                university["Street"],
-                                university["Number"])
+                                 university["Name"],
+                                 university["Email"],
+                                 university["PhoneNumber"],
+                                 university["Country"],
+                                 university["City"],
+                                 university["Street"],
+                                 university["Number"])
     # print(university_string_builder_sql)
 
     with open("output/Faculty.sql", mode="a", encoding="utf-8") as faculty_file:
@@ -160,310 +154,194 @@ def generate_institutions():
 
 
 def generate_admins():
-    admin_list = []
-    address_list = []
     user_list = []
     with open("data/admin.json", encoding='utf-8') as data_file:
         admins = json.load(data_file)
         for admin in admins:
-            address_list.append(admin["Address"])
-            user_list.append(admin["User"])
-            admin_list.append({
-                "Id": admin["Id"],
+            role = "1" if admin["Account"]["Role"] == "student" else "2" if admin["Account"]["Role"] == "offerer" else "3"
+            user_list.append({
+                "Id": admin["Account"]["Id"],
+                "Username": admin["Account"]["UserName"],
+                "Email": admin["Account"]["Email"],
+                "PasswordHash": admin["Account"]["PasswordHash"],
+                "Role": role,
                 "FirstName": admin["FirstName"],
                 "LastName": admin["LastName"],
                 "PhoneNumber": admin["PhoneNumber"],
-                "UserId": admin["User"]["Id"],
-                "AddressId": admin["Address"]["Id"]
+                "Country": admin["Address"]["Country"],
+                "City": admin["Address"]["City"],
+                "Street": admin["Address"]["Street"],
+                "Number": admin["Address"]["Number"],
             })
 
     # filter duplicated id in addresses, users and admins
-    address_list = [dict_item for i, dict_item in enumerate(address_list)
-                    if dict_item["Id"] not in [address["Id"] for address in address_list[i + 1:]]]
     user_list = [dict_item for i, dict_item in enumerate(user_list)
                  if dict_item["Id"] not in [user["Id"] for user in user_list[i + 1:]]]
-    admin_list = [dict_item for i, dict_item in enumerate(admin_list)
-                  if dict_item["Id"] not in [admin["Id"] for admin in admin_list[i + 1:]]]
 
-    print(address_list)
     print(user_list)
-    print(admin_list)
-    address_string_builder_sql = ""
-    for address in address_list:
-        address_string_builder_sql += """INSERT INTO [dbo].[Addresses]
-           ([Id]
-           ,[Country]
-           ,[City]
-           ,[Street]
-           ,[Number])
-        VALUES
-           (CONVERT(uniqueidentifier,'{}')
-           ,N'{}'
-           ,N'{}'
-           ,N'{}'
-           ,N'{}')\n\n""".format(address["Id"],
-                                 address["Country"],
-                                 address["City"],
-                                 address["Street"],
-                                 address["Number"])
 
-    user_string_builder_sql = ""
-    for user in user_list:
-        user_string_builder_sql += """INSERT INTO [dbo].[Users]
-           ([Id]
-           ,[UserName]
-           ,[Email]
-           ,[PasswordHash]
-           ,[Role])
-     VALUES
-           (CONVERT(uniqueidentifier,'{}')
-           ,N'{}'
-           ,N'{}'
-           ,N'{}'
-           ,N'{}')\n\n""".format(user["Id"],
-                                 user["UserName"],
-                                 user["Email"],
-                                 user["PasswordHash"],
-                                 user["Role"])
+    user_string_builder_sql = get_user_string_builder(user_list)
 
-    admin_string_builder_sql = ""
-    for admin in admin_list:
-        admin_string_builder_sql += """INSERT INTO [dbo].[Admins]
-           ([Id]
-           ,[FirstName]
-           ,[LastName]
-           ,[PhoneNumber]
-           ,[AddressId]
-           ,[UserId])
-     VALUES
-           (CONVERT(uniqueidentifier,'{}')
-           ,N'{}'
-           ,N'{}' 
-           ,N'{}'
-           ,CONVERT(uniqueidentifier,'{}')
-           ,CONVERT(uniqueidentifier,'{}'))\n\n""".format(admin["Id"],
-                                                          admin["FirstName"],
-                                                          admin["LastName"],
-                                                          admin["PhoneNumber"],
-                                                          admin["AddressId"],
-                                                          admin["UserId"])
-
-    with open("output/Address.sql", mode="a", encoding="utf-8") as address_file:
-        address_file.write(address_string_builder_sql)
     with open("output/User.sql", mode="a", encoding="utf-8") as user_file:
         user_file.write(user_string_builder_sql)
-    with open("output/Admin.sql", mode="a", encoding="utf-8") as admin_file:
-        admin_file.write(admin_string_builder_sql)
     with open("output/AllInOne.sql", mode="a", encoding="utf-8") as all_in_one_file:
-        all_in_one_file.write("\n\n{}\n\n{}\n\n{}".format(address_string_builder_sql,
-                                                          user_string_builder_sql,
-                                                          admin_string_builder_sql))
+        all_in_one_file.write("\n\n{}".format(user_string_builder_sql))
 
 
 def generate_offerers():
-    offerer_list = []
-    address_list = []
     user_list = []
+    offerer_list = []
+
     with open("data/offerer.json", encoding='utf-8') as data_file:
         offerers = json.load(data_file)
         for offerer in offerers:
-            address_list.append(offerer["Address"])
-            user_list.append(offerer["User"])
+            role = "1" if offerer["Account"]["Role"] == "student" else "2" if offerer["Account"][
+                                                                                "Role"] == "offerer" else "3"
+            user_list.append({
+                    "Id": offerer["Account"]["Id"],
+                    "Username": offerer["Account"]["UserName"],
+                    "Email": offerer["Account"]["Email"],
+                    "PasswordHash": offerer["Account"]["PasswordHash"],
+                    "Role": role,
+                    "FirstName": offerer["FirstName"],
+                    "LastName": offerer["LastName"],
+                    "PhoneNumber": offerer["PhoneNumber"],
+                    "Country": offerer["Address"]["Country"],
+                    "City": offerer["Address"]["City"],
+                    "Street": offerer["Address"]["Street"],
+                    "Number": offerer["Address"]["Number"],
+                })
             offerer_list.append({
                 "Id": offerer["Id"],
-                "FirstName": offerer["FirstName"],
-                "LastName": offerer["LastName"],
-                "PhoneNumber": offerer["PhoneNumber"],
-                "UserId": offerer["User"]["Id"],
-                "AddressId": offerer["Address"]["Id"]
+                "UserId": offerer["Account"]["Id"]
             })
 
     # filter duplicated id in addresses, users and offerers
-    address_list = [dict_item for i, dict_item in enumerate(address_list)
-                    if dict_item["Id"] not in [address["Id"] for address in address_list[i + 1:]]]
     user_list = [dict_item for i, dict_item in enumerate(user_list)
                  if dict_item["Id"] not in [user["Id"] for user in user_list[i + 1:]]]
-    offerer_list = [dict_item for i, dict_item in enumerate(offerer_list)
-                    if dict_item["Id"] not in [offerer["Id"] for offerer in offerer_list[i + 1:]]]
 
-    print(address_list)
     print(user_list)
-    print(offerer_list)
-    address_string_builder_sql = ""
-    for address in address_list:
-        address_string_builder_sql += """INSERT INTO [dbo].[Addresses]
-           ([Id]
-           ,[Country]
-           ,[City]
-           ,[Street]
-           ,[Number])
-        VALUES
-           (CONVERT(uniqueidentifier,'{}')
-           ,N'{}'
-           ,N'{}'
-           ,N'{}'
-           ,N'{}')\n\n""".format(address["Id"],
-                                 address["Country"],
-                                 address["City"],
-                                 address["Street"],
-                                 address["Number"])
 
-    user_string_builder_sql = ""
-    for user in user_list:
-        user_string_builder_sql += """INSERT INTO [dbo].[Users]
-           ([Id]
-           ,[UserName]
-           ,[Email]
-           ,[PasswordHash]
-           ,[Role])
-     VALUES
-           (CONVERT(uniqueidentifier,'{}')
-           ,N'{}'
-           ,N'{}'
-           ,N'{}'
-           ,N'{}')\n\n""".format(user["Id"],
-                                 user["UserName"],
-                                 user["Email"],
-                                 user["PasswordHash"],
-                                 user["Role"])
+    user_string_builder_sql = get_user_string_builder(user_list)
 
     offerer_string_builder_sql = ""
-    for offerer in offerer_list:
+    for offerer in offerers:
         offerer_string_builder_sql += """INSERT INTO [dbo].[Offerers]
-           ([Id]
-           ,[FirstName]
-           ,[LastName]
-           ,[PhoneNumber]
-           ,[AddressId]
-           ,[UserId])
-     VALUES
-           (CONVERT(uniqueidentifier,'{}')
-           ,N'{}'
-           ,N'{}' 
-           ,N'{}'
-           ,CONVERT(uniqueidentifier,'{}')
-           ,CONVERT(uniqueidentifier,'{}'))\n\n""".format(offerer["Id"],
-                                                          offerer["FirstName"],
-                                                          offerer["LastName"],
-                                                          offerer["PhoneNumber"],
-                                                          offerer["AddressId"],
-                                                          offerer["UserId"])
+                   ([Id]
+                   ,[UserId])
+             VALUES
+                   (CONVERT(uniqueidentifier,'{}'),
+                   CONVERT(uniqueidentifier,'{}'))\n\n""".format(offerer["Id"],
+                                                        offerer["Account"]["Id"])
 
-    with open("output/Address.sql", mode="a", encoding="utf-8") as address_file:
-        address_file.write(address_string_builder_sql)
+
     with open("output/User.sql", mode="a", encoding="utf-8") as user_file:
         user_file.write(user_string_builder_sql)
+
     with open("output/Offerer.sql", mode="a", encoding="utf-8") as offerer_file:
         offerer_file.write(offerer_string_builder_sql)
+
     with open("output/AllInOne.sql", mode="a", encoding="utf-8") as all_in_one_file:
-        all_in_one_file.write("\n\n{}\n\n{}\n\n{}".format(address_string_builder_sql,
-                                                          user_string_builder_sql,
-                                                          offerer_string_builder_sql))
+        all_in_one_file.write("\n\n{}\n\n{}".format(user_string_builder_sql, offerer_string_builder_sql))
 
 
 def generate_students():
     student_list = []
-    address_list = []
     user_list = []
     with open("data/student.json", encoding='utf-8') as data_file:
         students = json.load(data_file)
         for student in students:
-            address_list.append(student["Address"])
-            user_list.append(student["User"])
-            student_list.append({
-                "Id": student["Id"],
+            role = "1" if student["Account"]["Role"] == "student" else "2" if student["Account"][
+                                                                                  "Role"] == "offerer" else "3"
+            user_list.append({
+                "Id": student["Account"]["Id"],
+                "Username": student["Account"]["UserName"],
+                "Email": student["Account"]["Email"],
+                "PasswordHash": student["Account"]["PasswordHash"],
+                "Role": role,
                 "FirstName": student["FirstName"],
                 "LastName": student["LastName"],
                 "PhoneNumber": student["PhoneNumber"],
-                "UserId": student["User"]["Id"],
-                "FacultyId": student["FacultyId"],
-                "AddressId": student["Address"]["Id"]
+                "Country": student["Address"]["Country"],
+                "City": student["Address"]["City"],
+                "Street": student["Address"]["Street"],
+                "Number": student["Address"]["Number"],
+            })
+            student_list.append({
+                "Id": student["Id"],
+                "UserId": student["Account"]["Id"],
+                "FacultyId": student["FacultyId"]
             })
 
     # filter duplicated id in addresses, users and students
-    address_list = [dict_item for i, dict_item in enumerate(address_list)
-                    if dict_item["Id"] not in [address["Id"] for address in address_list[i + 1:]]]
     user_list = [dict_item for i, dict_item in enumerate(user_list)
                  if dict_item["Id"] not in [user["Id"] for user in user_list[i + 1:]]]
-    student_list = [dict_item for i, dict_item in enumerate(student_list)
-                    if dict_item["Id"] not in [student["Id"] for student in student_list[i + 1:]]]
 
-    print(address_list)
     print(user_list)
-    print(student_list)
-    address_string_builder_sql = ""
-    for address in address_list:
-        address_string_builder_sql += """INSERT INTO [dbo].[Addresses]
-               ([Id]
-               ,[Country]
-               ,[City]
-               ,[Street]
-               ,[Number])
-            VALUES
-               (CONVERT(uniqueidentifier,'{}')
-               ,N'{}'
-               ,N'{}'
-               ,N'{}'
-               ,N'{}')\n\n""".format(address["Id"],
-                                     address["Country"],
-                                     address["City"],
-                                     address["Street"],
-                                     address["Number"])
-
-    user_string_builder_sql = ""
-    for user in user_list:
-        user_string_builder_sql += """INSERT INTO [dbo].[Users]
-               ([Id]
-               ,[UserName]
-               ,[Email]
-               ,[PasswordHash]
-               ,[Role])
-         VALUES
-               (CONVERT(uniqueidentifier,'{}')
-               ,N'{}'
-               ,N'{}'
-               ,N'{}'
-               ,N'{}')\n\n""".format(user["Id"],
-                                     user["UserName"],
-                                     user["Email"],
-                                     user["PasswordHash"],
-                                     user["Role"])
+    user_string_builder_sql = get_user_string_builder(user_list)
 
     student_string_builder_sql = ""
     for student in student_list:
         student_string_builder_sql += """INSERT INTO [dbo].[Students]
-               ([Id]
-               ,[FirstName]
-               ,[LastName]
-               ,[PhoneNumber]
-               ,[AddressId]
-               ,[FacultyId]
-               ,[UserId])
-         VALUES
-               (CONVERT(uniqueidentifier,'{}')
-               ,N'{}'
-               ,N'{}' 
-               ,N'{}'
-               ,CONVERT(uniqueidentifier,'{}')
-               ,CONVERT(uniqueidentifier,'{}')
-               ,CONVERT(uniqueidentifier,'{}'))\n\n""".format(student["Id"],
-                                                              student["FirstName"],
-                                                              student["LastName"],
-                                                              student["PhoneNumber"],
-                                                              student["AddressId"],
-                                                              student["FacultyId"],
-                                                              student["UserId"])
-
-    with open("output/Address.sql", mode="a", encoding="utf-8") as address_file:
-        address_file.write(address_string_builder_sql)
+                   ([Id]
+                   ,[UserId]
+                   ,[FacultyId])
+             VALUES
+                   (CONVERT(uniqueidentifier,'{}'),
+                   CONVERT(uniqueidentifier,'{}'),
+                   CONVERT(uniqueidentifier,'{}'))\n\n""".format(student["Id"],
+                                                                student["UserId"],
+                                                                student["FacultyId"])
     with open("output/User.sql", mode="a", encoding="utf-8") as user_file:
         user_file.write(user_string_builder_sql)
     with open("output/Student.sql", mode="a", encoding="utf-8") as student_file:
         student_file.write(student_string_builder_sql)
     with open("output/AllInOne.sql", mode="a", encoding="utf-8") as all_in_one_file:
-        all_in_one_file.write("\n\n{}\n\n{}\n\n{}".format(address_string_builder_sql,
-                                                          user_string_builder_sql,
+        all_in_one_file.write("\n\n{}\n\n{}".format(user_string_builder_sql,
                                                           student_string_builder_sql))
+
+
+def get_user_string_builder(user_list):
+    user_string_builder_sql = ""
+    for user in user_list:
+        user_string_builder_sql += """INSERT INTO [dbo].[Users]
+           ([Id]
+           ,[UserName]
+           ,[Email]
+           ,[PasswordHash]
+           ,[Role]
+           ,[FirstName]
+           ,[LastName]
+           ,[PhoneNumber]
+           ,[Country]
+           ,[City]
+           ,[Street]
+           ,[Number])
+     VALUES
+           (CONVERT(uniqueidentifier,'{}')
+           ,N'{}'
+           ,N'{}'
+           ,N'{}'
+           ,{}
+           ,N'{}'
+           ,N'{}'
+           ,N'{}'
+           ,N'{}'
+           ,N'{}'
+           ,N'{}'
+           ,N'{}')\n\n""".format(user["Id"],
+                                 user["Username"],
+                                 user["Email"],
+                                 user["PasswordHash"],
+                                 user["Role"],
+                                 user["FirstName"],
+                                 user["LastName"],
+                                 user["PhoneNumber"],
+                                 user["Country"],
+                                 user["City"],
+                                 user["Street"],
+                                 user["Number"])
+    return user_string_builder_sql
 
 
 def generate_coupons():

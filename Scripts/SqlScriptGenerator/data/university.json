@@ -5,7 +5,6 @@
     "Email": "contact@tuiasi.ro",
     "PhoneNumber": " +40-232-212322",
     "UniversityAddress": {
-      "Id": "3785829D-8604-4F13-AD5E-4C84B3D95190",
       "Country": "Romania",
       "City": "Iasi",
       "Street": "Bulevardul Profesor Dr. doc. Dimitrie Mangeron",
@@ -18,7 +17,6 @@
         "Email": "decanat@ac.tuiasi.ro",
         "PhoneNumber": "+40-232-278680",
         "FacultyAddress": {
-          "Id": "3785829D-8604-4F13-AD5E-4C84B3D95190",
           "Country": "Romania",
           "City": "Iasi",
           "Street": "Bulevardul Profesor Dr. doc. Dimitrie Mangeron",
@@ -31,7 +29,6 @@
         "Email": "facultatea.mecanica@tuiasi.ro",
         "PhoneNumber": "+40-232-232337",
         "FacultyAddress": {
-          "Id": "77596d2d-f06c-4135-ac7a-7e0d7919acda",
           "Country": "Romania",
           "City": "Iasi",
           "Street": "Bulevardul Profesor Dr. doc. Dimitrie Mangeron",
@@ -46,7 +43,6 @@
     "Email": "secretariat@e-uvt.ro",
     "PhoneNumber": "+40-(0)256-592111",
     "UniversityAddress": {
-      "Id": "DD33D84B-51E7-49D5-8C83-914F80CFF938",
       "Country": "Romania",
       "City": "Timisoara",
       "Street": "Bulevardul V. Pârvan",
@@ -59,7 +55,6 @@
         "Email": "secretariat.mateinfo@e-uvt.ro",
         "PhoneNumber": "+40-(0)256-592155",
         "FacultyAddress": {
-          "Id": "DD33D84B-51E7-49D5-8C83-914F80CFF938",
           "Country": "Romania",
           "City": "Timisoara",
           "Street": "Bulevardul V. Pârvan",
@@ -74,7 +69,6 @@
     "Email": "office@g.unibuc.ro",
     "PhoneNumber": " +4021-313.17.60",
     "UniversityAddress": {
-      "Id": "C44C5B59-23EB-4FCB-9BD3-7DBA7627949B",
       "Country": "Romania",
       "City": "Bucuresti",
       "Street": "Academiei",
@@ -87,7 +81,6 @@
         "Email": "secretariat@fmi.unibuc.ro",
         "PhoneNumber": " +4021–314.28.63",
         "FacultyAddress": {
-          "Id": "C44C5B59-23EB-4FCB-9BD3-7DBA7627949B",
           "Country": "Romania",
           "City": "Bucuresti",
           "Street": "Academiei",
@@ -102,7 +95,6 @@
     "Email": "rectorat@umfcd.ro",
     "PhoneNumber": "+4021 3180719",
     "UniversityAddress": {
-      "Id": "DA590317-3B53-4EC4-9BCB-7982FB43E801",
       "Country": "Romania",
       "City": "Bucuresti",
       "Street": "Dionisie Lupu",
@@ -115,7 +107,6 @@
         "Email": "rectorat@umfcd.ro",
         "PhoneNumber": "+4021 3180719",
         "FacultyAddress": {
-          "Id": "5d73b9d5-678b-470b-8021-ceec663b41c5",
           "Country": "Romania",
           "City": "Bucuresti",
           "Street": "Dionisie Lupu",
@@ -130,7 +121,6 @@
     "Email": "rectorat@uaiasi.ro",
     "PhoneNumber": " 0232 407.407",
     "UniversityAddress": {
-      "Id": "869022AC-F363-4E5E-BAA2-261C6971F57D",
       "Country": "Romania",
       "City": "Iasi",
       "Street": "Dumbrava Roșie",
@@ -143,7 +133,6 @@
         "Email": "secr_agr@uaiasi.ro",
         "PhoneNumber": "0232 407 424",
         "FacultyAddress": {
-          "Id": "869022AC-F363-4E5E-BAA2-261C6971F57D",
           "Country": "Romania",
           "City": "Iasi",
           "Street": "Dumbrava Roșie",
@@ -158,7 +147,6 @@
     "Email": "rectorat@ase.ro",
     "PhoneNumber": " +40213191900",
     "UniversityAddress": {
-      "Id": "29A7FB75-0BC7-422E-996A-CCDD763BE963",
       "Country": "Romania",
       "City": "Bucuresti",
       "Street": "Piata Romana",
@@ -171,7 +159,6 @@
         "Email": "ovidiu.dumitru@drept.ase.ro",
         "PhoneNumber": "+04 021 319 19 00",
         "FacultyAddress": {
-          "Id": "29A7FB75-0BC7-422E-996A-CCDD763BE963",
           "Country": "Romania",
           "City": "Bucuresti",
           "Street": "Piata Romana",
@@ -186,7 +173,6 @@
     "Email": "rector@umft.ro",
     "PhoneNumber": "+40.0256.204.400",
     "UniversityAddress": {
-      "Id": "17736749-A379-4757-AAEB-A339557B325B",
       "Country": "Romania",
       "City": "Timisoara",
       "Street": "Piata Eftimie Murgu",
@@ -199,7 +185,6 @@
         "Email": "decanat.mg@umft.ro",
         "PhoneNumber": "0256/220 484",
         "FacultyAddress": {
-          "Id": "DA590317-3B53-4EC4-9BCB-7982FB43E801",
           "Country": "Romania",
           "City": "Timisoara",
           "Street": "Piata Eftimie Murgu",
@@ -214,7 +199,6 @@
     "Email": "rectorat@umfiasi.ro",
     "PhoneNumber": " +40.232.301.603",
     "UniversityAddress": {
-      "Id": "8B54A373-7314-4EEE-933C-00E119930821",
       "Country": "Romania",
       "City": "Iasi",
       "Street": "Universității",
@@ -227,7 +211,6 @@
         "Email": "oana.crasmaru@umfiasi.ro",
         "PhoneNumber": "0232 30 16 15",
         "FacultyAddress": {
-          "Id": "8B54A373-7314-4EEE-933C-00E119930821",
           "Country": "Romania",
           "City": "Iasi",
           "Street": "Universității",
@@ -242,7 +225,6 @@
     "Email": "rector@upt.ro",
     "PhoneNumber": "0256 - 403021",
     "UniversityAddress": {
-      "Id": "F1910C0A-5D8E-402C-9E86-652D355F07EB",
       "Country": "Romania",
       "City": "Timisoara",
       "Street": "Bulevardul V. Pârvan",
@@ -255,7 +237,6 @@
         "Email": "ac@upt.ro",
         "PhoneNumber": "0256 - 403.211",
         "FacultyAddress": {
-          "Id": "F1910C0A-5D8E-402C-9E86-652D355F07EB",
           "Country": "Romania",
           "City": "Timisoara",
           "Street": "Bulevardul V. Pârvan",
@@ -270,7 +251,6 @@
     "Email": "contact@uaic.ro",
     "PhoneNumber": " 0232 20 1000",
     "UniversityAddress": {
-      "Id": "05AD0DB3-DBA9-432C-A1E4-9B95ACDE901A",
       "Country": "Romania",
       "City": "Iasi",
       "Street": "General Berthelot",
@@ -283,7 +263,6 @@
         "Email": "secretariat@info.uaic.ro",
         "PhoneNumber": "+40 232 201090",
         "FacultyAddress": {
-          "Id": "05AD0DB3-DBA9-432C-A1E4-9B95ACDE901A",
           "Country": "Romania",
           "City": "Iasi",
           "Street": "General Berthelot",
@@ -296,7 +275,6 @@
         "Email": "secretariatzi.drept@uaic.ro",
         "PhoneNumber": "0232 201 058",
         "FacultyAddress": {
-          "Id": "80e56482-9d78-43ae-8955-5ca91c3033e4",
           "Country": "Romania",
           "City": "Iasi",
           "Street": "Bulevardul Carol I",
@@ -309,7 +287,6 @@
         "Email": "infochem@chem.uaic.ro",
         "PhoneNumber": "+ 40 232 201063",
         "FacultyAddress": {
-           "Id": "0d999463-60fa-406b-8349-90309f5ec66f",
             "Country": "Romania",
             "City": "Iasi",
             "Street": "Bulevardul Carol I",
@@ -322,7 +299,6 @@
         "Email": "admefs@uaic.ro",
         "PhoneNumber": "0232 20 1026",
         "FacultyAddress": {
-          "Id": "9f07131a-ea13-428e-b043-1af182f948aa",
           "Country": "Romania",
           "City": "Iasi",
           "Street": "Toma Cozma",
