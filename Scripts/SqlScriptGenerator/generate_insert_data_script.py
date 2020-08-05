@@ -192,14 +192,12 @@ def generate_offerers():
     with open("data/offerer.json", encoding='utf-8') as data_file:
         offerers = json.load(data_file)
         for offerer in offerers:
-            role = "1" if offerer["Account"]["Role"] == "student" else "2" if offerer["Account"][
-                                                                                "Role"] == "offerer" else "3"
             user_list.append({
                     "Id": offerer["Id"],
                     "Username": offerer["Account"]["UserName"],
                     "Email": offerer["Account"]["Email"],
                     "PasswordHash": offerer["Account"]["PasswordHash"],
-                    "Role": role,
+                    "Role": offerer["Account"]["Role"].capitalize(),
                     "FirstName": offerer["FirstName"],
                     "LastName": offerer["LastName"],
                     "PhoneNumber": offerer["PhoneNumber"],
@@ -230,14 +228,12 @@ def generate_students():
     with open("data/student.json", encoding='utf-8') as data_file:
         students = json.load(data_file)
         for student in students:
-            role = "1" if student["Account"]["Role"] == "student" else "2" if student["Account"][
-                                                                                  "Role"] == "offerer" else "3"
             user_list.append({
                 "Id": student["Id"],
                 "Username": student["Account"]["UserName"],
                 "Email": student["Account"]["Email"],
                 "PasswordHash": student["Account"]["PasswordHash"],
-                "Role": role,
+                "Role": student["Account"]["Role"].capitalize(),
                 "FirstName": student["FirstName"],
                 "LastName": student["LastName"],
                 "PhoneNumber": student["PhoneNumber"],
@@ -297,7 +293,7 @@ def get_user_string_builder(user_list):
            ,N'{}'
            ,N'{}'
            ,N'{}'
-           ,{}
+           ,N'{}'
            ,N'{}'
            ,N'{}'
            ,N'{}'

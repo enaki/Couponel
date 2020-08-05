@@ -7,6 +7,7 @@
 
 Migrations
 Scripts/SqlScripts
+Scripts/SqlScriptGenerator/output
 
 
 # User-specific files
@@ -394,6 +395,11 @@ speed-measure-plugin*.json
 
 # IDE - VSCode
 .vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
