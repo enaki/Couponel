@@ -48,24 +48,24 @@ def finish():
 
 
 def generate_institutions():
-    address_list = []
     university_list = []
     faculty_list = []
     with open("data/university.json", encoding='utf-8') as data_file:
         universities = json.load(data_file)
         for university in universities:
-            address_list.append(university["UniversityAddress"])
 
             university_list.append({
                 "Id": university["Id"],
                 "Name": university["Name"],
                 "Email": university["Email"],
                 "PhoneNumber": university["PhoneNumber"],
-                "AddressId": university["UniversityAddress"]["Id"]
+                "Country": university["UniversityAddress"]["Country"],
+                "City": university["UniversityAddress"]["City"],
+                "Street": university["UniversityAddress"]["Street"],
+                "Number": university["UniversityAddress"]["Number"],
             })
 
             for faculty in university["Faculties"]:
-                address_list.append(faculty["FacultyAddress"])
 
                 faculty_list.append({
                     "Id": faculty["FacultyId"],
@@ -73,40 +73,20 @@ def generate_institutions():
                     "Email": faculty["Email"],
                     "PhoneNumber": faculty["PhoneNumber"],
                     "UniversityId": university["Id"],
-                    "AddressId": faculty["FacultyAddress"]["Id"]
+                    "Country": faculty["FacultyAddress"]["Country"],
+                    "City": faculty["FacultyAddress"]["City"],
+                    "Street": faculty["FacultyAddress"]["Street"],
+                    "Number": faculty["FacultyAddress"]["Number"],
                 })
 
     # filter duplicated id in addresses, faculties and unversities
-    address_list = [dict_item for i, dict_item in enumerate(address_list)
-                    if dict_item["Id"] not in [address["Id"] for address in address_list[i + 1:]]]
     faculty_list = [dict_item for i, dict_item in enumerate(faculty_list)
                     if dict_item["Id"] not in [faculty["Id"] for faculty in faculty_list[i + 1:]]]
     university_list = [dict_item for i, dict_item in enumerate(university_list)
                        if dict_item["Id"] not in [university["Id"] for university in university_list[i + 1:]]]
 
-    print(address_list)
     print(faculty_list)
     print(university_list)
-    address_string_builder_sql = ""
-    for address in address_list:
-        address_string_builder_sql += """INSERT INTO [dbo].[Addresses]
-           ([Id]
-           ,[Country]
-           ,[City]
-           ,[Street]
-           ,[Number])
-        VALUES
-           (CONVERT(uniqueidentifier,'{}')
-           ,N'{}'
-           ,N'{}'
-           ,N'{}'
-           ,N'{}')\n\n""".format(address["Id"],
-                                 address["Country"],
-                                 address["City"],
-                                 address["Street"],
-                                 address["Number"])
-
-    # print(address_string_builder_sql)
 
     faculty_string_builder_sql = ""
     for faculty in faculty_list:
@@ -116,22 +96,31 @@ def generate_institutions():
            ,[Email]
            ,[PhoneNumber]
            ,[UniversityId]
-           ,[AddressId])
+           ,[Country]
+           ,[City]
+           ,[Street]
+           ,[Number])
      VALUES
            (CONVERT(uniqueidentifier,'{}')
            ,N'{}'
            ,N'{}'
            ,N'{}'
            ,CONVERT(uniqueidentifier,'{}')
-           ,CONVERT(uniqueidentifier,'{}'))\n\n""".format(faculty["Id"],
-                                                          faculty["Name"],
-                                                          faculty["Email"],
-                                                          faculty["PhoneNumber"],
-                                                          faculty["UniversityId"],
-                                                          faculty["AddressId"])
+           ,N'{}'
+           ,N'{}'
+           ,N'{}'
+           ,N'{}')\n\n""".format(faculty["Id"],
+                                faculty["Name"],
+                                faculty["Email"],
+                                faculty["PhoneNumber"],
+                                faculty["UniversityId"],
+                                faculty["Country"],
+                                faculty["City"],
+                                faculty["Street"],
+                                faculty["Number"])
+
 
     # print(faculty_string_builder_sql)
-
     university_string_builder_sql = ""
     for university in university_list:
         university_string_builder_sql += """INSERT INTO [dbo].[Universities]
@@ -139,29 +128,35 @@ def generate_institutions():
            ,[Name]
            ,[Email]
            ,[PhoneNumber]
-           ,[AddressId])
+           ,[Country]
+           ,[City]
+           ,[Street]
+           ,[Number])
      VALUES
            (CONVERT(uniqueidentifier,'{}')
            ,N'{}'
            ,N'{}' 
            ,N'{}'
-           ,CONVERT(uniqueidentifier,'{}'))\n\n""".format(university["Id"],
-                                                          university["Name"],
-                                                          university["Email"],
-                                                          university["PhoneNumber"],
-                                                          university["AddressId"])
+           ,N'{}'
+           ,N'{}'
+           ,N'{}'
+           ,N'{}')\n\n""".format(university["Id"],
+                                university["Name"],
+                                university["Email"],
+                                university["PhoneNumber"],
+                                university["Country"],
+                                university["City"],
+                                university["Street"],
+                                university["Number"])
     # print(university_string_builder_sql)
 
-    with open("output/Address.sql", mode="a", encoding="utf-8") as address_file:
-        address_file.write(address_string_builder_sql)
     with open("output/Faculty.sql", mode="a", encoding="utf-8") as faculty_file:
         faculty_file.write(faculty_string_builder_sql)
     with open("output/University.sql", mode="a", encoding="utf-8") as university_file:
         university_file.write(university_string_builder_sql)
     with open("output/AllInOne.sql", mode="a", encoding="utf-8") as all_in_one_file:
-        all_in_one_file.write("\n\n{}\n\n{}\n\n{}".format(address_string_builder_sql,
-                                                          university_string_builder_sql,
-                                                          faculty_string_builder_sql))
+        all_in_one_file.write("\n\n{}\n\n{}".format(university_string_builder_sql,
+                                                    faculty_string_builder_sql))
 
 
 def generate_admins():
