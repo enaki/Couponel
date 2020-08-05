@@ -11,10 +11,10 @@ namespace Couponel.API.Controllers.InstitutionsController
     [ApiController]
     public class UniversityController : ControllerBase
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<UniversityController> _logger;
         private readonly IUniversityService _universityService;
 
-        public UniversityController(ILogger<HomeController> logger, IUniversityService universityService)
+        public UniversityController(ILogger<UniversityController> logger, IUniversityService universityService)
         {
             _logger = logger;
             _universityService = universityService;

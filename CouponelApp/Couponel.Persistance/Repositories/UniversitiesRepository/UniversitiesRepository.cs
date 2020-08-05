@@ -95,5 +95,18 @@ namespace Couponel.Persistence.Repositories.UniversitiesRepository
                 .FirstOrDefaultAsync((university => university.Id == universityId &&
                                                     university.Faculties.Any(faculty => faculty.Id == facultyId)));
 
+        public async Task<University> GetByStudentId(Guid studentId)
+            => await this.context.Universities
+                .Include(university => university.Faculties)
+                .ThenInclude(faculty => faculty.Students)
+                .ThenInclude(student => student.User.Address)
+
+                .Include(university => university.Faculties)
+                .ThenInclude(faculty => faculty.Students)
+                .ThenInclude(student => student.User)
+
+                .FirstOrDefaultAsync(
+                    university => university.Faculties.Any(
+                        faculty => faculty.Students.Any(student => student.Id == studentId)));
     }
 }

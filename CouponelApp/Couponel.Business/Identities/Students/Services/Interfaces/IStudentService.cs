@@ -7,7 +7,6 @@ namespace Couponel.Business.Identities.Students.Services.Interfaces
 {
     public interface IStudentService
     {
-        public Task CreateStudent(Guid universityId, Guid studentId, Guid userId);
-        public Task<StudentDetailsModel> GetStudentDetailsById(Guid universityId, Guid facultyId, Guid studentId);
+        public Task<StudentDetailsModel> GetStudentDetailsById(Guid studentId);
     }
 }

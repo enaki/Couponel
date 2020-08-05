@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Couponel.Business.Authentications.Models;
+using Couponel.Business.Identities.Users.Models;
 
 namespace Couponel.Business.Authentications.Services.Interfaces
 {

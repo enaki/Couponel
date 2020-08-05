@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Couponel.Business.Authentications.Models;
 using Couponel.Business.Authentications.Services.Interfaces;
+using Couponel.Business.Identities.Users.Models;
 using Couponel.Entities.Identities;
 using Couponel.Persistence.Repositories.IdentitiesRepositories.UsersRepository;
+using Couponel.Persistence.Repositories.UniversitiesRepository;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
@@ -17,18 +19,21 @@ namespace Couponel.Business.Authentications.Services.Implementations
     public sealed class AuthenticationService : IAuthenticationService
     {
         private readonly IUsersRepository _userRepository;
+        private readonly IUniversitiesRepository _universityRepository;
         private readonly IPasswordHasher _passwordHasher;
         private readonly IMapper _mapper;
         private readonly JwtOptions _config;
 
         public AuthenticationService(
             IUsersRepository userRepository,
+            IUniversitiesRepository universitiesRepository,
             IPasswordHasher passwordHasher,
             IMapper mapper,
             IOptions<JwtOptions> config)
         {
             _userRepository = userRepository;
             _passwordHasher = passwordHasher;
+            _universityRepository = universitiesRepository;
             _mapper = mapper;
             _config = config.Value;
         }
@@ -56,23 +61,24 @@ namespace Couponel.Business.Authentications.Services.Implementations
                 userRegisterModel.FirstName,
                 userRegisterModel.LastName,
                 userRegisterModel.PhoneNumber);
+            newUser.UpdateAddress(userRegisterModel.Address);
             await _userRepository.Add(newUser);
 
-            // create new student/offerer/admin 
-            switch (userRegisterModel.Role)
+            if (userRegisterModel.Role==UserRole.Student)
             {
-                case UserRole.Admin:
-
-                    break;
-                case UserRole.Offerer:
-
-                    break;
-                case UserRole.Student:
-
-                    break;     
+                var university = await _universityRepository
+                .GetByIdWithFacultiesAndStudents(userRegisterModel.universityId, userRegisterModel.facultyId);
+                if (university != null)
+                {
+                    var faculty = university.GetFaculty(userRegisterModel.facultyId);
+                    if (faculty != null)
+                    {
+                        faculty.AddStudent(new Student(newUser.Id));
+                        _universityRepository.Update(university);
+                    }
+                }
             }
             await _userRepository.SaveChanges();
-
             return _mapper.Map<UserModel>(newUser);
         }
 
