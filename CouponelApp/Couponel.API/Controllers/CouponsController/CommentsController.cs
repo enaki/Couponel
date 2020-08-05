@@ -2,12 +2,14 @@
 using System.Threading.Tasks;
 using Couponel.Business.Coupons.Comments.Models;
 using Couponel.Business.Coupons.Comments.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Couponel.API.Controllers.CouponsController
 {
     [ApiController]
     [Route("api/coupons/{couponId}/comments")]
+    [Authorize]
     public sealed class CommentsController : ControllerBase
     {
         private readonly ICommentsService _commentsService;
@@ -25,7 +27,7 @@ namespace Couponel.API.Controllers.CouponsController
             return Ok(result);
         }
 
-        [HttpPost("{userId}")]
+        [HttpPost]
         public async Task<IActionResult> Add([FromRoute] Guid couponId, [FromBody] CreateCommentModel model)
         {
             var result = await _commentsService.Add(couponId, model);
