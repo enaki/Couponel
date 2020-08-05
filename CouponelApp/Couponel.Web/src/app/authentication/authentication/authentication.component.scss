@@ -13,10 +13,10 @@
 }
 
 .authentication-container .login-label {
-  font-size: 30px;
+  font-size: 23px;
   font-family: "Open Sans";
-  margin-top: 20px;
-  margin-bottom: 40px;
+  margin-top: 10px;
+  margin-bottom: 35px;
 }
 
 .authentication-container .not-registered,
@@ -28,6 +28,7 @@
   justify-content: center;
   align-items: center;
 }
+
 
 .authentication-container input[type="checkbox"] {
   width: unset !important;
@@ -42,7 +43,7 @@
 .authentication-content {
   display: flex;
   width: 50%;
-  max-height: 80%;
+  max-height: 90%;
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -54,7 +55,7 @@
 .authentication-container .authentication-content input {
   width: 50%;
   height: 30px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   font-family: "Open Sans";
   border: 1px solid #e3e9f7;
   border-radius: 8px;
@@ -87,4 +88,14 @@
   .authentication-container {
     flex-direction: column;
   }
+}
+
+.alert div{
+  color:red !important;
+  font-size: 12px;
+}
+
+.authentication-container .not-registered p {
+
+  margin-top: 12px;
 }
