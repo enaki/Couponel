@@ -11,7 +11,6 @@
         "Number": "120"
       },
     "Account": {
-      "Id": "09155a60-1dbe-4485-b101-ff430d41abda",
       "UserName": "mirciulake",
       "Email": "mircea.bravo@gmail.com",
       "PasswordHash": "MCo+GAiurP1BOGPiOnES+g==.fsYTnpcu6bZTHw5MLJXMiHyR9SC8KKIwzoJedhhXJ4c=",
@@ -30,7 +29,6 @@
         "Number": "14"
       },
     "Account": {
-      "Id": "9aee5d6a-1bc0-43ed-8c68-a6688367dd88",
       "UserName": "mihaitab",
       "Email": "mihaibendeac@gmail.com",
       "PasswordHash": "m5UnwbDWHcTeEzAS6s6n2w==.vbEOGT00VXTcECjW0wOKeGSVC6F66cOg+Z939Cmftj4=",
@@ -49,7 +47,6 @@
         "Number": "17"
       },
     "Account": {
-      "Id": "0354050e-5d12-49ef-a25e-b72bb75481cf",
       "UserName": "horia",
       "Email": "horiatecau@gmail.com",
       "PasswordHash": "lQ/1spsbYw3cNKh9CdbnPA==.vXpoIPeFh99V+fpV37ETGjXdFhRMIVysenAYw8UQnWY=",
@@ -68,7 +65,6 @@
         "Number": "39"
       },
     "Account": {
-      "Id": "2d0cbc09-57d4-4259-8b45-02b1580207c2",
       "UserName": "simona",
       "Email": "simonahalep@gmail.com",
       "PasswordHash": "E2VxhqjTIGMik7BezBLN7Q==.guBW9zSTbZiNdUR5nkMEhYy95yWeTlgtVsC/dH9BXEw=",
@@ -87,7 +83,6 @@
         "Number": "1"
       },
     "Account": {
-      "Id": "b4928ca2-6c15-4078-9178-12ac53012035",
       "UserName": "ion",
       "Email": "tiriacion@gmail.com",
       "PasswordHash": "dPSHHgdU0KUgXjvJe9toYg==.UkvArLALOJHEfbAE0DHzHzeeLPfC5SFRBB+ASmyYhZM=",

@@ -20,7 +20,6 @@ def init():
     initialize("output/University.sql")
 
     initialize("output/Student.sql")
-    initialize("output/Offerer.sql")
     initialize("output/User.sql")
 
     initialize("output/Coupon.sql")
@@ -33,7 +32,6 @@ def finish():
     finalize("output/University.sql")
 
     finalize("output/Student.sql")
-    finalize("output/Offerer.sql")
     finalize("output/User.sql")
 
     finalize("output/Coupon.sql")
@@ -160,7 +158,7 @@ def generate_admins():
         for admin in admins:
             role = "1" if admin["Account"]["Role"] == "student" else "2" if admin["Account"]["Role"] == "offerer" else "3"
             user_list.append({
-                "Id": admin["Account"]["Id"],
+                "Id": admin["Id"],
                 "Username": admin["Account"]["UserName"],
                 "Email": admin["Account"]["Email"],
                 "PasswordHash": admin["Account"]["PasswordHash"],
@@ -190,7 +188,6 @@ def generate_admins():
 
 def generate_offerers():
     user_list = []
-    offerer_list = []
 
     with open("data/offerer.json", encoding='utf-8') as data_file:
         offerers = json.load(data_file)
@@ -198,7 +195,7 @@ def generate_offerers():
             role = "1" if offerer["Account"]["Role"] == "student" else "2" if offerer["Account"][
                                                                                 "Role"] == "offerer" else "3"
             user_list.append({
-                    "Id": offerer["Account"]["Id"],
+                    "Id": offerer["Id"],
                     "Username": offerer["Account"]["UserName"],
                     "Email": offerer["Account"]["Email"],
                     "PasswordHash": offerer["Account"]["PasswordHash"],
@@ -211,10 +208,6 @@ def generate_offerers():
                     "Street": offerer["Address"]["Street"],
                     "Number": offerer["Address"]["Number"],
                 })
-            offerer_list.append({
-                "Id": offerer["Id"],
-                "UserId": offerer["Account"]["Id"]
-            })
 
     # filter duplicated id in addresses, users and offerers
     user_list = [dict_item for i, dict_item in enumerate(user_list)
@@ -224,25 +217,11 @@ def generate_offerers():
 
     user_string_builder_sql = get_user_string_builder(user_list)
 
-    offerer_string_builder_sql = ""
-    for offerer in offerers:
-        offerer_string_builder_sql += """INSERT INTO [dbo].[Offerers]
-                   ([Id]
-                   ,[UserId])
-             VALUES
-                   (CONVERT(uniqueidentifier,'{}'),
-                   CONVERT(uniqueidentifier,'{}'))\n\n""".format(offerer["Id"],
-                                                        offerer["Account"]["Id"])
-
-
     with open("output/User.sql", mode="a", encoding="utf-8") as user_file:
         user_file.write(user_string_builder_sql)
 
-    with open("output/Offerer.sql", mode="a", encoding="utf-8") as offerer_file:
-        offerer_file.write(offerer_string_builder_sql)
-
     with open("output/AllInOne.sql", mode="a", encoding="utf-8") as all_in_one_file:
-        all_in_one_file.write("\n\n{}\n\n{}".format(user_string_builder_sql, offerer_string_builder_sql))
+        all_in_one_file.write("\n\n{}".format(user_string_builder_sql))
 
 
 def generate_students():
@@ -254,7 +233,7 @@ def generate_students():
             role = "1" if student["Account"]["Role"] == "student" else "2" if student["Account"][
                                                                                   "Role"] == "offerer" else "3"
             user_list.append({
-                "Id": student["Account"]["Id"],
+                "Id": student["Id"],
                 "Username": student["Account"]["UserName"],
                 "Email": student["Account"]["Email"],
                 "PasswordHash": student["Account"]["PasswordHash"],
@@ -269,7 +248,6 @@ def generate_students():
             })
             student_list.append({
                 "Id": student["Id"],
-                "UserId": student["Account"]["Id"],
                 "FacultyId": student["FacultyId"]
             })
 
@@ -284,13 +262,10 @@ def generate_students():
     for student in student_list:
         student_string_builder_sql += """INSERT INTO [dbo].[Students]
                    ([Id]
-                   ,[UserId]
                    ,[FacultyId])
              VALUES
                    (CONVERT(uniqueidentifier,'{}'),
-                   CONVERT(uniqueidentifier,'{}'),
                    CONVERT(uniqueidentifier,'{}'))\n\n""".format(student["Id"],
-                                                                student["UserId"],
                                                                 student["FacultyId"])
     with open("output/User.sql", mode="a", encoding="utf-8") as user_file:
         user_file.write(user_string_builder_sql)
@@ -374,7 +349,7 @@ def generate_coupons():
                ,[DateAdded]
                ,[ExpirationDate]
                ,[Description]
-               ,[OffererId])
+               ,[UserId])
             VALUES
                (CONVERT(uniqueidentifier,'{}')
                ,N'{}'
@@ -424,8 +399,8 @@ def generate_comments():
             VALUES
                (CONVERT(uniqueidentifier,'{}')
                ,'{}'
-               ,'{}'
-               ,(CONVERT (uniqueidentifier,'{}')))\n\n""".format(comment["Id"],
+               ,CONVERT(uniqueidentifier,'{}')
+               ,CONVERT (uniqueidentifier,'{}'))\n\n""".format(comment["Id"],
                                                                  comment["[Content]"],
                                                                  comment["UserId"],
                                                                  comment["CouponId"])
