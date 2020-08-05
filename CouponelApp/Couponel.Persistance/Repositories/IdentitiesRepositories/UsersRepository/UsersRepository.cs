@@ -18,7 +18,7 @@ namespace Couponel.Persistence.Repositories.IdentitiesRepositories.UsersReposito
             _context = context;
         }
 
-        public async Task<IList<User>> GetAllByRole(UserRole role) =>
+        public async Task<IList<User>> GetAllByRole(string role) =>
             await _context.Users.Where(x => x.Role == role).ToListAsync();
 
         public async Task<User> GetByEmail(string email) =>

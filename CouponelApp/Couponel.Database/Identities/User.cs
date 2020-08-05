@@ -7,10 +7,16 @@ using Couponel.Entities.ValueObjects;
 
 namespace Couponel.Entities.Identities
 {
-    public enum UserRole { Student=1, Offerer, Admin}
+    public static class Role
+    {
+        public const string Student = "Student";
+        public const string Offerer = "Offerer";
+        public const string Admin = "Admin";
+    }
+
     public sealed class User : Entity
     {
-        public User(string userName, string email, string passwordHash, UserRole role, string firstName, string lastName, string phoneNumber)
+        public User(string userName, string email, string passwordHash, string role, string firstName, string lastName, string phoneNumber)
                : base()
         {
             UserName = userName;
@@ -19,7 +25,8 @@ namespace Couponel.Entities.Identities
             FirstName = firstName;
             LastName = lastName;
             PhoneNumber = phoneNumber;
-            if (role == UserRole.Offerer)
+            Role = role;
+            if (role == Identities.Role.Offerer)
                 Coupons = new List<Coupon>();
         }
         [Required]
@@ -31,7 +38,7 @@ namespace Couponel.Entities.Identities
         [Required]
         public string PasswordHash { get; set; }
         [Required]
-        public UserRole Role { get; set; }
+        public string Role { get; set; }
         [Required]
         public string FirstName { get; private set; }
         [Required]

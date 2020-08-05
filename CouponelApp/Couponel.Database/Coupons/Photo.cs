@@ -17,10 +17,7 @@ namespace Couponel.Entities.Coupons
 
         public byte[] PhotoContent { get; private set; }
 
-        [Required]
+        [Required] 
         public Guid UserId { get; private set; }
-
-        [Required]
-        public User User { get; private set; }
     }
 }

@@ -64,7 +64,7 @@ namespace Couponel.Business.Authentications.Services.Implementations
             newUser.UpdateAddress(userRegisterModel.Address);
             await _userRepository.Add(newUser);
 
-            if (userRegisterModel.Role==UserRole.Student)
+            if (userRegisterModel.Role==Role.Student)
             {
                 var university = await _universityRepository
                 .GetByIdWithFacultiesAndStudents(userRegisterModel.UniversityId, userRegisterModel.FacultyId);
