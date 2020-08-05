@@ -5,13 +5,12 @@
     "LastName": "Bacovia",
     "PhoneNumber": "0701234123",
     "Address": {
-      "Id": "08a84c4a-5d7c-4f4d-a0cb-8cdbdcc06ec9",
       "Country": "Romania",
       "City": "Brasov",
       "Street": "str. Mihai Viteazul",
       "Number": "37"
     },
-    "User": {
+    "Account": {
       "Id": "9f99a1c8-6d2d-4cab-949e-c6496d890c04",
       "UserName": "george",
       "Email": "george@yahoo.com",
@@ -26,13 +25,12 @@
     "LastName": "Eminescu",
     "PhoneNumber": "0712334123",
     "Address": {
-      "Id": "91f7b396-f1c7-465c-8dd9-6cd3790373e8",
       "Country": "Romania",
       "City": "Botosani",
       "Street": "str. Gândului",
       "Number": "3"
     },
-    "User": {
+    "Account": {
       "Id": "f8a4ad44-6a7d-40a9-b5af-425114f58cce",
       "UserName": "mishu",
       "Email": "mihai.eminescu@yahoo.com",
@@ -47,13 +45,12 @@
     "LastName": "Lupu",
     "PhoneNumber": "0746920312",
     "Address": {
-      "Id": "8f346981-e1c1-410c-9a79-5afef334431f",
       "Country": "Romania",
       "City": "Iasi",
       "Street": "str. Palat",
       "Number": "312"
     },
-    "User": {
+    "Account": {
       "Id": "3d79bf2a-52bd-448c-8ac9-6e2a1d5d3d72",
       "UserName": "vasilica",
       "Email": "lupu.vasile@yahoo.com",
@@ -68,13 +65,12 @@
     "LastName": "Creanga",
     "PhoneNumber": "0799234123",
     "Address": {
-      "Id": "6bf97d24-fa27-46b0-9589-98a788850e6a",
       "Country": "Romania",
       "City": "Botosani",
       "Street": "str. Humulești",
       "Number": "120"
     },
-    "User": {
+    "Account": {
       "Id": "408afcd2-3591-405c-8fbd-91c769e21ad0",
       "UserName": "ionica",
       "Email": "ion.creanga@yahoo.com",
@@ -89,14 +85,13 @@
     "LastName": "Marica",
     "PhoneNumber": "0723134123",
     "Address": {
-      "Id": "a69feeab-537c-43a3-8a54-8926e9417eb6\n",
       "Country": "Romania",
       "City": "Bucuresti",
       "Street": "str. Victoriei",
       "Number": "7"
     },
-    "User": {
-      "Id": "710c5ad7-516c-43b5-aab2-a6dd4416f788\n",
+    "Account": {
+      "Id": "710c5ad7-516c-43b5-aab2-a6dd4416f788",
       "UserName": "cipri",
       "Email": "ciprian.marica@yahoo.com",
       "PasswordHash": "7sqmf8jm3GwHTheNk1yDXg==.nKNoV8Bgff82golFpVY6NWi+yTfQb7McqMFfXOc1x3Q=",

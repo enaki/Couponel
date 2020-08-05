@@ -5,13 +5,12 @@
     "LastName": "Bravo",
     "PhoneNumber": "0799632145",
     "Address": {
-        "Id": "a2d7698f-7c2e-466d-b822-30a602c7d0fa",
         "Country": "Romania",
         "City": "Cluj",
         "Street": "str. Eternitate",
         "Number": "120"
       },
-    "User": {
+    "Account": {
       "Id": "09155a60-1dbe-4485-b101-ff430d41abda",
       "UserName": "mirciulake",
       "Email": "mircea.bravo@gmail.com",
@@ -25,13 +24,12 @@
     "LastName": "Bendeac",
     "PhoneNumber": "0763215978",
     "Address": {
-        "Id": "f959e4a7-6939-4e13-81be-50321cf3945f",
         "Country": "Romania",
         "City": "Bucuresti",
         "Street": "str. Lascăr Catargi",
         "Number": "14"
       },
-    "User": {
+    "Account": {
       "Id": "9aee5d6a-1bc0-43ed-8c68-a6688367dd88",
       "UserName": "mihaitab",
       "Email": "mihaibendeac@gmail.com",
@@ -45,13 +43,12 @@
     "LastName": "Tecău",
     "PhoneNumber": "0766632145",
     "Address": {
-        "Id": "fafc51b0-9da1-4a1f-acfc-c67da3fdb27d",
         "Country": "Romania",
         "City": "Cluj",
         "Street": "str. Bivolilor",
         "Number": "17"
       },
-    "User": {
+    "Account": {
       "Id": "0354050e-5d12-49ef-a25e-b72bb75481cf",
       "UserName": "horia",
       "Email": "horiatecau@gmail.com",
@@ -65,13 +62,12 @@
     "LastName": "Halep",
     "PhoneNumber": "0766662145",
     "Address": {
-        "Id": "f4ce3c8f-e14b-40e5-8f65-f48cbfc71871",
         "Country": "Romania",
         "City": "Bucuresti",
         "Street": "str. Costache",
         "Number": "39"
       },
-    "User": {
+    "Account": {
       "Id": "2d0cbc09-57d4-4259-8b45-02b1580207c2",
       "UserName": "simona",
       "Email": "simonahalep@gmail.com",
@@ -85,13 +81,12 @@
     "LastName": "Țiriac",
     "PhoneNumber": "0746231897",
     "Address": {
-        "Id": "98083e2c-25cc-4a40-91ed-b65b8b1d17cd",
         "Country": "Romania",
         "City": "Cluj",
         "Street": "str. Bogaților",
         "Number": "1"
       },
-    "User": {
+    "Account": {
       "Id": "b4928ca2-6c15-4078-9178-12ac53012035",
       "UserName": "ion",
       "Email": "tiriacion@gmail.com",

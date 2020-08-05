@@ -5,13 +5,12 @@
     "LastName": "Lincoln",
     "PhoneNumber": "0701234123",
     "Address": {
-        "Id": "E7D2CE46-D6AF-4FF8-8FE6-FE5C3ED31DA6",
         "Country": "Romania",
         "City": "Iasi",
         "Street": "str. Mihai Eminescu",
         "Number": "27"
       },
-    "User": {
+    "Account": {
       "Id": "1DA65838-E57D-44EB-A93D-7DA8EA37448A",
       "UserName": "admin",
       "Email": "iamgod@gmail.com",
