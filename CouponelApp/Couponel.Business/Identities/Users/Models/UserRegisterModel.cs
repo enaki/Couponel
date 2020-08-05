@@ -1,12 +1,6 @@
 ﻿using System;
 using Couponel.Entities.Identities;
 using Couponel.Entities.Institutions;
-<<<<<<< HEAD:CouponelApp/Couponel.Business/Authentications/Models/UserRegisterModel.cs
-using System;
-using System.Collections.Generic;
-using System.Text;
-=======
->>>>>>> origin/Co-25:CouponelApp/Couponel.Business/Identities/Users/Models/UserRegisterModel.cs
 using Couponel.Entities.ValueObjects;
 
 namespace Couponel.Business.Identities.Users.Models
@@ -20,8 +14,8 @@ namespace Couponel.Business.Identities.Users.Models
         public string Password { get; set; }
         public UserRole Role{ get; set; }
         public string PhoneNumber { get; set; }
-        public Guid universityId { get; set; }
-        public Guid facultyId { get; set; }
+        public Guid UniversityId { get; set; }
+        public Guid FacultyId { get; set; }
         public Address Address { get; set; }
     }
 }

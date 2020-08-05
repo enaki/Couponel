@@ -36,6 +36,7 @@ using Couponel.Business.Coupons.Photos.Services.Implementations;
 using Couponel.Business.Coupons.Photos.Services.Interfaces;
 using Couponel.Business.Identities.Users.Services.Implementations;
 using Couponel.Business.Identities.Users.Services.Interfaces;
+using Couponel.Persistence.Repositories.CouponsRepositories.PhotosRepository;
 using Couponel.Persistence.Repositories.UniversitiesRepository;
 
 namespace Couponel.API

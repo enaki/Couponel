@@ -67,10 +67,10 @@ namespace Couponel.Business.Authentications.Services.Implementations
             if (userRegisterModel.Role==UserRole.Student)
             {
                 var university = await _universityRepository
-                .GetByIdWithFacultiesAndStudents(userRegisterModel.universityId, userRegisterModel.facultyId);
+                .GetByIdWithFacultiesAndStudents(userRegisterModel.UniversityId, userRegisterModel.FacultyId);
                 if (university != null)
                 {
-                    var faculty = university.GetFaculty(userRegisterModel.facultyId);
+                    var faculty = university.GetFaculty(userRegisterModel.FacultyId);
                     if (faculty != null)
                     {
                         faculty.AddStudent(new Student(newUser.Id));
