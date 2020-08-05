@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Couponel.Business.Identities.Students.Models;
-using Couponel.Entities.Identities.UserTypes;
+using Couponel.Business.Identities.Users.Models;
+using Couponel.Entities.Identities;
 using Couponel.Entities.Institutions;
 
 namespace Couponel.Business.Identities
@@ -10,6 +11,8 @@ namespace Couponel.Business.Identities
         public IdentityMappingProfile()
         {
             CreateMap<University, StudentDetailsModel>();
+
+            CreateMap<UpdateUserModel, User>();
         }
     }
 }

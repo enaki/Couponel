@@ -1,22 +1,22 @@
-﻿using Couponel.Entities.Institutions;
+﻿using Couponel.Entities.Identities;
+using Couponel.Entities.Institutions;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json.Serialization;
 using Couponel.Entities.ValueObjects;
 
-namespace Couponel.Business.Institutions.Faculties.Models
+namespace Couponel.Business.Identities.Users.Models
 {
-    public sealed class UpdateFacultyModel
+    public sealed class UpdateUserModel
     {
         [JsonIgnore]
         public Guid Id { get; set; }
-        [JsonIgnore]
-        public Guid UniversityId { get; set; }
-        public string Name { get; set; }
         public string Email { get; set; }
+        public string Password { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string PhoneNumber { get; set; }
         public Address Address { get; set; }
-
     }
 }

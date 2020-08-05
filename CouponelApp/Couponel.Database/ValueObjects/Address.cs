@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
-namespace Couponel.Entities.Institutions
+namespace Couponel.Entities.ValueObjects
 {
     public sealed class Address: ValueObject
     {

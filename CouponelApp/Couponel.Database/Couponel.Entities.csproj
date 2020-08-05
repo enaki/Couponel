@@ -5,16 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Identities\UserTypes\**" />
+    <EmbeddedResource Remove="Identities\UserTypes\**" />
+    <None Remove="Identities\UserTypes\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.6">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.6" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Identities\UserTypes\" />
   </ItemGroup>
 
 </Project>

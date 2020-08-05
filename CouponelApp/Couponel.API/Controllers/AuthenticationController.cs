@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Couponel.Business.Authentications.Models;
 using Couponel.Business.Authentications.Services.Interfaces;
+using Couponel.Business.Identities.Users.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Couponel.API.Controllers

@@ -8,23 +8,23 @@ using Microsoft.Extensions.Logging;
 
 namespace Couponel.API.Controllers.IdentitiesController
 {
-    [Route("api/universities/{universityId}/faculties/{facultyId}/students")]
+    [Route("api/users/{userId}/student")]
     [ApiController]
     public class StudentController : ControllerBase
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<StudentController> _logger;
         private readonly IStudentService _studentService;
 
-        public StudentController(ILogger<HomeController> logger, IStudentService studentService)
+        public StudentController(ILogger<StudentController> logger, IStudentService studentService)
         {
             _logger = logger;
             _studentService = studentService;
         }
 
-        [HttpGet("{studentId}")]
-        public async Task<IActionResult> GetById([FromRoute] Guid universityId, [FromRoute] Guid facultyId, [FromRoute] Guid studentId)
+        [HttpGet]
+        public async Task<IActionResult> GetById([FromRoute] Guid userId)
         {
-            var result = await _studentService.GetStudentDetailsById(universityId, facultyId, studentId);
+            var result = await _studentService.GetStudentDetailsById(userId);
             return Ok(result);
         }
     }

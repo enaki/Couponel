@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Couponel.Entities.Identities.UserTypes;
 using Couponel.Entities.Institutions;
 using Couponel.Persistence.Repositories.Repository;
 using Microsoft.EntityFrameworkCore;
 
-namespace Couponel.Persistence.Repositories.InstitutionsRepositories.UniversitiesRepository
+namespace Couponel.Persistence.Repositories.UniversitiesRepository
 {
     public sealed class UniversitiesRepository : Repository<University>, IUniversitiesRepository
     {
@@ -96,5 +95,18 @@ namespace Couponel.Persistence.Repositories.InstitutionsRepositories.Universitie
                 .FirstOrDefaultAsync((university => university.Id == universityId &&
                                                     university.Faculties.Any(faculty => faculty.Id == facultyId)));
 
+        public async Task<University> GetByStudentId(Guid studentId)
+            => await this.context.Universities
+                .Include(university => university.Faculties)
+                .ThenInclude(faculty => faculty.Students)
+                .ThenInclude(student => student.User.Address)
+
+                .Include(university => university.Faculties)
+                .ThenInclude(faculty => faculty.Students)
+                .ThenInclude(student => student.User)
+
+                .FirstOrDefaultAsync(
+                    university => university.Faculties.Any(
+                        faculty => faculty.Students.Any(student => student.Id == studentId)));
     }
 }
