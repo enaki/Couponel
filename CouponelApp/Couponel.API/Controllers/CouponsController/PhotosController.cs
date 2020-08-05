@@ -2,12 +2,14 @@
 using System.Threading.Tasks;
 using Couponel.Business.Coupons.Photos.Models;
 using Couponel.Business.Coupons.Photos.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Couponel.API.Controllers.CouponsController
 {
     [ApiController]
     [Route("api/coupons/{couponId}/photos")]
+    [Authorize]
     public sealed class PhotosController : ControllerBase
     {
         private readonly IPhotosService _photosService;
@@ -25,8 +27,8 @@ namespace Couponel.API.Controllers.CouponsController
             return Ok(result);
         }
 
-        [HttpPost("{userId}")]
-        public async Task<IActionResult> Add([FromRoute] Guid couponId, [FromBody] CreatePhotoModel model)
+        [HttpPost]
+        public async Task<IActionResult> Add([FromRoute] Guid couponId, [FromForm] CreatePhotoModel model)
         {
             var result = await _photosService.Add(couponId, model);
 
