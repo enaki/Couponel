@@ -21,7 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "99. Tests", "99. Tests", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Couponel.UnitTests", "Couponel.UnitTests\Couponel.UnitTests.csproj", "{EDA20255-4A66-4F0F-958A-6AA94483779B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Couponel.IntegrationTests", "Couponel.IntegrationTests\Couponel.IntegrationTests.csproj", "{08820A1B-7E12-43DE-947A-C275BDD9A9B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Couponel.IntegrationTests", "Couponel.IntegrationTests\Couponel.IntegrationTests.csproj", "{08820A1B-7E12-43DE-947A-C275BDD9A9B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,0 +1,72 @@
+<div class="authentication-container">
+  <img src="assets/images/sign_in.svg" />
+  <form class="authentication-content" [formGroup]="formGroup">
+    <span class="login-label"
+      >{{ isSetRegistered ? "Register" : "Log in" }}
+    </span>
+    <label>Username<span *ngIf="isSetRegistered">*</span></label>
+    <input formControlName="username" type="text" />
+    <ng-container *ngIf="isSetRegistered">
+      <div
+        *ngIf="
+          formGroup.controls['username'].invalid &&
+          formGroup.controls['username'].dirty
+        "
+        class="alert"
+      >
+        <div *ngIf="formGroup.controls['username'].errors">
+          Username has to contain at least 5 characters.
+        </div>
+      </div>
+      <label>First name*</label>
+      <input formControlName="firstName" type="text" />
+      <label>Last name*</label>
+      <input formControlName="lastName" type="text" />
+      <label>Email*</label>
+      <input formControlName="email" type="text" />
+      <div
+        *ngIf="
+          formGroup.controls['email'].invalid &&
+          formGroup.controls['email'].dirty
+        "
+        class="alert"
+      >
+        <div *ngIf="formGroup.controls['email'].errors">
+          Email invalid
+        </div>
+      </div>
+    </ng-container>
+    <label>Password<span *ngIf="isSetRegistered">*</span></label>
+    <input formControlName="password" type="password" />
+    <ng-container *ngIf="isSetRegistered">
+      <div
+        *ngIf="
+          formGroup.controls['password'].invalid &&
+          formGroup.controls['password'].dirty
+        "
+        class="alert"
+      >
+        <div *ngIf="formGroup.controls['password'].errors">
+          Password has to contain at least 5 characters.
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="isSetRegistered">
+      <label>User Type*</label>
+      <input formControlName="userType" type="text" />
+    </ng-container>
+
+    <p *ngIf="isSetRegistered">(*) campuri obligatorii</p>
+    <span class="not-registered">
+      <input type="checkbox" (click)="setRegister()" />
+      <p>
+        {{ isSetRegistered ? "Go back to log in" : "I am not registered yet" }}
+      </p>
+      <br />
+    </span>
+
+    <button type="button" (click)="authenticate()">
+      <span>{{ isSetRegistered ? "Register" : "Login" }}</span>
+    </button>
+  </form>
+</div>

@@ -1,0 +1,30 @@
+[
+  {
+    "Id": "c1bfbd98-d324-4685-8c01-7aed0c33c3c0",
+    "ReedemedDate": "2020-09-25 13:20",
+    "Status": "Valid",
+    "CouponId":"85921d14-14e5-440d-a0be-d7477948361a",
+    "StudentId":"5b97f437-9c75-480b-b921-04645c164521"
+  },
+  {
+    "Id": "edf4f9c1-7b59-4d78-ade3-6eb4bcb54130",
+    "ReedemedDate": "2020-10-17 14:20",
+    "Status": "Valid",
+    "CouponId":"8b506e26-2b7e-4cb6-8db4-d1f5e90cb189",
+    "StudentId":"5b97f437-9c75-480b-b921-04645c164521"
+  },
+  {
+    "Id": "8c0ed957-8e63-4883-8c88-235642489b42",
+    "ReedemedDate": "2020-12-25 17:20",
+    "Status": "Invalid",
+    "CouponId":"320c211a-e30a-4df5-a453-e49c3d5c0e8b",
+    "StudentId":"924bf9c2-eed1-426a-a863-cabb08aa9996"
+  },
+  {
+    "Id": "7c9506b2-bcb8-4f04-b372-7384a04d10d5",
+    "ReedemedDate": "2020-11-30 22:20",
+    "Status": "Valid",
+    "CouponId":"f1eae80c-238b-4cc9-8eb3-0743d2178493",
+    "StudentId":"8b6380e6-95ee-4149-91c5-584837a37e8d"
+  }
+]

@@ -1,0 +1,26 @@
+<header>
+  <section id="project-theme">
+    <a (click)="goToPage('dashboard')">
+      <img src="../../assets/images/navigator.svg" />
+    </a>
+  </section>
+
+  <section id="project-title">
+    <h2>
+      Couponel
+    </h2>
+  </section>
+
+  <section
+    *ngIf="userService.username | async as username"
+    class="flex-row-end"
+  >
+    <img class="profile" src="../../assets/images/profile.png" (click)="goToPage('profile')" />
+    <h3 class="flex-row-end">Welcome, {{ username }}</h3>
+    <img
+      class="logout"
+      src="../../assets/images/logout.svg"
+      (click)="logout()"
+    />
+  </section>
+</header>

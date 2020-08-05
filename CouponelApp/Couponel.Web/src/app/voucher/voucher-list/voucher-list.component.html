@@ -1,0 +1,21 @@
+<div class="page-container">
+  <h1>
+    All Vouchers
+  </h1>
+
+
+  <!-- sectiune de test pentru aranjare in pagina a unui singur coupon preluat prin id -->
+  <div class = "card">
+    <app-tile label="voucherName"
+    background="../../assets/images/coupon.png"
+    (click)="goToVoucher('F1EAE80C-238B-4CC9-8EB3-0743D2178493')"></app-tile>
+  </div>
+
+  <!-- sectiune pentru toate voucherele - to redo when i have route -->
+  <!-- <div class="cards">
+    <app-tile *ngFor="let voucher of voucherList"
+              label="{{voucher.name}}"
+              background="../../assets/images/travel_logo.png"
+              (click)="goToVoucher(voucher.id)"></app-tile>
+  </div> -->
+</div>

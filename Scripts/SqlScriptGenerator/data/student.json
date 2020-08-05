@@ -1,21 +1,102 @@
-{
-  "Id": "6e8f8ea2-f78a-41db-95e8-8edc1a878b0a",
-  "FirstName": "George",
-  "LastName": "Bacovia",
-  "PhoneNumber": "0701234123",
-  "Address": {
-      "Id": "08a84c4a-5d7c-4f4d-a0cb-8cdbdcc06ec9",
+[
+  {
+    "Id": "6e8f8ea2-f78a-41db-95e8-8edc1a878b0a",
+    "FirstName": "George",
+    "LastName": "Bacovia",
+    "PhoneNumber": "0701234123",
+    "Address": {
       "Country": "Romania",
       "City": "Brasov",
       "Street": "str. Mihai Viteazul",
       "Number": "37"
     },
-  "User": {
-    "Id": "9f99a1c8-6d2d-4cab-949e-c6496d890c04",
-    "UserName": "george",
-    "Email": "george@yahoo.com",
-    "PasswordHash": "RvkBQonRuC/4DEliU2PKvg==.nB+xgBChPJP0WhR/3JyH1CLCpie584mY2P0LE0qHo9M=",
-    "Role": "student"
+    "Account": {
+      "Id": "9f99a1c8-6d2d-4cab-949e-c6496d890c04",
+      "UserName": "george",
+      "Email": "george@yahoo.com",
+      "PasswordHash": "RvkBQonRuC/4DEliU2PKvg==.nB+xgBChPJP0WhR/3JyH1CLCpie584mY2P0LE0qHo9M=",
+      "Role": "student"
+    },
+    "FacultyId": "939E1D38-5A17-4144-A497-89E3A39303D6"
   },
-  "FacultyId": "939E1D38-5A17-4144-A497-89E3A39303D6"
-}
+  {
+    "Id": "5b97f437-9c75-480b-b921-04645c164521",
+    "FirstName": "Mihai",
+    "LastName": "Eminescu",
+    "PhoneNumber": "0712334123",
+    "Address": {
+      "Country": "Romania",
+      "City": "Botosani",
+      "Street": "str. Gândului",
+      "Number": "3"
+    },
+    "Account": {
+      "Id": "f8a4ad44-6a7d-40a9-b5af-425114f58cce",
+      "UserName": "mishu",
+      "Email": "mihai.eminescu@yahoo.com",
+      "PasswordHash": "IxvjqiOdocpNXB1BnS8L4g==.LmraFc/yNNlcsP+gkW6va7M5+NQL4s7/XxMslHelJ9w=",
+      "Role": "student"
+    },
+    "FacultyId": "5dee3d62-3b8b-4dd8-ae1e-df6388bc426b"
+  },
+  {
+    "Id": "924bf9c2-eed1-426a-a863-cabb08aa9996",
+    "FirstName": "Vasile",
+    "LastName": "Lupu",
+    "PhoneNumber": "0746920312",
+    "Address": {
+      "Country": "Romania",
+      "City": "Iasi",
+      "Street": "str. Palat",
+      "Number": "312"
+    },
+    "Account": {
+      "Id": "3d79bf2a-52bd-448c-8ac9-6e2a1d5d3d72",
+      "UserName": "vasilica",
+      "Email": "lupu.vasile@yahoo.com",
+      "PasswordHash": "EUhWuCEYgyd8FPplzsVbTw==.XD9Abyb6DjmZxcQkjTmDkKuGKoHuBkK/ua8avdjL9m4=",
+      "Role": "student"
+    },
+    "FacultyId": "23B51624-E181-434D-9B43-17152DC1A9F5"
+  },
+  {
+    "Id": "8b6380e6-95ee-4149-91c5-584837a37e8d",
+    "FirstName": "Ion",
+    "LastName": "Creanga",
+    "PhoneNumber": "0799234123",
+    "Address": {
+      "Country": "Romania",
+      "City": "Botosani",
+      "Street": "str. Humulești",
+      "Number": "120"
+    },
+    "Account": {
+      "Id": "408afcd2-3591-405c-8fbd-91c769e21ad0",
+      "UserName": "ionica",
+      "Email": "ion.creanga@yahoo.com",
+      "PasswordHash": "RqymcNziWjWA7TqwtDGdvQ==.XGuhQXcIH8UDxWw5mDnWnKSEwiixH4imcaU93lnFTJ0=",
+      "Role": "student"
+    },
+    "FacultyId": "939E1D38-5A17-4144-A497-89E3A39303D6"
+  },
+  {
+    "Id": "3ca17be3-1431-4fe2-ac0d-45dd784eedfc",
+    "FirstName": "Ciprian",
+    "LastName": "Marica",
+    "PhoneNumber": "0723134123",
+    "Address": {
+      "Country": "Romania",
+      "City": "Bucuresti",
+      "Street": "str. Victoriei",
+      "Number": "7"
+    },
+    "Account": {
+      "Id": "710c5ad7-516c-43b5-aab2-a6dd4416f788",
+      "UserName": "cipri",
+      "Email": "ciprian.marica@yahoo.com",
+      "PasswordHash": "7sqmf8jm3GwHTheNk1yDXg==.nKNoV8Bgff82golFpVY6NWi+yTfQb7McqMFfXOc1x3Q=",
+      "Role": "student"
+    },
+    "FacultyId": "BF470F70-6796-4624-BF46-5215A82ED69C"
+  }
+]
