@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Couponel.UnitTests", "Coupo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Couponel.IntegrationTests", "Couponel.IntegrationTests\Couponel.IntegrationTests.csproj", "{08820A1B-7E12-43DE-947A-C275BDD9A9B5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Couponel.AutomationTests", "Couponel.AutomationTests\Couponel.AutomationTests.csproj", "{D576B058-11DA-4E46-98A7-FECAAADFC985}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{08820A1B-7E12-43DE-947A-C275BDD9A9B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08820A1B-7E12-43DE-947A-C275BDD9A9B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08820A1B-7E12-43DE-947A-C275BDD9A9B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D576B058-11DA-4E46-98A7-FECAAADFC985}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D576B058-11DA-4E46-98A7-FECAAADFC985}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D576B058-11DA-4E46-98A7-FECAAADFC985}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D576B058-11DA-4E46-98A7-FECAAADFC985}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +70,7 @@ Global
 		{D78322F2-3EC2-498C-AD4B-2D88166505A1} = {C7B2DCE5-BA07-4B4C-8BB0-9A8BE2ED1FF4}
 		{EDA20255-4A66-4F0F-958A-6AA94483779B} = {EC0A9A07-2CD2-4CCE-9997-8EDCE488BA1F}
 		{08820A1B-7E12-43DE-947A-C275BDD9A9B5} = {EC0A9A07-2CD2-4CCE-9997-8EDCE488BA1F}
+		{D576B058-11DA-4E46-98A7-FECAAADFC985} = {EC0A9A07-2CD2-4CCE-9997-8EDCE488BA1F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CF19F7E2-694C-4EFF-BD0E-B48906486947}

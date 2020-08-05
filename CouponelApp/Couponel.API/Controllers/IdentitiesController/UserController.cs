@@ -24,6 +24,13 @@ namespace Couponel.API.Controllers.IdentitiesController
             _usersService = usersService;
         }
 
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> GetById([FromRoute] Guid userId)
+        {
+            var result = await _usersService.GetDetailsById(userId);
+            return Ok(result);
+        }
+
         [HttpPatch("{userId}")]
         public async Task<IActionResult> Update([FromRoute]Guid userId, [FromBody]UpdateUserModel model)
         {

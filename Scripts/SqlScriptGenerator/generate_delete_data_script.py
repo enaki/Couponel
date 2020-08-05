@@ -4,7 +4,6 @@ def main():
     delete_data_query += "DELETE FROM [dbo].[RedeemedCoupons]\n"
     delete_data_query += "DELETE FROM [dbo].[Coupons]\n"
 
-    delete_data_query += "DELETE FROM [dbo].[Offerers]\n"
     delete_data_query += "DELETE FROM [dbo].[Students]\n"
 
     delete_data_query += "DELETE FROM [dbo].[Faculties]\n"

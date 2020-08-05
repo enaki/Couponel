@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using Couponel.Business.Coupons.Comments.Services.Interfaces;
-using Couponel.Business.Coupons.Coupons.Models;
 using Couponel.Business.Coupons.Photos.Models;
 using Couponel.Business.Coupons.Photos.Services.Interfaces;
 using Couponel.Entities.Coupons;
@@ -35,9 +34,12 @@ namespace Couponel.Business.Coupons.Photos.Services.Implementations
 
         public async Task<PhotoModel> Add(Guid couponId, CreatePhotoModel model)
         {
-            model.UserId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
-            var photo = _mapper.Map<Photo>(model);
+            var userId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
             var coupon = await _repository.GetById(couponId);
+
+            await using var stream = new MemoryStream();
+            await model.Content.CopyToAsync(stream);
+            var photo = new Photo(model.Content.FileName, stream.ToArray(), userId);
 
             coupon.AddPhoto(photo);
 

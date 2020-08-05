@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Couponel.Business.Authentications.Models;
 using Couponel.Business.Authentications.Services.Interfaces;
+using Couponel.Business.Identities.Students.Services.Interfaces;
 using Couponel.Business.Identities.Users.Models;
 using Couponel.Entities.Identities;
 using Couponel.Persistence.Repositories.IdentitiesRepositories.UsersRepository;
@@ -19,21 +20,21 @@ namespace Couponel.Business.Authentications.Services.Implementations
     public sealed class AuthenticationService : IAuthenticationService
     {
         private readonly IUsersRepository _userRepository;
-        private readonly IUniversitiesRepository _universityRepository;
+        private readonly IStudentService _studentService;
         private readonly IPasswordHasher _passwordHasher;
         private readonly IMapper _mapper;
         private readonly JwtOptions _config;
 
         public AuthenticationService(
             IUsersRepository userRepository,
-            IUniversitiesRepository universitiesRepository,
+            IStudentService studentService,
             IPasswordHasher passwordHasher,
             IMapper mapper,
             IOptions<JwtOptions> config)
         {
             _userRepository = userRepository;
             _passwordHasher = passwordHasher;
-            _universityRepository = universitiesRepository;
+            _studentService = studentService;
             _mapper = mapper;
             _config = config.Value;
         }
@@ -61,23 +62,13 @@ namespace Couponel.Business.Authentications.Services.Implementations
                 userRegisterModel.FirstName,
                 userRegisterModel.LastName,
                 userRegisterModel.PhoneNumber);
+
             newUser.UpdateAddress(userRegisterModel.Address);
             await _userRepository.Add(newUser);
 
-            if (userRegisterModel.Role==UserRole.Student)
-            {
-                var university = await _universityRepository
-                .GetByIdWithFacultiesAndStudents(userRegisterModel.UniversityId, userRegisterModel.FacultyId);
-                if (university != null)
-                {
-                    var faculty = university.GetFaculty(userRegisterModel.FacultyId);
-                    if (faculty != null)
-                    {
-                        faculty.AddStudent(new Student(newUser.Id));
-                        _universityRepository.Update(university);
-                    }
-                }
-            }
+            if (userRegisterModel.Role == Role.Student)
+                await _studentService.AddStudentToFaculty(userRegisterModel.UniversityId, userRegisterModel.FacultyId, newUser.Id);
+
             await _userRepository.SaveChanges();
             return _mapper.Map<UserModel>(newUser);
         }

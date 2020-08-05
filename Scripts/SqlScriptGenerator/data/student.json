@@ -11,7 +11,6 @@
       "Number": "37"
     },
     "Account": {
-      "Id": "9f99a1c8-6d2d-4cab-949e-c6496d890c04",
       "UserName": "george",
       "Email": "george@yahoo.com",
       "PasswordHash": "RvkBQonRuC/4DEliU2PKvg==.nB+xgBChPJP0WhR/3JyH1CLCpie584mY2P0LE0qHo9M=",
@@ -31,7 +30,6 @@
       "Number": "3"
     },
     "Account": {
-      "Id": "f8a4ad44-6a7d-40a9-b5af-425114f58cce",
       "UserName": "mishu",
       "Email": "mihai.eminescu@yahoo.com",
       "PasswordHash": "IxvjqiOdocpNXB1BnS8L4g==.LmraFc/yNNlcsP+gkW6va7M5+NQL4s7/XxMslHelJ9w=",
@@ -51,7 +49,6 @@
       "Number": "312"
     },
     "Account": {
-      "Id": "3d79bf2a-52bd-448c-8ac9-6e2a1d5d3d72",
       "UserName": "vasilica",
       "Email": "lupu.vasile@yahoo.com",
       "PasswordHash": "EUhWuCEYgyd8FPplzsVbTw==.XD9Abyb6DjmZxcQkjTmDkKuGKoHuBkK/ua8avdjL9m4=",
@@ -71,7 +68,6 @@
       "Number": "120"
     },
     "Account": {
-      "Id": "408afcd2-3591-405c-8fbd-91c769e21ad0",
       "UserName": "ionica",
       "Email": "ion.creanga@yahoo.com",
       "PasswordHash": "RqymcNziWjWA7TqwtDGdvQ==.XGuhQXcIH8UDxWw5mDnWnKSEwiixH4imcaU93lnFTJ0=",
@@ -91,7 +87,6 @@
       "Number": "7"
     },
     "Account": {
-      "Id": "710c5ad7-516c-43b5-aab2-a6dd4416f788",
       "UserName": "cipri",
       "Email": "ciprian.marica@yahoo.com",
       "PasswordHash": "7sqmf8jm3GwHTheNk1yDXg==.nKNoV8Bgff82golFpVY6NWi+yTfQb7McqMFfXOc1x3Q=",
