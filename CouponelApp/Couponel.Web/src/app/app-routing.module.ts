@@ -23,7 +23,7 @@ const routes: Routes = [
   },
   { path: 'list', component: VoucherListComponent },
   { path: 'create-voucher', component: VoucherDetailsComponent},
-  { path: 'topList', component: TopComponent},
+  { path: 'top-list', component: TopComponent},
   { path: 'profile-info', component: ProfileInfoComponent},
   { path: 'saved-vouchers', component: SavedVouchersComponent},
   {

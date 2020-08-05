@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/shared/services';
 
@@ -25,12 +25,12 @@ export class AuthenticationComponent {
     private readonly userService: UserService
   ) {
     this.formGroup = this.formBuilder.group({
-      username: new FormControl(null),
-      firstName: new FormControl(null),
-      lastName: new FormControl(null),
-      email: new FormControl(null),
-      password: new FormControl(null),
-      userType: new FormControl(null),
+      username: new FormControl(null, [Validators.required, Validators.minLength(5)]),
+      firstName: new FormControl(null, [Validators.required]),
+      lastName: new FormControl(null, [Validators.required]),
+      email: new FormControl(null,[Validators.required, Validators.email]),
+      password: new FormControl(null, [Validators.required, Validators.minLength(5)]),
+      userType: new FormControl(null, Validators.required),
     });
     this.userService.username.next('');
   }
