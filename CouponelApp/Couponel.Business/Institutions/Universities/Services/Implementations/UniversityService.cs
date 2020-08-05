@@ -1,29 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Couponel.Business.Institutions.Universities.Models;
 using Couponel.Business.Institutions.Universities.Services.Interfaces;
 using Couponel.Entities;
 using Couponel.Entities.Institutions;
-using Couponel.Persistence.Repositories.InstitutionsRepositories.UniversitiesRepository;
+using Couponel.Persistence.Repositories.UniversitiesRepository;
 
 namespace Couponel.Business.Institutions.Universities.Services.Implementations
 {
     public sealed class UniversityService : IUniversityService
     {
-        private readonly IUniversitiesRepository _univiersitiesRepository;
+        private readonly IUniversitiesRepository _universitiesRepository;
         private readonly IMapper _mapper;
 
-        public UniversityService(IUniversitiesRepository univiersitiesRepository, IMapper mapper)
+        public UniversityService(IUniversitiesRepository universitiesRepository, IMapper mapper)
         {
-            _univiersitiesRepository = univiersitiesRepository;
+            _universitiesRepository = universitiesRepository;
             _mapper = mapper;
         }
 
         public async Task<UniversityModel> GetByIdWithAddressAndFaculties(Guid universityId)
         {
-            var university = await _univiersitiesRepository.GetByIdWithAddressFacultiesAndStudents(universityId);
+            var university = await _universitiesRepository.GetByIdWithAddressFacultiesAndStudents(universityId);
             return _mapper.Map<UniversityModel>(university);
         }
 
@@ -31,40 +32,33 @@ namespace Couponel.Business.Institutions.Universities.Services.Implementations
         {
             var university = _mapper.Map<University>(model);
 
-            await _univiersitiesRepository.Add(university);
-            await _univiersitiesRepository.SaveChanges();
+            await _universitiesRepository.Add(university);
+            await _universitiesRepository.SaveChanges();
 
             return _mapper.Map<UniversityModel>(university);
         }
 
         public async Task Delete(Guid universityId)
         {
-            var university = await _univiersitiesRepository.GetAllDependenciesById(universityId);
+            var university = await _universitiesRepository.GetAllDependenciesById(universityId);
             
-            _univiersitiesRepository.Delete(university);
+            _universitiesRepository.Delete(university);
 
-            await _univiersitiesRepository.SaveChanges();
+            await _universitiesRepository.SaveChanges();
         }
 
         public async Task Update(Guid universityId, UpdateUniversityModel model)
         {
-            var university = await _univiersitiesRepository.GetById(universityId);
+            var university = await _universitiesRepository.GetById(universityId);
             university.Update(model.Name, model.Email, model.PhoneNumber, model.Address);
 
-            _univiersitiesRepository.Update(university);
-            await _univiersitiesRepository.SaveChanges();
+            _universitiesRepository.Update(university);
+            await _universitiesRepository.SaveChanges();
         }
         public async Task<IEnumerable<ListUniversityModel>> GetAll()
         {
-            var universities = await _univiersitiesRepository.GetAll();
-            var mappedUniversities = new List<ListUniversityModel>();
-
-            foreach (var university in universities)
-            {
-                if(university!=null)
-                    mappedUniversities.Add(_mapper.Map<ListUniversityModel>(university));
-            }
-            return mappedUniversities;
+            var universities = await _universitiesRepository.GetAll();
+            return (from university in universities where university != null select _mapper.Map<ListUniversityModel>(university)).ToList();
         }
     }
 }

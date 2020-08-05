@@ -8,40 +8,24 @@ using Microsoft.Extensions.Logging;
 
 namespace Couponel.API.Controllers.IdentitiesController
 {
-    [Route("api/{userid}/students")]
+    [Route("api/users/{userId}/student")]
     [ApiController]
     public class StudentController : ControllerBase
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<StudentController> _logger;
         private readonly IStudentService _studentService;
 
-        public StudentController(ILogger<HomeController> logger, IStudentService studentService)
+        public StudentController(ILogger<StudentController> logger, IStudentService studentService)
         {
             _logger = logger;
             _studentService = studentService;
         }
 
-        [HttpGet("{studentId}")]
-        public async Task<IActionResult> GetById([FromRoute] Guid studentId)
+        [HttpGet]
+        public async Task<IActionResult> GetById([FromRoute] Guid userId)
         {
-            var result = await _studentService.GetById(studentId);
+            var result = await _studentService.GetStudentDetailsById(userId);
             return Ok(result);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Add([FromBody] CreateStudentModel model)
-        {
-            var result = await _studentService.Add(model);
-
-            return Created(result.Id.ToString(), null);
-        }
-
-        [HttpDelete("{studentId}")]
-        public async Task<IActionResult> Delete([FromRoute] Guid studentId)
-        {
-            await _studentService.Delete(studentId);
-
-            return NoContent();
         }
     }
 }

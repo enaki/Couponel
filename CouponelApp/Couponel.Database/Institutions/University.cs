@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using Couponel.Entities.ValueObjects;
 
 namespace Couponel.Entities.Institutions
 {
@@ -39,11 +40,11 @@ namespace Couponel.Entities.Institutions
         public void UpdateFaculty(Guid facultyId, Faculty faculty)
         {
             var facultyDto = this.Faculties.FirstOrDefault(rc => rc.Id == facultyId);
-            if(faculty != null)
-            {
+            if(facultyDto != null)
                 facultyDto.Update(faculty.Name, faculty.Email, faculty.PhoneNumber,faculty.Address);
-            }
         }
+        public Faculty GetFaculty(Guid facultyId)
+                => this.Faculties.FirstOrDefault(rc => rc.Id == facultyId);
         public void Update(string name, string email, string phoneNumber, Address address)
         {
             Name = name;

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Couponel.Entities.Identities;
 using Couponel.Persistence.Repositories.Repository;
@@ -10,5 +11,6 @@ namespace Couponel.Persistence.Repositories.IdentitiesRepositories.UsersReposito
         Task<User> GetByUsername(string username);
         Task<User> GetByEmail(string email);
         Task<IList<User>> GetAllByRole(UserRole role);
+        Task<Student> GetStudentRedeemedCouponsById(Guid id);
     }
 }

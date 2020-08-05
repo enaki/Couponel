@@ -1,5 +1,9 @@
-﻿using Couponel.Entities.Institutions;
+﻿using Couponel.Entities.Coupons;
+using Couponel.Entities.Institutions;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Couponel.Entities.ValueObjects;
 
 namespace Couponel.Entities.Identities
 {
@@ -7,15 +11,16 @@ namespace Couponel.Entities.Identities
     public sealed class User : Entity
     {
         public User(string userName, string email, string passwordHash, UserRole role, string firstName, string lastName, string phoneNumber)
-               :base()
+               : base()
         {
             UserName = userName;
             Email = email;
             PasswordHash = passwordHash;
-            Role = role;
             FirstName = firstName;
             LastName = lastName;
             PhoneNumber = phoneNumber;
+            if (role == UserRole.Offerer)
+                Coupons = new List<Coupon>();
         }
         [Required]
         public string UserName { get; set; }
@@ -34,16 +39,20 @@ namespace Couponel.Entities.Identities
         [Required]
         public string PhoneNumber { get; private set; }
         public Address Address { get; private set; }
-        public void Update(string userName, string email, string passwordHash, UserRole role,
+        public ICollection<Coupon> Coupons {get; private set;}
+        public void Update(string email, string passwordHash,
             string firstName, string lastName, string phoneNumber, Address address)
         {
-            UserName = userName;
             Email = email;
             PasswordHash = passwordHash;
-            Role = role;
             FirstName = firstName;
             LastName = lastName;
             PhoneNumber = phoneNumber;
+            Address = address;
+        }
+
+        public void UpdateAddress(Address address)
+        {
             Address = address;
         }
     }

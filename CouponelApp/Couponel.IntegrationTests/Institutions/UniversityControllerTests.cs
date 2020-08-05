@@ -1,7 +1,9 @@
-﻿using System.Net.Http;
+﻿/*
+using System.Net.Http;
 using System.Threading.Tasks;
 using Couponel.Business.Institutions.Universities.Models;
 using Couponel.Entities.Institutions;
+using Couponel.Entities.ValueObjects;
 using FluentAssertions;
 using FluentAssertions.Common;
 using Xunit;
@@ -78,3 +80,4 @@ namespace Couponel.IntegrationTests.Institutions
 
     }
 }
+*/

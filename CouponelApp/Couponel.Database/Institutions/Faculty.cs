@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using Couponel.Entities.Identities;
-using Couponel.Entities.Identities.UserTypes;
+using Couponel.Entities.ValueObjects;
 
 namespace Couponel.Entities.Institutions
 {
@@ -31,5 +32,19 @@ namespace Couponel.Entities.Institutions
             PhoneNumber = phoneNumber;
             Address = address;
         }
+        public void AddStudent(Student student)
+        {
+            Students.Add(student);
+        }
+        public void RemoveStudent(Guid studentId)
+        {
+            var faculty = this.Students.FirstOrDefault(rc => rc.Id == studentId);
+            if (faculty != null)
+            {
+                Students.Remove(faculty);
+            }
+        }
+        public Student GetStudent(Guid stuentId)
+                => this.Students.FirstOrDefault(rc => rc.Id == stuentId);
     }
 }

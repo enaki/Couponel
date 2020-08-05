@@ -1,4 +1,5 @@
-﻿using Couponel.Entities.Identities;
+﻿using Couponel.Entities.Coupons;
+using Couponel.Entities.Identities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -14,6 +15,12 @@ namespace Couponel.Persistence.Configurations
             userConfiguration
                 .Property(c => c.Id)
                 .IsRequired();
+
+            userConfiguration
+                .HasMany<Coupon>(user => user.Coupons)
+                .WithOne()
+                .IsRequired(true)
+                .OnDelete(DeleteBehavior.ClientCascade);
 
             userConfiguration.OwnsOne(e => e.Address)
                     .Property(a => a.City)

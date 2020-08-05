@@ -7,7 +7,7 @@ using Couponel.Business.Institutions.Faculties.Services.Interfaces;
 using Couponel.Entities;
 using Couponel.Entities.Institutions;
 using System.Linq;
-using Couponel.Persistence.Repositories.InstitutionsRepositories.UniversitiesRepository;
+using Couponel.Persistence.Repositories.UniversitiesRepository;
 
 namespace Couponel.Business.Institutions.Faculties.Services.Implementations
 {
@@ -22,9 +22,9 @@ namespace Couponel.Business.Institutions.Faculties.Services.Implementations
             _mapper = mapper;
         }
 
-        public async Task<FacultyModel> GetByIdWithAddressStudentsAndUser(Guid univeristyId, Guid facultyId)
+        public async Task<FacultyModel> GetByIdWithAddress(Guid univeristyId, Guid facultyId)
         {
-            var university= await _repository.GetByIdWithFacultyAddressStudentsAndUsers(univeristyId, facultyId);
+            var university= await _repository.GetByIdWithFacultyAndFacultyAddress(univeristyId, facultyId);
             var faculty = (IList<Faculty>)university.Faculties;
             return _mapper.Map<FacultyModel>(faculty.FirstOrDefault());
         }

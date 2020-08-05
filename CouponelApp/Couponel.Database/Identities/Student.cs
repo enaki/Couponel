@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using Couponel.Entities.Coupons;
-using Couponel.Entities.Institutions;
 
-namespace Couponel.Entities.Identities.UserTypes
+namespace Couponel.Entities.Identities
 {
     public sealed class Student : Entity
     {
@@ -14,7 +12,10 @@ namespace Couponel.Entities.Identities.UserTypes
         {
             RedeemedCoupons = new List<RedeemedCoupon>();
         }
-        public Guid UserId { get; private set; }
+        public Student(Guid id):base(id)
+        {
+            RedeemedCoupons = new List<RedeemedCoupon>();
+        }
         public User User { get; private set; }
 
         public ICollection<RedeemedCoupon> RedeemedCoupons { get; private set; }
@@ -26,7 +27,6 @@ namespace Couponel.Entities.Identities.UserTypes
         public void RemoveRedeemedCoupon(Guid redeemedCouponId)
         {
             var redeemedCoupon = this.RedeemedCoupons.FirstOrDefault(rc => rc.Id == redeemedCouponId);
-
             if (redeemedCoupon != null)
             {
                 RedeemedCoupons.Remove(redeemedCoupon);

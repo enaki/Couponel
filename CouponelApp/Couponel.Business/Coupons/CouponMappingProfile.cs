@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Couponel.Business.Coupons.Comments.Models;
 using Couponel.Business.Coupons.Coupons.Models;
+using Couponel.Business.Coupons.Photos.Models;
 using Couponel.Entities.Coupons;
 
 namespace Couponel.Business.Coupons
@@ -16,6 +17,9 @@ namespace Couponel.Business.Coupons
 
             CreateMap<CreateCommentModel, Comment>();
             CreateMap<Comment, CommentModel>();
+
+            CreateMap<CreatePhotoModel, Photo>();
+            CreateMap<Photo, PhotoModel>();
         }
     }
 }

@@ -1,7 +1,7 @@
-﻿/*using System.Net.Http;
+/*
+using System.Net.Http;
 using System.Threading.Tasks;
 using Couponel.Business.Identities.Admins.Models;
-using Couponel.Entities.Identities.UserTypes;
 using FluentAssertions;
 using Xunit;
 

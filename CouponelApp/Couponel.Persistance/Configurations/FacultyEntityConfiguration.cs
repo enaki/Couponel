@@ -1,10 +1,10 @@
-﻿using Couponel.Entities.Identities.UserTypes;
-using Couponel.Entities.Institutions;
+﻿using Couponel.Entities.Institutions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Couponel.Entities.Identities;
 
 namespace Couponel.Persistence.Configurations
 {

@@ -15,6 +15,7 @@ namespace Couponel.Entities.Coupons
             ExpirationDate = expirationDate;
             Description = description;
             Comments = new List<Comment>();
+            Photos = new List<Photo>();
         }
 
         [Required]
@@ -33,7 +34,7 @@ namespace Couponel.Entities.Coupons
         public string Description { get; private set; }
 
         public ICollection<Comment> Comments { get; private set; }
-
+        public ICollection<Photo> Photos { get; private set; }
         public void AddComment(Comment comment)
         {
             Comments.Add(comment);
@@ -57,5 +58,20 @@ namespace Couponel.Entities.Coupons
         }
 
 
+        public void AddPhoto(Photo photo)
+        {
+            Photos.Add(photo);
+        }
+
+        public void RemovePhoto(Guid photoId)
+        {
+            var photo = this.Photos.FirstOrDefault(p => p.Id == photoId);
+
+            if (photo != null)
+            {
+                Photos.Remove(photo);
+            }
+        }
+       
     }
 }
