@@ -7,6 +7,7 @@ namespace Couponel.Persistence.Repositories.CouponsRepositories.CouponsRepositor
 {
     public interface ICouponsRepository : IRepository<Coupon>
     {
-        Task<Coupon> GetByIdWithComments(Guid id);
+        Task<Coupon> GetByIdWithComments(Guid couponId);
+        Task<Coupon> GetByIdWithPhotos(Guid couponId);
     }
 }

@@ -1,6 +1,12 @@
 ﻿using System;
 using Couponel.Entities.Identities;
 using Couponel.Entities.Institutions;
+<<<<<<< HEAD:CouponelApp/Couponel.Business/Authentications/Models/UserRegisterModel.cs
+using System;
+using System.Collections.Generic;
+using System.Text;
+=======
+>>>>>>> origin/Co-25:CouponelApp/Couponel.Business/Identities/Users/Models/UserRegisterModel.cs
 using Couponel.Entities.ValueObjects;
 
 namespace Couponel.Business.Identities.Users.Models

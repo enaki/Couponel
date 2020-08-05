@@ -16,6 +16,7 @@ namespace Couponel.Persistence
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new CommentEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new PhotoEntityConfiguration());
             modelBuilder.ApplyConfiguration(new CouponEntityConfiguration());
             modelBuilder.ApplyConfiguration(new FacultyEntityConfiguration());
             modelBuilder.ApplyConfiguration(new RedeemedCouponEntityConfiguration());
@@ -26,6 +27,7 @@ namespace Couponel.Persistence
         public DbSet<Coupon> Coupons { get; set; }
         public DbSet<RedeemedCoupon> RedeemedCoupons { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<Photo> Photos { get; set; }
         public DbSet<Faculty> Faculties { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<University> Universities { get; set; }

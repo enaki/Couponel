@@ -1,11 +1,11 @@
-﻿using System;
+﻿/*
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Couponel.Business.Identities.Admins.Models;
 using Couponel.Business.Identities.Offerors.Models;
-using Couponel.Entities.Identities.UserTypes;
 using FluentAssertions;
 using Xunit;
 
@@ -60,3 +60,4 @@ namespace Couponel.IntegrationTests.Identities
         }
     }
 }
+*/

@@ -32,6 +32,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Couponel.Business.Authentications.Models;
+using Couponel.Business.Coupons.Photos.Services.Implementations;
+using Couponel.Business.Coupons.Photos.Services.Interfaces;
 using Couponel.Business.Identities.Users.Services.Implementations;
 using Couponel.Business.Identities.Users.Services.Interfaces;
 using Couponel.Persistence.Repositories.UniversitiesRepository;
@@ -59,6 +61,7 @@ namespace Couponel.API
                 .AddScoped<IUniversityService, UniversityService>()
                 .AddScoped<ICouponService, CouponService>()
                 .AddScoped<ICommentsService, CommentsService>()
+                .AddScoped<IPhotosService, PhotosService>()
                 .AddScoped<IStudentService, StudentService>()
                 .AddScoped<IAuthenticationService, AuthenticationService>()
                 .AddScoped<IUsersService, UsersService>()
@@ -67,6 +70,7 @@ namespace Couponel.API
 
                 .AddScoped<ICouponsRepository, CouponsRepository>()
                 .AddScoped<ICommentsRepository, CommentsRepository>()
+                .AddScoped<IPhotosRepository, PhotosRepository>()
                 .AddScoped<IUniversitiesRepository, UniversitiesRepository>()
                 .AddScoped<IUsersRepository, UsersRepository>();
 
