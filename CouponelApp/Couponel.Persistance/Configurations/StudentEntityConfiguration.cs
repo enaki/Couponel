@@ -24,7 +24,7 @@ namespace Couponel.Persistence.Configurations
                 .HasOne<User>(student => student.User)
                 .WithOne()
                 .IsRequired(false)
-                .HasForeignKey<Student>(student => student.UserId)
+                .HasForeignKey<Student>(student => student.Id)
                 .OnDelete(DeleteBehavior.Cascade);
 
             studentConfiguration

@@ -7,12 +7,7 @@ namespace Couponel.Business.Identities.Students.Services.Interfaces
 {
     public interface IStudentService
     {
-        Task<StudentModel> GetById(Guid studentId);
-
-        Task<StudentModel> Add(CreateStudentModel model);
-
-        Task Delete(Guid studentId);
-
-        Task<IEnumerable<StudentModel>> GetAll();
+        public Task CreateStudent(Guid universityId, Guid studentId, Guid userId);
+        public Task<StudentDetailsModel> GetStudentDetailsById(Guid universityId, Guid facultyId, Guid studentId);
     }
 }

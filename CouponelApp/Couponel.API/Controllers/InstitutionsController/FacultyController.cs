@@ -29,7 +29,7 @@ namespace Couponel.API.Controllers.InstitutionsController
             [HttpGet("{facultyId}")]
             public async Task<IActionResult> GetById([FromRoute] Guid universityId,[FromRoute] Guid facultyId)
             {
-                var result = await _facultyService.GetByIdWithAddressStudentsAndUser(universityId, facultyId);
+                var result = await _facultyService.GetByIdWithAddress(universityId, facultyId);
                 return Ok(result);
             }
 

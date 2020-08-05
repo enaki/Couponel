@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Couponel.API.Controllers.IdentitiesController
 {
-    [Route("api/{userid}/students")]
+    [Route("api/universities/{universityId}/faculties/{facultyId}/students")]
     [ApiController]
     public class StudentController : ControllerBase
     {
@@ -22,26 +22,10 @@ namespace Couponel.API.Controllers.IdentitiesController
         }
 
         [HttpGet("{studentId}")]
-        public async Task<IActionResult> GetById([FromRoute] Guid studentId)
+        public async Task<IActionResult> GetById([FromRoute] Guid universityId, [FromRoute] Guid facultyId, [FromRoute] Guid studentId)
         {
-            var result = await _studentService.GetById(studentId);
+            var result = await _studentService.GetStudentDetailsById(universityId, facultyId, studentId);
             return Ok(result);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Add([FromBody] CreateStudentModel model)
-        {
-            var result = await _studentService.Add(model);
-
-            return Created(result.Id.ToString(), null);
-        }
-
-        [HttpDelete("{studentId}")]
-        public async Task<IActionResult> Delete([FromRoute] Guid studentId)
-        {
-            await _studentService.Delete(studentId);
-
-            return NoContent();
         }
     }
 }

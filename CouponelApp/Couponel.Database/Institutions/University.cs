@@ -39,11 +39,11 @@ namespace Couponel.Entities.Institutions
         public void UpdateFaculty(Guid facultyId, Faculty faculty)
         {
             var facultyDto = this.Faculties.FirstOrDefault(rc => rc.Id == facultyId);
-            if(faculty != null)
-            {
+            if(facultyDto != null)
                 facultyDto.Update(faculty.Name, faculty.Email, faculty.PhoneNumber,faculty.Address);
-            }
         }
+        public Faculty GetFaculty(Guid facultyId)
+                => this.Faculties.FirstOrDefault(rc => rc.Id == facultyId);
         public void Update(string name, string email, string phoneNumber, Address address)
         {
             Name = name;

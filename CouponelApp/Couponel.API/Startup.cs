@@ -9,9 +9,6 @@ using Couponel.Business.Coupons.Comments.Services.Interfaces;
 using Couponel.Business.Coupons.Coupons.Services.Implementations;
 using Couponel.Business.Coupons.Coupons.Services.Interfaces;
 using Couponel.Business.Identities;
-using Couponel.Business.Identities.Admins.Services.Interfaces;
-using Couponel.Business.Identities.Offerers.Services.Implementations;
-using Couponel.Business.Identities.Offerers.Services.Interfaces;
 using Couponel.Business.Identities.Students.Services.Implementations;
 using Couponel.Business.Identities.Students.Services.Interfaces;
 using Couponel.Business.Institutions;
@@ -22,8 +19,6 @@ using Couponel.Business.Institutions.Universities.Services.Interfaces;
 using Couponel.Persistence;
 using Couponel.Persistence.Repositories.CouponsRepositories.CommentsRepository;
 using Couponel.Persistence.Repositories.CouponsRepositories.CouponsRepository;
-using Couponel.Persistence.Repositories.IdentitiesRepositories.OfferersRepository;
-using Couponel.Persistence.Repositories.IdentitiesRepositories.StudentsRepository;
 using Couponel.Persistence.Repositories.IdentitiesRepositories.UsersRepository;
 using Couponel.Persistence.Repositories.InstitutionsRepositories.UniversitiesRepository;
 using Microsoft.AspNetCore.Builder;
@@ -63,13 +58,10 @@ namespace Couponel.API
                 .AddScoped<ICouponService, CouponService>()
                 .AddScoped<ICommentsService, CommentsService>()
                 .AddScoped<IStudentService, StudentService>()
-                .AddScoped<IOffererService, OffererService>()
                 .AddScoped<IAuthenticationService, AuthenticationService>()
 
                 .AddScoped<IPasswordHasher, PasswordHasher>()
 
-                .AddScoped<IStudentsRepository, StudentsRepository>()
-                .AddScoped<IOfferersRepository, OfferersRepository>()
                 .AddScoped<ICouponsRepository, CouponsRepository>()
                 .AddScoped<ICommentsRepository, CommentsRepository>()
                 .AddScoped<IUniversitiesRepository, UniversitiesRepository>()

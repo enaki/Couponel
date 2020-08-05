@@ -57,6 +57,20 @@ namespace Couponel.Business.Authentications.Services.Implementations
                 userRegisterModel.LastName,
                 userRegisterModel.PhoneNumber);
             await _userRepository.Add(newUser);
+
+            // create new student/offerer/admin 
+            switch (userRegisterModel.Role)
+            {
+                case UserRole.Admin:
+
+                    break;
+                case UserRole.Offerer:
+
+                    break;
+                case UserRole.Student:
+
+                    break;     
+            }
             await _userRepository.SaveChanges();
 
             return _mapper.Map<UserModel>(newUser);

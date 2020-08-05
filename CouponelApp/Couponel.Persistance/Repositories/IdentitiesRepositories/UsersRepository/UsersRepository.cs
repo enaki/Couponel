@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Couponel.Entities.Identities;
+using Couponel.Entities.Identities.UserTypes;
 using Couponel.Persistence.Repositories.Repository;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,5 +27,12 @@ namespace Couponel.Persistence.Repositories.IdentitiesRepositories.UsersReposito
 
         public async Task<User> GetByUsername(string username) =>
             await _context.Users.Where(x => x.UserName == username).FirstOrDefaultAsync();
+
+        public async Task<Student> GetStudentRedeemedCouponsById(Guid id) =>
+            await _context.Students.Where(s => s.Id == id)
+                        .Include(s => s.User)
+                        .ThenInclude(u => u.Address)
+                        .Include(s => s.RedeemedCoupons)
+                        .FirstOrDefaultAsync();
     }
 }

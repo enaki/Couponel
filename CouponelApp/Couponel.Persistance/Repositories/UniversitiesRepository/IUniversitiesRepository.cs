@@ -9,9 +9,8 @@ namespace Couponel.Persistence.Repositories.InstitutionsRepositories.Universitie
     {
         public Task<University> GetByIdWithAddress(Guid id);
         public Task<University> GetByIdWithFaculties(Guid id);
-        public Task<University> GetByIdWithFacultyAddressStudentsAndUsers(Guid universityId, Guid facultyId);
-        public Task<University> GetByIdWithFacultiesAndStudents(Guid id);
-        public Task<University> GetByIdWithAddressAndFaculties(Guid id);
+        public Task<University> GetByIdFacultyIdStudentIdWithStudentDetails(Guid universityId, Guid facultyId, Guid studentId);
+        public Task<University> GetByIdWithFacultiesAndStudents(Guid universityId, Guid facultyId);  
         public Task<University> GetByIdWithAddressFacultiesAndStudents(Guid id);
         public Task<University> GetAllDependenciesById(Guid id);
         public Task<University> GetByIdWithFacultyAndFacultyAddress(Guid universityId, Guid facultyId);

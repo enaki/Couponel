@@ -5,49 +5,36 @@ using AutoMapper;
 using Couponel.Business.Identities.Students.Models;
 using Couponel.Business.Identities.Students.Services.Interfaces;
 using Couponel.Entities.Identities.UserTypes;
-using Couponel.Persistence.Repositories.IdentitiesRepositories.StudentsRepository;
+using Couponel.Persistence.Repositories.InstitutionsRepositories.UniversitiesRepository;
 
 namespace Couponel.Business.Identities.Students.Services.Implementations
 {
     public sealed class StudentService: IStudentService
     {
-        private readonly IStudentsRepository _repository;
+        private readonly IUniversitiesRepository _repository;
         private readonly IMapper _mapper;
-
-        public StudentService(IStudentsRepository repository, IMapper mapper)
+        public StudentService(IUniversitiesRepository repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
         }
-
-        public async Task<StudentModel> GetById(Guid studentId)
+        public async Task<StudentDetailsModel> GetStudentDetailsById(Guid universityId, Guid facultyId, Guid studentId)
         {
-            var student = await _repository.GetById(studentId);
-            return _mapper.Map<StudentModel>(student);
+            var university = await _repository.GetByIdFacultyIdStudentIdWithStudentDetails(universityId, facultyId, studentId);
+            var faculty = university.GetFaculty(facultyId);
+            var student = faculty.GetStudent(studentId);
+            var studentDetails = new StudentDetailsModel { UniversityName=university.Name, FacultyName= faculty.Name, User=student.User};
+            return studentDetails;
         }
-
-        public async Task<StudentModel> Add(CreateStudentModel model)
+        public async Task CreateStudent(Guid universityId, Guid facultyId, Guid userId)
         {
-            var student = _mapper.Map<Student>(model);
+            var university = await _repository.GetByIdWithFacultiesAndStudents(universityId, facultyId);
+            var faculty = university.GetFaculty(facultyId);
+           
+            faculty.AddStudent(new Student(userId));
+            _repository.Update(university);
 
-            await _repository.Add(student);
             await _repository.SaveChanges();
-
-            return _mapper.Map<StudentModel>(student);
-        }
-
-        public async Task Delete(Guid studentId)
-        {
-            var student = await _repository.GetById(studentId);
-
-            _repository.Delete(student);
-            await _repository.SaveChanges();
-        }
-
-        public async Task<IEnumerable<StudentModel>> GetAll()
-        {
-            var students = _repository.GetAll();
-            return await (Task<IEnumerable<StudentModel>>)_mapper.Map<IEnumerable<StudentModel>>(students);
         }
     }
 }
