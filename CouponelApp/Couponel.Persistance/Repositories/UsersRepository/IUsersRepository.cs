@@ -11,6 +11,8 @@ namespace Couponel.Persistence.Repositories.IdentitiesRepositories.UsersReposito
         Task<User> GetByUsername(string username);
         Task<User> GetByEmail(string email);
         Task<IList<User>> GetAllByRole(string role);
+        public Task<User> GetUserDetailsById(Guid id);
         Task<Student> GetStudentRedeemedCouponsById(Guid id);
+
     }
 }

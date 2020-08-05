@@ -22,16 +22,28 @@ namespace Couponel.Business.Identities.Students.Services.Implementations
             _mapper = mapper;
         }
 
-        public async Task<StudentDetailsModel> GetStudentDetailsById(Guid studentId)
+        public async Task<StudentInstitutionsDetailsModel> GetStudentDetailsById(Guid studentId)
         {
             var university = await _repository.GetByStudentId(studentId);
             var faculties = (IEnumerable<Faculty>)university.Faculties;
             var faculty = faculties.FirstOrDefault();
 
-            var students = (IEnumerable<Student>) faculty?.Students;
-            var student = students?.FirstOrDefault();
+            return faculty == null ? null : new StudentInstitutionsDetailsModel{UniversityName = university.Name, FacultyName = faculty.Name};
+        }
 
-            return student == null ? null : new StudentDetailsModel{UniversityName = university.Name, FacultyName = faculty.Name, User = student.User};
+        public async Task AddStudentToFaculty(Guid universityId, Guid facultyId, Guid userId)
+        {
+            var university = await _repository
+                .GetByIdWithFacultiesAndStudents(universityId, facultyId);
+            if (university != null)
+            {
+                var faculty = university.GetFaculty(facultyId);
+                if (faculty != null)
+                {
+                    faculty.AddStudent(new Student(userId));
+                    _repository.Update(university);
+                }
+            }
         }
     }
 }
