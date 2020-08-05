@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "Couponel"
+  "defaultProject": "Couponel",
+  "cli": {
+    "analytics": false
+  }
 }
