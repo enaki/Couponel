@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Couponel.Entities.Identities;
-using Couponel.Entities.Identities.UserTypes;
 using Couponel.Persistence.Repositories.Repository;
 using Microsoft.EntityFrameworkCore;
 

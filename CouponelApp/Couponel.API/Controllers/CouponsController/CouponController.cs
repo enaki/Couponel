@@ -11,10 +11,10 @@ namespace Couponel.API.Controllers.CouponsController
     [ApiController]
     public class CouponController : ControllerBase
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<CouponController> _logger;
         private readonly ICouponService _couponService;
 
-        public CouponController(ILogger<HomeController> logger, ICouponService couponService)
+        public CouponController(ILogger<CouponController> logger, ICouponService couponService)
         {
             _logger = logger;
             _couponService = couponService;

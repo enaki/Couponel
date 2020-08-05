@@ -7,7 +7,7 @@ using Couponel.Business.Institutions.Faculties.Services.Interfaces;
 using Couponel.Entities;
 using Couponel.Entities.Institutions;
 using System.Linq;
-using Couponel.Persistence.Repositories.InstitutionsRepositories.UniversitiesRepository;
+using Couponel.Persistence.Repositories.UniversitiesRepository;
 
 namespace Couponel.Business.Institutions.Faculties.Services.Implementations
 {

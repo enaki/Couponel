@@ -20,7 +20,6 @@ using Couponel.Persistence;
 using Couponel.Persistence.Repositories.CouponsRepositories.CommentsRepository;
 using Couponel.Persistence.Repositories.CouponsRepositories.CouponsRepository;
 using Couponel.Persistence.Repositories.IdentitiesRepositories.UsersRepository;
-using Couponel.Persistence.Repositories.InstitutionsRepositories.UniversitiesRepository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -33,6 +32,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Couponel.Business.Authentications.Models;
+using Couponel.Business.Identities.Users.Services.Implementations;
+using Couponel.Business.Identities.Users.Services.Interfaces;
+using Couponel.Persistence.Repositories.UniversitiesRepository;
 
 namespace Couponel.API
 {
@@ -59,6 +61,7 @@ namespace Couponel.API
                 .AddScoped<ICommentsService, CommentsService>()
                 .AddScoped<IStudentService, StudentService>()
                 .AddScoped<IAuthenticationService, AuthenticationService>()
+                .AddScoped<IUsersService, UsersService>()
 
                 .AddScoped<IPasswordHasher, PasswordHasher>()
 

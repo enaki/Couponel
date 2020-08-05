@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Couponel.Business.Institutions.Faculties.Models;
 using Couponel.Business.Institutions.Faculties.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -16,11 +13,11 @@ namespace Couponel.API.Controllers.InstitutionsController
         [ApiController]
         public class FacultyController : ControllerBase
         {
-            private readonly ILogger<HomeController> _logger;
+            private readonly ILogger<FacultyController> _logger;
             private readonly IFacultyService _facultyService;
 
 
-            public FacultyController(ILogger<HomeController> logger, IFacultyService facultyService)
+            public FacultyController(ILogger<FacultyController> logger, IFacultyService facultyService)
             {
                 _logger = logger;
                 _facultyService = facultyService;
