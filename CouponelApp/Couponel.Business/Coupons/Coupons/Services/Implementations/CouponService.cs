@@ -26,10 +26,10 @@ namespace Couponel.Business.Coupons.Coupons.Services.Implementations
             _mapper = mapper;
         }
 
-        public async Task<CouponModel> GetById(Guid couponId)
+        public async Task<CouponModelExtended> GetById(Guid couponId)
         {
             var coupon = await _repository.GetByIdWithPhotosAndComments(couponId);
-            return _mapper.Map<CouponModel>(coupon);
+            return _mapper.Map<CouponModelExtended>(coupon);
         }
 
         public async Task<CouponModel> Add(CreateCouponModel model)
