@@ -2,15 +2,17 @@
 using Couponel.Business.Identities.Users.Models;
 using Couponel.Business.Identities.Users.Services.Interfaces;
 using Couponel.Entities.Identities;
-using Couponel.Persistence.Repositories.IdentitiesRepositories.UsersRepository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Couponel.Business.Authentications.Services.Interfaces;
 using Couponel.Business.Identities.Students.Models;
 using Couponel.Business.Identities.Students.Services.Interfaces;
+using Couponel.Persistence.Repositories.UsersRepository;
+using Microsoft.AspNetCore.Http;
 
 namespace Couponel.Business.Identities.Users.Services.Implementations
 {
@@ -20,18 +22,23 @@ namespace Couponel.Business.Identities.Users.Services.Implementations
         private readonly IStudentService _studentService;
         private readonly IMapper _mapper;
         private readonly IPasswordHasher _passwordHasher;
-        public UsersService(IUsersRepository repository,IStudentService studentService, IPasswordHasher passwordHasher, IMapper mapper)
+        private readonly IHttpContextAccessor _accessor;
+
+        public UsersService(IUsersRepository repository,IStudentService studentService, IPasswordHasher passwordHasher, IMapper mapper, IHttpContextAccessor accessor)
         {
             _repository = repository;
             _mapper = mapper;
+            _accessor = accessor;
             _passwordHasher = passwordHasher;
             _studentService = studentService;
         }
 
         public async Task Update(UpdateUserModel model)
         {
+            var userId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
             var passwordHash = _passwordHasher.CreateHash(model.Password);
-            var user = await _repository.GetById(model.Id);
+
+            var user = await _repository.GetById(userId);
             user.Update(model.Email, passwordHash, model.FirstName, model.LastName, model.PhoneNumber, model.Address);
             _repository.Update(user);
             await _repository.SaveChanges();

@@ -6,7 +6,7 @@ using Couponel.Entities.Identities;
 using Couponel.Persistence.Repositories.Repository;
 using Microsoft.EntityFrameworkCore;
 
-namespace Couponel.Persistence.Repositories.IdentitiesRepositories.UsersRepository
+namespace Couponel.Persistence.Repositories.UsersRepository
 {
     public sealed class UsersRepository : Repository<User>, IUsersRepository
     {
@@ -18,21 +18,8 @@ namespace Couponel.Persistence.Repositories.IdentitiesRepositories.UsersReposito
             _context = context;
         }
 
-        public async Task<IList<User>> GetAllByRole(string role) =>
-            await _context.Users.Where(u => u.Role == role).ToListAsync();
-
-        public async Task<User> GetByEmail(string email) =>
-            await _context.Users.Where(u => u.UserName == email).FirstOrDefaultAsync();
-
         public async Task<User> GetByUsername(string username) =>
             await _context.Users.Where(u => u.UserName == username).FirstOrDefaultAsync();
-
-
-        public async Task<User> GetUserDetailsById(Guid id)=>
-            await _context.Users
-                .Include(u=> u.Address)
-                .FirstOrDefaultAsync(u => u.Id == id);
-
 
         public async Task<Student> GetStudentRedeemedCouponsById(Guid id) =>
             await _context.Students.Where(s => s.Id == id)
@@ -40,5 +27,27 @@ namespace Couponel.Persistence.Repositories.IdentitiesRepositories.UsersReposito
                 .ThenInclude(u => u.Address)
                 .Include(s => s.RedeemedCoupons)
                 .FirstOrDefaultAsync();
+        public async Task<Student> GetStudentRedeemedCouponsWithCouponDependecyById(Guid id) =>
+            await _context.Students.Where(s => s.Id == id)
+                .Include(s => s.User)
+                    .ThenInclude(u => u.Address)
+                .Include(s => s.RedeemedCoupons)
+                    .ThenInclude(rc=>rc.Coupon)
+                .FirstOrDefaultAsync();
+
+        public async Task<Student> GetStudentRedeemedCouponById(Guid id, Guid redeemedCouponId) =>
+            await _context.Students
+                .Where(s => s.Id == id &&
+                        s.RedeemedCoupons.Any(rc=> rc.Id==redeemedCouponId))
+                .Include(s => s.User)
+                    .ThenInclude(u => u.Address)
+                .Include(s => s.RedeemedCoupons)
+                    .ThenInclude(rc=>rc.Coupon)
+                .FirstOrDefaultAsync();
+
+        public async Task<User> GetOffererWithCouponsById(Guid userId) =>
+            await _context.Users
+                .Include(u => u.Coupons)
+                .FirstOrDefaultAsync(u => u.Id == userId);
     }
 }

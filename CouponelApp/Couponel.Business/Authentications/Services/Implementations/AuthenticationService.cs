@@ -10,8 +10,8 @@ using Couponel.Business.Authentications.Services.Interfaces;
 using Couponel.Business.Identities.Students.Services.Interfaces;
 using Couponel.Business.Identities.Users.Models;
 using Couponel.Entities.Identities;
-using Couponel.Persistence.Repositories.IdentitiesRepositories.UsersRepository;
 using Couponel.Persistence.Repositories.UniversitiesRepository;
+using Couponel.Persistence.Repositories.UsersRepository;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
@@ -83,7 +83,8 @@ namespace Couponel.Business.Authentications.Services.Implementations
                 _config.Audience,
                 new List<Claim>()
                 {
-                    new Claim("userId", user.Id.ToString())
+                    new Claim("userId", user.Id.ToString()),
+                    new Claim(ClaimTypes.Role, user.Role)
                 },
                 expires: DateTime.Now.AddHours(hours),
                 signingCredentials: credentials);

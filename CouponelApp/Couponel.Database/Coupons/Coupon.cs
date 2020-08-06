@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace Couponel.Entities.Coupons
 {
@@ -57,7 +59,6 @@ namespace Couponel.Entities.Coupons
             Description = description;
         }
 
-
         public void AddPhoto(Photo photo)
         {
             Photos.Add(photo);
@@ -72,6 +73,6 @@ namespace Couponel.Entities.Coupons
                 Photos.Remove(photo);
             }
         }
-       
+
     }
 }

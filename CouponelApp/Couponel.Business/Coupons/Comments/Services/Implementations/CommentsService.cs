@@ -6,7 +6,7 @@ using AutoMapper;
 using Couponel.Business.Coupons.Comments.Models;
 using Couponel.Business.Coupons.Comments.Services.Interfaces;
 using Couponel.Entities.Coupons;
-using Couponel.Persistence.Repositories.CouponsRepositories.CouponsRepository;
+using Couponel.Persistence.Repositories.CouponsRepositories;
 using Microsoft.AspNetCore.Http;
 
 namespace Couponel.Business.Coupons.Comments.Services.Implementations
@@ -26,7 +26,7 @@ namespace Couponel.Business.Coupons.Comments.Services.Implementations
 
         public async Task<IEnumerable<CommentModel>> Get(Guid couponId)
         {
-            var coupon = await _repository.GetByIdWithComments(couponId);
+            var coupon = await _repository.GetByIdWithPhotosAndComments(couponId);
 
             return _mapper.Map<IEnumerable<CommentModel>>(coupon.Comments);
         }
@@ -47,7 +47,7 @@ namespace Couponel.Business.Coupons.Comments.Services.Implementations
 
         public async Task Delete(Guid couponId, Guid commentId)
         {
-            var coupon = await _repository.GetByIdWithComments(couponId);
+            var coupon = await _repository.GetByIdWithPhotosAndComments(couponId);
 
             coupon.RemoveComment(commentId);
             _repository.Update(coupon);

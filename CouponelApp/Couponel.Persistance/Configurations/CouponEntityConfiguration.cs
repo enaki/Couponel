@@ -18,6 +18,12 @@ namespace Couponel.Persistence.Configurations
                 .OnDelete(DeleteBehavior.ClientCascade);
 
             couponConfiguration
+                .HasMany<Photo>(coupon => coupon.Photos)
+                .WithOne()
+                .IsRequired(false)
+                .OnDelete(DeleteBehavior.ClientCascade);
+
+            couponConfiguration
                 .Property(c => c.Id)
                 .IsRequired()
                 .ValueGeneratedNever();

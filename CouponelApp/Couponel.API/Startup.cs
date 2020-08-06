@@ -17,9 +17,6 @@ using Couponel.Business.Institutions.Faculties.Services.Interfaces;
 using Couponel.Business.Institutions.Universities.Services.Implementations;
 using Couponel.Business.Institutions.Universities.Services.Interfaces;
 using Couponel.Persistence;
-using Couponel.Persistence.Repositories.CouponsRepositories.CommentsRepository;
-using Couponel.Persistence.Repositories.CouponsRepositories.CouponsRepository;
-using Couponel.Persistence.Repositories.IdentitiesRepositories.UsersRepository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -34,10 +31,13 @@ using System.Text;
 using Couponel.Business.Authentications.Models;
 using Couponel.Business.Coupons.Photos.Services.Implementations;
 using Couponel.Business.Coupons.Photos.Services.Interfaces;
+using Couponel.Business.Coupons.RedeemedCoupons.Services.Implementations;
+using Couponel.Business.Coupons.RedeemedCoupons.Services.Interfaces;
 using Couponel.Business.Identities.Users.Services.Implementations;
 using Couponel.Business.Identities.Users.Services.Interfaces;
-using Couponel.Persistence.Repositories.CouponsRepositories.PhotosRepository;
+using Couponel.Persistence.Repositories.CouponsRepositories;
 using Couponel.Persistence.Repositories.UniversitiesRepository;
+using Couponel.Persistence.Repositories.UsersRepository;
 
 namespace Couponel.API
 {
@@ -66,12 +66,11 @@ namespace Couponel.API
                 .AddScoped<IStudentService, StudentService>()
                 .AddScoped<IAuthenticationService, AuthenticationService>()
                 .AddScoped<IUsersService, UsersService>()
+                .AddScoped<IRedeemedCouponsService, RedeemedCouponsService>()
 
                 .AddScoped<IPasswordHasher, PasswordHasher>()
 
                 .AddScoped<ICouponsRepository, CouponsRepository>()
-                .AddScoped<ICommentsRepository, CommentsRepository>()
-                .AddScoped<IPhotosRepository, PhotosRepository>()
                 .AddScoped<IUniversitiesRepository, UniversitiesRepository>()
                 .AddScoped<IUsersRepository, UsersRepository>();
 
@@ -93,9 +92,6 @@ namespace Couponel.API
                 .AddSwagger()
                 .AddControllers()
                 .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
-
-
-
 
 
             services

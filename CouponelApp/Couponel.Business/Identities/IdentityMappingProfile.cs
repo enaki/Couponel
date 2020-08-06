@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Couponel.Business.Coupons.Coupons.Models.CouponsModels;
 using Couponel.Business.Identities.Students.Models;
 using Couponel.Business.Identities.Users.Models;
 using Couponel.Business.Identities.Users.Services;
@@ -14,6 +15,7 @@ namespace Couponel.Business.Identities
             CreateMap<UpdateUserModel, User>();
             CreateMap<User, UserDetailsModel>();
             CreateMap<UserDetailsModel, StudentDetailsModel>();
+            CreateMap<User, OffererCouponsListModel>();
         }
     }
 }

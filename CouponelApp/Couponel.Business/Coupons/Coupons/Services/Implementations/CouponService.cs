@@ -1,63 +1,95 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using Couponel.Business.Coupons.Coupons.Models;
+using Couponel.Business.Coupons.Coupons.Models.CouponsModels;
+using Couponel.Business.Coupons.Coupons.Models.SearchModels;
 using Couponel.Business.Coupons.Coupons.Services.Interfaces;
+using Couponel.Business.Coupons.Extensions;
 using Couponel.Entities.Coupons;
-using Couponel.Persistence.Repositories.CouponsRepositories.CouponsRepository;
+using Couponel.Persistence.Repositories.CouponsRepositories;
+using Couponel.Persistence.Repositories.UsersRepository;
+using Microsoft.AspNetCore.Http;
 
 namespace Couponel.Business.Coupons.Coupons.Services.Implementations
 {
     public sealed class CouponService: ICouponService
     {
-        private readonly ICouponsRepository _repository;
-        private readonly IMapper _mapper;
+        private readonly ICouponsRepository _couponRepository;
+        private readonly IUsersRepository _userRepository;
 
-        public CouponService(ICouponsRepository repository, IMapper mapper)
+        private readonly IMapper _mapper;
+        private readonly IHttpContextAccessor _accessor;
+
+        public CouponService(ICouponsRepository couponRepository, IMapper mapper, IHttpContextAccessor accessor, IUsersRepository userRepository)
         {
-            _repository = repository;
+            _couponRepository = couponRepository;
             _mapper = mapper;
+            _accessor = accessor;
+            _userRepository = userRepository;
         }
 
-        public async Task<CouponModel> GetById(Guid adminId)
+        public async Task<CouponModelExtended> GetById(Guid couponId)
         {
-            var admin = await _repository.GetById(adminId);
-            return _mapper.Map<CouponModel>(admin);
+            var coupon = await _couponRepository.GetByIdWithPhotosAndComments(couponId);
+            return _mapper.Map<CouponModelExtended>(coupon);
         }
 
         public async Task<CouponModel> Add(CreateCouponModel model)
         {
-            var admin = _mapper.Map<Coupon>(model);
+            var userId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
+            var user = await _userRepository.GetById(userId);
+            var coupon = _mapper.Map<Coupon>(model);
 
-            await _repository.Add(admin);
-            await _repository.SaveChanges();
+            user.AddCoupon(coupon);
 
-            return _mapper.Map<CouponModel>(admin);
+            _userRepository.Update(user);
+            await _userRepository.SaveChanges();
+
+            return _mapper.Map<CouponModel>(coupon);
         }
 
-        public async Task Delete(Guid adminId)
+        
+        public async Task Delete(Guid couponId)
         {
-            var admin = await _repository.GetById(adminId);
-
-            _repository.Delete(admin);
-            await _repository.SaveChanges();
+            var coupon = await _couponRepository.GetByIdWithPhotosAndComments(couponId);
+            _couponRepository.Delete(coupon);
+            await _couponRepository.SaveChanges();
         }
 
-        public async Task<IEnumerable<CouponModel>> GetAll()
+        public async Task<PaginatedList<CouponModel>> GetBySearchModel(SearchModel model)
         {
-            var admins = _repository.GetAll();
-            return await (Task<IEnumerable<CouponModel>>)_mapper.Map<IEnumerable<CouponModel>>(admins);
+            
+            var spec = model.ToSpecification<Coupon>();
+
+            var coupons = await _couponRepository.GetBySpecification(spec);
+
+            var count = await _couponRepository.CountAsync();
+
+            return new PaginatedList<CouponModel>(
+                model.PageIndex,
+                coupons.Count,
+                count,
+                _mapper.Map<IList<CouponModel>>(coupons));
         }
 
         public async Task Update(Guid id, UpdateCouponModel model)
         {
-            var coupon = await _repository.GetById(id);
+            var coupon = await _couponRepository.GetById(id);
 
             coupon.Update(model.Name, model.Category, model.ExpirationDate, model.Description);
 
-            _repository.Update(coupon);
-            await _repository.SaveChanges();
+            _couponRepository.Update(coupon);
+            await _couponRepository.SaveChanges();
+        }
+
+
+        public async Task<OffererCouponsListModel> GetOffererCouponsById()
+        {
+            var userId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
+            var user = await _userRepository.GetOffererWithCouponsById(userId);
+            return _mapper.Map<OffererCouponsListModel>(user);
         }
     }
 }

@@ -20,21 +20,11 @@ namespace Couponel.Persistence.Repositories.UniversitiesRepository
                 .Include(university => university.Address)
                 .FirstOrDefaultAsync(university => university.Id == id);
 
-        public async Task<University> GetByIdWithAddressAndFaculties(Guid id)
-        => await this.context.Universities
-            .Include(university => university.Address)
-            .Include(university => university.Faculties)
-            .FirstOrDefaultAsync(university => university.Id == id);
-
         public async Task<University> GetByIdWithFaculties(Guid id)
         => await this.context.Universities
             .Include(university => university.Faculties)
             .FirstOrDefaultAsync(university => university.Id == id);
 
-        public async Task<University> GetByIdWithAddress(Guid id)
-                => await this.context.Universities
-                    .Include(university => university.Address)
-                    .FirstOrDefaultAsync(university => university.Id == id);
 
         public async Task<University> GetAllDependenciesById(Guid id)
             => await this.context.Universities
@@ -62,20 +52,6 @@ namespace Couponel.Persistence.Repositories.UniversitiesRepository
 
                 .FirstOrDefaultAsync(university => university.Id == id);
 
-        public async Task<University> GetByIdFacultyIdStudentIdWithStudentDetails(Guid universityId, Guid facultyId, Guid studentId)
-            => await this.context.Universities
-                    .Include(university => university.Faculties)
-                        .ThenInclude(faculty => faculty.Students)
-                        .ThenInclude(student => student.User.Address)
-
-                    .Include(university => university.Faculties)
-                        .ThenInclude(faculty => faculty.Students)
-                        .ThenInclude(student => student.User)
-
-                    .FirstOrDefaultAsync(
-                        university => university.Id == universityId &&
-                            university.Faculties.Any(faculty => faculty.Id == facultyId &&
-                                    faculty.Students.Any(student => student.Id == studentId)));
 
         public async Task<University> GetByIdWithFacultyAndFacultyAddress(Guid universityId, Guid facultyId)
             => await this.context.Universities

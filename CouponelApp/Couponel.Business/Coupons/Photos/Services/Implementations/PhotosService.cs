@@ -7,7 +7,7 @@ using AutoMapper;
 using Couponel.Business.Coupons.Photos.Models;
 using Couponel.Business.Coupons.Photos.Services.Interfaces;
 using Couponel.Entities.Coupons;
-using Couponel.Persistence.Repositories.CouponsRepositories.CouponsRepository;
+using Couponel.Persistence.Repositories.CouponsRepositories;
 using Microsoft.AspNetCore.Http;
 
 namespace Couponel.Business.Coupons.Photos.Services.Implementations
@@ -27,7 +27,7 @@ namespace Couponel.Business.Coupons.Photos.Services.Implementations
 
         public async Task<IEnumerable<PhotoModel>> Get(Guid couponId)
         {
-            var coupon = await _repository.GetByIdWithPhotos(couponId);
+            var coupon = await _repository.GetByIdWithPhotosAndComments(couponId);
 
             return _mapper.Map<IEnumerable<PhotoModel>>(coupon.Photos);
         }
@@ -51,7 +51,7 @@ namespace Couponel.Business.Coupons.Photos.Services.Implementations
 
         public async Task Delete(Guid couponId, Guid photoId)
         {
-            var coupon = await _repository.GetByIdWithPhotos(couponId);
+            var coupon = await _repository.GetByIdWithPhotosAndComments(couponId);
 
             coupon.RemovePhoto(photoId);
             _repository.Update(coupon);

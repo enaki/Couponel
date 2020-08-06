@@ -1,8 +1,7 @@
-﻿
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Couponel.Entities.Identities;
+using System.IO;
+
 
 namespace Couponel.Entities.Coupons
 {

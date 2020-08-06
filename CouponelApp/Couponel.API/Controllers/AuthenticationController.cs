@@ -25,7 +25,6 @@ namespace Couponel.API.Controllers
             {
                 return BadRequest("Incorrect username or password");
             }
-
             return Ok(result);
         }
 
@@ -37,7 +36,6 @@ namespace Couponel.API.Controllers
             {
                 return BadRequest();
             }
-
             return Created(result.Id.ToString(), null);
         }
     }

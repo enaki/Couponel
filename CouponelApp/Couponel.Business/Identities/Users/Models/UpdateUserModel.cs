@@ -10,8 +10,6 @@ namespace Couponel.Business.Identities.Users.Models
 {
     public sealed class UpdateUserModel
     {
-        [JsonIgnore]
-        public Guid Id { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
         public string FirstName { get; set; }
