@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
 using Couponel.Business.Coupons.Coupons.Models;
+using Couponel.Business.Coupons.Coupons.Models.SearchModels;
 using Couponel.Entities;
 using LinqBuilder.Core;
 using LinqBuilder.OrderBy;

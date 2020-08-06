@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Couponel.Entities.Identities;
 using Couponel.Persistence.Repositories.Repository;
 
-namespace Couponel.Persistence.Repositories.IdentitiesRepositories.UsersRepository
+namespace Couponel.Persistence.Repositories.UsersRepository
 {
     public interface IUsersRepository : IRepository<User>
     {

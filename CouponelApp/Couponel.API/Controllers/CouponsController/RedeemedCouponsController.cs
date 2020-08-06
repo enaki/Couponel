@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Couponel.Business.Coupons.Coupons.Models;
+using Couponel.Business.Coupons.Coupons.Models.RedeemedCouponsModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

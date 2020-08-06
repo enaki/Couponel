@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using LinqBuilder.OrderBy;
+﻿using LinqBuilder.OrderBy;
 
-namespace Couponel.Business.Coupons.Coupons.Models
+namespace Couponel.Business.Coupons.Coupons.Models.SearchModels
 {
     public sealed class SearchModel
     {

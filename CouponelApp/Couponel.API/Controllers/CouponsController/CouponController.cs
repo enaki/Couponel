@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Couponel.Business.Coupons.Coupons.Models;
+using Couponel.Business.Coupons.Coupons.Models.CouponsModels;
+using Couponel.Business.Coupons.Coupons.Models.SearchModels;
 using Couponel.Business.Coupons.Coupons.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -23,38 +25,39 @@ namespace Couponel.API.Controllers.CouponsController
         [HttpGet("{couponId}")]
         public async Task<IActionResult> GetById([FromRoute] Guid couponId)
         {
-            throw new NotImplementedException();
+            var result = await _couponService.GetById(couponId);
+            return Ok(result);
         }
         [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] SearchModel model)
         {
             var coupons = await _couponService.GetBySearchModel(model);
             return Ok(coupons);
-
         }
 
-        [Route("api/offerers/{offererId}/coupons")]
         [HttpPost]
-        public async Task<IActionResult> Add([FromRoute] Guid offererId,[FromBody] CreateCouponModel model)
+        public async Task<IActionResult> Add([FromBody] CreateCouponModel model)
         {
-            throw new NotImplementedException();
+            var result = await _couponService.Add(model);
 
+            return Created(result.Id.ToString(), null);
         }
 
-        [Route("api/offerers/{offererId}/{couponId}")]
+        [Route("{couponId}")]
         [HttpPatch]
-        public async Task<IActionResult> Update([FromRoute] Guid offererId,[FromRoute] Guid couponId, UpdateCouponModel model)
+        public async Task<IActionResult> Update([FromRoute] Guid couponId, UpdateCouponModel model)
         {
-            throw new NotImplementedException();
-
+            await _couponService.Update(couponId, model);
+            return NoContent();
         }
 
-        [Route("api/offerers/{offererId}/{couponId}")]
+        [Route("{couponId}")]
         [HttpDelete]
-        public async Task<IActionResult> Delete([FromRoute] Guid offererId,[FromRoute] Guid couponId)
+        public async Task<IActionResult> Delete([FromRoute] Guid couponId)
         {
-            throw new NotImplementedException();
+            await _couponService.Delete(couponId);
 
+            return NoContent();
         }
     }
 }

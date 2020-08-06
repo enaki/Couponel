@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Couponel.Business.Coupons.Coupons.Models
+﻿namespace Couponel.Business.Coupons.Coupons.Models.RedeemedCouponsModels
 {
     public sealed class UpdateRedeemedCouponModel
     {

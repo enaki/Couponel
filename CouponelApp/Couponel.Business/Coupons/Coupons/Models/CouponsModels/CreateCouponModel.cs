@@ -1,7 +1,7 @@
 ﻿
 using System;
 
-namespace Couponel.Business.Coupons.Coupons.Models
+namespace Couponel.Business.Coupons.Coupons.Models.CouponsModels
 {
     public sealed class CreateCouponModel
     {

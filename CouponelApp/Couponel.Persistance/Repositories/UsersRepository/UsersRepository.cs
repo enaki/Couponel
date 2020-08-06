@@ -6,7 +6,7 @@ using Couponel.Entities.Identities;
 using Couponel.Persistence.Repositories.Repository;
 using Microsoft.EntityFrameworkCore;
 
-namespace Couponel.Persistence.Repositories.IdentitiesRepositories.UsersRepository
+namespace Couponel.Persistence.Repositories.UsersRepository
 {
     public sealed class UsersRepository : Repository<User>, IUsersRepository
     {

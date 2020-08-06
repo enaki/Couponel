@@ -2,7 +2,6 @@
 using Couponel.Business.Identities.Users.Models;
 using Couponel.Business.Identities.Users.Services.Interfaces;
 using Couponel.Entities.Identities;
-using Couponel.Persistence.Repositories.IdentitiesRepositories.UsersRepository;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -11,6 +10,7 @@ using System.Threading.Tasks;
 using Couponel.Business.Authentications.Services.Interfaces;
 using Couponel.Business.Identities.Students.Models;
 using Couponel.Business.Identities.Students.Services.Interfaces;
+using Couponel.Persistence.Repositories.UsersRepository;
 
 namespace Couponel.Business.Identities.Users.Services.Implementations
 {
