@@ -77,7 +77,6 @@ namespace Couponel.Entities.Coupons
             Description = description;
         }
 
-
         public void AddPhoto(Photo photo)
         {
             Photos.Add(photo);

@@ -14,6 +14,7 @@ namespace Couponel.Business.Coupons
             CreateMap<CreateCouponModel, Coupon>();
             CreateMap<UpdateCouponModel, Coupon>();
             CreateMap<Coupon, CouponModel>();
+            CreateMap<Coupon, CouponModelExtended>();
 
 
             CreateMap<CreateCommentModel, Comment>();

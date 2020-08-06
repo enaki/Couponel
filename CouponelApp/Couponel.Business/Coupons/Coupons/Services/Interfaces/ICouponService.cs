@@ -9,7 +9,7 @@ namespace Couponel.Business.Coupons.Coupons.Services.Interfaces
 {
     public interface ICouponService
     {
-        Task<CouponModel> GetById(Guid adminId);
+        Task<CouponModelExtended> GetById(Guid adminId);
 
         Task<CouponModel> Add(CreateCouponModel model);
 
