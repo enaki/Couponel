@@ -2,7 +2,9 @@
 using Couponel.Business.Coupons.Comments.Models;
 using Couponel.Business.Coupons.Coupons.Models;
 using Couponel.Business.Coupons.Coupons.Models.CouponsModels;
+using Couponel.Business.Coupons.Coupons.Models.RedeemedCouponsModels;
 using Couponel.Business.Coupons.Photos.Models;
+using Couponel.Business.Coupons.RedeemedCoupons.Models;
 using Couponel.Entities.Coupons;
 
 namespace Couponel.Business.Coupons
@@ -22,6 +24,9 @@ namespace Couponel.Business.Coupons
 
             CreateMap<CreatePhotoModel, Photo>();
             CreateMap<Photo, PhotoModel>();
+
+            CreateMap<RedeemedCoupon, ListRedeemedCouponModel>();
+            CreateMap<RedeemedCoupon, RedeemedCouponModel>();
         }
     }
 }

@@ -83,7 +83,8 @@ namespace Couponel.Business.Authentications.Services.Implementations
                 _config.Audience,
                 new List<Claim>()
                 {
-                    new Claim("userId", user.Id.ToString())
+                    new Claim("userId", user.Id.ToString()),
+                    new Claim(ClaimTypes.Role, user.Role)
                 },
                 expires: DateTime.Now.AddHours(hours),
                 signingCredentials: credentials);

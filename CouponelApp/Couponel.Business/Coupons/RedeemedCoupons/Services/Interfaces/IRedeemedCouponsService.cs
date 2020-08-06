@@ -1,0 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+using Couponel.Business.Coupons.Coupons.Models.RedeemedCouponsModels;
+using Couponel.Business.Coupons.RedeemedCoupons.Models;
+using Couponel.Entities.Coupons;
+
+namespace Couponel.Business.Coupons.RedeemedCoupons.Services.Interfaces
+{
+    public interface IRedeemedCouponsService
+    {
+        Task<RedeemedCoupon> Get(Guid id);
+        Task<IList<ListRedeemedCouponModel>> GetAll();
+        Task<RedeemedCouponModel> Add(Guid couponId);
+        Task<RedeemedCoupon> UpdateStatus(Guid id, string newStatus);
+        Task<RedeemedCoupon> Delete(Guid id);
+    }
+}

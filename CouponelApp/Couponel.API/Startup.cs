@@ -31,6 +31,8 @@ using System.Text;
 using Couponel.Business.Authentications.Models;
 using Couponel.Business.Coupons.Photos.Services.Implementations;
 using Couponel.Business.Coupons.Photos.Services.Interfaces;
+using Couponel.Business.Coupons.RedeemedCoupons.Services.Implementations;
+using Couponel.Business.Coupons.RedeemedCoupons.Services.Interfaces;
 using Couponel.Business.Identities.Users.Services.Implementations;
 using Couponel.Business.Identities.Users.Services.Interfaces;
 using Couponel.Persistence.Repositories.CouponsRepositories;
@@ -64,6 +66,7 @@ namespace Couponel.API
                 .AddScoped<IStudentService, StudentService>()
                 .AddScoped<IAuthenticationService, AuthenticationService>()
                 .AddScoped<IUsersService, UsersService>()
+                .AddScoped<IRedeemedCouponsService, RedeemedCouponsService>()
 
                 .AddScoped<IPasswordHasher, PasswordHasher>()
 

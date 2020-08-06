@@ -6,26 +6,30 @@ using System.Text;
 
 namespace Couponel.Entities.Coupons
 {
+    public static class RedeemedCouponStatus
+    {
+        public const string NotUsed = "NotUsed";
+        public const string Used = "Used";
+        public const string Expired = "Expired";
+    }
+
     public class RedeemedCoupon : Entity
     {
-        public RedeemedCoupon(string status)
+        public RedeemedCoupon(string status, Guid couponId)
         {
             Status = status;
+            CouponId = couponId;
+            RedeemedDate = DateTime.Now;
         }
         [Required]
-        public DateTime ReedemedDate { get; private set; }
+        public DateTime RedeemedDate { get; private set; }
         [Required]
         public string Status { get; private set; }
-        public void Update(string status)
+        public void UpdateStatus(string status)
         {
             Status = status;
         }
-        #region Database Relations
-        [Required]
-        [ForeignKey("Coupon")]
         public Guid CouponId { get; private set; }
-        [Required]
         public Coupon Coupon { get; private set; }
-        #endregion
     }
 }
