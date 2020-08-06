@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Couponel.Entities.Coupons;
 
-namespace Couponel.Business.Coupons.Coupons.Models
+namespace Couponel.Business.Coupons.Coupons.Models.CouponsModels
 {
     public sealed class CouponModel
     {
@@ -11,5 +11,7 @@ namespace Couponel.Business.Coupons.Coupons.Models
         public string Category { get; set; }
         public DateTime ExpirationDate { get; set; }
         public string Description { get; set; }
+        public ICollection<Comment> Comments { get; set; }
+        public ICollection<Photo> Photos { get; set; }
     }
 }

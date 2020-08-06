@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-using Couponel.Business.Identities.Users.Models;
-using Couponel.Entities.ValueObjects;
+﻿using Couponel.Entities.ValueObjects;
 
-namespace Couponel.Business.Identities.Users.Services
+namespace Couponel.Business.Identities.Users.Models
 {
     public class UserDetailsModel:IUserDetailsModel
     {

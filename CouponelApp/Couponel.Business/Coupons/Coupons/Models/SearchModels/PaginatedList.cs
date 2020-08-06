@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace Couponel.Business.Coupons.Coupons.Models
+namespace Couponel.Business.Coupons.Coupons.Models.SearchModels
 {
     public sealed class PaginatedList<T>
     {

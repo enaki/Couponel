@@ -6,10 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Couponel.Business.Coupons.Coupons.Models;
+using Couponel.Business.Coupons.Coupons.Models.CouponsModels;
+using Couponel.Business.Coupons.Coupons.Models.SearchModels;
 using Couponel.Business.Coupons.Coupons.Services.Interfaces;
 using Couponel.Business.Coupons.Extensions;
 using Couponel.Entities.Coupons;
-using Couponel.Persistence.Repositories.CouponsRepositories.CouponsRepository;
+using Couponel.Persistence.Repositories.CouponsRepositories;
 
 namespace Couponel.Business.Coupons.Coupons.Services.Implementations
 {
@@ -24,10 +26,10 @@ namespace Couponel.Business.Coupons.Coupons.Services.Implementations
             _mapper = mapper;
         }
 
-        public async Task<CouponModel> GetById(Guid adminId)
+        public async Task<CouponModel> GetById(Guid couponId)
         {
-            var admin = await _repository.GetById(adminId);
-            return _mapper.Map<CouponModel>(admin);
+            var coupon = await _repository.GetByIdWithPhotosAndComments(couponId);
+            return _mapper.Map<CouponModel>(coupon);
         }
 
         public async Task<CouponModel> Add(CreateCouponModel model)
@@ -41,11 +43,11 @@ namespace Couponel.Business.Coupons.Coupons.Services.Implementations
             return _mapper.Map<CouponModel>(coupon);
         }
 
-        public async Task Delete(Guid adminId)
+        public async Task Delete(Guid couponId)
         {
-            var admin = await _repository.GetById(adminId);
+            var coupon = await _repository.GetById(couponId);
 
-            _repository.Delete(admin);
+            _repository.Delete(coupon);
             await _repository.SaveChanges();
         }
 

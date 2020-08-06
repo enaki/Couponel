@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Couponel.Business.Coupons.Coupons.Models;
+using Couponel.Business.Coupons.Coupons.Models.CouponsModels;
+using Couponel.Business.Coupons.Coupons.Models.SearchModels;
 
 namespace Couponel.Business.Coupons.Coupons.Services.Interfaces
 {
@@ -14,5 +16,6 @@ namespace Couponel.Business.Coupons.Coupons.Services.Interfaces
         Task Delete(Guid adminId);
 
         Task<PaginatedList<CouponModel>> GetBySearchModel(SearchModel model);
+        Task Update(Guid couponId, UpdateCouponModel model);
     }
 }
