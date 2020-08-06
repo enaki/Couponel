@@ -26,9 +26,10 @@ namespace Couponel.API.Controllers.CouponsController
             throw new NotImplementedException();
         }
         [HttpGet]
-        public async Task<IActionResult> GetAll([FromRoute] Guid couponId)
+        public async Task<IActionResult> GetAll([FromQuery] SearchModel model)
         {
-            throw new NotImplementedException();
+            var coupons = await _couponService.GetBySearchModel(model);
+            return Ok(coupons);
 
         }
 

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Couponel.Entities.Coupons;
 
 namespace Couponel.Business.Coupons.Coupons.Models
 {

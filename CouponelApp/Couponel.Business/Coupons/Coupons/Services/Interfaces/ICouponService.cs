@@ -13,6 +13,6 @@ namespace Couponel.Business.Coupons.Coupons.Services.Interfaces
 
         Task Delete(Guid adminId);
 
-        Task<IEnumerable<CouponModel>> GetAll();
+        Task<PaginatedList<CouponModel>> GetBySearchModel(SearchModel model);
     }
 }
