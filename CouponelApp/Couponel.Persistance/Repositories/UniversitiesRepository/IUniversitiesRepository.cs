@@ -7,9 +7,7 @@ namespace Couponel.Persistence.Repositories.UniversitiesRepository
 {
     public interface IUniversitiesRepository: IRepository<University>
     {
-        public Task<University> GetByIdWithAddress(Guid id);
         public Task<University> GetByIdWithFaculties(Guid id);
-        public Task<University> GetByIdFacultyIdStudentIdWithStudentDetails(Guid universityId, Guid facultyId, Guid studentId);
         public Task<University> GetByStudentId(Guid studentId);
         public Task<University> GetByIdWithFacultiesAndStudents(Guid universityId, Guid facultyId);  
         public Task<University> GetByIdWithAddressFacultiesAndStudents(Guid id);

@@ -13,9 +13,9 @@ namespace Couponel.Persistence.Configurations
         {
             redeemedCouponConfiguration
                     .HasOne<Coupon>(redeemedCoupon => redeemedCoupon.Coupon)
-                    .WithOne()
+                    .WithMany()
                     .IsRequired(true)
-                    .HasForeignKey<RedeemedCoupon>(redeemedCoupon => redeemedCoupon.CouponId)
+                    .HasForeignKey(redeemedCoupon => redeemedCoupon.CouponId)
                     .OnDelete(DeleteBehavior.NoAction);
 
             redeemedCouponConfiguration

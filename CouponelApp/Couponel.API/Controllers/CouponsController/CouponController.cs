@@ -56,7 +56,6 @@ namespace Couponel.API.Controllers.CouponsController
         public async Task<IActionResult> Delete([FromRoute] Guid couponId)
         {
             await _couponService.Delete(couponId);
-
             return NoContent();
         }
     }

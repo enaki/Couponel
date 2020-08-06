@@ -35,14 +35,11 @@ namespace Couponel.Business.Identities.Students.Services.Implementations
         {
             var university = await _repository
                 .GetByIdWithFacultiesAndStudents(universityId, facultyId);
-            if (university != null)
+            var faculty = university?.GetFaculty(facultyId);
+            if (faculty != null)
             {
-                var faculty = university.GetFaculty(facultyId);
-                if (faculty != null)
-                {
-                    faculty.AddStudent(new Student(userId));
-                    _repository.Update(university);
-                }
+                faculty.AddStudent(new Student(userId));
+                _repository.Update(university);
             }
         }
     }
