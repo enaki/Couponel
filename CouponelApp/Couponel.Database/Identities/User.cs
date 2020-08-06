@@ -3,6 +3,7 @@ using Couponel.Entities.Institutions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using Couponel.Entities.ValueObjects;
 
 namespace Couponel.Entities.Identities
@@ -47,6 +48,20 @@ namespace Couponel.Entities.Identities
         public string PhoneNumber { get; private set; }
         public Address Address { get; private set; }
         public ICollection<Coupon> Coupons {get; private set;}
+
+        public void AddCoupon(Coupon coupon)
+        {
+            Coupons.Add(coupon);
+        }
+        public void RemoveCoupon(Guid couponId)
+        {
+            var comment = this.Coupons.FirstOrDefault(c => c.Id == couponId);
+
+            if (comment != null)
+            {
+                Coupons.Remove(comment);
+            }
+        }
         public void Update(string email, string passwordHash,
             string firstName, string lastName, string phoneNumber, Address address)
         {

@@ -4,6 +4,7 @@ using Couponel.Business.Coupons.Coupons.Models;
 using Couponel.Business.Coupons.Coupons.Models.CouponsModels;
 using Couponel.Business.Coupons.Coupons.Models.SearchModels;
 using Couponel.Business.Coupons.Coupons.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -36,6 +37,7 @@ namespace Couponel.API.Controllers.CouponsController
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Add([FromBody] CreateCouponModel model)
         {
             var result = await _couponService.Add(model);
