@@ -44,5 +44,10 @@ namespace Couponel.Persistence.Repositories.UsersRepository
                 .Include(s => s.RedeemedCoupons)
                     .ThenInclude(rc=>rc.Coupon)
                 .FirstOrDefaultAsync();
+
+        public async Task<User> GetOffererWithCouponsById(Guid userId) =>
+            await _context.Users
+                .Include(u => u.Coupons)
+                .FirstOrDefaultAsync(u => u.Id == userId);
     }
 }

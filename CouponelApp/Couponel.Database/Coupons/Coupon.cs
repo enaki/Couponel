@@ -7,24 +7,6 @@ using System.Text;
 
 namespace Couponel.Entities.Coupons
 {
-    public static class Categories
-    {
-        public const string Restaurants = "Restaurants";
-        public const string CoffeeAndSnacks = "Coffee&Snacks";
-        public const string Entertainment = "Entertainment";
-
-        public const string Fashion = "Fashion";
-        public const string Accessories = "Accessories";
-        public const string Electronics = "Electronics";
-
-        public const string Supplies = "Supplies";
-        public const string Sports = "Sports";
-        public const string Auto = "Auto";
-
-        public const string Others = "Others";
-    }
-
-
     public sealed class Coupon : Entity
     {
         public Coupon(string name, string category, DateTime expirationDate, string description)

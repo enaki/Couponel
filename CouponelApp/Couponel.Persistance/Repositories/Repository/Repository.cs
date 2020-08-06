@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Couponel.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -33,6 +34,5 @@ namespace Couponel.Persistence.Repositories.Repository
 
         public async Task<IList<T>> GetAll()
             => await this.context.Set<T>().ToListAsync();
-
     }
 }

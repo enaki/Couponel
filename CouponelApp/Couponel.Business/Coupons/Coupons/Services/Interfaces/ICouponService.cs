@@ -17,5 +17,7 @@ namespace Couponel.Business.Coupons.Coupons.Services.Interfaces
 
         Task<PaginatedList<CouponModel>> GetBySearchModel(SearchModel model);
         Task Update(Guid couponId, UpdateCouponModel model);
+        Task<OffererCouponsListModel> GetOffererCouponsById();
+
     }
 }

@@ -54,7 +54,6 @@ namespace Couponel.Business.Coupons.Coupons.Services.Implementations
         public async Task Delete(Guid couponId)
         {
             var coupon = await _couponRepository.GetByIdWithPhotosAndComments(couponId);
-            
             _couponRepository.Delete(coupon);
             await _couponRepository.SaveChanges();
         }
@@ -83,6 +82,14 @@ namespace Couponel.Business.Coupons.Coupons.Services.Implementations
 
             _couponRepository.Update(coupon);
             await _couponRepository.SaveChanges();
+        }
+
+
+        public async Task<OffererCouponsListModel> GetOffererCouponsById()
+        {
+            var userId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
+            var user = await _userRepository.GetOffererWithCouponsById(userId);
+            return _mapper.Map<OffererCouponsListModel>(user);
         }
     }
 }

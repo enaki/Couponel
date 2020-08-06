@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Couponel.Business.Identities.Students.Services.Interfaces;
 using Couponel.Business.Identities.Users.Models;
 using Couponel.Business.Identities.Users.Services.Interfaces;
+using Couponel.Entities.Identities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -34,12 +35,12 @@ namespace Couponel.API.Controllers.IdentitiesController
         }
         
         [Authorize]
-        [HttpPatch("{userId}")]
-        public async Task<IActionResult> Update([FromRoute]Guid userId, [FromBody]UpdateUserModel model)
+        [HttpPatch]
+        public async Task<IActionResult> Update([FromBody]UpdateUserModel model)
         {
-            model.Id = userId;
             await _usersService.Update(model);
             return NoContent();
         }
+
     }
 }

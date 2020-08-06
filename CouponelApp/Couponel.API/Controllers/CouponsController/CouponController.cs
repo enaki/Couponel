@@ -64,5 +64,14 @@ namespace Couponel.API.Controllers.CouponsController
             await _couponService.Delete(couponId);
             return NoContent();
         }
+
+        [HttpGet]
+        [Authorize(Roles = Role.Offerer)]
+        [Route("offerer-coupons")]
+        public async Task<IActionResult> GetOffererCoupons()
+        {
+            var result = await _couponService.GetOffererCouponsById();
+            return Ok(result);
+        }
     }
 }

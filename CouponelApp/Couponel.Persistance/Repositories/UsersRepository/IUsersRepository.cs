@@ -12,5 +12,6 @@ namespace Couponel.Persistence.Repositories.UsersRepository
         Task<Student> GetStudentRedeemedCouponsById(Guid id);
         Task<Student> GetStudentRedeemedCouponById(Guid id, Guid redeemedCouponId);
         Task<Student> GetStudentRedeemedCouponsWithCouponDependecyById(Guid id);
+        Task<User> GetOffererWithCouponsById(Guid userId);
     }
 }

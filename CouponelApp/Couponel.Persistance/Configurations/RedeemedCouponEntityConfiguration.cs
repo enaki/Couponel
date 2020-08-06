@@ -16,7 +16,7 @@ namespace Couponel.Persistence.Configurations
                     .WithMany()
                     .IsRequired(true)
                     .HasForeignKey(redeemedCoupon => redeemedCoupon.CouponId)
-                    .OnDelete(DeleteBehavior.NoAction);
+                    .OnDelete(DeleteBehavior.Cascade);
 
             redeemedCouponConfiguration
                 .Property(c => c.Id)
