@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using Couponel.Business.Institutions.Universities.Models;
 using Couponel.Business.Institutions.Universities.Services.Interfaces;
+using Couponel.Entities.Identities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -11,8 +13,8 @@ namespace Couponel.API.Controllers.InstitutionsController
     [ApiController]
     public class UniversityController : ControllerBase
     {
-        private readonly ILogger<UniversityController> _logger;
         private readonly IUniversityService _universityService;
+        private readonly ILogger<UniversityController> _logger;
 
         public UniversityController(ILogger<UniversityController> logger, IUniversityService universityService)
         {
@@ -20,6 +22,7 @@ namespace Couponel.API.Controllers.InstitutionsController
             _universityService = universityService;
         }
 
+        [Authorize]
         [HttpGet("{universityId}")]
         public async Task<IActionResult> GetByIdWithAddress([FromRoute] Guid universityId)
         {
@@ -28,6 +31,7 @@ namespace Couponel.API.Controllers.InstitutionsController
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> GetAll()
         {
             var result = await _universityService.GetAll();
@@ -35,6 +39,7 @@ namespace Couponel.API.Controllers.InstitutionsController
         }
 
         [HttpPost]
+        [Authorize(Roles = Role.Admin)]
         public async Task<IActionResult> Add([FromBody] CreateUniversityModel model)
         {
 
@@ -43,6 +48,7 @@ namespace Couponel.API.Controllers.InstitutionsController
             return Created(result.Id.ToString(), null);
         }
 
+        [Authorize(Roles = Role.Admin)]
         [HttpPatch("{universityId}")]
         public async Task<IActionResult> Update([FromRoute]Guid universityId, UpdateUniversityModel model)
         {
@@ -50,6 +56,7 @@ namespace Couponel.API.Controllers.InstitutionsController
             return NoContent();
         }
 
+        [Authorize(Roles = Role.Admin)]
         [HttpDelete("{universityId}")]
         public async Task<IActionResult> Delete([FromRoute] Guid universityId)
         {

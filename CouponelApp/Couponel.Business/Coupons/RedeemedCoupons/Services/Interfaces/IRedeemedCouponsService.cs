@@ -10,10 +10,10 @@ namespace Couponel.Business.Coupons.RedeemedCoupons.Services.Interfaces
 {
     public interface IRedeemedCouponsService
     {
-        Task<RedeemedCoupon> Get(Guid id);
+        Task<RedeemedCouponModel> Get(Guid redeemedCouponId);
         Task<IList<ListRedeemedCouponModel>> GetAll();
-        Task<RedeemedCouponModel> Add(Guid couponId);
-        Task<RedeemedCoupon> UpdateStatus(Guid id, string newStatus);
-        Task<RedeemedCoupon> Delete(Guid id);
+        Task<RedeemedCouponModel> Add(Guid redeemedCouponId);
+        Task UpdateStatus(Guid redeemedCouponId, string newStatus);
+        Task Delete(Guid id);
     }
 }

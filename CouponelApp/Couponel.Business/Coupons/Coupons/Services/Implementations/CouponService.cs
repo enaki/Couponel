@@ -53,7 +53,7 @@ namespace Couponel.Business.Coupons.Coupons.Services.Implementations
         
         public async Task Delete(Guid couponId)
         {
-            var coupon = await _repository.GetByIdWithPhotosAndComments(couponId);
+            var coupon = await _couponRepository.GetByIdWithPhotosAndComments(couponId);
             
             _couponRepository.Delete(coupon);
             await _couponRepository.SaveChanges();

@@ -19,52 +19,62 @@ namespace Couponel.Business.Coupons.RedeemedCoupons.Services.Implementations
         private readonly IUsersRepository _repository;
         private readonly IMapper _mapper;
         private readonly IHttpContextAccessor _accessor;
-        private readonly ICouponService _couponService;
 
-        public RedeemedCouponsService(ICouponService couponService, IUsersRepository repository, 
+        public RedeemedCouponsService(IUsersRepository repository, 
                                             IMapper mapper, IHttpContextAccessor accessor)
         {
-            _couponService = couponService;
             _repository = repository;
             _mapper = mapper;
             _accessor = accessor;
         }
 
 
-        public async Task<RedeemedCoupon> Get(Guid id)
+        public async Task<RedeemedCouponModel> Get(Guid redeemedCouponId)
         {
             var userId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
-
-            throw new NotImplementedException();
+            var student = await _repository.GetStudentRedeemedCouponById(userId, redeemedCouponId);
+            return _mapper.Map<RedeemedCouponModel>(student.RedeemedCoupons.FirstOrDefault());
         }
 
         public async Task<IList<ListRedeemedCouponModel>> GetAll()
         {
             var userId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
-            var student=  await _repository.GetStudentRedeemedCouponsById(userId);
+            var student=  await _repository.GetStudentRedeemedCouponsWithCouponDependecyById(userId);
             return _mapper.Map<IList<ListRedeemedCouponModel>>(student.RedeemedCoupons);
         }
 
-        public async Task<RedeemedCouponModel> Add(Guid couponId)
+        public async Task<RedeemedCouponModel> Add(Guid redeemedCouponId)
         {
             var userId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
             var student = await _repository.GetStudentRedeemedCouponsById(userId);
 
-            var redeemedCoupon = new RedeemedCoupon(RedeemedCouponStatus.NotUsed,couponId);
+            var redeemedCoupon = new RedeemedCoupon(RedeemedCouponStatus.NotUsed, redeemedCouponId);
             student.AddRedeemedCoupon(redeemedCoupon);
             await _repository.SaveChanges();
 
             return _mapper.Map<RedeemedCouponModel>(redeemedCoupon);
         }
 
-        public async Task<RedeemedCoupon> UpdateStatus(Guid id, string newStatus)
+        public async Task UpdateStatus(Guid redeemedCouponId, string newStatus)
         {
-            throw new NotImplementedException();
+            var userId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
+            var student = await _repository.GetStudentRedeemedCouponById(userId, redeemedCouponId);
+
+            student.RedeemedCoupons.FirstOrDefault()?.UpdateStatus(newStatus);
+
+            _repository.Update(student.User);
+            await _repository.SaveChanges();
         }
 
-        public async Task<RedeemedCoupon> Delete(Guid id)
+        public async Task Delete(Guid redeemedCouponId)
         {
-            throw new NotImplementedException();
+            var userId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
+            var student = await _repository.GetStudentRedeemedCouponsById(userId);
+
+            student.RemoveRedeemedCoupon(redeemedCouponId);
+
+            _repository.Update(student.User);
+            await _repository.SaveChanges();
         }
     }
 
