@@ -1,54 +1,62 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
-using Couponel.Business.Coupons.Coupons.Models;
 using Couponel.Business.Coupons.Coupons.Models.CouponsModels;
 using Couponel.Business.Coupons.Coupons.Models.SearchModels;
 using Couponel.Business.Coupons.Coupons.Services.Interfaces;
 using Couponel.Business.Coupons.Extensions;
 using Couponel.Entities.Coupons;
 using Couponel.Persistence.Repositories.CouponsRepositories;
+using Couponel.Persistence.Repositories.UsersRepository;
+using Microsoft.AspNetCore.Http;
 
 namespace Couponel.Business.Coupons.Coupons.Services.Implementations
 {
     public sealed class CouponService: ICouponService
     {
-        private readonly ICouponsRepository _repository;
-        private readonly IMapper _mapper;
+        private readonly ICouponsRepository _couponRepository;
+        private readonly IUsersRepository _userRepository;
 
-        public CouponService(ICouponsRepository repository, IMapper mapper)
+        private readonly IMapper _mapper;
+        private readonly IHttpContextAccessor _accessor;
+
+        public CouponService(ICouponsRepository couponRepository, IMapper mapper, IHttpContextAccessor accessor, IUsersRepository userRepository)
         {
-            _repository = repository;
+            _couponRepository = couponRepository;
             _mapper = mapper;
+            _accessor = accessor;
+            _userRepository = userRepository;
         }
 
         public async Task<CouponModelExtended> GetById(Guid couponId)
         {
-            var coupon = await _repository.GetByIdWithPhotosAndComments(couponId);
+            var coupon = await _couponRepository.GetByIdWithPhotosAndComments(couponId);
             return _mapper.Map<CouponModelExtended>(coupon);
         }
 
         public async Task<CouponModel> Add(CreateCouponModel model)
         {
+            var userId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
+            var user = await _userRepository.GetById(userId);
             var coupon = _mapper.Map<Coupon>(model);
 
+            user.AddCoupon(coupon);
 
-            await _repository.Add(coupon);
-            await _repository.SaveChanges();
+            _userRepository.Update(user);
+            await _userRepository.SaveChanges();
 
             return _mapper.Map<CouponModel>(coupon);
         }
 
+        
         public async Task Delete(Guid couponId)
         {
-            var coupon = await _repository.GetById(couponId);
+            var coupon = await _couponRepository.GetById(couponId);
 
-            _repository.Delete(coupon);
-            await _repository.SaveChanges();
+            _couponRepository.Delete(coupon);
+            await _couponRepository.SaveChanges();
         }
 
         public async Task<PaginatedList<CouponModel>> GetBySearchModel(SearchModel model)
@@ -56,9 +64,9 @@ namespace Couponel.Business.Coupons.Coupons.Services.Implementations
             
             var spec = model.ToSpecification<Coupon>();
 
-            var coupons = await _repository.GetBySpecification(spec);
+            var coupons = await _couponRepository.GetBySpecification(spec);
 
-            var count = await _repository.CountAsync();
+            var count = await _couponRepository.CountAsync();
 
             return new PaginatedList<CouponModel>(
                 model.PageIndex,
@@ -69,12 +77,12 @@ namespace Couponel.Business.Coupons.Coupons.Services.Implementations
 
         public async Task Update(Guid id, UpdateCouponModel model)
         {
-            var coupon = await _repository.GetById(id);
+            var coupon = await _couponRepository.GetById(id);
 
             coupon.Update(model.Name, model.Category, model.ExpirationDate, model.Description);
 
-            _repository.Update(coupon);
-            await _repository.SaveChanges();
+            _couponRepository.Update(coupon);
+            await _couponRepository.SaveChanges();
         }
     }
 }
