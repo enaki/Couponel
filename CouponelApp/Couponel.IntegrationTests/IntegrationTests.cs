@@ -1,20 +1,34 @@
-﻿/*
+﻿
 using System;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Couponel.API;
+using Couponel.Business.Authentications.Models;
+using Couponel.Business.Identities.Users.Models;
+using Couponel.Entities.Identities;
+using Couponel.IntegrationTests.Shared;
 using Couponel.Persistence;
+using FluentAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
 namespace Couponel.IntegrationTests
 {
-    public class IntegrationTests : IAsyncLifetime
-    {
-        private readonly WebApplicationFactory<Startup> _webApplicationFactory;
+    public static class UserRole{
+        public const string User = "User";
+        public const string Admin = "Admin";
+        public const string Offerer = "Offerer";
+    }
 
-        protected HttpClient HttpClient { get; private set; }
+    public abstract class IntegrationTests : IAsyncLifetime
+    {
+        protected readonly WebApplicationFactory<Startup> _webApplicationFactory;
+
+        protected HttpClient HttpClient { get; set; }
+        protected Guid AuthenticatedUserId { get; set; }
+        protected string UserAuthenticationToken { get; set; }
 
         public IntegrationTests()
         {
@@ -37,22 +51,41 @@ namespace Couponel.IntegrationTests
             couponelContext.Comments.RemoveRange(couponelContext.Comments);
             couponelContext.Coupons.RemoveRange(couponelContext.Coupons);
             couponelContext.Faculties.RemoveRange(couponelContext.Faculties);
-            couponelContext.Offerers.RemoveRange(couponelContext.Offerers);
+            couponelContext.Photos.RemoveRange(couponelContext.Photos);
             couponelContext.RedeemedCoupons.RemoveRange(couponelContext.RedeemedCoupons);
             couponelContext.Students.RemoveRange(couponelContext.Students);
             couponelContext.Universities.RemoveRange(couponelContext.Universities);
             couponelContext.Users.RemoveRange(couponelContext.Users);
             await couponelContext.SaveChangesAsync();
         }
-        public async Task InitializeAsync()
-        {
-            await ExecuteDatabaseAction(async (couponelContext) => await CleanupDatabase(couponelContext));
-        }
+
+        public abstract Task InitializeAsync();
 
         public Task DisposeAsync()
         {
             return Task.CompletedTask;
         }
+
+        protected async Task<(Guid, string)> SetAuthenticationToken(string role)
+        {
+            var userFactory = UserRegisterModelFactory.getUserFactory(role);
+
+            var userRegisterModel = userFactory.getUserModel();
+            var userRegisterResponse = await HttpClient.PostAsJsonAsync($"api/v1/auth/register", userRegisterModel);
+            userRegisterResponse.IsSuccessStatusCode.Should().BeTrue();
+            var user = userFactory.getUser();
+            var authenticatedUserId = new Guid(userRegisterResponse.Headers.Location.OriginalString);
+            var authenticateModel = new AuthenticationRequest
+            {
+                Username = user.UserName,
+                Password = userRegisterModel.Password
+            };
+            
+            var userAuthenticateResponse = await HttpClient.PostAsJsonAsync($"api/v1/auth/login", authenticateModel);
+            userAuthenticateResponse.IsSuccessStatusCode.Should().BeTrue();
+            var authenticationResponseContent = await userAuthenticateResponse.Content.ReadAsAsync<AuthenticationResponse>();
+            var userAuthenticationToken = authenticationResponseContent.Token;
+            return (authenticatedUserId, userAuthenticationToken);
+        }
     }
 }
-*/
