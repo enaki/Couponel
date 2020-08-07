@@ -1,11 +1,9 @@
-﻿/*
+﻿
 using System.Net.Http;
 using System.Threading.Tasks;
 using Couponel.Business.Institutions.Universities.Models;
-using Couponel.Entities.Institutions;
-using Couponel.Entities.ValueObjects;
+using Couponel.IntegrationTests.Shared;
 using FluentAssertions;
-using FluentAssertions.Common;
 using Xunit;
 
 namespace Couponel.IntegrationTests.Institutions
@@ -16,9 +14,11 @@ namespace Couponel.IntegrationTests.Institutions
         public async Task GetUniversity()
         {
             // Arrange
-            var university = new University("university", "university@yahoo.com", "0456324862");
+            var user = UserRegisterModelFactory.Admin();
+            var university = UniversityModelFactory.Default();
             await ExecuteDatabaseAction(async couponelContext =>
             {
+                await couponelContext.Users.AddAsync(user);
                 await couponelContext.Universities.AddAsync(university);
                 await couponelContext.SaveChangesAsync();
             });
@@ -38,10 +38,12 @@ namespace Couponel.IntegrationTests.Institutions
         public async Task UpdateUniversity()
         {
             // Arrange
-            var university = new University("university", "university@yahoo.com", "0456324862");
-            university.Update("university", "university@yahoo.com", "0456324862",new Address("Romania","Iasi","Bucuriei","42"));
+            var user = UserRegisterModelFactory.Admin();
+            var university = UniversityModelFactory.Default();
+            university.Update("university", "university@yahoo.com", "0456324862", AddressModelFactory.Default());
             await ExecuteDatabaseAction(async couponelContext =>
             {
+                await couponelContext.Users.AddAsync(user);
                 await couponelContext.Universities.AddAsync(university);
                 await couponelContext.SaveChangesAsync();
             });
@@ -60,9 +62,11 @@ namespace Couponel.IntegrationTests.Institutions
         public async Task DeleteUniversity()
         {
             // Arrange
-            var university = new University("university", "university@yahoo.com", "0456324862");
+            var user = UserRegisterModelFactory.Admin();
+            var university = UniversityModelFactory.Default();
             await ExecuteDatabaseAction(async couponelContext =>
             {
+                await couponelContext.Users.AddAsync(user);
                 await couponelContext.Universities.AddAsync(university);
                 await couponelContext.SaveChangesAsync();
             });
@@ -80,4 +84,3 @@ namespace Couponel.IntegrationTests.Institutions
 
     }
 }
-*/
