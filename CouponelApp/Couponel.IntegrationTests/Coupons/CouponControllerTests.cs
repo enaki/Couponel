@@ -9,7 +9,8 @@ using Xunit;
 
 namespace Couponel.IntegrationTests.Coupons
 {
-    public class CouponControllerTests: AdminIntegrationTests
+    [Collection("Sequential")]
+    public class CouponControllerTests: OffererIntegrationTests
     {
         [Fact]
         public async Task OffererGetCoupon()
