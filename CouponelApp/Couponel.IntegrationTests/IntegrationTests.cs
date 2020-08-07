@@ -7,6 +7,7 @@ using Couponel.API;
 using Couponel.Business.Authentications.Models;
 using Couponel.Business.Identities.Users.Models;
 using Couponel.Entities.Identities;
+using Couponel.IntegrationTests.Shared;
 using Couponel.Persistence;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -15,14 +16,19 @@ using Xunit;
 
 namespace Couponel.IntegrationTests
 {
-    public class IntegrationTests : IAsyncLifetime
-    {
-        private readonly WebApplicationFactory<Startup> _webApplicationFactory;
+    public static class UserRole{
+        public const string User = "User";
+        public const string Admin = "Admin";
+        public const string Offerer = "Offerer";
+    }
 
-        protected HttpClient HttpClient { get; private set; }
-        protected Guid AuthenticatedUserId { get; private set; }
-        protected string AdminAuthenticationToken { get; private set; }
-        protected string OffererAuthenticationToken { get; private set; }
+    public abstract class IntegrationTests : IAsyncLifetime
+    {
+        protected readonly WebApplicationFactory<Startup> _webApplicationFactory;
+
+        protected HttpClient HttpClient { get; set; }
+        protected Guid AuthenticatedUserId { get; set; }
+        protected string UserAuthenticationToken { get; set; }
 
         public IntegrationTests()
         {
@@ -52,73 +58,34 @@ namespace Couponel.IntegrationTests
             couponelContext.Users.RemoveRange(couponelContext.Users);
             await couponelContext.SaveChangesAsync();
         }
-        public async Task InitializeAsync()
-        {
-            await ExecuteDatabaseAction(async (couponelContext) => await CleanupDatabase(couponelContext));
-            await SetAdminAuthenticationToken();
-            HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", AdminAuthenticationToken);
 
-        }
+        public abstract Task InitializeAsync();
 
         public Task DisposeAsync()
         {
             return Task.CompletedTask;
         }
 
-        private async Task SetAdminAuthenticationToken()
+        protected async Task<(Guid, string)> SetAuthenticationToken(string role)
         {
-            var adminRegisterModel = new UserRegisterModel
-            {
-                UserName = "mircea",
-                Email = "mircea@yahoo.com",
-                Password = "mircea",
-                Role = "Admin",
-                FirstName = "Mircea",
-                LastName = "Ionescu",
-                PhoneNumber = "0754268945"
-            };
-            var adminRegisterResponse = await HttpClient.PostAsJsonAsync($"api/v1/auth/register", adminRegisterModel);
-            adminRegisterResponse.IsSuccessStatusCode.Should().BeTrue();
-            AuthenticatedUserId = new Guid(adminRegisterResponse.Headers.Location.OriginalString);
-            var admin = new User("mircea","mircea@yahoo.com","mircea","Admin","Mircea","Ionescu","0754268945");
+            var userFactory = UserRegisterModelFactory.getUserFactory(role);
+
+            var userRegisterModel = userFactory.getUserModel();
+            var userRegisterResponse = await HttpClient.PostAsJsonAsync($"api/v1/auth/register", userRegisterModel);
+            userRegisterResponse.IsSuccessStatusCode.Should().BeTrue();
+            var user = userFactory.getUser();
+            var authenticatedUserId = new Guid(userRegisterResponse.Headers.Location.OriginalString);
             var authenticateModel = new AuthenticationRequest
             {
-                Username = admin.UserName,
-                Password = adminRegisterModel.Password
+                Username = user.UserName,
+                Password = userRegisterModel.Password
             };
-            var adminAuthenticateResponse = await HttpClient.PostAsJsonAsync($"api/v1/auth/login", authenticateModel);
-            adminAuthenticateResponse.IsSuccessStatusCode.Should().BeTrue();
-            var authenticationResponseContent = await adminAuthenticateResponse.Content.ReadAsAsync<AuthenticationResponse>();
-
-            AdminAuthenticationToken = authenticationResponseContent.Token;
-        }
-
-        private async Task SetOffererAuthenticationToken()
-        {
-            var offererRegisterModel = new UserRegisterModel
-            {
-                UserName = "mircea",
-                Email = "mircea@yahoo.com",
-                Password = "mircea",
-                Role = "Offerer",
-                FirstName = "Mircea",
-                LastName = "Ionescu",
-                PhoneNumber = "0754268945"
-            };
-            var offererRegisterResponse = await HttpClient.PostAsJsonAsync($"api/v1/auth/register", offererRegisterModel);
-            offererRegisterResponse.IsSuccessStatusCode.Should().BeTrue();
-            AuthenticatedUserId = new Guid(offererRegisterResponse.Headers.Location.OriginalString);
-            var offerer = new User("mircea", "mircea@yahoo.com", "mircea", "Offerer", "Mircea", "Ionescu", "0754268945");
-            var authenticateModel = new AuthenticationRequest
-            {
-                Username = offerer.UserName,
-                Password = offererRegisterModel.Password
-            };
-            var offererAuthenticateResponse = await HttpClient.PostAsJsonAsync($"api/v1/auth/login", authenticateModel);
-            offererAuthenticateResponse.IsSuccessStatusCode.Should().BeTrue();
-            var authenticationResponseContent = await offererAuthenticateResponse.Content.ReadAsAsync<AuthenticationResponse>();
-
-            OffererAuthenticationToken = authenticationResponseContent.Token;
+            
+            var userAuthenticateResponse = await HttpClient.PostAsJsonAsync($"api/v1/auth/login", authenticateModel);
+            userAuthenticateResponse.IsSuccessStatusCode.Should().BeTrue();
+            var authenticationResponseContent = await userAuthenticateResponse.Content.ReadAsAsync<AuthenticationResponse>();
+            var userAuthenticationToken = authenticationResponseContent.Token;
+            return (authenticatedUserId, userAuthenticationToken);
         }
     }
 }

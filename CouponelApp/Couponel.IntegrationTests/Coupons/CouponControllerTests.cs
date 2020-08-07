@@ -3,18 +3,20 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Couponel.Business.Coupons.Coupons.Models.CouponsModels;
 using Couponel.IntegrationTests.Shared;
+using Couponel.IntegrationTests.SpecificIntegrationTests;
 using FluentAssertions;
 using Xunit;
 
 namespace Couponel.IntegrationTests.Coupons
 {
-    public class CouponControllerTests:IntegrationTests
+    public class CouponControllerTests: AdminIntegrationTests
     {
         [Fact]
         public async Task OffererGetCoupon()
         {
             // Arrange
-            var user = UserRegisterModelFactory.Offerer();
+            var user = UserRegisterModelFactory.getUserFactory("Offerer").getUser();
+
             var coupon = CouponModelFactory.Default();
             user.AddCoupon(coupon);
             await ExecuteDatabaseAction(async couponelContext =>

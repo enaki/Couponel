@@ -3,21 +3,23 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Couponel.Business.Institutions.Faculties.Models;
 using Couponel.IntegrationTests.Shared;
+using Couponel.IntegrationTests.SpecificIntegrationTests;
 using FluentAssertions;
 using Xunit;
 
 namespace Couponel.IntegrationTests.Institutions
 {
-    public class FacultyControllerTests : IntegrationTests
+    [Collection("Sequential")]
+    public class FacultyControllerTests : AdminIntegrationTests
     {
-
         [Fact]
         public async Task GetFaculty()
         {
             // Arrange
-            var user = UserRegisterModelFactory.Admin();
-            var university = UniversityModelFactory.Default();
-            var faculty = FacultyModelFactory.Default();
+            var adminFactory = UserRegisterModelFactory.getUserFactory("Admin");
+            var user = adminFactory.getUser();
+            var university = InstitutionsModelFactory.University();
+            var faculty = InstitutionsModelFactory.Faculty();
             university.AddFaculty(faculty);
             await ExecuteDatabaseAction(async couponelContext =>
             {
@@ -39,10 +41,10 @@ namespace Couponel.IntegrationTests.Institutions
         public async Task UpdateFaculty()
         {
             // Arrange
-            var user = UserRegisterModelFactory.Admin();
-            var university = UniversityModelFactory.Default();
-            var faculty = FacultyModelFactory.Default();
-            faculty.Update("faculty", "facultate@yahoo.com", "0745624578", AddressModelFactory.Default());
+            var user = UserRegisterModelFactory.getUserFactory("Admin").getUser();
+            var university = InstitutionsModelFactory.University();
+            var faculty = InstitutionsModelFactory.Faculty();
+            faculty.Update("faculty", "facultate@yahoo.com", "0745624578", InstitutionsModelFactory.Address());
             university.AddFaculty(faculty);
             await ExecuteDatabaseAction(async couponelContext =>
             {
@@ -67,9 +69,9 @@ namespace Couponel.IntegrationTests.Institutions
         public async Task DeleteFaculty()
         {
             // Arrange
-            var user = UserRegisterModelFactory.Admin();
-            var university = UniversityModelFactory.Default();
-            var faculty = FacultyModelFactory.Default();
+            var user = UserRegisterModelFactory.getUserFactory("Admin").getUser();
+            var university = InstitutionsModelFactory.University();
+            var faculty = InstitutionsModelFactory.Faculty();
             university.AddFaculty(faculty);
 
             await ExecuteDatabaseAction(async couponelContext =>
