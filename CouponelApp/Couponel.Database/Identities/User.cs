@@ -1,5 +1,4 @@
 ﻿using Couponel.Entities.Coupons;
-using Couponel.Entities.Institutions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

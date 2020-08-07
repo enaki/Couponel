@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Couponel.Entities.Coupons;
 
 namespace Couponel.Business.Coupons.Coupons.Models.CouponsModels

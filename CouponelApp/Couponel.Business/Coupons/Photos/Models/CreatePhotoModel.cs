@@ -1,6 +1,4 @@
-﻿using System;
-using System.Text.Json.Serialization;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 
 namespace Couponel.Business.Coupons.Photos.Models
 {

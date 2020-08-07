@@ -1,10 +1,5 @@
-using System;
-using System.Net.Http;
-using System.Xml;
 using Couponel.Business.Authentications.Services.Implementations;
 using Couponel.Business.Authentications.Services.Interfaces;
-using Couponel.Business.Institutions.Faculties.Models;
-using Couponel.Entities.Identities;
 using Xunit;
 using Xunit.Abstractions;
 

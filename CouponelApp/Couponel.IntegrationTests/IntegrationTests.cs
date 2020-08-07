@@ -1,12 +1,8 @@
-﻿
-using System;
+﻿using System;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Couponel.API;
 using Couponel.Business.Authentications.Models;
-using Couponel.Business.Identities.Users.Models;
-using Couponel.Entities.Identities;
 using Couponel.IntegrationTests.Shared;
 using Couponel.Persistence;
 using FluentAssertions;

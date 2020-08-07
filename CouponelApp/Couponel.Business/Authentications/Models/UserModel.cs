@@ -1,8 +1,4 @@
-﻿using Couponel.Entities.Identities;
-using Couponel.Entities.Institutions;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 using Couponel.Entities.ValueObjects;
 
 namespace Couponel.Business.Authentications.Models

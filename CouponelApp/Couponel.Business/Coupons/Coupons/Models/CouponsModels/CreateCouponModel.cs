@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 
 namespace Couponel.Business.Coupons.Coupons.Models.CouponsModels
 {

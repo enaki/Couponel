@@ -1,6 +1,5 @@
 ﻿using Couponel.Entities.Institutions;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Couponel.Entities.ValueObjects;
 

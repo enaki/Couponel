@@ -1,8 +1,4 @@
-﻿using Couponel.Entities.Institutions;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Couponel.Entities.ValueObjects;
+﻿using Couponel.Entities.ValueObjects;
 
 namespace Couponel.Business.Institutions.Universities.Models
 {

@@ -2,7 +2,6 @@
 using Couponel.Business.Institutions.Faculties.Models;
 using Couponel.Business.Institutions.Universities.Models;
 using Couponel.Entities.Institutions;
-using System.Collections.Generic;
 
 namespace Couponel.Business.Institutions
 {

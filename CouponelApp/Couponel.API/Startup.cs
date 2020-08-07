@@ -29,15 +29,26 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Couponel.Business.Authentications.Models;
+using Couponel.Business.Coupons.Comments.Models;
+using Couponel.Business.Coupons.Comments.Validators;
+using Couponel.Business.Coupons.Coupons.Models.CouponsModels;
+using Couponel.Business.Coupons.Coupons.Models.RedeemedCouponsModels;
+using Couponel.Business.Coupons.Coupons.Validators;
 using Couponel.Business.Coupons.Photos.Services.Implementations;
 using Couponel.Business.Coupons.Photos.Services.Interfaces;
 using Couponel.Business.Coupons.RedeemedCoupons.Services.Implementations;
 using Couponel.Business.Coupons.RedeemedCoupons.Services.Interfaces;
+using Couponel.Business.Identities.Users.Models;
 using Couponel.Business.Identities.Users.Services.Implementations;
 using Couponel.Business.Identities.Users.Services.Interfaces;
+using Couponel.Business.Identities.Users.Validators;
+using Couponel.Business.Institutions.Faculties.Models;
+using Couponel.Business.Institutions.Universities.Models;
+using Couponel.Business.Institutions.Validators;
 using Couponel.Persistence.Repositories.CouponsRepositories;
 using Couponel.Persistence.Repositories.UniversitiesRepository;
 using Couponel.Persistence.Repositories.UsersRepository;
+using FluentValidation;
 
 namespace Couponel.API
 {
@@ -97,6 +108,16 @@ namespace Couponel.API
             services
                 .AddMvc()
                 .AddFluentValidation();
+            
+            services
+                .AddTransient<IValidator<UserRegisterModel>, UserRegisterModelValidator>()
+                .AddTransient<IValidator<CreateCommentModel>, CommentModelValidator>()
+                .AddTransient<IValidator<CreateCouponModel>, CreateCouponModelValidator>()
+                .AddTransient<IValidator<UpdateCouponModel>, UpdateCouponModelValidator>()
+                .AddTransient<IValidator<CreateRedeemedCouponModel>, CreateRedeemedCouponModelValidator>()
+                .AddTransient<IValidator<CreateFacultyModel>, CreateFacultyModelValidator>()
+                .AddTransient<IValidator<CreateUniversityModel>, CreateUniversityModelValidator>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

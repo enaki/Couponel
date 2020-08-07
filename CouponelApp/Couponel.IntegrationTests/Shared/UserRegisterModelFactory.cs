@@ -41,12 +41,12 @@ namespace Couponel.IntegrationTests.Shared
         }
     }
 
-    public class UserFactory : UserAbstractFactory
+    public class StudentFactory : UserAbstractFactory
     {
         private const string Username = "user";
         private const string Email = "user@yahoo.com";
         private const string Password = "user";
-        private const string Role = "User";
+        private const string Role = "Student";
         private const string FirstName = "Mircea";
         private const string LastName = "Ionescu";
         private const string PhoneNumber = "0754268945";
@@ -107,7 +107,7 @@ namespace Couponel.IntegrationTests.Shared
             {
                 UserRole.Admin => new AdminFactory(),
                 UserRole.Offerer => new OffererFactory(),
-                _ => new UserFactory()
+                _ => new StudentFactory()
             };
         }
 

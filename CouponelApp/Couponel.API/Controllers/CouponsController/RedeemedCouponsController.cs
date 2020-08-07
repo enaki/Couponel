@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Couponel.API.Controllers.IdentitiesController;
-using Couponel.Business.Coupons.Coupons.Models;
-using Couponel.Business.Coupons.Coupons.Models.RedeemedCouponsModels;
 using Couponel.Business.Coupons.RedeemedCoupons.Services.Interfaces;
-using Couponel.Business.Identities.Users.Services.Interfaces;
 using Couponel.Entities.Identities;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 

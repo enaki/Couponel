@@ -3,7 +3,6 @@ using OpenQA.Selenium.Chrome;
 
 namespace Couponel.AutomationTests.Helpers
 {
-
     public abstract class Browser
     {
         protected IWebDriver Driver;

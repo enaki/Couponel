@@ -1,6 +1,4 @@
 ﻿using System;
-using Couponel.Entities.Identities;
-using Couponel.Entities.Institutions;
 using Couponel.Entities.ValueObjects;
 
 namespace Couponel.Business.Identities.Users.Models

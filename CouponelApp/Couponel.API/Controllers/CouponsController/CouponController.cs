@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Couponel.Business.Coupons.Coupons.Models;
 using Couponel.Business.Coupons.Coupons.Models.CouponsModels;
 using Couponel.Business.Coupons.Coupons.Models.SearchModels;
 using Couponel.Business.Coupons.Coupons.Services.Interfaces;
