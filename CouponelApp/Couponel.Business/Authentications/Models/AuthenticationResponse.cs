@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace Couponel.Business.Authentications.Models
 {
     public sealed class AuthenticationResponse

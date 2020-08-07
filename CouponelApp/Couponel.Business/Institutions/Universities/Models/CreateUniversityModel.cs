@@ -1,7 +1,4 @@
-﻿using Couponel.Entities.Institutions;
-using System;
-using System.Text.Json.Serialization;
-using Couponel.Entities.ValueObjects;
+﻿using Couponel.Entities.ValueObjects;
 
 namespace Couponel.Business.Institutions.Universities.Models
 {

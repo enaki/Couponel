@@ -10,7 +10,6 @@ using Couponel.Business.Authentications.Services.Interfaces;
 using Couponel.Business.Identities.Students.Services.Interfaces;
 using Couponel.Business.Identities.Users.Models;
 using Couponel.Entities.Identities;
-using Couponel.Persistence.Repositories.UniversitiesRepository;
 using Couponel.Persistence.Repositories.UsersRepository;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;

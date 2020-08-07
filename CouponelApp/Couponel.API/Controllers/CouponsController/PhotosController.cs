@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Couponel.API.Controllers.InstitutionsController;
 using Couponel.Business.Coupons.Photos.Models;
 using Couponel.Business.Coupons.Photos.Services.Interfaces;
 using Couponel.Entities.Identities;

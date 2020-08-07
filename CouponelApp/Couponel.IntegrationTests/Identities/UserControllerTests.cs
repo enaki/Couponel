@@ -1,7 +1,6 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
 using Couponel.Business.Authentications.Models;
-using Couponel.Business.Institutions.Faculties.Models;
 using Couponel.IntegrationTests.Shared;
 using Couponel.IntegrationTests.SpecificIntegrationTests;
 using FluentAssertions;

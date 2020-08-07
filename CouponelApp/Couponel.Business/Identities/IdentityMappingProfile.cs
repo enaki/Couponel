@@ -2,9 +2,7 @@
 using Couponel.Business.Coupons.Coupons.Models.CouponsModels;
 using Couponel.Business.Identities.Students.Models;
 using Couponel.Business.Identities.Users.Models;
-using Couponel.Business.Identities.Users.Services;
 using Couponel.Entities.Identities;
-using Couponel.Entities.Institutions;
 
 namespace Couponel.Business.Identities
 {

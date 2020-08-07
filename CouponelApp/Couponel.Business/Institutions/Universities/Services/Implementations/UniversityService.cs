@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Couponel.Business.Institutions.Universities.Models;
 using Couponel.Business.Institutions.Universities.Services.Interfaces;
-using Couponel.Entities;
 using Couponel.Entities.Institutions;
 using Couponel.Persistence.Repositories.UniversitiesRepository;
 

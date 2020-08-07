@@ -1,5 +1,4 @@
-﻿using Couponel.Entities;
-using Couponel.Entities.Coupons;
+﻿using Couponel.Entities.Coupons;
 using Couponel.Entities.Identities;
 using Couponel.Entities.Institutions;
 using Couponel.Persistence.Configurations;

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Couponel.Business.Institutions.Faculties.Models;
-using Couponel.Entities.Institutions;
 
 namespace Couponel.Business.Institutions.Faculties.Services.Interfaces
 {

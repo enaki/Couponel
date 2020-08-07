@@ -33,11 +33,14 @@ using Couponel.Business.Coupons.Photos.Services.Implementations;
 using Couponel.Business.Coupons.Photos.Services.Interfaces;
 using Couponel.Business.Coupons.RedeemedCoupons.Services.Implementations;
 using Couponel.Business.Coupons.RedeemedCoupons.Services.Interfaces;
+using Couponel.Business.Identities.Users.Models;
 using Couponel.Business.Identities.Users.Services.Implementations;
 using Couponel.Business.Identities.Users.Services.Interfaces;
+using Couponel.Business.Identities.Users.Validators;
 using Couponel.Persistence.Repositories.CouponsRepositories;
 using Couponel.Persistence.Repositories.UniversitiesRepository;
 using Couponel.Persistence.Repositories.UsersRepository;
+using FluentValidation;
 
 namespace Couponel.API
 {
@@ -97,6 +100,9 @@ namespace Couponel.API
             services
                 .AddMvc()
                 .AddFluentValidation();
+
+            services.AddTransient<IValidator<UserRegisterModel>, UserRegisterModelValidator>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

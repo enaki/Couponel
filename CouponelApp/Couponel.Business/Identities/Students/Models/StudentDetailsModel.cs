@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Couponel.Business.Identities.Users.Models;
+﻿using Couponel.Business.Identities.Users.Models;
 using Couponel.Entities.ValueObjects;
 
 namespace Couponel.Business.Identities.Students.Models
