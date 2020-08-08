@@ -5,22 +5,25 @@
 <div class="flex-row-space-around">
   <section class="image-section">
 
-
     <img src="../../assets/images/voucher.svg"
-         alt="Voucher image" />
+           alt="Voucher image" />
 
 
   </section>
+  <!-- TO DO: Stupid css doesnt work -_--->
   <section class="form-section">
-    <form [formGroup]="formGroup">
+    <h1 style="text-align: center; color: darkred;">{{ name }}</h1>
+    <img src="../../assets/images/coupon.png"
+         alt="Voucher image" />
+    <p>Expiration Date: {{expirationDate}}</p>
+    <div class="coupon-description">Description: {{description}}</div>
 
+    <!--
+    <form [formGroup]="formGroup">
       <div class="form-group">
         <input type="text"
-               placeholder="Enter voucher title"
-               formControlName="title">
-      </div>
-
-      <div class="form-group">
+               placeholder="Enter voucher name"
+               formControlName="name">
         <p *ngIf="isFormDisabled; else notEditable">{{description}}</p>
 
         <ng-template #notEditable>
@@ -79,5 +82,17 @@
       </ng-template>
 
     </form>
+    -->
   </section>
+</div>
+
+<div class="flex-row-space-around">
+  <div class="form-section">
+    <h2 style="text-align: center;">Commentaries</h2>
+    <div *ngFor="let commentary of comments">
+      <h3>
+        {{commentary["content"]}}
+      </h3>
+    </div>
+  </div>
 </div>

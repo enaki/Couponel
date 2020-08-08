@@ -5,5 +5,5 @@ export type RegisterModel = {
   email: string;
   password: string;
   phoneNumber: string;
-  role: string;
+  userType: string;
 };
