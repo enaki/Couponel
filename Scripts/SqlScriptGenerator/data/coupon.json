@@ -34,5 +34,68 @@
     "ExpirationDate": "2023-09-25 15:20",
     "Description": "Ai reducere de 51% la toate pernele cu spuma de memorie.",
     "OffererId": "b8f48fda-c366-4917-828f-17b2b363556e"
+  },
+  {
+    "Id": "4157aaec-26a3-4e85-82c7-4a4251871e9d",
+    "Name": "Reducere 20% la casti",
+    "Category": "Electronice",
+    "DateAdded": "2020-12-30 12:10",
+    "ExpirationDate": "2020-10-29 19:20",
+    "Description": "Ai reducere de 20% la toate castile samsung.",
+    "OffererId": "47c4cec2-3498-4c7d-a709-141b43deb644"
+  },
+  {
+    "Id": "88184fdb-ba50-492a-882b-cca90e3bb87b",
+    "Name": "Reducere 20% la telefoanele apple",
+    "Category": "Electronice",
+    "DateAdded": "2020-05-24 12:31",
+    "ExpirationDate": "2022-03-25 19:20",
+    "Description": "Ai reducere de 20% la toate telefoanele apple.",
+    "OffererId": "47c4cec2-3498-4c7d-a709-141b43deb644"
+  },
+  {
+    "Id": "2255941e-1c73-452e-b6a3-55a9e946a3fe",
+    "Name": "Reducere 7% la toate produsele",
+    "Category": "Others",
+    "DateAdded": "2020-12-13 12:31",
+    "ExpirationDate": "2023-09-25 19:20",
+    "Description": "Ai reducere de 7% la toate produsele.",
+    "OffererId": "b8f48fda-c366-4917-828f-17b2b363556e"
+  },
+  {
+    "Id": "50adbaf1-07b5-473a-8119-44c3fa04af85",
+    "Name": "Reducere 25% la masini de spalat",
+    "Category": "Electrocasnice",
+    "DateAdded": "2020-12-13 12:31",
+    "ExpirationDate": "2021-09-25 19:20",
+    "Description": "Ai reducere de 25% la toate masinile de spalat.",
+    "OffererId": "b8f48fda-c366-4917-828f-17b2b363556e"
+  },
+  {
+    "Id": "a610fadb-ae77-4a18-89b6-cb973bb39046",
+    "Name": "Reducere 20% la aragaze",
+    "Category": "Electronicasnice",
+    "DateAdded": "2020-12-30 05:31",
+    "ExpirationDate": "2021-09-30 19:20",
+    "Description": "Ai reducere de 20% la toate aragazele.",
+    "OffererId": "e46b79d0-dfcd-4cd0-a608-c0934bbb3cad"
+  },
+  {
+    "Id": "0a4e0e8b-6772-4f2d-a9f4-ba8922bc1744",
+    "Name": "Reducere 20% la frigidere",
+    "Category": "Electrocasnice",
+    "DateAdded": "2020-05-24 12:31",
+    "ExpirationDate": "2021-06-25 19:20",
+    "Description": "Ai reducere de 20% la toate figiderele.",
+    "OffererId": "e46b79d0-dfcd-4cd0-a608-c0934bbb3cad"
+  },
+  {
+    "Id": "ed258994-f1a8-4c4a-803e-0d17c52e9ef1",
+    "Name": "Reducere 20% la cuptoare cu microunde",
+    "Category": "Electrocasnice",
+    "DateAdded": "2020-12-15 12:31",
+    "ExpirationDate": "2023-01-14 19:20",
+    "Description": "Ai reducere de 20% la toate cuptoarele cu microunde.",
+    "OffererId": "a64a0020-e0f2-46fa-a7a9-1e657f02d83f"
   }
 ]
