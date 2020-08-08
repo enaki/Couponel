@@ -9,7 +9,7 @@ using Xunit;
 namespace Couponel.IntegrationTests.Identities
 {
     [Collection("Sequential")]
-    public class UserControllerTests: UserIntegrationTests
+    public class StudentControllerTests: StudentIntegrationTests
     {
         [Fact]
         public async Task GetAdminUser()

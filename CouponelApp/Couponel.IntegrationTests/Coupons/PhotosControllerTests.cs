@@ -17,11 +17,37 @@ namespace Couponel.IntegrationTests.Coupons
     public class PhotosControllerTests: OffererIntegrationTests
     {
         [Fact]
+        public async Task OffererGetPhoto()
+        {
+            // Arrange
+            var user = UserRegisterModelFactory.getUserFactory("Offerer").getUser();
+
+            var coupon = CouponModelFactory.Default();
+            user.AddCoupon(coupon);
+            var photo = new Photo("Photo", await File.ReadAllBytesAsync("..\\..\\..\\Photo\\image.jpeg"), user.Id);
+            coupon.AddPhoto(photo);
+            await ExecuteDatabaseAction(async couponelContext =>
+            {
+                await couponelContext.Users.AddAsync(user);
+                await couponelContext.SaveChangesAsync();
+            });
+
+            //Act
+            var response = await HttpClient.GetAsync($"api/coupons/{coupon.Id}/photos");
+
+            // Assert
+            response.IsSuccessStatusCode.Should().BeTrue();
+            var photos = await response.Content.ReadAsAsync<IList<CouponModel>>();
+            photos.Should().HaveCount(1);
+
+        }
+
+        [Fact]
         public async Task OffererDeletePhoto()
         {
             // Arrange
             var user = UserRegisterModelFactory.getUserFactory("Offerer").getUser();
-            var photo= new Photo("Photo", File.ReadAllBytes("G:\\Centric Couponel\\Couponel\\CouponelApp\\Couponel.IntegrationTests\\Photo\\image.jpeg"), user.Id);
+            var photo= new Photo("Photo", await File.ReadAllBytesAsync("..\\..\\..\\Photo\\image.jpeg"), user.Id);
             var coupon = CouponModelFactory.Default();
             user.AddCoupon(coupon);
             coupon.AddPhoto(photo);
