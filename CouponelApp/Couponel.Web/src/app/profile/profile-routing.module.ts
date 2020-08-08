@@ -4,8 +4,8 @@ import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
-    path:'',
-    pathMatch:'full',
+    path: '',
+    pathMatch: 'full',
     component: ProfileComponent
   }
 ];
