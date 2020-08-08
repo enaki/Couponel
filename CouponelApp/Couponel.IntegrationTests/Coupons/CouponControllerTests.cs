@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Couponel.Business.Coupons.Coupons.Models.CouponsModels;
@@ -35,5 +36,51 @@ namespace Couponel.IntegrationTests.Coupons
             coupons.Should().Should().NotBeNull();
 
         }
+        [Fact]
+        public async Task OffererUpdateCoupon()
+        {
+            // Arrange
+            var user = UserRegisterModelFactory.getUserFactory("Offerer").getUser();
+
+            var coupon = CouponModelFactory.Default();
+            user.AddCoupon(coupon);
+            coupon.Update("da","electronice", new DateTime(2022,04,12,12,32,12),"descriere" );
+            await ExecuteDatabaseAction(async couponelContext =>
+            {
+                await couponelContext.Users.AddAsync(user);
+                await couponelContext.SaveChangesAsync();
+            });
+
+            //Act
+            var response = await HttpClient.GetAsync($"api/coupons/{coupon.Id}");
+
+            // Assert
+            response.IsSuccessStatusCode.Should().BeTrue();
+            var coupons = await response.Content.ReadAsAsync<CouponModel>();
+            coupons.Name.Should().Be("da");
+        }
+        [Fact]
+        public async Task OffererDeleteCoupon()
+        {
+            // Arrange
+            var user = UserRegisterModelFactory.getUserFactory("Offerer").getUser();
+
+            var coupon = CouponModelFactory.Default();
+            user.AddCoupon(coupon);
+            await ExecuteDatabaseAction(async couponelContext =>
+            {
+                await couponelContext.Users.AddAsync(user);
+                await couponelContext.SaveChangesAsync();
+            });
+
+            //Act
+            var response = await HttpClient.DeleteAsync($"api/coupons/{coupon.Id}");
+
+            // Assert
+            response.IsSuccessStatusCode.Should().BeTrue();
+            var coupons = await response.Content.ReadAsAsync<CouponModel>();
+            coupons.Should().BeNull();
+        }
+
     }
 }

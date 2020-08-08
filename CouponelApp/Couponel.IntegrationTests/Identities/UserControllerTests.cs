@@ -12,10 +12,31 @@ namespace Couponel.IntegrationTests.Identities
     public class UserControllerTests: UserIntegrationTests
     {
         [Fact]
-        public async Task GetUser()
+        public async Task GetAdminUser()
         {
             // Arrange
             var user = UserRegisterModelFactory.getUserFactory("Admin").getUser();
+            await ExecuteDatabaseAction(async couponelContext =>
+            {
+                await couponelContext.Users.AddAsync(user);
+                await couponelContext.SaveChangesAsync();
+            });
+
+            //Act
+            var response = await HttpClient.GetAsync($"api/users/{user.Id}");
+
+            // Assert
+            response.IsSuccessStatusCode.Should().BeTrue();
+            var users = await response.Content.ReadAsAsync<UserModel>();
+            users.Should().NotBeNull();
+
+        }
+
+        [Fact]
+        public async Task GetOffererUser()
+        {
+            // Arrange
+            var user = UserRegisterModelFactory.getUserFactory("Offerer").getUser();
             await ExecuteDatabaseAction(async couponelContext =>
             {
                 await couponelContext.Users.AddAsync(user);
