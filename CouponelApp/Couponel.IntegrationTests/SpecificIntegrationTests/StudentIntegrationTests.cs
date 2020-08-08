@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace Couponel.IntegrationTests.SpecificIntegrationTests
 {
-    public class UserIntegrationTests: IntegrationTests
+    public class StudentIntegrationTests: IntegrationTests
     {
         public override async Task InitializeAsync()
         {

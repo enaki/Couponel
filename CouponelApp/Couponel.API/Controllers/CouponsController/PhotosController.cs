@@ -22,7 +22,7 @@ namespace Couponel.API.Controllers.CouponsController
             _logger = logger;
         }
 
-        [Authorize(Roles = Role.Student)]
+        [Authorize(Roles = Role.Offerer + "," + Role.Student)]
         [HttpGet]
         public async Task<IActionResult> Get([FromRoute] Guid couponId)
         {
