@@ -14,18 +14,30 @@ import { UserService } from '../services';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  public username: string;
   constructor(
     private readonly router: Router,
     private readonly cdRef: ChangeDetectorRef,
     public readonly userService: UserService
   ) {}
+  public username: string;
+
+  private static localStorageCleaning(): void {
+    console.log('Local Storage cleaned successfully');
+    localStorage.removeItem('email');
+    localStorage.removeItem('username');
+    localStorage.removeItem('firstName');
+    localStorage.removeItem('lastName');
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('userRole');
+  }
 
   public logout(): void {
     this.router.navigate(['authentication']);
-    localStorage.removeItem('email');
-    this.username = localStorage.getItem('email');
+    HeaderComponent.localStorageCleaning();
+    this.username = localStorage.getItem('username');
   }
+
   public goToPage(page: string): void {
     this.router.navigate([page]);
   }

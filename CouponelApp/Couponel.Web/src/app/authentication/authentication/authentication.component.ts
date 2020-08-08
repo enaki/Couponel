@@ -14,9 +14,20 @@ import { AuthenticationService } from '../services/authentication.service';
   providers: [AuthenticationService],
 })
 export class AuthenticationComponent {
-  public isSetRegistered: boolean = false;
-  public isAdmin: boolean = false;
+  public isSetRegistered = false;
+  public isAdmin = false;
   public formGroup: FormGroup;
+
+  // tslint:disable-next-line:use-lifecycle-interface
+  ngOnInit(): void {
+    const currentUser = localStorage.getItem('userId');
+    console.log(localStorage.getItem('username'));
+    if (currentUser != null){
+      this.setRegister();
+      this.userService.username.next(localStorage.getItem('username'));
+      this.router.navigate(['dashboard']);
+    }
+  }
 
   constructor(
     private readonly router: Router,
@@ -28,7 +39,7 @@ export class AuthenticationComponent {
       username: new FormControl(null, [Validators.required, Validators.minLength(5)]),
       firstName: new FormControl(null, [Validators.required]),
       lastName: new FormControl(null, [Validators.required]),
-      email: new FormControl(null,[Validators.required, Validators.email]),
+      email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, [Validators.required, Validators.minLength(5)]),
       phoneNumber: new FormControl(null, [Validators.required]),
       role: new FormControl(null, Validators.required),
@@ -37,7 +48,7 @@ export class AuthenticationComponent {
   }
 
   public setRegister(): void {
-    this.isSetRegistered = !this.isSetRegistered;
+    this.isSetRegistered = true;
   }
 
   public setAdmin(): void {
@@ -63,6 +74,7 @@ export class AuthenticationComponent {
 
       this.authenticationService.login(data).subscribe((logData: any) => {
         localStorage.setItem('userToken', JSON.stringify(logData.token));
+        this.authenticationService.setSessionTokenInfo(JSON.stringify(logData.token));
         this.userService.username.next(data.username);
         this.router.navigate(['dashboard']);
       });
