@@ -156,7 +156,7 @@ def generate_admins():
     with open("data/admin.json", encoding='utf-8') as data_file:
         admins = json.load(data_file)
         for admin in admins:
-            role = "1" if admin["Account"]["Role"] == "student" else "2" if admin["Account"]["Role"] == "offerer" else "3"
+            role = "Student" if admin["Account"]["Role"] == "student" else "Offerer" if admin["Account"]["Role"] == "offerer" else "Admin"
             user_list.append({
                 "Id": admin["Id"],
                 "Username": admin["Account"]["UserName"],
@@ -415,7 +415,7 @@ def generate_redeemedcoupons():
         for reedemedcoupon in redeemedcoupons:
             redeemedcoupons_list.append({
                 "Id": reedemedcoupon["Id"],
-                "ReedemedDate": reedemedcoupon["ReedemedDate"],
+                "RedeemedDate": reedemedcoupon["RedeemedDate"],
                 "Status": reedemedcoupon["Status"],
                 "CouponId": reedemedcoupon["CouponId"],
                 "StudentId": reedemedcoupon["StudentId"]
@@ -430,7 +430,7 @@ def generate_redeemedcoupons():
     for redeemedcoupon in redeemedcoupons_list:
         redeemedcoupons_string_builder_sql += """INSERT INTO [dbo].[RedeemedCoupons]
                ([Id]
-               ,[ReedemedDate]
+               ,[RedeemedDate]
                ,[Status]
                ,[CouponId]
                ,[StudentId])
@@ -440,7 +440,7 @@ def generate_redeemedcoupons():
                ,N'{}'
                ,(CONVERT(uniqueidentifier,'{}'))
                ,(CONVERT (uniqueidentifier,'{}')))\n\n""".format(redeemedcoupon["Id"],
-                                                                 redeemedcoupon["ReedemedDate"],
+                                                                 redeemedcoupon["RedeemedDate"],
                                                                  redeemedcoupon["Status"],
                                                                  redeemedcoupon["CouponId"],
                                                                  redeemedcoupon["StudentId"])

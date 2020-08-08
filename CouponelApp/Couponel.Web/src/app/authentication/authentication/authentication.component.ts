@@ -30,7 +30,8 @@ export class AuthenticationComponent {
       lastName: new FormControl(null, [Validators.required]),
       email: new FormControl(null,[Validators.required, Validators.email]),
       password: new FormControl(null, [Validators.required, Validators.minLength(5)]),
-      userType: new FormControl(null, Validators.required),
+      phoneNumber: new FormControl(null, [Validators.required]),
+      role: new FormControl(null, Validators.required),
     });
     this.userService.username.next('');
   }
@@ -55,7 +56,8 @@ export class AuthenticationComponent {
       this.formGroup.removeControl('firstName');
       this.formGroup.removeControl('lastName');
       this.formGroup.removeControl('email');
-      this.formGroup.removeControl('userType');
+      this.formGroup.removeControl('role');
+      this.formGroup.removeControl('phoneNumber');
 
       const data: LoginModel = this.formGroup.getRawValue();
 

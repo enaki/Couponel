@@ -19,6 +19,7 @@ export class VoucherListComponent implements OnInit {
 
   public ngOnInit(): void {
     this.service.getAll().subscribe((data: VouchersModel) => {
+      console.log(data.results);
       this.voucherList = data.results;
     });
   }

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { VoucherModel } from '../models';
+import { CommentModel } from '../models/comment.model';
 import { VoucherService } from '../services/voucher.service';
 
 @Component({
@@ -22,9 +23,22 @@ export class VoucherDetailsComponent implements OnInit, OnDestroy {
   photos: Blob[] = [];
 
   private routeSub: Subscription = new Subscription();
+  comments: CommentModel[];
 
   get description(): string {
     return this.formGroup.get('description').value;
+  }
+
+  get name(): string {
+    return this.formGroup.get('name').value;
+  }
+
+  get category(): string {
+    return this.formGroup.get('category').value;
+  }
+
+  get expirationDate(): string {
+    return this.formGroup.get('expirationDate').value.replace('T', ' ');
   }
 
   get isFormDisabled(): boolean {
@@ -40,20 +54,24 @@ export class VoucherDetailsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.formGroup = this.formBuilder.group({
       id: new FormControl(),
-      title: new FormControl(),
+      name: new FormControl(),
       description: new FormControl(),
+      expirationDate: new FormControl(),
       private: new FormControl(false)
     });
 
     if (this.router.url === '/create-voucher') {
       this.isAddMode = true;
     } else {
-      //Getting id from url
+      // Getting id from url
       this.routeSub = this.activatedRoute.params.subscribe(params => {
-        //Getting details for the trip with the id found
-        this.service.get(params['id']).subscribe((data: VoucherModel) => {
+        // Getting details for the coupon with the id found
+        this.service.get(params.id).subscribe((data: VoucherModel) => {
+          console.log(data);
           this.formGroup.patchValue(data);
-        })
+          console.log('Comments: ' + data.comments);
+          this.comments = data.comments;
+        });
         this.formGroup.disable();
       });
       this.isAddMode = false;
@@ -65,11 +83,11 @@ export class VoucherDetailsComponent implements OnInit, OnDestroy {
     this.routeSub.unsubscribe();
   }
 
-  startUpdating() {
+  startUpdating(): void {
     this.formGroup.enable();
   }
 
-  save() {
+  save(): void {
     if (this.isAddMode) {
       this.service.post(this.formGroup.getRawValue()).subscribe();
       this.router.navigate(['list']);
@@ -82,14 +100,13 @@ export class VoucherDetailsComponent implements OnInit, OnDestroy {
     this.formGroup.disable();
   }
 
-  handleFileInput(file: FileList) {
+  handleFileInput(file: FileList): void {
     this.fileToUpload = file.item(0);
 
-    let reader = new FileReader();
+    const reader = new FileReader();
     reader.onload = (event: any) => {
       this.imageUrl = event.target.result;
-    }
+    };
     reader.readAsDataURL(this.fileToUpload);
   }
-
 }

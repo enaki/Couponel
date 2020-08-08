@@ -16,6 +16,7 @@ export class AuthenticationService {
   }
 
   public register(data: unknown): Observable<unknown> {
+    console.log(data);
     return this.httpClient.post(`${this.endpoint}/register`, data);
   }
 }
