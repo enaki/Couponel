@@ -34,7 +34,7 @@ namespace Couponel.API.Controllers
             var result = await _authenticationService.Register(model);
             if (result == null)
             {
-                return BadRequest();
+                return BadRequest("User already exists");
             }
             return Created(result.Id.ToString(), null);
         }

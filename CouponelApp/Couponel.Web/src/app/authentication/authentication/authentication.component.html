@@ -52,8 +52,17 @@
       </div>
     </ng-container>
     <ng-container *ngIf="isSetRegistered">
+      <label>Phone Number*</label>
+      <input formControlName="phoneNumber" type="text" />
+    </ng-container>
+    <ng-container *ngIf="isSetRegistered">
       <label>User Type*</label>
-      <input formControlName="userType" type="text" />
+      <label>
+        <select formControlName="role">
+          <option value="Student">Student</option>
+          <option value="Offerer">Offerer</option>
+        </select>
+      </label>
     </ng-container>
 
     <p *ngIf="isSetRegistered">(*) campuri obligatorii</p>

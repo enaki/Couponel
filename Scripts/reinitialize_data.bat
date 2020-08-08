@@ -3,6 +3,10 @@ echo Y | del SqlScripts\*
 rmdir SqlScripts
 mkdir SqlScripts
 
+echo Y | del SqlScriptGenerator\output\*
+rmdir SqlScriptGenerator\output
+mkdir SqlScriptGenerator\output
+
 :: Run python scripts
 cd SqlScriptGenerator
 python generate_delete_data_script.py
