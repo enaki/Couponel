@@ -2,28 +2,28 @@
   {
     "Id": "f1eae80c-238b-4cc9-8eb3-0743d2178493",
     "Name": "Reducere 20% la telefoane",
-    "Category": "Electronice",
+    "Category": "Electronics",
     "DateAdded": "2020-12-24 12:31",
     "ExpirationDate": "2020-09-25 19:20",
-    "Description": "Ai reducere de 20% la toate telefoanele samsung.",
+    "Description": "La emag ai reducere de 20% la toate telefoanele samsung.",
     "OffererId": "9c56567a-888b-404d-8b72-99589ce4f3b5"
   },
   {
     "Id": "320c211a-e30a-4df5-a453-e49c3d5c0e8b",
-    "Name": "Reducere 50% la tablete",
-    "Category": "Electronice",
+    "Name": "Reducere 50% la tricourile cu Barbie",
+    "Category": "Fashion",
     "DateAdded": "2020-11-21 21:30",
     "ExpirationDate": "2021-12-25 00:30",
-    "Description": "Ai reducere de 50% la toate tabletele huawei.",
+    "Description": "La Emag, ai reducere de 50% la toate tricourile cu Barbie.",
     "OffererId": "e46b79d0-dfcd-4cd0-a608-c0934bbb3cad"
   },
   {
     "Id": "85921d14-14e5-440d-a0be-d7477948361a",
-    "Name": "Reducere 33% la biciclete",
-    "Category": "Sport",
+    "Name": "Reducere 33% la piesele de teatru.",
+    "Category": "Entertaiment",
     "DateAdded": "2020-09-30 17:30",
     "ExpirationDate": "2022-11-25 19:30",
-    "Description": "Ai reducere de 33% la toate bicicletele.",
+    "Description": "Ai reducere de 33% la toate piesele de teatru organizate la teatrul National Luceafarul.",
     "OffererId": "a64a0020-e0f2-46fa-a7a9-1e657f02d83f"
   },
   {
@@ -32,25 +32,25 @@
     "Category": "Home",
     "DateAdded": "2020-08-21 12:31",
     "ExpirationDate": "2023-09-25 15:20",
-    "Description": "Ai reducere de 51% la toate pernele cu spuma de memorie.",
+    "Description": "la Top-Shop ai reducere de 51% la toate pernele cu spuma de memorie.",
     "OffererId": "b8f48fda-c366-4917-828f-17b2b363556e"
   },
   {
     "Id": "4157aaec-26a3-4e85-82c7-4a4251871e9d",
     "Name": "Reducere 20% la casti",
-    "Category": "Electronice",
+    "Category": "Electronics",
     "DateAdded": "2020-12-30 12:10",
     "ExpirationDate": "2020-10-29 19:20",
-    "Description": "Ai reducere de 20% la toate castile samsung.",
+    "Description": "Doar la Altex ai reducere de 20% la toate castile samsung.",
     "OffererId": "47c4cec2-3498-4c7d-a709-141b43deb644"
   },
   {
     "Id": "88184fdb-ba50-492a-882b-cca90e3bb87b",
-    "Name": "Reducere 20% la telefoanele apple",
-    "Category": "Electronice",
+    "Name": "Reducere 20% la gumitzele de la Kaufland",
+    "Category": "Food",
     "DateAdded": "2020-05-24 12:31",
     "ExpirationDate": "2022-03-25 19:20",
-    "Description": "Ai reducere de 20% la toate telefoanele apple.",
+    "Description": "La Kaufland ai reducere de 20% la toate gumitzele mentolate.",
     "OffererId": "47c4cec2-3498-4c7d-a709-141b43deb644"
   },
   {
@@ -59,43 +59,52 @@
     "Category": "Others",
     "DateAdded": "2020-12-13 12:31",
     "ExpirationDate": "2023-09-25 19:20",
-    "Description": "Ai reducere de 7% la toate produsele.",
+    "Description": "La Altex ai reducere de 7% la toate produsele pana la finalul acestui an.",
     "OffererId": "b8f48fda-c366-4917-828f-17b2b363556e"
   },
   {
     "Id": "50adbaf1-07b5-473a-8119-44c3fa04af85",
     "Name": "Reducere 25% la masini de spalat",
-    "Category": "Electrocasnice",
+    "Category": "Home",
     "DateAdded": "2020-12-13 12:31",
     "ExpirationDate": "2021-09-25 19:20",
-    "Description": "Ai reducere de 25% la toate masinile de spalat.",
+    "Description": "La Altex ai reducere de 25% la toate masinile de spalat.",
     "OffererId": "b8f48fda-c366-4917-828f-17b2b363556e"
   },
   {
     "Id": "a610fadb-ae77-4a18-89b6-cb973bb39046",
-    "Name": "Reducere 20% la aragaze",
-    "Category": "Electronicasnice",
+    "Name": "Reducere 20% la yoyo-uri",
+    "Category": "Accessories",
     "DateAdded": "2020-12-30 05:31",
     "ExpirationDate": "2021-09-30 19:20",
-    "Description": "Ai reducere de 20% la toate aragazele.",
+    "Description": "Doar la Daiana ai reducere de 20% la toate yoyo-urile.",
     "OffererId": "e46b79d0-dfcd-4cd0-a608-c0934bbb3cad"
   },
   {
     "Id": "0a4e0e8b-6772-4f2d-a9f4-ba8922bc1744",
-    "Name": "Reducere 20% la frigidere",
-    "Category": "Electrocasnice",
+    "Name": "Reducere 20% la biciclete",
+    "Category": "Auto",
     "DateAdded": "2020-05-24 12:31",
     "ExpirationDate": "2021-06-25 19:20",
-    "Description": "Ai reducere de 20% la toate figiderele.",
+    "Description": "La emag ai reducere de 20% la toate bicicletele.",
     "OffererId": "e46b79d0-dfcd-4cd0-a608-c0934bbb3cad"
   },
   {
     "Id": "ed258994-f1a8-4c4a-803e-0d17c52e9ef1",
-    "Name": "Reducere 20% la cuptoare cu microunde",
-    "Category": "Electrocasnice",
+    "Name": "Reducere 20% la mingile de baschet",
+    "Category": "Sport",
     "DateAdded": "2020-12-15 12:31",
     "ExpirationDate": "2023-01-14 19:20",
-    "Description": "Ai reducere de 20% la toate cuptoarele cu microunde.",
+    "Description": "La Daiana ai reducere de 20% la toate mingile de baschet.",
+    "OffererId": "a64a0020-e0f2-46fa-a7a9-1e657f02d83f"
+  },
+  {
+    "Id": "1b87cc90-e33e-457f-8f81-7c6f9559e3a5",
+    "Name": "Reducere 20% la ceai",
+    "Category": "Coffee&Snacks",
+    "DateAdded": "2020-12-15 12:31",
+    "ExpirationDate": "2023-01-14 19:20",
+    "Description": "La Whatever Buffet ai reduceri de 20 de % la toate ceaiurile.",
     "OffererId": "a64a0020-e0f2-46fa-a7a9-1e657f02d83f"
   }
 ]
