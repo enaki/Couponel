@@ -13,7 +13,6 @@ export class VoucherService {
 
   private endpoint = 'https://localhost:5001/api/coupons';
   private redeemedCouponsEndpoint = 'https://localhost:5001/api/redeemedCoupons';
-
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -41,5 +40,8 @@ export class VoucherService {
     console.log('from service: redeemCoupon');
     console.log(couponData);
     return this.http.post<unknown>(this.redeemedCouponsEndpoint, couponData, this.httpOptions);
+  }
+  postComment(couponId: string , commentData: unknown): Observable<unknown>{
+    return this.http.post<unknown>(`${this.endpoint}/${couponId}/comments`, commentData, this.httpOptions);
   }
 }
