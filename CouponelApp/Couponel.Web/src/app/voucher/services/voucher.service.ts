@@ -12,6 +12,7 @@ import { VouchersModel } from '../models';
 export class VoucherService {
 
   private endpoint = 'https://localhost:5001/api/coupons';
+  private redeemedCouponsEndpoint = 'https://localhost:5001/api/redeemedCoupons';
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -36,12 +37,9 @@ export class VoucherService {
   get(id: string): Observable<VoucherModel> {
     return this.http.get<VoucherModel>(`${this.endpoint}/${id}`, this.httpOptions);
   }
-
-  post(voucher: VoucherModel): Observable<any> {
-    return this.http.post<any>(this.endpoint, voucher, this.httpOptions);
-  }
-
-  patch(voucher: VoucherModel): Observable<any> {
-    return this.http.patch<any>(`${this.endpoint}/${voucher.id}`, voucher, this.httpOptions);
+  redeemCoupon(couponData: unknown): Observable<unknown> {
+    console.log('from service: redeemCoupon');
+    console.log(couponData);
+    return this.http.post<unknown>(this.redeemedCouponsEndpoint, couponData, this.httpOptions);
   }
 }
