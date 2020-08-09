@@ -7,9 +7,7 @@ namespace Couponel.Business.Coupons.Coupons.Validators
     {
         public CreateRedeemedCouponModelValidator()
         {
-            RuleFor(coupon => coupon.Status)
-                .NotNull()
-                .NotEmpty();
+
         }
     }
 }
