@@ -6,6 +6,9 @@ import { Subscription } from 'rxjs';
 import { VoucherModel } from '../models';
 import { CommentModel } from '../models/comment.model';
 import { VoucherService } from '../services/voucher.service';
+import {RedeemedCouponModel} from '../models/redeemed-coupon.model';
+import {CreateCommentModel} from "../models/create.comment.model";
+import {RegisterModel} from "../../authentication/models/register.model";
 
 @Component({
   selector: 'app-voucher-details',
@@ -13,100 +16,60 @@ import { VoucherService } from '../services/voucher.service';
   styleUrls: ['./voucher-details.component.scss'],
   providers: [FormBuilder]
 })
-export class VoucherDetailsComponent implements OnInit, OnDestroy {
-  fileToUpload: any;
-  imageUrl: any;
 
-  formGroup: FormGroup;
-  isAdmin: boolean;
-  isAddMode: boolean;
+export class VoucherDetailsComponent implements OnInit, OnDestroy {
+  isStudent: boolean;
+
+  couponId: string;
+  description: string;
+  expirationDate: string;
+  name: string;
+  comments: CommentModel[];
   photos: Blob[] = [];
 
+  commentFormGroup: FormGroup;
+
   private routeSub: Subscription = new Subscription();
-  comments: CommentModel[];
-
-  get description(): string {
-    return this.formGroup.get('description').value;
-  }
-
-  get name(): string {
-    return this.formGroup.get('name').value;
-  }
-
-  get category(): string {
-    return this.formGroup.get('category').value;
-  }
-
-  get expirationDate(): string {
-    return this.formGroup.get('expirationDate').value.replace('T', ' ');
-  }
-
-  get isFormDisabled(): boolean {
-    return this.formGroup.disabled;
-  }
 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private service: VoucherService) { }
-
-  ngOnInit(): void {
-    this.formGroup = this.formBuilder.group({
-      id: new FormControl(),
-      name: new FormControl(),
-      description: new FormControl(),
-      expirationDate: new FormControl(),
-      private: new FormControl(false)
+    private service: VoucherService) {
+    this.commentFormGroup = this.formBuilder.group({
+      Content: new FormControl(null),
     });
-
-    if (this.router.url === '/create-voucher') {
-      this.isAddMode = true;
-    } else {
-      // Getting id from url
-      this.routeSub = this.activatedRoute.params.subscribe(params => {
-        // Getting details for the coupon with the id found
-        this.service.get(params.id).subscribe((data: VoucherModel) => {
-          console.log(data);
-          this.formGroup.patchValue(data);
-          console.log('Comments: ' + data.comments);
-          this.comments = data.comments;
-        });
-        this.formGroup.disable();
-      });
-      this.isAddMode = false;
-    }
-    this.isAdmin = true;
   }
 
+  ngOnInit(): void {
+    this.service.get(this.router.url.split('/').slice(-1)[0]).subscribe((data: VoucherModel) => {
+      this.description = data.description;
+      this.expirationDate = data.expirationDate.split('T')[0];
+      this.name = data.name;
+      this.comments = data.comments;
+      if (localStorage.getItem('userRole') === 'Student')
+      {
+        this.isStudent = true;
+        this.couponId = this.router.url.split('/').slice(-1)[0];
+      }
+    });
+  }
   ngOnDestroy(): void {
     this.routeSub.unsubscribe();
   }
-
-  startUpdating(): void {
-    this.formGroup.enable();
-  }
-
-  save(): void {
-    if (this.isAddMode) {
-      this.service.post(this.formGroup.getRawValue()).subscribe();
-      this.router.navigate(['list']);
-    } else {
-      this.service.patch(this.formGroup.getRawValue()).subscribe();
-    }
-
-    this.photos.push(this.imageUrl);
-    this.imageUrl = null;
-    this.formGroup.disable();
-  }
-
-  handleFileInput(file: FileList): void {
-    this.fileToUpload = file.item(0);
-
-    const reader = new FileReader();
-    reader.onload = (event: any) => {
-      this.imageUrl = event.target.result;
+  redeemCoupon(): void {
+    const redeemedCouponData: RedeemedCouponModel = {
+      couponId: this.couponId
     };
-    reader.readAsDataURL(this.fileToUpload);
+    this.service.redeemCoupon(redeemedCouponData).subscribe(() => {
+      console.log('Omg it worked');
+    });
+  }
+  postComment(): void{
+    const data: RegisterModel = this.commentFormGroup.getRawValue();
+    this.service.postComment(this.router.url.split('/').slice(-1)[0], data).subscribe(() => {
+      //TODO: clear comment section and render comment instead of reloading the page
+      window.location.reload();
+    });
   }
 }

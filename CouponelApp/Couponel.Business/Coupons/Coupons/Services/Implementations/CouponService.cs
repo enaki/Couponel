@@ -33,7 +33,12 @@ namespace Couponel.Business.Coupons.Coupons.Services.Implementations
         public async Task<CouponModelExtended> GetById(Guid couponId)
         {
             var coupon = await _couponRepository.GetByIdWithPhotosAndComments(couponId);
-            return _mapper.Map<CouponModelExtended>(coupon);
+            var mappedCoupon = _mapper.Map<CouponModelExtended>(coupon);
+            
+            foreach (var comment in mappedCoupon.Comments)
+                comment.User.PasswordHash = string.Empty;
+            
+            return mappedCoupon;
         }
 
         public async Task<CouponModel> Add(CreateCouponModel model)

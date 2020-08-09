@@ -1,0 +1,10 @@
+Electronics 	*
+Fashion		*
+Entertaiment	*
+Food		*
+Coffee&Snacks	*
+Accessories	*
+Home		*
+Sport		*
+Others		*
+Auto		*

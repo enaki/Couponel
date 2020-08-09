@@ -16,6 +16,7 @@ namespace Couponel.Persistence.Repositories.CouponsRepositories
         public async Task<Coupon> GetByIdWithPhotosAndComments(Guid couponId)
             => await this.context.Coupons
                 .Include(coupon => coupon.Comments)
+                    .ThenInclude(c=>c.User)
                 .Include(coupon => coupon.Photos)
                 .FirstAsync(coupon => coupon.Id == couponId);
 
