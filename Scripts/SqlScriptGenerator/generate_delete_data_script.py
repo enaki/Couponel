@@ -1,6 +1,7 @@
 def main():
     delete_data_query = "USE [Couponel] \nGO\n\n"
     delete_data_query += "DELETE FROM [dbo].[Comments]\n"
+    delete_data_query += "DELETE FROM [dbo].[Photos]\n"
     delete_data_query += "DELETE FROM [dbo].[RedeemedCoupons]\n"
     delete_data_query += "DELETE FROM [dbo].[Coupons]\n"
 

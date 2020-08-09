@@ -13,7 +13,7 @@ import { UserService } from '../services';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit{
   constructor(
     private readonly router: Router,
     private readonly cdRef: ChangeDetectorRef,
@@ -32,10 +32,28 @@ export class HeaderComponent {
     localStorage.removeItem('userRole');
   }
 
+  ngOnInit(): void {
+    console.log('HeaderComponent::ngOnInit');
+    const userId = localStorage.getItem('userId');
+    console.log(userId);
+    if (userId != null){
+      this.username = localStorage.getItem('username');
+
+      // the most important f* line of code <3
+      // Method 1:
+      // setTimeout(() => this.userService.username.next(this.username), 0);
+
+      // Method 2
+      new Promise(resolve => { resolve(); }).then(() => {
+        this.userService.username.next(this.username);
+      });
+    }
+  }
+
   public logout(): void {
     this.router.navigate(['authentication']);
     HeaderComponent.localStorageCleaning();
-    this.username = localStorage.getItem('username');
+    this.userService.username.next(null);
   }
 
   public goToPage(page: string): void {
