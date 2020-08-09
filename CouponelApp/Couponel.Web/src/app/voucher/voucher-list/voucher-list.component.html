@@ -15,7 +15,7 @@
   <div class="cards">
     <app-tile *ngFor="let voucher of voucherList"
               label="{{voucher.name}}"
-              background="../../assets/images/coupon.png"
+              background="{{getCategoryImage(voucher.category)}}"
               (click)="goToVoucher(voucher.id)"></app-tile>
   </div>
 </div>

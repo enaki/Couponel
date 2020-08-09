@@ -12,7 +12,19 @@ import { VoucherService } from '../services/voucher.service';
 })
 export class VoucherListComponent implements OnInit {
   public voucherList: VoucherModel[];
-
+  private categoryImages=
+  {
+    "Restaurant":"../../assets/images/restaurant.svg",
+    "Auto":"../../assets/images/auto.svg",
+    "Electronics":"../../assets/images/electronics.svg",
+    "Coffee":"../../assets/images/coffee.svg",
+    "Entertainment":"../../assets/images/entertainment.svg",
+    "Fashion":"../../assets/images/fashion.svg",
+    "Accessories":"../../assets/images/accessories.svg",
+    "Supplies":"../../assets/images/supplies.svg",
+    "Sport":"../../assets/images/sport.svg",
+    "Others":"../../assets/images/others.svg"
+  };
   constructor(
     private router: Router,
     private service: VoucherService) { }
@@ -27,4 +39,14 @@ export class VoucherListComponent implements OnInit {
   goToVoucher(id: string): void {
     this.router.navigate([`/voucher/details/${id}`]);
   }
+
+  getCategoryImage(category: string): string{
+    let result = this.categoryImages[category];
+    if(result == null)
+    {
+      return "../../assets/images/coupon.png";
+    }
+    return result;
+  }
 }
+
