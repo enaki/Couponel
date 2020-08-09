@@ -6,4 +6,8 @@ import { Subject } from 'rxjs';
 })
 export class UserService {
   public username: Subject<string>;
+
+  constructor() {
+    this.username = new Subject<string>();
+  }
 }

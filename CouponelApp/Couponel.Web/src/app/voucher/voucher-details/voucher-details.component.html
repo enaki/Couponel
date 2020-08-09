@@ -17,7 +17,7 @@
 
     <img src="../../assets/images/others.svg"
          alt="Voucher image" />
-    <p>Expiration Date: {{expirationDate}}</p>
+    <p>Available until: {{expirationDate}}</p>
     <div class="coupon-description">Description: {{description}}</div>
       <button (click)="redeemCoupon()">Redeem</button>
   </section>
@@ -25,11 +25,19 @@
 
 <div class="flex-row-space-around">
   <div class="form-section">
-    <h2 style="text-align: center;">Commentaries</h2>
+    <h2 style="text-align: center;">Comments</h2>
+    <div>
+
+        <form class="comment-section" [formGroup]="commentFormGroup">
+          <textarea formControlName="Content"
+                    onfocus="if (this.value == 'Your comment goes here:') {this.value=''}">Your comment goes here:</textarea>
+          <button type="button" (click)="postComment()"></button>
+        </form>
+
+    </div>
     <div *ngFor="let commentary of comments">
-      <h3>
-        {{commentary["content"]}}
-      </h3>
+      <h2>{{commentary["user"]["userName"]}}:</h2>
+      <h4>{{commentary["content"]}}</h4>
     </div>
   </div>
 </div>
