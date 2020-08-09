@@ -7,6 +7,7 @@ import { VoucherListComponent } from './voucher/voucher-list/voucher-list.compon
 import { TopComponent } from './voucher/top/top.component';
 import { ProfileInfoComponent } from './profile/profile-info/profile-info.component';
 import { SavedVouchersComponent } from './profile/saved-vouchers/saved-vouchers.component';
+import {VoucherCreateComponent} from "./voucher/voucher-create/voucher-create.component";
 
 const routes: Routes = [
   {
@@ -22,7 +23,7 @@ const routes: Routes = [
       ),
   },
   { path: 'list', component: VoucherListComponent },
-  { path: 'create-voucher', component: VoucherDetailsComponent},
+  { path: 'create', component: VoucherCreateComponent},
   { path: 'top-list', component: TopComponent},
   { path: 'profile-info', component: ProfileInfoComponent},
   { path: 'saved-vouchers', component: SavedVouchersComponent},

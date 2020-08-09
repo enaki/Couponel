@@ -12,7 +12,7 @@ import { VoucherService } from '../services/voucher.service';
 })
 export class VoucherListComponent implements OnInit {
   public voucherList: VoucherModel[];
-  private categoryImages=
+  private categoryImages =
   {
     "Restaurant":"../../assets/images/restaurant.svg",
     "Auto":"../../assets/images/auto.svg",

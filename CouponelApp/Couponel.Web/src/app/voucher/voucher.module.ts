@@ -7,9 +7,10 @@ import { VoucherDetailsComponent } from './voucher-details/voucher-details.compo
 import { VoucherListComponent } from './voucher-list/voucher-list.component';
 import { VoucherRoutingModule } from './voucher-routing.module';
 import { TopComponent } from './top/top.component';
+import { VoucherCreateComponent } from './voucher-create/voucher-create.component';
 
 @NgModule({
-  declarations: [VoucherDetailsComponent, VoucherListComponent, TopComponent],
+  declarations: [VoucherDetailsComponent, VoucherListComponent, TopComponent, VoucherCreateComponent],
   imports: [CommonModule, VoucherRoutingModule, FormsModule, ReactiveFormsModule, SharedModule],
   exports: [VoucherDetailsComponent, VoucherListComponent],
 })

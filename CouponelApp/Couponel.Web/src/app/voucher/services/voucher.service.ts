@@ -44,4 +44,7 @@ export class VoucherService {
   postComment(couponId: string , commentData: unknown): Observable<unknown>{
     return this.http.post<unknown>(`${this.endpoint}/${couponId}/comments`, commentData, this.httpOptions);
   }
+  createVoucher(couponData: unknown): Observable<unknown>{
+    return this.http.post<unknown>(`${this.endpoint}`, couponData, this.httpOptions);
+  }
 }
