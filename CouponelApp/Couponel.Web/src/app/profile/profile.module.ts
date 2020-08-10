@@ -8,13 +8,16 @@ import { SharedModule } from '../shared/shared.module';
 import { MatIconModule } from '@angular/material/icon';
 import { ProfileInfoComponent } from './profile-info/profile-info.component';
 import { SavedVouchersComponent } from './saved-vouchers/saved-vouchers.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [ProfileComponent, ProfileInfoComponent, SavedVouchersComponent],
   imports: [
     CommonModule,
     ProfileRoutingModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class ProfileModule { }
