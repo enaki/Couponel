@@ -20,11 +20,11 @@ export class AuthenticationService {
 
     const tokenData = jwt_decode(token);
     console.log(tokenData);
-    localStorage.setItem('userId', tokenData.userId);
-    localStorage.setItem('userRole', tokenData.userRole);
-    localStorage.setItem('username', tokenData.userName);
-    localStorage.setItem('firstName', tokenData.firstName);
-    localStorage.setItem('lastName', tokenData.lastName);
+    localStorage.setItem('userId', (tokenData as any).userId);
+    localStorage.setItem('userRole', (tokenData as any).userRole);
+    localStorage.setItem('username', (tokenData as any).userName);
+    localStorage.setItem('firstName', (tokenData as any).firstName);
+    localStorage.setItem('lastName', (tokenData as any).lastName);
   }
 
   public register(data: unknown): Observable<unknown> {
