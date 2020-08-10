@@ -37,7 +37,7 @@
     </div>
     <div id="addedComment" *ngFor="let commentary of comments">
       <h2 id="userComment">{{commentary["user"]["userName"]}}:</h2>
-      <h3 id="date">22.10.2020</h3>
+      <h3 id="date">{{commentary.dateAdded}}</h3>
       <h4 id="commentContent">{{commentary["content"]}}</h4><br>
     </div>
   </div>
