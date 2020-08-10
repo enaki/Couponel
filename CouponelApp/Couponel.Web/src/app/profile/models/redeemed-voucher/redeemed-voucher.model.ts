@@ -1,4 +1,4 @@
-import {VoucherModel} from '../voucher.model';
+import {VoucherModel} from '../../../voucher/models/voucher.model';
 
 export type RedeemedVoucherModel = {
   id: string;
