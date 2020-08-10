@@ -1,33 +1,65 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
+import * as jwt_decode from 'jwt-decode';
+import {UserModel} from '../models/user.model';
+import {HttpHeaders} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  private usernameSubject: BehaviorSubject<string>;
+  private tokenSubject: BehaviorSubject<string>;
 
   constructor() {
-    this.usernameSubject = new BehaviorSubject<string>('');
-    const userId = localStorage.getItem('userId');
-    console.log(userId);
-
-    if (userId != null){
-      const dataUsername = localStorage.getItem('username');
-      this.usernameSubject.next(dataUsername);
+    this.tokenSubject = new BehaviorSubject<string>('');
+    const token = localStorage.getItem('userToken');
+    console.log('UserService Constructor: ' + token);
+    if (token != null){
+      this.setToken(token);
     }
   }
 
-  public get username(): Observable<string>{
-    return this.usernameSubject.asObservable();
+  public setToken(token: string): void {
+    if (token != null){
+      localStorage.setItem('userToken', token);
+      const tokenData = jwt_decode(token);
+      console.log(tokenData);
+      const user: UserModel = {
+        userId: tokenData.userId,
+        username: tokenData.userName,
+        email: tokenData.email,
+        firstName: tokenData.firstName,
+        lastName: tokenData.lastName,
+        userRole: tokenData.userRole
+      };
+      localStorage.setItem('user', JSON.stringify(user));
+      this.tokenSubject.next(token);
+    } else {
+      this.localStorageCleaning();
+    }
   }
 
-  public setUsername(value: string): void{
-    this.usernameSubject.next(value);
+  public get token(): Observable<string>{
+    return this.tokenSubject.asObservable();
+  }
+
+  public getUserDetails(): UserModel{
+    const data = localStorage.getItem('user');
+    return (data == null) ? null : JSON.parse(data);
   }
 
   public localStorageCleaning(): void {
+    this.tokenSubject.next(null);
     console.log('Local Storage cleaned successfully');
     localStorage.clear();
+  }
+
+  public getHttpOptions(): any{
+    if (this.tokenSubject.value != null){
+      return { headers: new HttpHeaders({'Content-Type': 'application/json',
+          Authorization: `Bearer ${JSON.parse(this.tokenSubject.value)}` })};
+    } else {
+      return { headers: new HttpHeaders({'Content-Type': 'application/json' })};
+    }
   }
 }

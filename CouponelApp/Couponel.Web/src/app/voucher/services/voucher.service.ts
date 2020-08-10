@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { VoucherModel } from '../models';
 import { PageModel } from '../models/page.model';
 import { VouchersModel } from '../models';
+import {UserService} from '../../shared/services';
 
 @Injectable({
   providedIn: 'root'
@@ -13,20 +14,13 @@ export class VoucherService {
 
   private endpoint = 'https://localhost:5001/api/coupons';
   private redeemedCouponsEndpoint = 'https://localhost:5001/api/redeemedCoupons';
-  private httpOptions: unknown = {
-    headers: new HttpHeaders({'Content-Type': 'application/json',
-      Authorization: `Bearer ${JSON.parse(localStorage.getItem('userToken'))}`
-    })
-  };
+  private httpOptions: unknown;
 
-  constructor(private readonly http: HttpClient) { }
-
-  public updateToken(): void{
-    this.httpOptions = {
-      headers: new HttpHeaders({'Content-Type': 'application/json',
-        Authorization: `Bearer ${JSON.parse(localStorage.getItem('userToken'))}`
-      })
-    };
+  constructor(private readonly http: HttpClient, private userService: UserService) {
+    this.userService.token.subscribe((token) => {
+      console.log('Vouchers Details' + token);
+      this.httpOptions = this.userService.getHttpOptions();
+    });
   }
 
   getAll(): Observable<VouchersModel> {

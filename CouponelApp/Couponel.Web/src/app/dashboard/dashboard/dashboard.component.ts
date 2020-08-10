@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import {VoucherModel} from "../../voucher/models";
+import {UserService} from '../../shared/services';
 
 
 @Component({
@@ -14,26 +15,22 @@ export class DashboardComponent implements OnInit, OnDestroy{
   isOfferer: boolean;
   isAdmin: boolean;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private readonly userService: UserService) {}
 
   public goToPage(page: string): void {
     this.router.navigate([page]);
   }
 
   ngOnInit(): void {
-    if (localStorage.getItem('userRole') === 'Student')
-    {
-      this.isStudent = true;
-    }
-    else if (localStorage.getItem('userRole') === 'Offerer')
-    {
-      this.isOfferer = true;
-    }
-    else if (localStorage.getItem('userRole') === 'Admin')
-    {
-      this.isAdmin = true;
+    const user = this.userService.getUserDetails();
+    this.isStudent = this.isOfferer = this.isOfferer = false;
+    if (user != null){
+      this.isStudent = user.userRole === 'Student';
+      this.isOfferer = user.userRole === 'Offerer';
+      this.isAdmin = user.userRole === 'Admin';
     }
   }
+
   ngOnDestroy(): void {
   }
 }

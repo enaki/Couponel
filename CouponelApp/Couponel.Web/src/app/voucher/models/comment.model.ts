@@ -1,8 +1,8 @@
-import {UserModel} from './user.model';
+import {CommentUserModel} from './comment.user.model';
 
 export type CommentModel = {
   userId: string;
   id: string;
   content: string;
-  user: UserModel;
+  user: CommentUserModel;
 };

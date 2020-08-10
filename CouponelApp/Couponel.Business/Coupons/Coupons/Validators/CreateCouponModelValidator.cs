@@ -9,7 +9,8 @@ namespace Couponel.Business.Coupons.Coupons.Validators
         {
             RuleFor(coupon => coupon.Name)
                 .NotNull()
-                .NotEmpty();
+                .NotEmpty()
+                .MaximumLength(100);
             RuleFor(coupon => coupon.Description)
                 .NotEmpty();
         }

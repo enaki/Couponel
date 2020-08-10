@@ -86,6 +86,7 @@ namespace Couponel.Business.Authentications.Services.Implementations
                     new Claim("userName", user.UserName),
                     new Claim("firstName", user.FirstName),
                     new Claim("lastName", user.LastName),
+                    new Claim("email", user.Email),
                     new Claim("userRole", user.Role),
                     new Claim(ClaimTypes.Role, user.Role)
                 },

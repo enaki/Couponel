@@ -6,7 +6,6 @@ import { UserService } from 'src/app/shared/services';
 import { LoginModel } from '../models/login.model';
 import { RegisterModel } from '../models/register.model';
 import { AuthenticationService } from '../services/authentication.service';
-import {TokenService} from '../../shared/services/token.service';
 
 @Component({
   selector: 'app-authentication',
@@ -20,12 +19,10 @@ export class AuthenticationComponent implements OnInit {
   public formGroup: FormGroup;
 
   ngOnInit(): void {
-    const currentUser = localStorage.getItem('userId');
-    console.log(localStorage.getItem('username'));
+    const currentUser = this.userService.getUserDetails();
+    console.log(currentUser);
     if (currentUser != null){
       this.setRegister();
-      this.userService.setUsername(localStorage.getItem('username'));
-      this.userTokenService.setToken();
       this.router.navigate(['dashboard']);
     }
   }
@@ -34,8 +31,7 @@ export class AuthenticationComponent implements OnInit {
     private readonly router: Router,
     private readonly authenticationService: AuthenticationService,
     private readonly formBuilder: FormBuilder,
-    private readonly userService: UserService,
-    private readonly userTokenService: TokenService
+    private readonly userService: UserService
   ) {
     this.formGroup = this.formBuilder.group({
       username: new FormControl(null, [Validators.required, Validators.minLength(5)]),
@@ -46,7 +42,7 @@ export class AuthenticationComponent implements OnInit {
       phoneNumber: new FormControl(null, [Validators.required]),
       role: new FormControl(null, Validators.required),
     });
-    this.userService.setUsername(null);
+    this.userService.setToken(null);
   }
 
   public setRegister(): void {
@@ -76,10 +72,7 @@ export class AuthenticationComponent implements OnInit {
       const data: LoginModel = this.formGroup.getRawValue();
 
       this.authenticationService.login(data).subscribe((logData: any) => {
-        localStorage.setItem('userToken', JSON.stringify(logData.token));
-        this.authenticationService.setSessionTokenInfo(JSON.stringify(logData.token));
-        this.userService.setUsername(data.username);
-        this.userTokenService.setToken();
+        this.userService.setToken(JSON.stringify(logData.token));
         this.router.navigate(['dashboard']);
       });
     }
