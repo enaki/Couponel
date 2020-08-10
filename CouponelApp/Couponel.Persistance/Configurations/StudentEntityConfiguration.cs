@@ -24,6 +24,7 @@ namespace Couponel.Persistence.Configurations
 
             studentConfiguration
                 .Property(c => c.Id)
+                .ValueGeneratedNever()
                 .IsRequired();
         }
     }
