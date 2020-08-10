@@ -22,8 +22,8 @@ export class ProfileInfoService {
 
   }
   //sa creez o noua metoda de update care sa apeleze endpointu ptr a updata
+ /* public updateProfileInfo(userId: string): Observable<ProfileInfoModel> {
+    return this.httpClient.get<ProfileInfoModel>(`${this.endpoint}/${userId}`,this.httpOptions);
 
-
-
-
+  }*/
 }
