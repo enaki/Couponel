@@ -50,7 +50,7 @@ namespace Couponel.API.Controllers.CouponsController
 
         [HttpPatch("{couponId}")]
         [Authorize(Roles = Role.Offerer)]
-        public async Task<IActionResult> Update([FromRoute] Guid couponId, UpdateCouponModel model)
+        public async Task<IActionResult> Update([FromRoute] Guid couponId, [FromBody] UpdateCouponModel model)
         {
             await _couponService.Update(couponId, model);
             return NoContent();

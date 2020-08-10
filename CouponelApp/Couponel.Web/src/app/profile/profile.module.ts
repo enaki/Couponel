@@ -12,9 +12,10 @@ import {RedeemedVoucherDetailsComponent} from './redeemed-voucher-details/redeem
 import {VoucherCreateComponent} from './voucher-create/voucher-create.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AddedVouchersComponent } from './added-vouchers/added-vouchers.component';
+import { AddedVoucherDetailsComponent } from './added-voucher-details/added-voucher-details.component';
 
 @NgModule({
-  declarations: [ProfileComponent, ProfileInfoComponent, RedeemedVoucherComponent, RedeemedVoucherDetailsComponent, VoucherCreateComponent, AddedVouchersComponent],
+  declarations: [ProfileComponent, ProfileInfoComponent, RedeemedVoucherComponent, RedeemedVoucherDetailsComponent, VoucherCreateComponent, AddedVouchersComponent, AddedVoucherDetailsComponent],
   imports: [
     CommonModule,
     ProfileRoutingModule,

@@ -1,14 +1,10 @@
-<h1>
-  Create a Voucher
-</h1>
-
+<p>added-voucher-details works!</p>
 <div>
-  <form [formGroup]="formGroup">
+  <form [formGroup]="formGroup" >
     <label>Name*</label><br/>
-    <input formControlName="Name" type="text"
-           value="Name:" onfocus="if (this.value == 'Name:') {this.value=''}"/><br/>
+    <input formControlName="name" type="text"/> <br/>
     <label>Category*</label><br/>
-    <select formControlName="Category">
+    <select formControlName="category">
       <option value="Electronics">Electronics</option>
       <option value="Fashion">Fashion</option>
       <option value="Entertainment">Entertainment</option>
@@ -21,10 +17,10 @@
       <option value="Others">Others</option>
     </select><br/>
     <label>Expiration date*</label><br/>
-    <input formControlName="ExpirationDate" type="date"/><br/>
+    <input formControlName="expirationDate" type="date"/><br/>
     <label>Description*</label><br/>
-    <textarea formControlName="Description" type="text"
-              onfocus="if (this.value == 'Description:') {this.value=''}">Description:</textarea><br/>
-    <button type="button" (click)="createVoucher()">Create</button>
+    <textarea formControlName="description"></textarea><br/>
+    <button type="button" (click)="updateVoucher()">Update</button><br/>
+    <button type="button" (click)="deleteVoucher()">Delete</button><br/>
   </form>
 </div>

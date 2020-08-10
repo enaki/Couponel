@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {VoucherService} from '../../voucher/services/voucher.service';
 import {CreateCouponModel} from '../models/voucher/create.coupon.model';
+import {VoucherModel} from '../../voucher/models';
 
 @Component({
   selector: 'app-voucher-create',
@@ -26,7 +27,8 @@ export class VoucherCreateComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
   createVoucher(): void {
     const data: CreateCouponModel = this.formGroup.getRawValue();
     this.service.createVoucher(data).subscribe(() => {
