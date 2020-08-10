@@ -1,7 +1,38 @@
+
+
+<div class="flex-row-space-around">
+  <section class="image-section">
+
+    <img src="../../assets/images/profilinfo.svg"
+           alt="Voucher image" />
+
+
+  </section>
+<section class="form-section">
+  <form class="profileInfo-content" >
+    <h4>User info:</h4>
 <ng-container *ngIf="!!profileInfo">
   <div *ngIf="!isEditable">
+    <label>Username:</label>
     <p>{{ profileInfo.userName }}</p>
+
+    <label>Email:</label>
     <p>{{ profileInfo.email }}</p>
+
+    <label>First name:</label>
+    <p>{{ profileInfo.firstName }}</p>
+
+    <label>Last name:</label>
+    <p>{{ profileInfo.lastName }}</p>
+
+    <label>Phone number:</label>
+    <p>{{ profileInfo.phoneNumber}}</p>
+
+    <label>Faculty name:</label>
+    <p>{{ profileInfo.facultyName}}</p>
+
+    <label>University name:</label>
+    <p>{{ profileInfo.universityName}}</p>
   </div>
   <div *ngIf="isEditable">
     <form class="authentication-content" [formGroup]="formGroup">
@@ -35,9 +66,24 @@
           Email invalid
         </div>
       </div>
+      <label>Phone number*</label>
+      <input formControlName="phoneNumber" type="text" />
+      <label>Faculty name*</label>
+      <input formControlName="facultyName" type="text" />
+      <label>University*</label>
+      <input formControlName="universityName" type="text" />
     </form>
   </div>
-
+<div *ngIf="isEditable">
+  <button (click)="editInfo()">Save</button>
+</div>
+<div *ngIf="!isEditable">
   <button (click)="editInfo()">Edit</button>
+</div>
+
   <!--un ngif buton ca dupa ce l apas sa dispara si de adaugat un nou buton (edit sa se transf in save)-->
 </ng-container>
+</form>
+
+</section>
+</div>
