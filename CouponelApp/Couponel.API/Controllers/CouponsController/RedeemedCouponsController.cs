@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Couponel.API.Controllers.IdentitiesController;
 using Couponel.Business.Coupons.Coupons.Models.RedeemedCouponsModels;
+using Couponel.Business.Coupons.RedeemedCoupons.Models;
 using Couponel.Business.Coupons.RedeemedCoupons.Services.Interfaces;
 using Couponel.Entities.Identities;
 using Microsoft.AspNetCore.Authorization;
@@ -39,9 +40,9 @@ namespace Couponel.API.Controllers.CouponsController
         }
 
         [HttpPatch("{redeemedCouponId}")]
-        public async Task<IActionResult> Update([FromRoute] Guid redeemedCouponId, string newStatus)
+        public async Task<IActionResult> Update([FromRoute] Guid redeemedCouponId,[FromBody] UpdateRedeemedCouponStatusModel model)
         {
-            await _redeemedCouponsService.UpdateStatus(redeemedCouponId, newStatus);
+            await _redeemedCouponsService.UpdateStatus(redeemedCouponId, model.Status);
             return NoContent();
         }
 

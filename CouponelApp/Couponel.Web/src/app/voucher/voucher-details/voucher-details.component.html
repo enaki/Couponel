@@ -19,7 +19,7 @@
          alt="Voucher image" />
     <p>Available until: {{expirationDate}}</p>
     <div class="coupon-description">Description: {{description}}</div>
-      <button (click)="redeemCoupon()">Redeem</button>
+      <button *ngIf="isStudent" (click)="redeemCoupon()">Redeem</button>
   </section>
 </div>
 

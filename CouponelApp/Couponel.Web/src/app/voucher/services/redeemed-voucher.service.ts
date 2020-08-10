@@ -35,6 +35,9 @@ export class RedeemedVoucherService {
   }
 
   updateRedeemedCoupon(redeemedCouponId: string): Observable<unknown> {
-    return this.http.patch<unknown>(`${this.endpoint}/${redeemedCouponId}?newStatus=Used`, this.httpOptions);
+    const data = {
+      'Status': 'Used'
+    };
+    return this.http.patch<unknown>(`${this.endpoint}/${redeemedCouponId}`,data, this.httpOptions);
   }
 }
