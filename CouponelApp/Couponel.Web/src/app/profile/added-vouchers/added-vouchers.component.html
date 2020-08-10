@@ -1,1 +1,12 @@
-<p>added-vouchers works!</p>
+<div class="page-container">
+  <h1>
+    My Added Vouchers
+  </h1>
+  <div class="cards">
+    <app-tile *ngFor="let voucher of voucherList"
+              label="{{voucher.name}}"
+              background="{{getCategoryImage(voucher.category)}}"
+              (click)="goToVoucher(voucher.id)">
+    </app-tile>
+  </div>
+</div>

@@ -5,6 +5,7 @@ import {VoucherCreateComponent} from './voucher-create/voucher-create.component'
 import {RedeemedVoucherComponent} from './redeemed-voucher/redeemed-voucher.component';
 import {RedeemedVoucherDetailsComponent} from './redeemed-voucher-details/redeemed-voucher-details.component';
 import {AddedVouchersComponent} from './added-vouchers/added-vouchers.component';
+import {AddedVoucherDetailsComponent} from "./added-voucher-details/added-voucher-details.component";
 
 const routes: Routes = [
   {
@@ -31,6 +32,11 @@ const routes: Routes = [
     path: 'added-vouchers',
     pathMatch: 'full',
     component: AddedVouchersComponent
+  },
+  {
+    path: 'added-vouchers/details/:id',
+    pathMatch: 'full',
+    component: AddedVoucherDetailsComponent
   },
 ];
 

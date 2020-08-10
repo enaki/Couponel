@@ -1,14 +1,13 @@
 <div class="editor-container">
   <img src="assets/images/create-voucher.svg" />
-  <form  class="editor-content" [formGroup]="formGroup">
+  <form class="editor-content" [formGroup]="formGroup" >
     <span class="head-label">
-      Create a voucher
+      Modify voucher details
     </span>
     <label>Name*</label>
-    <input formControlName="Name" type="text"
-           value="Name:" onfocus="if (this.value == 'Name:') {this.value=''}"/>
+    <input formControlName="name" type="text"/>
     <label>Category*</label>
-    <select formControlName="Category">
+    <select formControlName="category">
       <option value="Electronics">Electronics</option>
       <option value="Fashion">Fashion</option>
       <option value="Entertainment">Entertainment</option>
@@ -21,10 +20,10 @@
       <option value="Others">Others</option>
     </select>
     <label>Expiration date*</label>
-    <input formControlName="ExpirationDate" type="date"/>
+    <input formControlName="expirationDate" type="date"/>
     <label>Description*</label>
-    <textarea rows="6" formControlName="Description" type="text"
-              onfocus="if (this.value == 'Description:') {this.value=''}">Description:</textarea>
-    <button type="button" (click)="createVoucher()"><span>Create</span></button>
+    <textarea formControlName="description"></textarea>
+    <button class="update-button" type="button" (click)="updateVoucher()"><span>Update</span></button>
+    <button class="delete-button" type="button" (click)="deleteVoucher()"><span>Delete</span></button>
   </form>
 </div>

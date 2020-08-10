@@ -2,8 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {UserService} from '../../shared/services';
-import {RedeemedVoucherModel} from '../../profile/models/redeemed-voucher/redeemed-voucher.model';
-import {DeleteRedeemedVoucherModel} from '../../profile/models/redeemed-voucher/delete.redeemed-voucher.model';
+import {RedeemedVoucherModel} from '../models/redeemed-voucher/redeemed-voucher.model';
+import {DeleteRedeemedVoucherModel} from '../models/redeemed-voucher/delete.redeemed-voucher.model';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +37,6 @@ export class RedeemedVoucherService {
     const data = {
       Status: 'Used'
     };
-    return this.http.patch<unknown>(`${this.endpoint}/${redeemedCouponId}`,data, this.httpOptions);
+    return this.http.patch<unknown>(`${this.endpoint}/${redeemedCouponId}`, data, this.httpOptions);
   }
 }

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {RedeemedVoucherService} from '../../voucher/services/redeemed-voucher.service';
+import {RedeemedVoucherService} from '../services/redeemed-voucher.service';
 import {RedeemedVoucherModel} from '../models/redeemed-voucher/redeemed-voucher.model';
 
 @Component({
@@ -22,10 +22,6 @@ export class RedeemedVoucherDetailsComponent implements OnInit {
   }
 
   updateRedeemedCoupon(): void {
-    this.service.updateRedeemedCoupon(this.router.url.split('/').slice(-1)[0]).subscribe(() => {
-      console.log('Received message from Redeemed Coupon Update');
-      this.router.navigate(['my-vouchers']);
-    });
   }
 
   deleteRedeemedCoupon(): void {
