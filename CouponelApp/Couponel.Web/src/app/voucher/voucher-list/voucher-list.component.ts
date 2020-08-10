@@ -13,7 +13,6 @@ import {VoucherImageProvider} from '../services/voucher-image-provider';
 })
 export class VoucherListComponent implements OnInit {
   public voucherList: VoucherModel[];
-
   constructor(
     private router: Router,
     private service: VoucherService,
