@@ -7,6 +7,8 @@ import { CommentModel } from '../models/comment.model';
 import { VoucherService } from '../services/voucher.service';
 import {UserService} from '../../shared/services';
 import {CreateRedeemedVoucherModel} from '../../profile/models/redeemed-voucher/create.redeemed-voucher.model';
+import {MatDialog} from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-voucher-details',
@@ -34,6 +36,7 @@ export class VoucherDetailsComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
     private userService: UserService,
+    private dialog: MatDialog,
     private service: VoucherService) {
     this.commentFormGroup = this.formBuilder.group({
       Content: new FormControl(null),
@@ -62,6 +65,7 @@ export class VoucherDetailsComponent implements OnInit, OnDestroy {
     };
     this.service.redeemCoupon(redeemedCouponData).subscribe(() => {
       console.log('Omg it worked');
+      this.dialog.open(DialogComponent);
     });
   }
   postComment(): void{

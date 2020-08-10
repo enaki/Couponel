@@ -7,12 +7,14 @@ import { VoucherDetailsComponent } from './voucher-details/voucher-details.compo
 import { VoucherListComponent } from './voucher-list/voucher-list.component';
 import { VoucherRoutingModule } from './voucher-routing.module';
 import { TopComponent } from './top/top.component';
+import { DialogComponent } from './dialog/dialog.component';
 
+import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 
 
 @NgModule({
-  declarations: [VoucherDetailsComponent, VoucherListComponent, TopComponent],
-  imports: [CommonModule, VoucherRoutingModule, FormsModule, ReactiveFormsModule, SharedModule],
+  declarations: [VoucherDetailsComponent, VoucherListComponent, TopComponent, DialogComponent],
+  imports: [CommonModule, VoucherRoutingModule, FormsModule, ReactiveFormsModule, SharedModule, MatDialogModule],
   exports: [VoucherDetailsComponent, VoucherListComponent],
 })
 export class VoucherModule { }
