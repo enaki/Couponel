@@ -20,6 +20,7 @@ import { AddedVouchersComponent } from './added-vouchers/added-vouchers.componen
     ProfileRoutingModule,
     SharedModule,
     ReactiveFormsModule
+    FormsModule
   ]
 })
 export class ProfileModule { }

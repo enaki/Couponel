@@ -1,1 +1,43 @@
-<h1> Datele mele</h1>
+<ng-container *ngIf="!!profileInfo">
+  <div *ngIf="!isEditable">
+    <p>{{ profileInfo.userName }}</p>
+    <p>{{ profileInfo.email }}</p>
+  </div>
+  <div *ngIf="isEditable">
+    <form class="authentication-content" [formGroup]="formGroup">
+      <label>Username*</label>
+      <input formControlName="username" type="text" />
+      <div
+        *ngIf="
+          formGroup.controls['username'].invalid &&
+          formGroup.controls['username'].dirty
+        "
+        class="alert"
+      >
+        <div *ngIf="formGroup.controls['username'].errors">
+          Username has to contain at least 5 characters.
+        </div>
+      </div>
+      <label>First name*</label>
+      <input formControlName="firstName" type="text" />
+      <label>Last name*</label>
+      <input formControlName="lastName" type="text" />
+      <label>Email*</label>
+      <input formControlName="email" type="text" />
+      <div
+        *ngIf="
+          formGroup.controls['email'].invalid &&
+          formGroup.controls['email'].dirty
+        "
+        class="alert"
+      >
+        <div *ngIf="formGroup.controls['email'].errors">
+          Email invalid
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <button (click)="editInfo()">Edit</button>
+  <!--un ngif buton ca dupa ce l apas sa dispara si de adaugat un nou buton (edit sa se transf in save)-->
+</ng-container>
