@@ -4,7 +4,7 @@ export type VoucherModel = {
   id?: string;
   name: string;
   category: string;
-  expirationDate: string;
+  expirationDate: Date;
   description: string;
   comments: CommentModel[];
 };

@@ -1,3 +1,4 @@
+import datetime
 import json
 
 
@@ -375,7 +376,8 @@ def generate_comments():
         for comment in comments:
             comment_list.append({
                 "Id": comment["Id"],
-                "[Content]": comment["[Content]"],
+                "Content": comment["Content"],
+                "DateAdded": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 "UserId": comment["UserId"],
                 "CouponId": comment["CouponId"]
             })
@@ -390,14 +392,17 @@ def generate_comments():
         comment_string_builder_sql += """INSERT INTO [dbo].[Comments]
                ([Id]
                ,[Content]
+               ,[DateAdded]
                ,[UserId]
                ,[CouponId])
             VALUES
                (CONVERT(uniqueidentifier,'{}')
                ,'{}'
+               ,'{}'
                ,CONVERT(uniqueidentifier,'{}')
                ,CONVERT (uniqueidentifier,'{}'))\n\n""".format(comment["Id"],
-                                                                 comment["[Content]"],
+                                                                 comment["Content"],
+                                                                 comment["DateAdded"],
                                                                  comment["UserId"],
                                                                  comment["CouponId"])
 
