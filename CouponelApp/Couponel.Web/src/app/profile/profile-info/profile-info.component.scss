@@ -2,4 +2,54 @@
 
 h1 {
   margin-left: 20px;
+  color:red;
+}
+
+.felx-row-space-around{
+  width: 30%;
+  padding: 10px;
+  display:flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+  font-family: "Open Sans";
+  background-color:white;
+  border-radius: 8px;
+  box-shadow: 0px 0px 8px rgba(0, 23, 87, 0.08);
+}
+
+.form-section h1 {
+  margin-left: 20px;
+  color:pink;
+
+}
+.form-section img{
+  width:80%;
+  height:auto;
+
+}
+
+.flex-row-space-around {
+  margin: 20px;
+}
+
+.image-section img {
+display:flex;
+height: 200px;
+margin-left: 0px !important;
+margin-right: 0px;
+margin-bottom: auto;
+}
+
+.form-section {
+  width: 30%;
+  padding: 200px;
+  display:flex;
+  //align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+  font-family: "Open Sans";
+  background-color:white;
+  border-radius: 8px;
+  box-shadow: 0px 0px 8px rgba(0, 23, 87, 0.08);
 }
