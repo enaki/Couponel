@@ -7,14 +7,20 @@ import { ProfileComponent } from './profile/profile.component';
 import { SharedModule } from '../shared/shared.module';
 import { MatIconModule } from '@angular/material/icon';
 import { ProfileInfoComponent } from './profile-info/profile-info.component';
-import { SavedVouchersComponent } from './saved-vouchers/saved-vouchers.component';
+import {RedeemedVoucherComponent} from './redeemed-voucher/redeemed-voucher.component';
+import {RedeemedVoucherDetailsComponent} from './redeemed-voucher-details/redeemed-voucher-details.component';
+import {VoucherCreateComponent} from './voucher-create/voucher-create.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import { AddedVouchersComponent } from './added-vouchers/added-vouchers.component';
 
 @NgModule({
-  declarations: [ProfileComponent, ProfileInfoComponent, SavedVouchersComponent],
+  declarations: [ProfileComponent, ProfileInfoComponent, RedeemedVoucherComponent, RedeemedVoucherDetailsComponent, VoucherCreateComponent, AddedVouchersComponent],
   imports: [
     CommonModule,
     ProfileRoutingModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
+    FormsModule
   ]
 })
 export class ProfileModule { }

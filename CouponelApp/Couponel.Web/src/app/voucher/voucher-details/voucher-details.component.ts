@@ -2,12 +2,15 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-
 import { VoucherModel } from '../models';
 import { CommentModel } from '../models/comment.model';
 import { VoucherService } from '../services/voucher.service';
-import {CreateRedeemedVoucherModel} from '../models/redeemed-voucher/create.redeemed-voucher.model';
 import {UserService} from '../../shared/services';
+import {CreateRedeemedVoucherModel} from '../../profile/models/redeemed-voucher/create.redeemed-voucher.model';
+import {CreateCommentModel} from "../models/create.comment.model";
+import {RegisterModel} from "../../authentication/models/register.model";
+import {TokenService} from '../../shared/services/token.service';
+
 
 @Component({
   selector: 'app-voucher-details',

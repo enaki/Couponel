@@ -7,16 +7,16 @@ import { Injectable } from '@angular/core';
 export class VoucherImageProvider {
   private categoryImages =
     {
-      Food:             '../../assets/images/restaurant.svg',
-      Auto:             '../../assets/images/auto.svg',
-      Electronics:      '../../assets/images/electronics.svg',
-      'Coffee&Snacks':  '../../assets/images/coffee.svg',
-      Entertainment:    '../../assets/images/entertainment.svg',
-      Fashion:          '../../assets/images/fashion.svg',
-      Accessories:      '../../assets/images/accessories.svg',
-      Home:             '../../assets/images/supplies.svg',
-      Sport:            '../../assets/images/sport.svg',
-      Others:           '../../assets/images/others.svg'
+      Food:             '../../assets/images/restaurant.png',
+      Auto:             '../../assets/images/auto.png',
+      Electronics:      '../../assets/images/electronics.png',
+      'Coffee&Snacks':  '../../assets/images/coffee.png',
+      Entertainment:    '../../assets/images/entertainment.png',
+      Fashion:          '../../assets/images/fashion.png',
+      Accessories:      '../../assets/images/accessories.png',
+      Home:             '../../assets/images/supplies.png',
+      Sport:            '../../assets/images/sport.png',
+      Others:           '../../assets/images/others.png'
     };
 
   public getCategoryImage(category: string): string{

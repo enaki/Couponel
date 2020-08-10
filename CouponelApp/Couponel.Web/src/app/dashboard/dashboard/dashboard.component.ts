@@ -11,9 +11,9 @@ import {UserService} from '../../shared/services';
 })
 
 export class DashboardComponent implements OnInit, OnDestroy{
-  isStudent: boolean;
-  isOfferer: boolean;
-  isAdmin: boolean;
+  isStudent: boolean = false;
+  isOfferer: boolean = false;
+  isAdmin: boolean = false;
 
   constructor(private router: Router, private readonly userService: UserService) {}
 

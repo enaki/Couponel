@@ -46,7 +46,7 @@ export class AuthenticationComponent implements OnInit {
   }
 
   public setRegister(): void {
-    this.isSetRegistered = true;
+    this.isSetRegistered = !this.isSetRegistered;
   }
 
   public setAdmin(): void {
