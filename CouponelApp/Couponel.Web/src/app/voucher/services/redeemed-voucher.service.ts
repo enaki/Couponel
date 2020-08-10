@@ -2,8 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import {RedeemedVoucherModel} from '../models/redeemed-voucher/redeemed-voucher.model';
-import {DeleteRedeemedVoucherModel} from '../models/redeemed-voucher/delete.redeemed-voucher.model';
+import {RedeemedVoucherModel} from '../../profile/models/redeemed-voucher/redeemed-voucher.model';
+import {DeleteRedeemedVoucherModel} from '../../profile/models/redeemed-voucher/delete.redeemed-voucher.model';
 
 @Injectable({
   providedIn: 'root'

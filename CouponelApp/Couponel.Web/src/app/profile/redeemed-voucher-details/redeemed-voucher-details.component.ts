@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {RedeemedVoucherService} from '../services/redeemed-voucher.service';
+import {RedeemedVoucherService} from '../../voucher/services/redeemed-voucher.service';
 import {RedeemedVoucherModel} from '../models/redeemed-voucher/redeemed-voucher.model';
 
 @Component({

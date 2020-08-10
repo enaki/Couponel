@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {VoucherService} from '../services/voucher.service';
-import {CreateCouponModel} from "../models/create.coupon.model";
+import {VoucherService} from '../../voucher/services/voucher.service';
+import {CreateCouponModel} from '../models/voucher/create.coupon.model';
 
 @Component({
   selector: 'app-voucher-create',

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {RedeemedVoucherModel} from '../models/redeemed-voucher/redeemed-voucher.model';
-import {RedeemedVoucherService} from '../services/redeemed-voucher.service';
+import {RedeemedVoucherService} from '../../voucher/services/redeemed-voucher.service';
 import {Router} from '@angular/router';
-import {VoucherImageProvider} from '../services/voucher-image-provider';
+import {VoucherImageProvider} from '../../voucher/services/voucher-image-provider';
 
 @Component({
   selector: 'app-redeemed-voucher',

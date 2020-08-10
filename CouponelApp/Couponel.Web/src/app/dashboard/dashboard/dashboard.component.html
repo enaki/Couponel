@@ -5,7 +5,7 @@
               (click)="goToPage('list')"></app-tile>
     <app-tile label="My Vouchers"
               icon="create"
-              (click)="goToPage('my-vouchers')"></app-tile>
+              (click)="goToPage('profile/redeemed-vouchers')"></app-tile>
   </div>
   <div *ngIf="isOfferer">
     <app-tile label="All Vouchers"
@@ -14,11 +14,11 @@
 
     <app-tile label="My Vouchers"
               icon="create"
-              (click)="goToPage('my-vouchers')"></app-tile>
+              (click)="goToPage('profile/added-vouchers')"></app-tile>
 
     <app-tile label="Create a voucher"
               icon="create"
-              (click)="goToPage('voucher/create')"></app-tile>
+              (click)="goToPage('profile/create-voucher')"></app-tile>
   </div>
   <div *ngIf="isAdmin">
     <app-tile label="All Vouchers"
