@@ -43,7 +43,7 @@ export class VoucherDetailsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.service.get(this.router.url.split('/').slice(-1)[0]).subscribe((data: VoucherModel) => {
       this.description = data.description;
-      this.expirationDate = data.expirationDate.split('T')[0];
+      this.expirationDate = data.expirationDate.toString().replace('.', 'T').split('T').slice(0, 2).join(' ');
       this.name = data.name;
       this.comments = data.comments;
       this.comments.sort((a, b) => new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime());

@@ -24,21 +24,35 @@
 </div>
 
 <div class="flex-row-space-around">
-  <div class="form-section">
+  <div class="comment-section">
     <h2 style="text-align: center;">Comments</h2>
     <div>
-
-        <form class="comment-section" [formGroup]="commentFormGroup">
+        <form class="comment-section-form" [formGroup]="commentFormGroup">
           <textarea formControlName="Content"
                     onfocus="if (this.value == 'Your comment goes here:') {this.value=''}">Your comment goes here:</textarea><br>
           <button type="button" (click)="postComment()">Comment</button>
         </form><br>
-
     </div>
+    <!--
     <div id="addedComment" *ngFor="let commentary of comments">
       <h2 id="userComment">{{commentary["user"]["userName"]}}:</h2>
       <h3 id="date">{{commentary.dateAdded}}</h3>
       <h4 id="commentContent">{{commentary["content"]}}</h4><br>
     </div>
+    -->
+    <div>
+      <div *ngFor="let commentary of comments">
+        <div class="dialogbox">
+          <div class="body">
+            <span class="tip tip-up"></span>
+            <span class="comment-username">{{commentary["user"]["userName"]}}</span><span style="font-style: italic;"> commented on </span><span class="comment-dateAdded">{{commentary.dateAdded.toString().replace('.', 'T').split('T').slice(0, 2).join(' ')}}</span>
+            <div class="message">
+              <span>{{commentary["content"]}}.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>

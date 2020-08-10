@@ -16,7 +16,7 @@
 
     <img src="../../assets/images/others.svg"
          alt="Voucher image" />
-    <p>Available until: {{redeemedVoucherModel.coupon.expirationDate}}</p>
+    <p>Available until: {{redeemedVoucherModel.coupon.expirationDate.toString().replace('.', 'T').split('T').slice(0, 2).join(' ')}}</p>
     <div class="coupon-description">Description: {{redeemedVoucherModel.coupon.description}}</div>
     <div class="coupon-description">Status: {{redeemedVoucherModel.status}}</div>
     <button (click)="updateRedeemedCoupon()">Use</button>
