@@ -6,6 +6,7 @@
     <app-tile *ngFor="let voucher of redeemedVoucherList"
               label="{{voucher.coupon.name}}"
               background="{{getCategoryImage(voucher.coupon.category)}}"
-              (click)="goToVoucher(voucher.id)"></app-tile>
+              (click)="goToVoucher(voucher.id)">
+    </app-tile>
   </div>
 </div>

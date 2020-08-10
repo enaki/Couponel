@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {RedeemedVoucherModel} from '../models/redeemed-voucher.model';
+import {RedeemedVoucherModel} from '../models/redeemed-voucher/redeemed-voucher.model';
 import {RedeemedVoucherService} from '../services/redeemed-voucher.service';
 import {Router} from '@angular/router';
 import {VoucherImageProvider} from '../services/voucher-image-provider';
@@ -28,6 +28,6 @@ constructor(
   }
 
   goToVoucher(id: string): void {
-    this.router.navigate([`/voucher/details/${id}`]);
+    this.router.navigate([`/my-vouchers/details/${id}`]);
   }
 }

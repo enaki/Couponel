@@ -8,9 +8,10 @@ import { VoucherListComponent } from './voucher-list/voucher-list.component';
 import { VoucherRoutingModule } from './voucher-routing.module';
 import { TopComponent } from './top/top.component';
 import { RedeemedVoucherComponent } from './redeemed-voucher/redeemed-voucher.component';
+import { RedeemedVoucherDetailsComponent } from './redeemed-voucher-details/redeemed-voucher-details.component';
 
 @NgModule({
-  declarations: [VoucherDetailsComponent, VoucherListComponent, TopComponent, RedeemedVoucherComponent],
+  declarations: [VoucherDetailsComponent, VoucherListComponent, TopComponent, RedeemedVoucherComponent, RedeemedVoucherDetailsComponent],
   imports: [CommonModule, VoucherRoutingModule, FormsModule, ReactiveFormsModule, SharedModule],
   exports: [VoucherDetailsComponent, VoucherListComponent],
 })
