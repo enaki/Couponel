@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 import { VoucherModel } from '../models';
 import { CommentModel } from '../models/comment.model';
 import { VoucherService } from '../services/voucher.service';
-import {RedeemedCouponModel} from '../models/redeemed-coupon.model';
+import {CreateRedeemedVoucherModel} from '../models/redeemed-voucher/create.redeemed-voucher.model';
 import {CreateCommentModel} from "../models/create.comment.model";
 import {RegisterModel} from "../../authentication/models/register.model";
 
@@ -58,7 +58,7 @@ export class VoucherDetailsComponent implements OnInit, OnDestroy {
     this.routeSub.unsubscribe();
   }
   redeemCoupon(): void {
-    const redeemedCouponData: RedeemedCouponModel = {
+    const redeemedCouponData: CreateRedeemedVoucherModel = {
       couponId: this.couponId
     };
     this.service.redeemCoupon(redeemedCouponData).subscribe(() => {
@@ -66,7 +66,7 @@ export class VoucherDetailsComponent implements OnInit, OnDestroy {
     });
   }
   postComment(): void{
-    const data: RegisterModel = this.commentFormGroup.getRawValue();
+    const data: CommentModel = this.commentFormGroup.getRawValue();
     this.service.postComment(this.router.url.split('/').slice(-1)[0], data).subscribe(() => {
       //TODO: clear comment section and render comment instead of reloading the page
       window.location.reload();

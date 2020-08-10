@@ -1,14 +1,31 @@
 <div class="container">
-  <app-tile label="All Vouchers"
-            icon="list"
-            (click)="goToPage('list')"></app-tile>
-  <app-tile label="Create Voucher"
-            icon="create"
-            (click)="goToPage('create-voucher')"></app-tile>
-  <app-tile label="Notifications"
-            icon="notifications"
-            (click)="goToPage('notifications')"></app-tile>
-  <app-tile label="Top List"
-            icon="favorite"
-            (click)="goToPage('top-list')"></app-tile>
+  <div *ngIf="isStudent">
+    <app-tile label="All Vouchers"
+              icon="list"
+              (click)="goToPage('list')"></app-tile>
+    <app-tile label="My Vouchers"
+              icon="create"
+              (click)="goToPage('my-vouchers')"></app-tile>
+  </div>
+  <div *ngIf="isOfferer">
+    <app-tile label="All Vouchers"
+              icon="list"
+              (click)="goToPage('list')"></app-tile>
+
+    <app-tile label="My Vouchers"
+              icon="create"
+              (click)="goToPage('my-vouchers')"></app-tile>
+
+    <app-tile label="Create a voucher"
+              icon="create"
+              (click)="goToPage('voucher/create')"></app-tile>
+  </div>
+  <div *ngIf="isAdmin">
+    <app-tile label="All Vouchers"
+              icon="list"
+              (click)="goToPage('list')"></app-tile>
+    <app-tile label="Statistics"
+              icon="create"
+              (click)="goToPage('statistics')"></app-tile>
+  </div>
 </div>

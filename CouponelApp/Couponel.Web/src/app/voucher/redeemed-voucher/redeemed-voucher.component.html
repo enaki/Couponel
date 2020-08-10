@@ -1,0 +1,12 @@
+<div class="page-container">
+  <h1>
+    My Redeemed Vouchers
+  </h1>
+  <div class="cards">
+    <app-tile *ngFor="let voucher of redeemedVoucherList"
+              label="{{voucher.coupon.name}}"
+              background="{{getCategoryImage(voucher.coupon.category)}}"
+              (click)="goToVoucher(voucher.id)">
+    </app-tile>
+  </div>
+</div>

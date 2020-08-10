@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using Couponel.Business.Coupons.Coupons.Models.RedeemedCouponsModels;
-using Couponel.Business.Coupons.Coupons.Services.Interfaces;
 using Couponel.Business.Coupons.RedeemedCoupons.Models;
 using Couponel.Business.Coupons.RedeemedCoupons.Services.Interfaces;
 using Couponel.Entities.Coupons;
-using Couponel.Persistence.Repositories.Repository;
 using Couponel.Persistence.Repositories.UsersRepository;
 using Microsoft.AspNetCore.Http;
 
@@ -48,7 +45,7 @@ namespace Couponel.Business.Coupons.RedeemedCoupons.Services.Implementations
             var userId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
             var student = await _repository.GetStudentRedeemedCouponsById(userId);
 
-            var redeemedCoupon = new RedeemedCoupon(RedeemedCouponStatus.NotUsed, redeemedCouponId);
+            var redeemedCoupon = new RedeemedCoupon(RedeemedCouponStatus.Valid, redeemedCouponId);
             student.AddRedeemedCoupon(redeemedCoupon);
             await _repository.SaveChanges();
 

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
-import { VoucherModel, VouchersModel } from '../models';
-import { VoucherService } from '../services/voucher.service';
+import {VoucherModel, VouchersModel} from '../models';
+import {VoucherService} from '../services/voucher.service';
+import {VoucherImageProvider} from '../services/voucher-image-provider';
 
 @Component({
   selector: 'app-voucher-list',
@@ -12,22 +13,10 @@ import { VoucherService } from '../services/voucher.service';
 })
 export class VoucherListComponent implements OnInit {
   public voucherList: VoucherModel[];
-  private categoryImages=
-  {
-    "Restaurant":"../../assets/images/restaurant.svg",
-    "Auto":"../../assets/images/auto.svg",
-    "Electronics":"../../assets/images/electronics.svg",
-    "Coffee":"../../assets/images/coffee.svg",
-    "Entertainment":"../../assets/images/entertainment.svg",
-    "Fashion":"../../assets/images/fashion.svg",
-    "Accessories":"../../assets/images/accessories.svg",
-    "Supplies":"../../assets/images/supplies.svg",
-    "Sport":"../../assets/images/sport.svg",
-    "Others":"../../assets/images/others.svg"
-  };
   constructor(
     private router: Router,
-    private service: VoucherService) { }
+    private service: VoucherService,
+    private imageProvider: VoucherImageProvider) { }
 
   public ngOnInit(): void {
     this.service.getAll().subscribe((data: VouchersModel) => {
@@ -41,12 +30,7 @@ export class VoucherListComponent implements OnInit {
   }
 
   getCategoryImage(category: string): string{
-    let result = this.categoryImages[category];
-    if(result == null)
-    {
-      return "../../assets/images/coupon.png";
-    }
-    return result;
+    return this.imageProvider.getCategoryImage(category);
   }
 }
 

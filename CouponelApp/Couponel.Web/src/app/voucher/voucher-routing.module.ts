@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { VoucherDetailsComponent } from './voucher-details/voucher-details.component';
 import { VoucherListComponent } from './voucher-list/voucher-list.component';
 import { TopComponent } from './top/top.component';
+import {VoucherCreateComponent} from './voucher-create/voucher-create.component';
 
 
 const routes: Routes = [
@@ -16,7 +17,12 @@ const routes: Routes = [
     path: 'details/:id',
     pathMatch: 'full',
     component: VoucherDetailsComponent,
-  }
+  },
+  {
+    path: 'create',
+    pathMatch: 'full',
+    component: VoucherCreateComponent,
+  },
 ];
 
 @NgModule({
