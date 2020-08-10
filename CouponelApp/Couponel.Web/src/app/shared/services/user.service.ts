@@ -22,7 +22,7 @@ export class UserService {
   public setToken(token: string): void {
     if (token != null){
       localStorage.setItem('userToken', token);
-      const tokenData = jwt_decode(token);
+      const tokenData = jwt_decode(token) as any;
       console.log(tokenData);
       const user: UserModel = {
         userId: tokenData.userId,

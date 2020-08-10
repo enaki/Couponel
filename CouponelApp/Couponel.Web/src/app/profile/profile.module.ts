@@ -10,7 +10,7 @@ import { ProfileInfoComponent } from './profile-info/profile-info.component';
 import {RedeemedVoucherComponent} from './redeemed-voucher/redeemed-voucher.component';
 import {RedeemedVoucherDetailsComponent} from './redeemed-voucher-details/redeemed-voucher-details.component';
 import {VoucherCreateComponent} from './voucher-create/voucher-create.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AddedVouchersComponent } from './added-vouchers/added-vouchers.component';
 
 @NgModule({
@@ -19,7 +19,7 @@ import { AddedVouchersComponent } from './added-vouchers/added-vouchers.componen
     CommonModule,
     ProfileRoutingModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
     FormsModule
   ]
 })
