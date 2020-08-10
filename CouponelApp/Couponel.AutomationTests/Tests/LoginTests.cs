@@ -6,6 +6,7 @@ using Xunit;
 
 namespace Couponel.AutomationTests.Tests
 {
+    [Collection("Sequential")]
     public class LoginTests: Browser, IDisposable
     {
         public LoginPage loginPage;

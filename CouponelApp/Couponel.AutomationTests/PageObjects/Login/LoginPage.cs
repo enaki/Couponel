@@ -4,10 +4,8 @@ using SeleniumExtras.PageObjects;
 
 namespace Couponel.AutomationTests.PageObjects.Login
 {
-    public class LoginPage
+    public class LoginPage:BasePage
     {
-        public IWebDriver driver;
-
         public LoginPage(IWebDriver driver)
         {
             this.driver = driver;

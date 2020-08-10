@@ -8,7 +8,7 @@ namespace Couponel.IntegrationTests.SpecificIntegrationTests
         public override async Task InitializeAsync()
         {
             await ExecuteDatabaseAction(async (couponelContext) => await CleanupDatabase(couponelContext));
-            (AuthenticatedUserId, UserAuthenticationToken) = await SetAuthenticationToken(UserRole.User);
+            (AuthenticatedUserId, UserAuthenticationToken) = await SetAuthenticationToken(UserRole.Student);
             HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", UserAuthenticationToken);
         }
     }
