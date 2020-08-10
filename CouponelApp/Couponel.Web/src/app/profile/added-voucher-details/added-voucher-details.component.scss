@@ -55,7 +55,20 @@
   font-family: "Open Sans";
 }
 
-.editor-container .editor-content button {
+.editor-container .editor-content .delete-button {
+  background-color: #750b8c;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  width: 20%;
+  height: 40px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  font-family: "Open Sans";
+  font-weight: bold;
+}
+
+.editor-container .editor-content .update-button {
   background-color: #54c4a8;
   border: 0;
   outline: 0;

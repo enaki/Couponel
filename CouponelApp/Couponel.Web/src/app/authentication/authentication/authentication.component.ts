@@ -72,9 +72,10 @@ export class AuthenticationComponent implements OnInit {
       const data: LoginModel = this.formGroup.getRawValue();
 
       this.authenticationService.login(data).subscribe((logData: any) => {
+
         this.userService.setToken(JSON.stringify(logData.token));
         this.router.navigate(['dashboard']);
-      });
+      }, error => alert("Eroare la conectare. \n Username/parola incorecta."));
     }
   }
 }

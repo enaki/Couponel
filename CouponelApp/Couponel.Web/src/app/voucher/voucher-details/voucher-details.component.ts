@@ -7,6 +7,8 @@ import { CommentModel } from '../models/comment.model';
 import { VoucherService } from '../services/voucher.service';
 import {UserService} from '../../shared/services';
 import {CreateRedeemedVoucherModel} from '../../profile/models/redeemed-voucher/create.redeemed-voucher.model';
+import {MatDialog} from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-voucher-details',
@@ -34,6 +36,7 @@ export class VoucherDetailsComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
     private userService: UserService,
+    private dialog: MatDialog,
     private service: VoucherService) {
     this.commentFormGroup = this.formBuilder.group({
       Content: new FormControl(null),
@@ -43,9 +46,11 @@ export class VoucherDetailsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.service.get(this.router.url.split('/').slice(-1)[0]).subscribe((data: VoucherModel) => {
       this.description = data.description;
-      this.expirationDate = data.expirationDate.split('T')[0];
+      this.expirationDate = data.expirationDate.toString().replace('.', 'T').split('T').slice(0, 2).join(' ');
       this.name = data.name;
       this.comments = data.comments;
+      this.comments.sort((a, b) => new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime());
+      console.log(this.comments);
       if (this.userService.getUserDetails().userRole === 'Student')
       {
         this.isStudent = true;
@@ -62,12 +67,13 @@ export class VoucherDetailsComponent implements OnInit, OnDestroy {
     };
     this.service.redeemCoupon(redeemedCouponData).subscribe(() => {
       console.log('Omg it worked');
+      this.dialog.open(DialogComponent);
     });
   }
   postComment(): void{
     const data: CommentModel = this.commentFormGroup.getRawValue();
     this.service.postComment(this.router.url.split('/').slice(-1)[0], data).subscribe(() => {
-      //TODO: clear comment section and render comment instead of reloading the page
+      // TODO: clear comment section and render comment instead of reloading the page
       window.location.reload();
     });
   }
