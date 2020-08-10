@@ -1,13 +1,13 @@
-<h1>
-  Create a Voucher
-</h1>
-
-<div>
-  <form [formGroup]="formGroup">
-    <label>Name*</label><br/>
+<div class="editor-container">
+  <img src="assets/images/create-voucher.svg" />
+  <form  class="editor-content" [formGroup]="formGroup">
+    <span class="head-label">
+      Create a voucher
+    </span>
+    <label>Name*</label>
     <input formControlName="Name" type="text"
-           value="Name:" onfocus="if (this.value == 'Name:') {this.value=''}"/><br/>
-    <label>Category*</label><br/>
+           value="Name:" onfocus="if (this.value == 'Name:') {this.value=''}"/>
+    <label>Category*</label>
     <select formControlName="Category">
       <option value="Electronics">Electronics</option>
       <option value="Fashion">Fashion</option>
@@ -19,12 +19,12 @@
       <option value="Sport">Sport</option>
       <option value="Auto">Auto</option>
       <option value="Others">Others</option>
-    </select><br/>
-    <label>Expiration date*</label><br/>
-    <input formControlName="ExpirationDate" type="date"/><br/>
-    <label>Description*</label><br/>
-    <textarea formControlName="Description" type="text"
-              onfocus="if (this.value == 'Description:') {this.value=''}">Description:</textarea><br/>
-    <button type="button" (click)="createVoucher()">Create</button>
+    </select>
+    <label>Expiration date*</label>
+    <input formControlName="ExpirationDate" type="date"/>
+    <label>Description*</label>
+    <textarea rows="6" formControlName="Description" type="text"
+              onfocus="if (this.value == 'Description:') {this.value=''}">Description:</textarea>
+    <button type="button" (click)="createVoucher()"><span>Create</span></button>
   </form>
 </div>

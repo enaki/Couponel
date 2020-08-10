@@ -1,9 +1,12 @@
-<p>added-voucher-details works!</p>
-<div>
-  <form [formGroup]="formGroup" >
-    <label>Name*</label><br/>
-    <input formControlName="name" type="text"/> <br/>
-    <label>Category*</label><br/>
+<div class="editor-container">
+  <img src="assets/images/create-voucher.svg" />
+  <form class="editor-content" [formGroup]="formGroup" >
+    <span class="head-label">
+      Modify voucher details
+    </span>
+    <label>Name*</label>
+    <input formControlName="name" type="text"/>
+    <label>Category*</label>
     <select formControlName="category">
       <option value="Electronics">Electronics</option>
       <option value="Fashion">Fashion</option>
@@ -15,12 +18,12 @@
       <option value="Sport">Sport</option>
       <option value="Auto">Auto</option>
       <option value="Others">Others</option>
-    </select><br/>
-    <label>Expiration date*</label><br/>
-    <input formControlName="expirationDate" type="date"/><br/>
-    <label>Description*</label><br/>
-    <textarea formControlName="description"></textarea><br/>
-    <button type="button" (click)="updateVoucher()">Update</button><br/>
-    <button type="button" (click)="deleteVoucher()">Delete</button><br/>
+    </select>
+    <label>Expiration date*</label>
+    <input formControlName="expirationDate" type="date"/>
+    <label>Description*</label>
+    <textarea formControlName="description"></textarea>
+    <button class="update-button" type="button" (click)="updateVoucher()"><span>Update</span></button>
+    <button class="delete-button" type="button" (click)="deleteVoucher()"><span>Delete</span></button>
   </form>
 </div>
