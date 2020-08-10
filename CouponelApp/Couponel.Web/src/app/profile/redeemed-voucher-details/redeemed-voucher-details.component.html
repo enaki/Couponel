@@ -17,9 +17,9 @@
     <img src="../../assets/images/others.svg"
          alt="Voucher image" />
     <p>Available until: {{redeemedVoucherModel.coupon.expirationDate}}</p>
-    <div class="coupon-description">Description: {{redeemedVoucherModel.coupon.description}}</div>
-    <div class="coupon-description">Status: {{redeemedVoucherModel.status}}</div>
-    <button (click)="updateRedeemedCoupon()">Use</button>
+    <div class="coupon-description" id="coupon-description">Description: {{redeemedVoucherModel.coupon.description}}</div><br>
+    <div class="coupon-description" id="coupon-status">{{redeemedVoucherModel.status}}</div><br>
+    <button (click)="updateRedeemedCoupon()">Use</button><br>
     <button (click)="deleteRedeemedCoupon()">Delete</button>
   </section>
 </div>
