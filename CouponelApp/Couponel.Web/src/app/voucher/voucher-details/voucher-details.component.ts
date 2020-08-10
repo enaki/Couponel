@@ -46,6 +46,8 @@ export class VoucherDetailsComponent implements OnInit, OnDestroy {
       this.expirationDate = data.expirationDate.split('T')[0];
       this.name = data.name;
       this.comments = data.comments;
+      this.comments.sort((a, b) => new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime());
+      console.log(this.comments);
       if (this.userService.getUserDetails().userRole === 'Student')
       {
         this.isStudent = true;
