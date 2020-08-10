@@ -1,8 +1,9 @@
 @import "../../../assets/styles/layout.scss";
 
 .form-section h1, .comment-section h1 {
-  margin-left: 20px;
-  color:pink;
+  margin-left: 23px;
+  color:#E67235;
+  font-weight: bold;
 
 }
 .form-section img, .comment-section img{
@@ -17,7 +18,20 @@
 .image-section img {
   width: 80%;
 }
+.coupon-description{
+  color:#E67235;
+  font-size:18px;
+  text-align:center;
+  font-weight:bold;
+}
+.coupon-description span{
+  color:rgb(47,46,65);
+  font-size:20px;
+}
 
+.form-section p{
+  color:rgb(47,46,65);
+}
 .form-section {
   width: 30%;
   padding: 10px;
@@ -31,18 +45,6 @@
   box-shadow: 0px 0px 8px rgba(0, 23, 87, 0.08);
 }
 
-/*.felx-row-space-around{
-  width: 30%;
-  padding: 10px;
-  display:flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: space-evenly;
-  font-family: "Open Sans";
-  background-color:white;
-  border-radius: 8px;
-  box-shadow: 0px 0px 8px rgba(0, 23, 87, 0.08);
-}*/
 
 .comment-section {
   align-items: center;
@@ -97,7 +99,7 @@
   color: red;
   width: 99%;
   min-height: 150px;
-  font-family: "Open Sans";
+  font-family:Arial, Helvetica, sans-serif;
   font-size: 16px;
   font-weight: 200;
 }

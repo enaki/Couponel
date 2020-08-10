@@ -17,8 +17,12 @@
 
     <img src="../../assets/images/others.svg"
          alt="Voucher image" />
+         <br>
     <p>Available until: {{expirationDate}}</p>
-    <div class="coupon-description">Description: {{description}}</div>
+
+
+    <div class="coupon-description"><span>Description: </span>{{description}}</div>
+    <br><br>
       <button *ngIf="isStudent" (click)="redeemCoupon()">Redeem</button>
   </section>
 </div>
