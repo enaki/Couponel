@@ -10,9 +10,9 @@ import {VoucherModel} from "../../voucher/models";
 })
 
 export class DashboardComponent implements OnInit, OnDestroy{
-  isStudent: boolean;
-  isOfferer: boolean;
-  isAdmin: boolean;
+  isStudent: boolean = false;
+  isOfferer: boolean = false;
+  isAdmin: boolean = false;
 
   constructor(private router: Router) {}
 
