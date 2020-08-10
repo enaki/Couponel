@@ -16,9 +16,9 @@
               icon="create"
               (click)="goToPage('my-vouchers')"></app-tile>
 
-    <app-tile label="Add a voucher"
+    <app-tile label="Create a voucher"
               icon="create"
-              (click)="goToPage('create-vouchers')"></app-tile>
+              (click)="goToPage('voucher/create')"></app-tile>
   </div>
   <div *ngIf="isAdmin">
     <app-tile label="All Vouchers"

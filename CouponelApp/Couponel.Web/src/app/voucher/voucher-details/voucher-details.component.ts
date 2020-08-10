@@ -66,7 +66,7 @@ export class VoucherDetailsComponent implements OnInit, OnDestroy {
     });
   }
   postComment(): void{
-    const data: RegisterModel = this.commentFormGroup.getRawValue();
+    const data: CommentModel = this.commentFormGroup.getRawValue();
     this.service.postComment(this.router.url.split('/').slice(-1)[0], data).subscribe(() => {
       //TODO: clear comment section and render comment instead of reloading the page
       window.location.reload();
