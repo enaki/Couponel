@@ -15,11 +15,13 @@
 
 
     <img src="../../assets/images/others.svg"
-         alt="Voucher image" />
+         alt="Voucher image" /><br>
     <p>Available until: {{redeemedVoucherModel.coupon.expirationDate.toString().replace('.', 'T').split('T').slice(0, 2).join(' ')}}</p>
-    <div class="coupon-description" id="coupon-description">Description: {{redeemedVoucherModel.coupon.description}}</div>
+    <div class="coupon-description" id="coupon-description"><span>Description:</span> {{redeemedVoucherModel.coupon.description}}</div>
+    <br>
     <div class="coupon-description" id="coupon-status">Status: {{redeemedVoucherModel.status}}</div>
-    <button (click)="updateRedeemedCoupon()">Use</button>
+    <br>
+    <button (click)="updateRedeemedCoupon()">Use</button><br>
     <button (click)="deleteRedeemedCoupon()">Delete</button>
   </section>
 </div>
