@@ -2,7 +2,8 @@
 
 .form-section h1 {
   margin-left: 20px;
-  color:pink;
+  color:#E67235;
+  font-weight: bolder;
 
 }
 .form-section img{
@@ -95,10 +96,12 @@
 #coupon-description {
   color: red;
   width: 99%;
-  min-height: 150px;
   font-family: "Open Sans";
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 200;
+}
+#coupon-description span{
+  font-size: 20px;
 }
 
 .form-group {
@@ -137,6 +140,7 @@ p {
 
 .form-section button {
   background-color: #54c4a8;
+  color: black;
   border: 0;
   outline: 0;
   cursor: pointer;
@@ -162,4 +166,17 @@ button span {
     max-width: 100%;
   }
 }
+#coupon-description{
+  text-align: center;
+  color:#E67235;
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 0px;
+  padding: 0;
+}
 
+#coupon-status{
+  text-align: center;
+  color:green;
+  font-weight: bold;
+}
