@@ -13,7 +13,7 @@ using Xunit;
 namespace Couponel.IntegrationTests
 {
     public static class UserRole{
-        public const string User = "User";
+        public const string Student = "Student";
         public const string Admin = "Admin";
         public const string Offerer = "Offerer";
     }

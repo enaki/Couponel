@@ -24,7 +24,7 @@ namespace Couponel.IntegrationTests.Coupons
             var redeemedcoupon=new RedeemedCoupon("Used",coupon.Id);
            
             var student = UserRegisterModelFactory.getUserFactory("Student").getUser();
-            student.AddCoupon(coupon);
+            
             await ExecuteDatabaseAction(async couponelContext =>
             {
                 await couponelContext.Users.AddAsync(user);
