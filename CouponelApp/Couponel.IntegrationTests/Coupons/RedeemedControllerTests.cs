@@ -2,7 +2,9 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using Couponel.Business.Coupons.Coupons.Models.CouponsModels;
+using Couponel.Business.Identities.Students.Models;
 using Couponel.Entities.Coupons;
+using Couponel.Entities.Identities;
 using Couponel.IntegrationTests.Shared;
 using Couponel.IntegrationTests.SpecificIntegrationTests;
 using FluentAssertions;
@@ -11,34 +13,39 @@ using Xunit;
 namespace Couponel.IntegrationTests.Coupons
 {
     [Collection("Sequential")]
-    public class RedeemedControllerTests:OffererIntegrationTests
+    public class RedeemedControllerTests:StudentIntegrationTests 
     {
         [Fact]
         public async Task GetRedeemedCoupon()
         {
             // Arrange
-            var user = UserRegisterModelFactory.getUserFactory("Offerer").getUser();
-
+            var offerer = UserRegisterModelFactory.getUserFactory("Offerer").getUser();
             var coupon = CouponModelFactory.Default();
-            user.AddCoupon(coupon);
-            var redeemedcoupon=new RedeemedCoupon("Used",coupon.Id);
+            offerer.AddCoupon(coupon);
+            var student = new Student(this.AuthenticatedUserId);
+            var admin = UserRegisterModelFactory.getUserFactory("Admin").getUser();
+            var university = InstitutionsModelFactory.University();
+            var faculty = InstitutionsModelFactory.Faculty();
+            university.AddFaculty(faculty);
+            faculty.AddStudent(student);
            
-            var student = UserRegisterModelFactory.getUserFactory("Student").getUser();
-            
+            var redeemedcoupon = new RedeemedCoupon("Used",coupon.Id);
+            student.AddRedeemedCoupon(redeemedcoupon);
             await ExecuteDatabaseAction(async couponelContext =>
             {
-                await couponelContext.Users.AddAsync(user);
-                await couponelContext.Users.AddAsync(student);
-                await couponelContext.RedeemedCoupons.AddAsync(redeemedcoupon);
+                await couponelContext.Users.AddAsync(admin);
+                await couponelContext.Users.AddAsync(offerer);
+                await couponelContext.Universities.AddAsync(university); 
                 await couponelContext.SaveChangesAsync();
             });
+
             //Act
-            var response = await HttpClient.GetAsync($"api/redeemedCoupons/{coupon.Id}");
+            var response = await HttpClient.GetAsync($"/api/redeemedCoupons/{redeemedcoupon.Id}");
 
             // Assert
             response.IsSuccessStatusCode.Should().BeTrue();
-            var comments = await response.Content.ReadAsAsync<IList<CouponModel>>();
-            comments.Should().NotBeNull();
+            var redeemedcoupons = await response.Content.ReadAsAsync<RedeemedCoupon>();
+            redeemedcoupons.Should().NotBeNull();
 
         }
     }
