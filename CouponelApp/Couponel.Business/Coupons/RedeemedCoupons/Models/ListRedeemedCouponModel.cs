@@ -7,6 +7,7 @@ namespace Couponel.Business.Coupons.RedeemedCoupons.Models
 {
     public sealed class  ListRedeemedCouponModel
     {
+        public Guid Id { get; set; }
         public string Status { get; set; }
         public DateTime RedeemedDate { get; set; }
         public Coupon Coupon { get; set; }

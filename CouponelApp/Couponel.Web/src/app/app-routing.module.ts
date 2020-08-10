@@ -7,6 +7,8 @@ import { VoucherListComponent } from './voucher/voucher-list/voucher-list.compon
 import { TopComponent } from './voucher/top/top.component';
 import { ProfileInfoComponent } from './profile/profile-info/profile-info.component';
 import { SavedVouchersComponent } from './profile/saved-vouchers/saved-vouchers.component';
+import {RedeemedVoucherComponent} from './voucher/redeemed-voucher/redeemed-voucher.component';
+import {RedeemedVoucherDetailsComponent} from './voucher/redeemed-voucher-details/redeemed-voucher-details.component';
 import {VoucherCreateComponent} from "./voucher/voucher-create/voucher-create.component";
 
 const routes: Routes = [
@@ -27,6 +29,8 @@ const routes: Routes = [
   { path: 'top-list', component: TopComponent},
   { path: 'profile-info', component: ProfileInfoComponent},
   { path: 'saved-vouchers', component: SavedVouchersComponent},
+  { path: 'my-vouchers', component: RedeemedVoucherComponent},
+  { path: 'my-vouchers/details/:id', component: RedeemedVoucherDetailsComponent},
   {
     path: 'notifications',
     loadChildren: () =>

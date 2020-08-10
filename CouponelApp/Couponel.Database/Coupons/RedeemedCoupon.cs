@@ -5,7 +5,7 @@ namespace Couponel.Entities.Coupons
 {
     public static class RedeemedCouponStatus
     {
-        public const string NotUsed = "NotUsed";
+        public const string Valid = "NotUsed";
         public const string Used = "Used";
         public const string Expired = "Expired";
     }
