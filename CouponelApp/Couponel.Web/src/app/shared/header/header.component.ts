@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   ChangeDetectorRef,
   Component,
   OnInit,
@@ -23,8 +22,11 @@ export class HeaderComponent implements OnInit{
 
   ngOnInit(): void {
     console.log('HeaderComponent::ngOnInit');
-    this.userService.username.subscribe((name) => {
-      this.username = name;
+    this.userService.token.subscribe(() => {
+      console.log('ngOnInit Token Subscribe');
+      console.log(this.userService.getUserDetails());
+      const userDetails = this.userService.getUserDetails();
+      this.username = (userDetails != null) ? userDetails.username : null;
     });
   }
 

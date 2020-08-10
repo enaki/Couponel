@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
+import {UserService} from '../../shared/services';
 import {RedeemedVoucherModel} from '../../profile/models/redeemed-voucher/redeemed-voucher.model';
 import {DeleteRedeemedVoucherModel} from '../../profile/models/redeemed-voucher/delete.redeemed-voucher.model';
 
@@ -11,14 +11,13 @@ import {DeleteRedeemedVoucherModel} from '../../profile/models/redeemed-voucher/
 export class RedeemedVoucherService {
 
   private endpoint = 'https://localhost:5001/api/redeemedCoupons';
-  private httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${JSON.parse(localStorage.getItem('userToken'))}`
-    })
-  };
+  private httpOptions: unknown;
 
-  constructor(private readonly http: HttpClient) { }
+  constructor(private readonly http: HttpClient, private userService: UserService) {
+    this.userService.token.subscribe(() => {
+      this.httpOptions = this.userService.getHttpOptions();
+    });
+  }
 
   get(redeemedCouponId: string): Observable<RedeemedVoucherModel> {
     console.log('Get By Id from Redeemed Service');
@@ -36,7 +35,7 @@ export class RedeemedVoucherService {
 
   updateRedeemedCoupon(redeemedCouponId: string): Observable<unknown> {
     const data = {
-      'Status': 'Used'
+      Status: 'Used'
     };
     return this.http.patch<unknown>(`${this.endpoint}/${redeemedCouponId}`,data, this.httpOptions);
   }

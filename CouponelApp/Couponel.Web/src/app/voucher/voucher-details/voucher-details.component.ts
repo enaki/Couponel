@@ -2,14 +2,15 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-
 import { VoucherModel } from '../models';
 import { CommentModel } from '../models/comment.model';
 import { VoucherService } from '../services/voucher.service';
+import {UserService} from '../../shared/services';
 import {CreateRedeemedVoucherModel} from '../../profile/models/redeemed-voucher/create.redeemed-voucher.model';
 import {CreateCommentModel} from "../models/create.comment.model";
 import {RegisterModel} from "../../authentication/models/register.model";
 import {TokenService} from '../../shared/services/token.service';
+
 
 @Component({
   selector: 'app-voucher-details',
@@ -36,7 +37,7 @@ export class VoucherDetailsComponent implements OnInit, OnDestroy {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private tokenService: TokenService,
+    private userService: UserService,
     private service: VoucherService) {
     this.commentFormGroup = this.formBuilder.group({
       Content: new FormControl(null),
@@ -44,15 +45,12 @@ export class VoucherDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.tokenService.token.subscribe(() => {
-      this.service.updateToken();
-    });
     this.service.get(this.router.url.split('/').slice(-1)[0]).subscribe((data: VoucherModel) => {
       this.description = data.description;
       this.expirationDate = data.expirationDate.split('T')[0];
       this.name = data.name;
       this.comments = data.comments;
-      if (localStorage.getItem('userRole') === 'Student')
+      if (this.userService.getUserDetails().userRole === 'Student')
       {
         this.isStudent = true;
         this.couponId = this.router.url.split('/').slice(-1)[0];
