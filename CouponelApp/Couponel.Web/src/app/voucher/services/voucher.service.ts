@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import {Injectable, OnInit} from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { VoucherModel } from '../models';
@@ -13,14 +13,21 @@ export class VoucherService {
 
   private endpoint = 'https://localhost:5001/api/coupons';
   private redeemedCouponsEndpoint = 'https://localhost:5001/api/redeemedCoupons';
-  private httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
+  private httpOptions: unknown = {
+    headers: new HttpHeaders({'Content-Type': 'application/json',
       Authorization: `Bearer ${JSON.parse(localStorage.getItem('userToken'))}`
     })
   };
 
   constructor(private readonly http: HttpClient) { }
+
+  public updateToken(): void{
+    this.httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json',
+        Authorization: `Bearer ${JSON.parse(localStorage.getItem('userToken'))}`
+      })
+    };
+  }
 
   getAll(): Observable<VouchersModel> {
     const data: PageModel =

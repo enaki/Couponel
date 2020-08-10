@@ -17,6 +17,7 @@ export class AuthenticationService {
   }
 
   public setSessionTokenInfo(token: string): void {
+
     const tokenData = jwt_decode(token);
     console.log(tokenData);
     localStorage.setItem('userId', tokenData.userId);
