@@ -11,10 +11,11 @@ namespace Couponel.Entities.Coupons
         {
             Content = content;
             UserId = userId;
+            DateAdded=DateTime.Now;
         }
 
         public string Content { get; private set; }
-
+        public DateTime DateAdded { get; private set; }
         [Required]
         [ForeignKey("Student")]
         public Guid UserId { get; private set; }
