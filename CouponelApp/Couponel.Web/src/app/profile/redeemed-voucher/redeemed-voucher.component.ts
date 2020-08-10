@@ -28,6 +28,6 @@ constructor(
   }
 
   goToVoucher(id: string): void {
-    this.router.navigate([`/my-vouchers/details/${id}`]);
+    this.router.navigate([`/redeemed-vouchers/details/${id}`]);
   }
 }
