@@ -52,7 +52,7 @@
   box-shadow: 0px 0px 8px rgba(0, 23, 87, 0.08);
 }
 
-.authentication-container .authentication-content input {
+.authentication-container .authentication-content input,select {
   width: 50%;
   height: 30px;
   margin-bottom: 10px;
@@ -61,6 +61,7 @@
   border-radius: 8px;
   outline: none;
 }
+
 
 .authentication-container .authentication-content label {
   font-family: "Open Sans";

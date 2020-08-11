@@ -56,7 +56,7 @@ namespace Couponel.Business.Institutions.Universities.Services.Implementations
         }
         public async Task<IEnumerable<ListUniversityModel>> GetAll()
         {
-            var universities = await _universitiesRepository.GetAll();
+            var universities = await _universitiesRepository.GetAllWithFaculties();
             return (from university in universities where university != null select _mapper.Map<ListUniversityModel>(university)).ToList();
         }
     }

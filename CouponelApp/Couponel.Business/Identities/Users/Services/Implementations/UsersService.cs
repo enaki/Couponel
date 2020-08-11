@@ -3,6 +3,7 @@ using Couponel.Business.Identities.Users.Models;
 using Couponel.Business.Identities.Users.Services.Interfaces;
 using Couponel.Entities.Identities;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Couponel.Business.Authentications.Services.Interfaces;
@@ -61,6 +62,12 @@ namespace Couponel.Business.Identities.Users.Services.Implementations
             studentDetails.UniversityName = institutionsDetails.UniversityName;
 
             return studentDetails;
+        }
+
+        public async Task<IList<UserDetailsModel>> GetAll()
+        {
+            var users=await this._repository.GetAll();
+            return _mapper.Map<IList<UserDetailsModel>>(users);
         }
     }
 }

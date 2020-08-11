@@ -138,14 +138,30 @@ p {
   font-weight: 200;
 }
 
-.form-section button {
+.form-section .update-button {
   background-color: #54c4a8;
   color: black;
   border: 0;
   outline: 0;
   cursor: pointer;
-  width: 50%;
+  width: 30%;
   height: 40px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  font-family: "Open Sans";
+  font-weight: bold;
+  margin-left: 20px;
+  align-items: center;
+}
+.form-section .delete-button {
+  background-color: #750b8c;
+  color: black;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  width: 30%;
+  height: 40px;
+  margin-bottom: 20px;
   border-radius: 8px;
   font-family: "Open Sans";
   font-weight: bold;
@@ -157,15 +173,6 @@ button span {
   color: white !important;
 }
 
-@media (max-width: 900px) {
-  .flex-row-space-around {
-    flex-direction: column;
-  }
-
-  img {
-    max-width: 100%;
-  }
-}
 #coupon-description{
   text-align: center;
   color:#E67235;
@@ -179,4 +186,16 @@ button span {
   text-align: center;
   color:green;
   font-weight: bold;
+}
+@media (max-width: 900px) {
+  .flex-row-space-around {
+    flex-direction: column;
+  }
+  .form-section{
+    width: 92%;
+  }
+
+  img {
+    max-width: 100%;
+  }
 }

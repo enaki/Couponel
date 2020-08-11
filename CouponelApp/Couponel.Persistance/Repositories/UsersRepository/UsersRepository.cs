@@ -36,13 +36,12 @@ namespace Couponel.Persistence.Repositories.UsersRepository
 
         public async Task<Student> GetStudentRedeemedCouponById(Guid id, Guid redeemedCouponId) =>
             await _context.Students
-                .Where(s => s.Id == id &&
-                        s.RedeemedCoupons.Any(rc=> rc.Id==redeemedCouponId))
                 .Include(s => s.User)
                     .ThenInclude(u => u.Address)
                 .Include(s => s.RedeemedCoupons)
                     .ThenInclude(rc=>rc.Coupon)
-                .FirstOrDefaultAsync();
+                .FirstOrDefaultAsync((s => s.Id == id &&
+                                           s.RedeemedCoupons.Any(rc => rc.Id == redeemedCouponId)));
 
         public async Task<User> GetOffererWithCouponsById(Guid userId) =>
             await _context.Users
