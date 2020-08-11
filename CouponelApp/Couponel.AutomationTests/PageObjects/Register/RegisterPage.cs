@@ -35,15 +35,9 @@ namespace Couponel.AutomationTests.PageObjects.Register
         public IWebElement TxtPassword { get; set; }
         [FindsBy(How = How.CssSelector, Using = "[formcontrolname='phoneNumber']")]
         public IWebElement TxtPhoneNumber { get; set; }
-        [FindsBy(How = How.CssSelector, Using = "[formcontrolname='role']")]
-        public IWebElement DropDownRole { get; set; }
-        [FindsBy(How = How.CssSelector, Using = "[value='Student']")]
-        public IWebElement ValueStudent { get; set; }
-        [FindsBy(How = How.CssSelector, Using = "[value='Offerer']")]
-        public IWebElement ValueOfferer { get; set; }
-
         [FindsBy(How = How.CssSelector, Using = "[type='button']")]
         public IWebElement BtnRegister { get; set; }
+        
 
         #endregion
 

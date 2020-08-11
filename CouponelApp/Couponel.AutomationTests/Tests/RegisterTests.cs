@@ -12,6 +12,7 @@ namespace Couponel.AutomationTests.Tests
     [Collection("Sequential")]
     public class RegisterTests:Browser, IDisposable
     {
+        public LoginPage loginPage;
         public RegisterPage registerPage;
         public DashboardPage dashboardPage;
         public RegisterTests()
@@ -20,26 +21,9 @@ namespace Couponel.AutomationTests.Tests
             registerPage = new RegisterPage(Driver);
         }
 
+       
         [Fact]
-        public void Register_Student_With_Valid_Credentials()
-        {
-            var user = Utils.GetRandomString(6);
-            registerPage.CheckboxRegister.Click();
-            registerPage.TxtUsername.SendKeys(user);
-            registerPage.TxtFirstName.SendKeys(user);
-            registerPage.TxtLastName.SendKeys(user);
-            registerPage.TxtPassword.SendKeys(user);
-            registerPage.TxtEmail.SendKeys(user + "@gmail.com");
-            registerPage.DropDownRole.Click();
-            registerPage.TxtPhoneNumber.SendKeys(Utils.GetRandomPhoneNumber(10));
-            registerPage.ValueStudent.Click();
-            registerPage.BtnRegister.Click();
-            dashboardPage = new DashboardPage(Driver);
-            dashboardPage.WaitForPageToLoad("[class='flex-row-end']");
-            Assert.True(dashboardPage.UserMenu.Displayed);
-        }
-        [Fact]
-        public void Register_Student_With_Invalid_Email()
+        public void Register_With_Invalid_Email()
         {
             var user = Utils.GetRandomString(6);
             registerPage.CheckboxRegister.Click();
@@ -48,31 +32,13 @@ namespace Couponel.AutomationTests.Tests
             registerPage.TxtLastName.SendKeys(user);
             registerPage.TxtPassword.SendKeys(user);
             registerPage.TxtEmail.SendKeys(user);
-            registerPage.DropDownRole.Click();
             registerPage.TxtPhoneNumber.SendKeys(Utils.GetRandomPhoneNumber(10));
-            registerPage.ValueStudent.Click();
             registerPage.BtnRegister.Click();
             Assert.True(registerPage.EmailInvalidCred.Displayed);
         }
 
         [Fact]
-        public void Register_Student_With_Invalid_Email_Bug()
-        {
-            var user = Utils.GetRandomString(6);
-            registerPage.CheckboxRegister.Click();
-            registerPage.TxtUsername.SendKeys(user);
-            registerPage.TxtFirstName.SendKeys(user);
-            registerPage.TxtLastName.SendKeys(user);
-            registerPage.TxtPassword.SendKeys(user);
-            registerPage.TxtEmail.SendKeys(user+"@gmai");
-            registerPage.DropDownRole.Click();
-            registerPage.TxtPhoneNumber.SendKeys(Utils.GetRandomPhoneNumber(10));
-            registerPage.ValueStudent.Click();
-            registerPage.BtnRegister.Click();
-            Assert.True(registerPage.EmailInvalidCred.Displayed);
-        }
-        [Fact]
-        public void Register_Student_With_Invalid_Credentials()
+        public void Register_With_Invalid_Credentials()
         {
             var user = Utils.GetRandomString(3);
             registerPage.CheckboxRegister.Click();
@@ -81,14 +47,12 @@ namespace Couponel.AutomationTests.Tests
             registerPage.TxtLastName.SendKeys(user);
             registerPage.TxtPassword.SendKeys(user);
             registerPage.TxtEmail.SendKeys(user);
-            registerPage.DropDownRole.Click();
             registerPage.TxtPhoneNumber.SendKeys(Utils.GetRandomPhoneNumber(10));
-            registerPage.ValueStudent.Click();
             registerPage.BtnRegister.Click();
             Assert.True(registerPage.EmailInvalidCred.Displayed);
         }
         [Fact]
-        public void Register_Offerer_With_Valid_Credentials()
+        public void Register_With_Valid_Credentials()
         {
             var user = Utils.GetRandomString(6);
             registerPage.CheckboxRegister.Click();
@@ -97,13 +61,11 @@ namespace Couponel.AutomationTests.Tests
             registerPage.TxtLastName.SendKeys(user);
             registerPage.TxtPassword.SendKeys(user);
             registerPage.TxtEmail.SendKeys(user + "@gmail.com");
-            registerPage.DropDownRole.Click();
             registerPage.TxtPhoneNumber.SendKeys(Utils.GetRandomPhoneNumber(10));
-            registerPage.ValueStudent.Click();
             registerPage.BtnRegister.Click();
-            dashboardPage = new DashboardPage(Driver);
-            dashboardPage.WaitForPageToLoad("[class='flex-row-end']");
-            Assert.True(dashboardPage.UserMenu.Displayed);
+            loginPage = new LoginPage(Driver);
+            loginPage.WaitForPageToLoad("[class='login-label']");
+            Assert.True(loginPage.LabelLogin.Displayed);
         }
         public void Dispose()
         {

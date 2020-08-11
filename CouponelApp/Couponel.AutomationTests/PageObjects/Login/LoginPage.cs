@@ -20,9 +20,12 @@ namespace Couponel.AutomationTests.PageObjects.Login
 
             [FindsBy(How = How.CssSelector, Using = "[type='button']")]
             public IWebElement BtnLogin { get; set; }
-            #endregion
+           
+            [FindsBy(How = How.ClassName, Using = "login-label")]
+            public IWebElement LabelLogin { get; set; }
+        #endregion
 
-            public void Login(string username, string password)
+        public void Login(string username, string password)
             {
                 TxtUsername.SendKeys(username);
                 TxtPassword.SendKeys(password);
