@@ -1,7 +1,7 @@
-﻿using Couponel.Business.Coupons.Coupons.Models.RedeemedCouponsModels;
+﻿using Couponel.Business.Coupons.RedeemedCoupons.Models;
 using FluentValidation;
 
-namespace Couponel.Business.Coupons.Coupons.Validators
+namespace Couponel.Business.Coupons.RedeemedCoupons.Validators
 {
     public class CreateRedeemedCouponModelValidator : AbstractValidator<CreateRedeemedCouponModel>
     {

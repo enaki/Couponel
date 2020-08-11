@@ -5,7 +5,7 @@ using Couponel.Entities.Coupons;
 using Couponel.Persistence.Repositories.Repository;
 using LinqBuilder.Core;
 
-namespace Couponel.Persistence.Repositories.CouponsRepositories
+namespace Couponel.Persistence.Repositories.CouponsRepository
 {
     public interface ICouponsRepository : IRepository<Coupon>
     {

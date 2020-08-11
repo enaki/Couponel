@@ -6,6 +6,7 @@ using AutoMapper;
 using Couponel.Business.Coupons.RedeemedCoupons.Models;
 using Couponel.Business.Coupons.RedeemedCoupons.Services.Interfaces;
 using Couponel.Entities.Coupons;
+using Couponel.Persistence.Repositories.RedeemedCouponsRepositoriy;
 using Couponel.Persistence.Repositories.UsersRepository;
 using Microsoft.AspNetCore.Http;
 
@@ -14,15 +15,17 @@ namespace Couponel.Business.Coupons.RedeemedCoupons.Services.Implementations
     public sealed class RedeemedCouponsService: IRedeemedCouponsService
     {
         private readonly IUsersRepository _repository;
+        private readonly IRedeemedCouponsRepository _redeemedCouponsRepository;
         private readonly IMapper _mapper;
         private readonly IHttpContextAccessor _accessor;
 
         public RedeemedCouponsService(IUsersRepository repository, 
-                                            IMapper mapper, IHttpContextAccessor accessor)
+                                            IMapper mapper, IHttpContextAccessor accessor, IRedeemedCouponsRepository redeemedCouponsRepository)
         {
             _repository = repository;
             _mapper = mapper;
             _accessor = accessor;
+            _redeemedCouponsRepository = redeemedCouponsRepository;
         }
 
 
@@ -72,6 +75,12 @@ namespace Couponel.Business.Coupons.RedeemedCoupons.Services.Implementations
 
             _repository.Update(student.User);
             await _repository.SaveChanges();
+        }
+
+        public async Task<IList<ListRedeemedCouponModel>> GetAllWithAdmin()
+        {
+            var redeemedCoupons = await _redeemedCouponsRepository.GetAll();
+            return _mapper.Map<IList<ListRedeemedCouponModel>>(redeemedCoupons);
         }
     }
 

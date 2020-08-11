@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Couponel.API.Controllers.IdentitiesController;
-using Couponel.Business.Coupons.Coupons.Models.RedeemedCouponsModels;
 using Couponel.Business.Coupons.RedeemedCoupons.Models;
 using Couponel.Business.Coupons.RedeemedCoupons.Services.Interfaces;
 using Couponel.Entities.Identities;
@@ -11,7 +10,6 @@ using Microsoft.Extensions.Logging;
 
 namespace Couponel.API.Controllers.CouponsController
 {
-    [Authorize(Roles = Role.Student)]
     [Route("api/redeemedCoupons")]
     [ApiController]
     public class RedeemedCouponsController : ControllerBase
@@ -24,7 +22,8 @@ namespace Couponel.API.Controllers.CouponsController
             _logger = logger;
             _redeemedCouponsService = redeemedCouponsService;
         }
-        
+
+        [Authorize(Roles = Role.Admin)]
         [HttpGet("{redeemedCouponId}")]
         public async Task<IActionResult> GetById([FromRoute] Guid redeemedCouponId)
         {
@@ -36,6 +35,7 @@ namespace Couponel.API.Controllers.CouponsController
             return Ok(result);
         }
 
+        [Authorize(Roles = Role.Admin)]
         [HttpPost]
         public async Task<IActionResult> Add([FromBody] CreateRedeemedCouponModel model)
         {
@@ -43,6 +43,7 @@ namespace Couponel.API.Controllers.CouponsController
             return Created(result.Id.ToString(), null);
         }
 
+        [Authorize(Roles = Role.Admin)]
         [HttpPatch("{redeemedCouponId}")]
         public async Task<IActionResult> Update([FromRoute] Guid redeemedCouponId,[FromBody] UpdateRedeemedCouponStatusModel model)
         {
@@ -50,6 +51,7 @@ namespace Couponel.API.Controllers.CouponsController
             return NoContent();
         }
 
+        [Authorize(Roles = Role.Admin)]
         [HttpDelete("{redeemedCouponId}")]
         public async Task<IActionResult> Delete([FromRoute] Guid redeemedCouponId)
         {
@@ -57,10 +59,19 @@ namespace Couponel.API.Controllers.CouponsController
             return NoContent();
         }
 
+        [Authorize(Roles = Role.Admin)]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
             var result = await _redeemedCouponsService.GetAll();
+            return Ok(result);
+        }
+
+        [Authorize(Roles =  Role.Admin)]
+        [HttpGet("admin")]
+        public async Task<IActionResult> GetAllWithAdmin()
+        {
+            var result = await _redeemedCouponsService.GetAllWithAdmin();
             return Ok(result);
         }
     }

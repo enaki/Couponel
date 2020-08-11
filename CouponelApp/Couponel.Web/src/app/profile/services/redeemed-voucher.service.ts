@@ -38,4 +38,9 @@ export class RedeemedVoucherService {
     };
     return this.http.patch<unknown>(`${this.endpoint}/${redeemedCouponId}`, data, this.httpOptions);
   }
+
+  getAllByAdmin(): Observable<RedeemedVoucherModel[]> {
+    console.log('GetAll from Redeemed Service');
+    return this.http.get<RedeemedVoucherModel[]>(`${this.endpoint}/admin`, this.httpOptions);
+  }
 }

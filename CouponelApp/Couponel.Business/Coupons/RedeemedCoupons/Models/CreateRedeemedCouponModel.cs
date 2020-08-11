@@ -1,7 +1,6 @@
 ﻿using System;
-using Couponel.Entities.Coupons;
 
-namespace Couponel.Business.Coupons.Coupons.Models.RedeemedCouponsModels
+namespace Couponel.Business.Coupons.RedeemedCoupons.Models
 {
     public sealed class CreateRedeemedCouponModel
     {

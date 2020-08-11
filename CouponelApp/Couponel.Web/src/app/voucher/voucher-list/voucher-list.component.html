@@ -2,10 +2,20 @@
   <h1>
     All Vouchers
   </h1>
-  <div class="cards">
+  <div class="cards" *ngIf="currentUser.userRole !== 'Admin'">
     <app-tile *ngFor="let voucher of voucherList"
               label="{{voucher.name}}"
               background="{{getCategoryImage(voucher.category)}}"
-              (click)="goToVoucher(voucher.id)"></app-tile>
+              (click)="goToVoucher(voucher.id)">
+    </app-tile>
+  </div>
+  <div class="cards" *ngIf="currentUser.userRole === 'Admin'">
+    <div>
+      <app-tile *ngFor="let voucher of voucherList"
+                label="{{voucher.name}}"
+                background="{{getCategoryImage(voucher.category)}}">
+      </app-tile>
+    </div>
+
   </div>
 </div>

@@ -32,7 +32,7 @@ namespace Couponel.API.Controllers.CouponsController
         }
 
         [HttpGet]
-        [Authorize(Roles = Role.Offerer + "," + Role.Student)]
+        [Authorize(Roles = Role.Offerer + "," + Role.Student + "," + Role.Admin)]
         public async Task<IActionResult> GetAll([FromQuery] SearchModel model)
         {
             var coupons = await _couponService.GetBySearchModel(model);

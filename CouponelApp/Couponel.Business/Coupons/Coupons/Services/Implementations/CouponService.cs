@@ -8,7 +8,7 @@ using Couponel.Business.Coupons.Coupons.Models.SearchModels;
 using Couponel.Business.Coupons.Coupons.Services.Interfaces;
 using Couponel.Business.Coupons.Extensions;
 using Couponel.Entities.Coupons;
-using Couponel.Persistence.Repositories.CouponsRepositories;
+using Couponel.Persistence.Repositories.CouponsRepository;
 using Couponel.Persistence.Repositories.UsersRepository;
 using Microsoft.AspNetCore.Http;
 

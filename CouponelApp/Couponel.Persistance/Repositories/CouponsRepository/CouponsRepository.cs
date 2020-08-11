@@ -6,7 +6,7 @@ using Couponel.Persistence.Repositories.Repository;
 using LinqBuilder.Core;
 using Microsoft.EntityFrameworkCore;
 
-namespace Couponel.Persistence.Repositories.CouponsRepositories
+namespace Couponel.Persistence.Repositories.CouponsRepository
 {
     public sealed class CouponsRepository: Repository<Coupon>, ICouponsRepository
     {

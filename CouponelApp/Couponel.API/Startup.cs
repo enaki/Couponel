@@ -32,12 +32,13 @@ using Couponel.Business.Authentications.Models;
 using Couponel.Business.Coupons.Comments.Models;
 using Couponel.Business.Coupons.Comments.Validators;
 using Couponel.Business.Coupons.Coupons.Models.CouponsModels;
-using Couponel.Business.Coupons.Coupons.Models.RedeemedCouponsModels;
 using Couponel.Business.Coupons.Coupons.Validators;
 using Couponel.Business.Coupons.Photos.Services.Implementations;
 using Couponel.Business.Coupons.Photos.Services.Interfaces;
+using Couponel.Business.Coupons.RedeemedCoupons.Models;
 using Couponel.Business.Coupons.RedeemedCoupons.Services.Implementations;
 using Couponel.Business.Coupons.RedeemedCoupons.Services.Interfaces;
+using Couponel.Business.Coupons.RedeemedCoupons.Validators;
 using Couponel.Business.Identities.Users.Models;
 using Couponel.Business.Identities.Users.Services.Implementations;
 using Couponel.Business.Identities.Users.Services.Interfaces;
@@ -45,7 +46,8 @@ using Couponel.Business.Identities.Users.Validators;
 using Couponel.Business.Institutions.Faculties.Models;
 using Couponel.Business.Institutions.Universities.Models;
 using Couponel.Business.Institutions.Validators;
-using Couponel.Persistence.Repositories.CouponsRepositories;
+using Couponel.Persistence.Repositories.CouponsRepository;
+using Couponel.Persistence.Repositories.RedeemedCouponsRepositoriy;
 using Couponel.Persistence.Repositories.UniversitiesRepository;
 using Couponel.Persistence.Repositories.UsersRepository;
 using FluentValidation;
@@ -82,6 +84,7 @@ namespace Couponel.API
                 .AddScoped<IPasswordHasher, PasswordHasher>()
 
                 .AddScoped<ICouponsRepository, CouponsRepository>()
+                .AddScoped<IRedeemedCouponsRepository, RedeemedCouponsRepository > ()
                 .AddScoped<IUniversitiesRepository, UniversitiesRepository>()
                 .AddScoped<IUsersRepository, UsersRepository>();
 
