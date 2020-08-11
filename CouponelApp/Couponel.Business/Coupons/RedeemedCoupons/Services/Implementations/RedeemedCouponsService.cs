@@ -60,7 +60,7 @@ namespace Couponel.Business.Coupons.RedeemedCoupons.Services.Implementations
             var userId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
             var student = await _repository.GetStudentRedeemedCouponById(userId, redeemedCouponId);
 
-            student.RedeemedCoupons.FirstOrDefault()?.UpdateStatus(newStatus);
+            student.RedeemedCoupons.FirstOrDefault(rc=> rc.Id == redeemedCouponId)?.UpdateStatus(newStatus);
 
             _repository.Update(student.User);
             await _repository.SaveChanges();

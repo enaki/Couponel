@@ -38,6 +38,10 @@ export class VoucherDetailsComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private dialog: MatDialog,
     private service: VoucherService) {
+    const user = this.userService.getUserDetails();
+    if (user == null){
+      this.router.navigate(['authentication']);
+    }
     this.commentFormGroup = this.formBuilder.group({
       Content: new FormControl(null),
     });
@@ -51,7 +55,7 @@ export class VoucherDetailsComponent implements OnInit, OnDestroy {
       this.comments = data.comments;
       this.comments.sort((a, b) => new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime());
       console.log(this.comments);
-      if (this.userService.getUserDetails().userRole === 'Student')
+      if (this.userService.getUserDetails().role === 'Student')
       {
         this.isStudent = true;
         this.couponId = this.router.url.split('/').slice(-1)[0];

@@ -12,32 +12,32 @@
       <h6 style="color: red">Invalid Password</h6>
     </div>
     <div class='div-box' *ngIf="!isEditable">
-      <p>Username: <span>{{ profileInfo.userName }}</span></p>
-      <p>Email: <span>{{ profileInfo.email }}</span></p>
-      <p>First name: <span>{{ profileInfo.firstName }}</span></p>
-      <p>Last name: <span>{{ profileInfo.lastName }}</span></p>
-      <p>Phone number: <span>{{ profileInfo.phoneNumber }}</span></p>
-      <div *ngIf=" profileInfo.facultyName != null">
+      <p>Username: <span *ngIf="profileInfo != null">{{ profileInfo.userName }}</span></p>
+      <p>Email: <span *ngIf="profileInfo != null">{{ profileInfo.email }}</span></p>
+      <p>First name: <span *ngIf="profileInfo != null">{{ profileInfo.firstName }}</span></p>
+      <p>Last name: <span *ngIf="profileInfo != null">{{ profileInfo.lastName }}</span></p>
+      <p>Phone number: <span *ngIf="profileInfo != null">{{ profileInfo.phoneNumber }}</span></p>
+      <div *ngIf="profileInfo != null && profileInfo.facultyName != null">
         <p>Faculty name: <span>{{ profileInfo.facultyName }}</span></p>
       </div>
 
-      <div *ngIf=" profileInfo.universityName != null">
+      <div *ngIf="profileInfo != null && profileInfo.universityName != null">
         <p>University name: <span>{{ profileInfo.universityName }}</span></p>
       </div>
 
-      <div *ngIf=" profileInfo.address.country != null">
+      <div *ngIf="profileInfo != null && profileInfo.address.country != null">
         <p>Country: <span>{{ profileInfo.address.country }}</span></p>
       </div>
 
-      <div *ngIf=" profileInfo.address.city != null">
+      <div *ngIf="profileInfo != null && profileInfo.address.city != null">
         <p>City: <span>{{ profileInfo.address.city }}</span></p>
       </div>
 
-      <div *ngIf=" profileInfo.address.street != null">
+      <div *ngIf="profileInfo != null && profileInfo.address.street != null">
         <p>Street: <span>{{ profileInfo.address.street }}</span></p>
       </div>
 
-      <div *ngIf=" profileInfo.address.number != null">
+      <div *ngIf="profileInfo != null && profileInfo.address.number != null">
         <p>Number: <span>{{ profileInfo.address.number }}</span></p>
       </div>
       <div *ngIf="!isEditable">

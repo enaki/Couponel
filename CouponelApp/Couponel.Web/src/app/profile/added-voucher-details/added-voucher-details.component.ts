@@ -4,6 +4,7 @@ import {OffererVouchersService} from '../services/offerer-vouchers.service';
 import {VoucherImageProvider} from '../../voucher/services/voucher-image-provider';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {VoucherModel} from '../../voucher/models';
+import {UserService} from '../../shared/services';
 
 @Component({
   selector: 'app-added-voucher-details',
@@ -15,8 +16,13 @@ export class AddedVoucherDetailsComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private service: OffererVouchersService,
+    private userService: UserService,
     private imageProvider: VoucherImageProvider,
     private formBuilder: FormBuilder) {
+    const user = this.userService.getUserDetails();
+    if (user == null){
+      this.router.navigate(['authentication']);
+    }
     this.service.getVoucher(this.router.url.split('/').slice(-1)[0]).subscribe((data: VoucherModel) => {
       this.formGroup = this.formBuilder.group({
         name: new FormControl(data.name, [Validators.required, Validators.minLength(5)]),

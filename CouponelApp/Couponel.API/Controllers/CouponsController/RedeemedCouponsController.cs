@@ -23,7 +23,7 @@ namespace Couponel.API.Controllers.CouponsController
             _redeemedCouponsService = redeemedCouponsService;
         }
 
-        [Authorize(Roles = Role.Admin)]
+        [Authorize(Roles = Role.Student)]
         [HttpGet("{redeemedCouponId}")]
         public async Task<IActionResult> GetById([FromRoute] Guid redeemedCouponId)
         {
@@ -35,7 +35,7 @@ namespace Couponel.API.Controllers.CouponsController
             return Ok(result);
         }
 
-        [Authorize(Roles = Role.Admin)]
+        [Authorize(Roles = Role.Student)]
         [HttpPost]
         public async Task<IActionResult> Add([FromBody] CreateRedeemedCouponModel model)
         {
@@ -43,7 +43,7 @@ namespace Couponel.API.Controllers.CouponsController
             return Created(result.Id.ToString(), null);
         }
 
-        [Authorize(Roles = Role.Admin)]
+        [Authorize(Roles = Role.Student)]
         [HttpPatch("{redeemedCouponId}")]
         public async Task<IActionResult> Update([FromRoute] Guid redeemedCouponId,[FromBody] UpdateRedeemedCouponStatusModel model)
         {
@@ -51,7 +51,7 @@ namespace Couponel.API.Controllers.CouponsController
             return NoContent();
         }
 
-        [Authorize(Roles = Role.Admin)]
+        [Authorize(Roles = Role.Student)]
         [HttpDelete("{redeemedCouponId}")]
         public async Task<IActionResult> Delete([FromRoute] Guid redeemedCouponId)
         {
@@ -59,7 +59,7 @@ namespace Couponel.API.Controllers.CouponsController
             return NoContent();
         }
 
-        [Authorize(Roles = Role.Admin)]
+        [Authorize(Roles = Role.Student)]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {

@@ -22,8 +22,7 @@ export class HeaderComponent implements OnInit{
 
   ngOnInit(): void {
     console.log('HeaderComponent::ngOnInit');
-    this.userService.token.subscribe(() => {
-      console.log('ngOnInit Token Subscribe');
+    this.userService.token.subscribe((token) => {
       console.log(this.userService.getUserDetails());
       const userDetails = this.userService.getUserDetails();
       this.username = (userDetails != null) ? userDetails.username : null;

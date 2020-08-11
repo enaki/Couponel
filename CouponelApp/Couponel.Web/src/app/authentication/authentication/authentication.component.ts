@@ -74,12 +74,14 @@ export class AuthenticationComponent implements OnInit {
         this.formGroup.removeControl('universityId');
         this.formGroup.removeControl('facultyId');
       }
-      else{
+      else {
         this.formGroup.controls.role.setValue('Student');
       }
       const data: RegisterModel = this.formGroup.getRawValue();
       this.authenticationService.register(data).subscribe(() => {
-        this.router.navigate(['authentication']);
+        this.formGroup.controls.password.setValue('');
+        this.formGroup.controls.username.setValue('');
+        this.setRegister();
       });
     } else {
       this.formGroup.removeControl('firstName');

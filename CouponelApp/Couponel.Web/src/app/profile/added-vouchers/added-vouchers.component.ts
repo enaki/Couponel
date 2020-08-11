@@ -4,6 +4,7 @@ import {VoucherImageProvider} from '../../voucher/services/voucher-image-provide
 import {VoucherModel} from '../../voucher/models';
 import {OffererVouchersService} from '../services/offerer-vouchers.service';
 import {OffererCouponsModel} from '../models/voucher/offerer-coupons.model';
+import {UserService} from '../../shared/services';
 
 @Component({
   selector: 'app-added-vouchers',
@@ -15,7 +16,13 @@ export class AddedVouchersComponent implements OnInit {
   constructor(
     private router: Router,
     private service: OffererVouchersService,
-    private imageProvider: VoucherImageProvider) { }
+    private userService: UserService,
+    private imageProvider: VoucherImageProvider) {
+    const user = this.userService.getUserDetails();
+    if (user == null){
+      this.router.navigate(['authentication']);
+    }
+  }
 
   ngOnInit(): void {
     this.service.getAllVouchers().subscribe((data: OffererCouponsModel) => {
