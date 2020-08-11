@@ -7,43 +7,45 @@
 
   </section>
   <section class="form-section">
+    <h4>User info:</h4>
+    <div *ngIf="isError">
+      <h6 style="color: red">Invalid Password</h6>
+    </div>
+    <div class='div-box' *ngIf="!isEditable">
+      <p>Username: <span>{{ profileInfo.userName }}</span></p>
+      <p>Email: <span>{{ profileInfo.email }}</span></p>
+      <p>First name: <span>{{ profileInfo.firstName }}</span></p>
+      <p>Last name: <span>{{ profileInfo.lastName }}</span></p>
+      <p>Phone number: <span>{{ profileInfo.phoneNumber }}</span></p>
+      <div *ngIf=" profileInfo.facultyName != null">
+        <p>Faculty name: <span>{{ profileInfo.facultyName }}</span></p>
+      </div>
+
+      <div *ngIf=" profileInfo.universityName != null">
+        <p>University name: <span>{{ profileInfo.universityName }}</span></p>
+      </div>
+
+      <div *ngIf=" profileInfo.address.country != null">
+        <p>Country: <span>{{ profileInfo.address.country }}</span></p>
+      </div>
+
+      <div *ngIf=" profileInfo.address.city != null">
+        <p>City: <span>{{ profileInfo.address.city }}</span></p>
+      </div>
+
+      <div *ngIf=" profileInfo.address.street != null">
+        <p>Street: <span>{{ profileInfo.address.street }}</span></p>
+      </div>
+
+      <div *ngIf=" profileInfo.address.number != null">
+        <p>Number: <span>{{ profileInfo.address.number }}</span></p>
+      </div>
+      <div *ngIf="!isEditable">
+        <button (click)="editInfo()">Edit</button>
+      </div>
+    </div>
     <form class="profileInfo-content">
-      <h4>User info:</h4>
       <ng-container *ngIf="!!profileInfo">
-        <div *ngIf="!isEditable">
-          <label>Username:</label>
-          <p>{{ profileInfo.userName }}</p>
-
-          <label>Email:</label>
-          <p>{{ profileInfo.email }}</p>
-
-          <label>First name:</label>
-          <p>{{ profileInfo.firstName }}</p>
-
-          <label>Last name:</label>
-          <p>{{ profileInfo.lastName }}</p>
-
-          <label>Phone number:</label>
-          <p>{{ profileInfo.phoneNumber}}</p>
-
-          <label>Faculty name:</label>
-          <p>{{ profileInfo.facultyName}}</p>
-
-          <label>University name:</label>
-          <p>{{ profileInfo.universityName}}</p>
-
-          <label>Country:</label>
-          <p>{{ profileInfo.address.country}}</p>
-
-          <label>City:</label>
-          <p>{{ profileInfo.address.city}}</p>
-
-          <label>Street:</label>
-          <p>{{ profileInfo.address.street}}</p>
-
-          <label>Number:</label>
-          <p>{{ profileInfo.address.number}}</p>
-        </div>
         <div *ngIf="isEditable">
           <form class="editor-content" [formGroup]="formGroup">
             <label>First name*</label>
@@ -84,12 +86,11 @@
           <button (click)="saveInfo()">Save</button>
           <button (click)="back()">Back</button>
         </div>
-        <div *ngIf="!isEditable">
-          <button (click)="editInfo()">Edit</button>
-        </div>
 
-        <!--un ngif buton ca dupa ce l apas sa dispara si de adaugat un nou buton (edit sa se transf in save)-->
+        <br/>
+
       </ng-container>
     </form>
   </section>
 </div>
+

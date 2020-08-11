@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ProfileInfoService } from '../services/profile-info.service';
 import { ProfileInfoModel } from '../models/profile-info.model';
 import {UpdateProfileInfoModel} from '../models/update-profile-info.model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-profile-info',
@@ -14,8 +15,10 @@ export class ProfileInfoComponent implements OnInit {
   public formGroup: FormGroup;
   public profileInfo: ProfileInfoModel;
   public isEditable = false;
+  public isError = false;
 
   constructor(private readonly profileInfoService: ProfileInfoService,
+              private router: Router,
               private readonly formBuilder: FormBuilder)
   {
     this.formGroup = this.formBuilder.group({
@@ -43,6 +46,7 @@ export class ProfileInfoComponent implements OnInit {
 
   editInfo(): void{
     this.isEditable = true;
+    this.isError = false;
     this.formGroup.controls.email.setValue(this.profileInfo.email);
     this.formGroup.controls.firstName.setValue(this.profileInfo.firstName);
     this.formGroup.controls.lastName.setValue(this.profileInfo.lastName);
@@ -73,6 +77,11 @@ export class ProfileInfoComponent implements OnInit {
     };
     this.profileInfoService.updateProfileInfo(dataToSend).subscribe(() => {
       console.log('I am here');
+      this.back();
+      window.location.reload();
+    }, () => {
+      this.isError = true;
+      this.back();
     });
   }
 
