@@ -39,7 +39,7 @@ export class VoucherListComponent implements OnInit {
     this.userService.token.subscribe(() => {
       this.currentUser = this.userService.getUserDetails();
     });
-    this.pageModel = {sortColumn: 'Name', sortType: 0, pageIndex: 1, pageSize: 10};
+    this.pageModel = {sortColumn: 'Name', sortType: 0, pageIndex: 1, pageSize: 8};
     this.service.getAllByModel(this.pageModel).subscribe((data: VouchersModel) => {
       const numberOfPages = (data.count / data.pageSize);
       while ( numberOfPages > this.iterablePages.length) {
