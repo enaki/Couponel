@@ -6,6 +6,7 @@ import {UserService} from '../../shared/services';
 import {VoucherStatisticsModel} from '../models/voucher-statistics-model';
 import {VoucherModel} from '../../voucher/models';
 import {RedeemedVoucherModel} from '../../profile/models/redeemed-voucher/redeemed-voucher.model';
+import {StatisticsUserModel} from '../models/statistics-user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +14,9 @@ import {RedeemedVoucherModel} from '../../profile/models/redeemed-voucher/redeem
 export class AdminStatisticsService {
 
   private httpOptions: unknown;
-
+  public endpoint = 'https://localhost:5001/api/users';
   constructor(private readonly http: HttpClient, private userService: UserService) {
-    this.userService.token.subscribe((token) => {
-      console.log('Vouchers Details' + token);
+    this.userService.token.subscribe(() => {
       this.httpOptions = this.userService.getHttpOptions();
     });
   }
@@ -102,5 +102,9 @@ export class AdminStatisticsService {
       }
     }
     return processedData;
+  }
+
+  getAllUsers(): Observable<StatisticsUserModel[]>{
+    return this.http.get<StatisticsUserModel[]>(`${this.endpoint}`, this.httpOptions);
   }
 }

@@ -1,108 +1,99 @@
-<h1 style="text-align: center; color: darkred; margin: 10px">I am GOD</h1>
+<div *ngIf="userRole === 'Admin'">
+  <h1 style="text-align: center; color: darkred; margin: 10px">I am GOD</h1>
 
-<br/>
-<h3 style="text-align: center; color: #201579; margin: 10px">Users</h3>
-<table class="user-table">
-  <tr>
-    <th>Username</th>
-    <th>Email</th>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Phone Number</th>
-    <th>Faculty Name</th>
-    <th>University Name</th>
-    <th>Address Country</th>
-    <th>Address City</th>
-    <th>Address Street</th>
-    <th>Address Number</th>
-  </tr>
-  <tr>
-    <td>maria</td>
-    <td>Alfreds</td>
-    <td>Futterkiste</td>
-    <td>123123123</td>
-    <td>Germany</td>
-    <td>Germany</td>
-    <td>Germany</td>
-    <td>Germany</td>
-    <td>Germany</td>
-    <td>Germany</td>
-    <td>Germany</td>
-  </tr>
-  <tr>
-    <td>maria</td>
-    <td>Alfreds</td>
-    <td>Futterkiste</td>
-    <td>123123123</td>
-    <td>Germany</td>
-    <td>Germany</td>
-    <td>Germany</td>
-    <td>Germany</td>
-    <td>Germany</td>
-    <td>Germany</td>
-    <td>Germany</td>
-  </tr>
-</table>
-
-<br/>
-<h3 style="text-align: center; color: #201579; margin: 10px">All coupons By Category</h3>
-<div *ngIf="voucherStatistics !== undefined">
+  <br/>
+  <h3 style="text-align: center; color: #201579; margin: 10px">Users</h3>
   <table class="user-table">
     <tr>
-      <th>Electronics</th>
-      <th>Fashion</th>
-      <th>Entertainment</th>
-      <th>Food</th>
-      <th>Coffee&Snack</th>
-      <th>Accessories</th>
-      <th>Home</th>
-      <th>Sport</th>
-      <th>Others</th>
-      <th>Auto</th>
+      <th>Username</th>
+      <th>Email</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Phone Number</th>
+      <th>Role</th>
+      <th>Address Country</th>
+      <th>Address City</th>
+      <th>Address Street</th>
+      <th>Address Number</th>
     </tr>
-    <tr>
-      <td>{{voucherStatistics.Electronics}}</td>
-      <td>{{voucherStatistics.Fashion}}</td>
-      <td>{{voucherStatistics.Entertainment}}</td>
-      <td>{{voucherStatistics.Food}}</td>
-      <td>{{voucherStatistics.CoffeeAndSnacks}}</td>
-      <td>{{voucherStatistics.Accessories}}</td>
-      <td>{{voucherStatistics.Home}}</td>
-      <td>{{voucherStatistics.Sport}}</td>
-      <td>{{voucherStatistics.Others}}</td>
-      <td>{{voucherStatistics.Auto}}</td>
+    <tr *ngFor="let user of usersList">
+      <td><span *ngIf="user.userName != null">{{user.userName}}</span></td>
+      <td><span *ngIf="user.email != null">{{user.email}}</span></td>
+      <td><span *ngIf="user.firstName != null">{{user.firstName}}</span></td>
+      <td><span *ngIf="user.lastName != null">{{user.lastName}}</span></td>
+      <td><span *ngIf="user.phoneNumber != null">{{user.phoneNumber}}</span></td>
+      <td><span *ngIf="user.role != null">{{user.role}}</span></td>
+      <td><span *ngIf="user.address != null && user.address.country != null">{{user.address.country}}</span></td>
+      <td><span *ngIf="user.address != null && user.address.city != null">{{user.address.city}}</span></td>
+      <td><span *ngIf="user.address != null && user.address.street != null">{{user.address.street}}</span></td>
+      <td><span *ngIf="user.address != null && user.address.number != null">{{user.address.number}}</span></td>
     </tr>
   </table>
+
+  <br/>
+  <h3 style="text-align: center; color: #201579; margin: 10px">All coupons By Category</h3>
+  <div *ngIf="voucherStatistics !== undefined">
+    <table class="user-table">
+      <tr>
+        <th>Electronics</th>
+        <th>Fashion</th>
+        <th>Entertainment</th>
+        <th>Food</th>
+        <th>Coffee&Snack</th>
+        <th>Accessories</th>
+        <th>Home</th>
+        <th>Sport</th>
+        <th>Others</th>
+        <th>Auto</th>
+      </tr>
+      <tr>
+        <td>{{voucherStatistics.Electronics}}</td>
+        <td>{{voucherStatistics.Fashion}}</td>
+        <td>{{voucherStatistics.Entertainment}}</td>
+        <td>{{voucherStatistics.Food}}</td>
+        <td>{{voucherStatistics.CoffeeAndSnacks}}</td>
+        <td>{{voucherStatistics.Accessories}}</td>
+        <td>{{voucherStatistics.Home}}</td>
+        <td>{{voucherStatistics.Sport}}</td>
+        <td>{{voucherStatistics.Others}}</td>
+        <td>{{voucherStatistics.Auto}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <br/>
+  <h3 style="text-align: center; color: #201579; margin: 10px">All redeemed coupons By Category</h3>
+  <div *ngIf="redeemedVoucherStatistics !== undefined">
+    <table class="user-table">
+      <tr>
+        <th>Electronics</th>
+        <th>Fashion</th>
+        <th>Entertainment</th>
+        <th>Food</th>
+        <th>Coffee&Snack</th>
+        <th>Accessories</th>
+        <th>Home</th>
+        <th>Sport</th>
+        <th>Others</th>
+        <th>Auto</th>
+      </tr>
+      <tr>
+        <td>{{redeemedVoucherStatistics.Electronics}}</td>
+        <td>{{redeemedVoucherStatistics.Fashion}}</td>
+        <td>{{redeemedVoucherStatistics.Entertainment}}</td>
+        <td>{{redeemedVoucherStatistics.Food}}</td>
+        <td>{{redeemedVoucherStatistics.CoffeeAndSnacks}}</td>
+        <td>{{redeemedVoucherStatistics.Accessories}}</td>
+        <td>{{redeemedVoucherStatistics.Home}}</td>
+        <td>{{redeemedVoucherStatistics.Sport}}</td>
+        <td>{{redeemedVoucherStatistics.Others}}</td>
+        <td>{{redeemedVoucherStatistics.Auto}}</td>
+      </tr>
+    </table>
+  </div>
 </div>
 
-<br/>
-<h3 style="text-align: center; color: #201579; margin: 10px">All redeemed coupons By Category</h3>
-<div *ngIf="redeemedVoucherStatistics !== undefined">
-  <table class="user-table">
-  <tr>
-    <th>Electronics</th>
-    <th>Fashion</th>
-    <th>Entertainment</th>
-    <th>Food</th>
-    <th>Coffee&Snack</th>
-    <th>Accessories</th>
-    <th>Home</th>
-    <th>Sport</th>
-    <th>Others</th>
-    <th>Auto</th>
-  </tr>
-  <tr>
-    <td>{{redeemedVoucherStatistics.Electronics}}</td>
-    <td>{{redeemedVoucherStatistics.Fashion}}</td>
-    <td>{{redeemedVoucherStatistics.Entertainment}}</td>
-    <td>{{redeemedVoucherStatistics.Food}}</td>
-    <td>{{redeemedVoucherStatistics.CoffeeAndSnacks}}</td>
-    <td>{{redeemedVoucherStatistics.Accessories}}</td>
-    <td>{{redeemedVoucherStatistics.Home}}</td>
-    <td>{{redeemedVoucherStatistics.Sport}}</td>
-    <td>{{redeemedVoucherStatistics.Others}}</td>
-    <td>{{redeemedVoucherStatistics.Auto}}</td>
-  </tr>
-</table>
+<div *ngIf="userRole !== 'Admin'">
+  <h1 style="text-align: center; color: darkred; margin: 10px">You ain't the GOD</h1>
+  <h1 style="text-align: center; color: darkred; margin: 10px">Get he f** out of here</h1>
 </div>
-

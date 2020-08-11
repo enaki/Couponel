@@ -1,15 +1,15 @@
-<div class="page-container">
+<div class="page-container" *ngIf="currentUser != null">
   <h1>
     All Vouchers
   </h1>
-  <div class="cards" *ngIf="currentUser.userRole !== 'Admin'">
+  <div class="cards" *ngIf="currentUser.role !== 'Admin'">
     <app-tile *ngFor="let voucher of voucherList"
               label="{{voucher.name}}"
               background="{{getCategoryImage(voucher.category)}}"
               (click)="goToVoucher(voucher.id)">
     </app-tile>
   </div>
-  <div class="cards" *ngIf="currentUser.userRole === 'Admin'">
+  <div class="cards" *ngIf="currentUser.role === 'Admin'">
     <div>
       <app-tile *ngFor="let voucher of voucherList"
                 label="{{voucher.name}}"

@@ -30,7 +30,7 @@ export class UserService {
         email: tokenData.email,
         firstName: tokenData.firstName,
         lastName: tokenData.lastName,
-        userRole: tokenData.userRole
+        role: tokenData.userRole
       };
       localStorage.setItem('user', JSON.stringify(user));
       this.tokenSubject.next(token);
@@ -56,6 +56,7 @@ export class UserService {
 
   public getHttpOptions(): any{
     if (this.tokenSubject.value != null){
+      console.log(this.tokenSubject.value);
       return { headers: new HttpHeaders({'Content-Type': 'application/json',
           Authorization: `Bearer ${JSON.parse(this.tokenSubject.value)}` })};
     } else {

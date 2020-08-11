@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {RedeemedVoucherService} from '../services/redeemed-voucher.service';
 import {RedeemedVoucherModel} from '../models/redeemed-voucher/redeemed-voucher.model';
+import {UserService} from '../../shared/services';
 
 @Component({
   selector: 'app-redeemed-voucher-details',
@@ -12,7 +13,13 @@ export class RedeemedVoucherDetailsComponent implements OnInit, OnDestroy {
   redeemedVoucherModel: RedeemedVoucherModel;
   constructor(
     private router: Router,
-    private service: RedeemedVoucherService) { }
+    private userService: UserService,
+    private service: RedeemedVoucherService) {
+    const user = this.userService.getUserDetails();
+    if (user == null){
+      this.router.navigate(['authentication']);
+    }
+  }
 
   ngOnInit(): void {
     const tmp = this.router.url.split('/').slice(-1)[0];

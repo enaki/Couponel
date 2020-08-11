@@ -4,5 +4,5 @@ export type UserModel = {
   email: string;
   firstName: string;
   lastName: string;
-  userRole: string;
+  role: string;
 };

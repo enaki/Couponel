@@ -1,6 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
-import {VoucherModel} from "../../voucher/models";
 import {UserService} from '../../shared/services';
 
 
@@ -25,9 +24,11 @@ export class DashboardComponent implements OnInit, OnDestroy{
     const user = this.userService.getUserDetails();
     this.isStudent = this.isOfferer = this.isOfferer = false;
     if (user != null){
-      this.isStudent = user.userRole === 'Student';
-      this.isOfferer = user.userRole === 'Offerer';
-      this.isAdmin = user.userRole === 'Admin';
+      this.isStudent = user.role === 'Student';
+      this.isOfferer = user.role === 'Offerer';
+      this.isAdmin = user.role === 'Admin';
+    } else {
+      this.goToPage('authentication');
     }
   }
 

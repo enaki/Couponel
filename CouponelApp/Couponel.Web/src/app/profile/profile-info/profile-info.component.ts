@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ProfileInfoService } from '../services/profile-info.service';
-import { ProfileInfoModel } from '../models/profile-info.model';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {ProfileInfoService} from '../services/profile-info.service';
+import {ProfileInfoModel} from '../models/profile-info.model';
 import {UpdateProfileInfoModel} from '../models/update-profile-info.model';
 import {Router} from '@angular/router';
+import {UserService} from '../../shared/services';
 
 @Component({
   selector: 'app-profile-info',
@@ -18,33 +19,40 @@ export class ProfileInfoComponent implements OnInit {
   public isError = false;
 
   constructor(private readonly profileInfoService: ProfileInfoService,
+              private readonly userService: UserService,
               private router: Router,
-              private readonly formBuilder: FormBuilder)
-  {
-    this.formGroup = this.formBuilder.group({
-      email: new FormControl(null, [Validators.required, Validators.email]),
-      firstName: new FormControl(null, [Validators.required]),
-      lastName: new FormControl(null, [Validators.required]),
-      confirmPassword: new FormControl(null, [Validators.required]),
-      password: new FormControl(null, [Validators.required]),
-      phoneNumber: new FormControl(null, [Validators.required]),
-      country: new FormControl(null, [Validators.required]),
-      city: new FormControl(null, [Validators.required]),
-      street: new FormControl(null, [Validators.required]),
-      number: new FormControl(null, [Validators.required]),
-    });
+              private readonly formBuilder: FormBuilder) {
+    const user = this.userService.getUserDetails();
+    if (user == null) {
+      this.router.navigate(['authentication']);
+    } else {
+      this.formGroup = this.formBuilder.group({
+        email: new FormControl(null, [Validators.required, Validators.email]),
+        firstName: new FormControl(null, [Validators.required]),
+        lastName: new FormControl(null, [Validators.required]),
+        confirmPassword: new FormControl(null, [Validators.required]),
+        password: new FormControl(null, [Validators.required]),
+        phoneNumber: new FormControl(null, [Validators.required]),
+        country: new FormControl(null, [Validators.required]),
+        city: new FormControl(null, [Validators.required]),
+        street: new FormControl(null, [Validators.required]),
+        number: new FormControl(null, [Validators.required]),
+      });
+    }
   }
 
   ngOnInit(): void {
-    const userId = JSON.parse(localStorage.getItem('user')).userId;
-    this.profileInfoService.getProfileInfo(userId)
-    .subscribe((data: ProfileInfoModel) => {
-      this.profileInfo = data;
-      console.log(data);
-    });
+    const userDetails = this.userService.getUserDetails();
+    if (userDetails != null){
+      this.profileInfoService.getProfileInfo(userDetails.userId)
+        .subscribe((data: ProfileInfoModel) => {
+          this.profileInfo = data;
+          console.log(data);
+        });
+    }
   }
 
-  editInfo(): void{
+  editInfo(): void {
     this.isEditable = true;
     this.isError = false;
     this.formGroup.controls.email.setValue(this.profileInfo.email);
@@ -59,7 +67,7 @@ export class ProfileInfoComponent implements OnInit {
     this.formGroup.controls.confirmPassword.setValue('');
   }
 
-  saveInfo(): void{
+  saveInfo(): void {
     const data: any = this.formGroup.getRawValue();
     const dataToSend: UpdateProfileInfoModel = {
       email: data.email,

@@ -20,7 +20,12 @@ export class VoucherListComponent implements OnInit {
     private router: Router,
     private service: VoucherService,
     private imageProvider: VoucherImageProvider,
-    private userService: UserService) { }
+    private userService: UserService) {
+    const user = this.userService.getUserDetails();
+    if (user == null){
+      this.router.navigate(['authentication']);
+    }
+  }
 
   public ngOnInit(): void {
     this.userService.token.subscribe(() => {

@@ -3,6 +3,7 @@ import {RedeemedVoucherModel} from '../models/redeemed-voucher/redeemed-voucher.
 import {RedeemedVoucherService} from '../services/redeemed-voucher.service';
 import {Router} from '@angular/router';
 import {VoucherImageProvider} from '../../voucher/services/voucher-image-provider';
+import {UserService} from '../../shared/services';
 
 @Component({
   selector: 'app-redeemed-voucher',
@@ -13,8 +14,14 @@ export class RedeemedVoucherComponent implements OnInit {
   redeemedVoucherList: RedeemedVoucherModel[];
 constructor(
   private router: Router,
+  private userService: UserService,
   private service: RedeemedVoucherService,
-  private imageProvider: VoucherImageProvider) { }
+  private imageProvider: VoucherImageProvider) {
+  const user = this.userService.getUserDetails();
+  if (user == null){
+    this.router.navigate(['authentication']);
+  }
+}
 
   ngOnInit(): void {
     this.service.getAll().subscribe((data: RedeemedVoucherModel[]) => {
