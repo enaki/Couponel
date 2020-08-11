@@ -30,7 +30,7 @@ namespace Couponel.Business.Coupons.RedeemedCoupons.Services.Implementations
         {
             var userId = Guid.Parse(_accessor.HttpContext.User.Claims.First(c => c.Type == "userId").Value);
             var student = await _repository.GetStudentRedeemedCouponById(userId, redeemedCouponId);
-            return _mapper.Map<RedeemedCouponModel>(student.RedeemedCoupons.FirstOrDefault());
+            return _mapper.Map<RedeemedCouponModel>(student.RedeemedCoupons.FirstOrDefault(rc=> rc.Id==redeemedCouponId));
         }
 
         public async Task<IList<ListRedeemedCouponModel>> GetAll()

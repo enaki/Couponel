@@ -4,29 +4,21 @@
 
 <div class="flex-row-space-around">
   <section class="image-section">
-
     <img src="../../assets/images/voucher.svg"
            alt="Voucher image" />
-
-
   </section>
   <!-- TO DO: Stupid css doesnt work -_--->
   <section class="form-section">
     <h1 style="text-align: center; ">{{ name }}</h1>
-
-
     <img src="../../assets/images/others.svg"
          alt="Voucher image" />
          <br>
     <p>Available until: {{expirationDate}}</p>
-
-
-    <div class="coupon-description"><span>Description: </span>{{description}}</div>
+    <div class="coupon-description">{{description}}</div>
     <br><br>
       <button *ngIf="isStudent" (click)="redeemCoupon()">Redeem</button>
   </section>
 </div>
-
 <div class="flex-row-space-around">
   <div class="comment-section">
     <h2 style="text-align: center;">Comments</h2>

@@ -32,8 +32,8 @@ export class VoucherCreateComponent implements OnInit, OnDestroy {
   createVoucher(): void {
     const data: CreateCouponModel = this.formGroup.getRawValue();
     this.service.createVoucher(data).subscribe(() => {
+      this.router.navigate(['profile/added-vouchers']);
     });
-    console.log(this.formGroup.getRawValue());
   }
   ngOnDestroy(): void {
   }

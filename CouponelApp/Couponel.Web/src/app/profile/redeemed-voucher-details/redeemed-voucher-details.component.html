@@ -1,46 +1,19 @@
-<h1>
-  Redeemed Voucher Details
-</h1>
-
 <div class="flex-row-space-around">
   <section class="image-section">
 
     <img src="../../assets/images/voucher.svg"
          alt="Voucher image" />
-
-
   </section>
   <section class="form-section">
     <h1 style="text-align: center; ">{{ redeemedVoucherModel.coupon.name }}</h1>
-
-
     <img src="../../assets/images/others.svg"
          alt="Voucher image" /><br>
     <p>Available until: {{redeemedVoucherModel.coupon.expirationDate.toString().replace('.', 'T').split('T').slice(0, 2).join(' ')}}</p>
-    <div class="coupon-description" id="coupon-description"><span>Description:</span> {{redeemedVoucherModel.coupon.description}}</div>
+    <div class="coupon-description" id="coupon-description"><span>{{redeemedVoucherModel.coupon.description}}</span> </div>
     <br>
-    <div class="coupon-description" id="coupon-status">Status: {{redeemedVoucherModel.status}}</div>
+    <div class="coupon-description" id="coupon-status">{{redeemedVoucherModel.status}}</div>
     <br>
-    <button (click)="updateRedeemedCoupon()">Use</button><br>
-    <button (click)="deleteRedeemedCoupon()">Delete</button>
+    <button class="update-button" (click)="updateRedeemedCoupon()"><span>Use</span></button>
+    <button class="delete-button" (click)="deleteRedeemedCoupon()"><span>Delete</span></button>
   </section>
 </div>
-
-<!--
-<div class="flex-row-space-around">
-<div class="form-section">
-<h2 style="text-align: center;">Comments</h2>
-<div>
-<form class="comment-section" [formGroup]="commentFormGroup">
-    <textarea formControlName="Content"
-              onfocus="if (this.value == 'Your comment goes here:') {this.value=''}">Your comment goes here:</textarea>
-  <button type="button" (click)="postComment()"></button>
-</form>
-    </div>
-    <div *ngFor="let commentary of redeemedVoucherModel.coupon.comments">
-      <h2>{{commentary["user"]["userName"]}}:</h2>
-      <h4>{{commentary["content"]}}</h4>
-    </div>
-  </div>
-</div>
--->
