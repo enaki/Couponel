@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using Couponel.Business.Coupons.Coupons.Models.RedeemedCouponsModels;
 using Couponel.Business.Coupons.RedeemedCoupons.Models;
 using Couponel.Entities.Coupons;
 
@@ -15,5 +14,6 @@ namespace Couponel.Business.Coupons.RedeemedCoupons.Services.Interfaces
         Task<RedeemedCouponModel> Add(Guid redeemedCouponId);
         Task UpdateStatus(Guid redeemedCouponId, string newStatus);
         Task Delete(Guid id);
+        Task<IList<ListRedeemedCouponModel>> GetAllWithAdmin();
     }
 }

@@ -7,7 +7,7 @@ using AutoMapper;
 using Couponel.Business.Coupons.Photos.Models;
 using Couponel.Business.Coupons.Photos.Services.Interfaces;
 using Couponel.Entities.Coupons;
-using Couponel.Persistence.Repositories.CouponsRepositories;
+using Couponel.Persistence.Repositories.CouponsRepository;
 using Microsoft.AspNetCore.Http;
 
 namespace Couponel.Business.Coupons.Photos.Services.Implementations
