@@ -81,7 +81,7 @@ export class AuthenticationComponent implements OnInit {
       this.authenticationService.register(data).subscribe(() => {
         this.formGroup.controls.password.setValue('');
         this.formGroup.controls.username.setValue('');
-        this.setRegister();
+        this.router.navigate(['dashboard']);
       });
     } else {
       this.formGroup.removeControl('firstName');
