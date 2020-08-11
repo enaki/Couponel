@@ -4,11 +4,12 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { HeaderComponent } from './header/header.component';
 import { TileComponent } from './tile/tile.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
-  declarations: [TileComponent, HeaderComponent],
+  declarations: [TileComponent, HeaderComponent, FooterComponent],
   imports: [CommonModule, MatIconModule],
-  exports: [TileComponent, HeaderComponent],
+  exports: [TileComponent, HeaderComponent, FooterComponent],
 })
 export class SharedModule {
   constructor(){
