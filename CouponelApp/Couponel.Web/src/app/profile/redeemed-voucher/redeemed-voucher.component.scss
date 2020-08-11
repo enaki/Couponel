@@ -1,0 +1,23 @@
+.coupon-filter {
+  align-content: center;
+}
+
+input,select {
+  width: 50%;
+  height: 30px;
+  margin-bottom: 10px;
+  font-family: "Open Sans";
+  border: 1px solid #e3e9f7;
+  border-radius: 8px;
+  outline: none;
+}
+
+button{
+  font-size: 16px;
+  border-radius: 10px;
+  background-color: #45a049;
+  margin-left: 10px;
+  padding: 3px;
+  color: white;
+  width: 100px;
+}
