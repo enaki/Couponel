@@ -27,7 +27,7 @@ export class RedeemedVoucherDetailsComponent implements OnInit {
   deleteRedeemedCoupon(): void {
     this.service.deleteRedeemedCoupon(this.router.url.split('/').slice(-1)[0]).subscribe(() => {
       console.log('Received message from Redeemed Coupon Delete');
-      this.router.navigate(['my-vouchers']);
+      this.router.navigate(['profile/redeemed-vouchers']);
     });
   }
 }
