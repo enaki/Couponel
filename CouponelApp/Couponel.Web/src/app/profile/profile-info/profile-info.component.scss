@@ -38,7 +38,7 @@ h1 {
 
 .image-section img {
 display:flex;
-height: 200px;
+height: 500px;
 margin-left: 0px !important;
 margin-right: 0px;
 margin-bottom: auto;
@@ -46,13 +46,51 @@ margin-bottom: auto;
 
 .form-section {
   width: 30%;
-  padding: 200px;
   display:flex;
-  //align-items: center;
+  align-items: center;
   flex-direction: column;
   justify-content: space-evenly;
   font-family: "Open Sans";
   background-color:white;
   border-radius: 8px;
   box-shadow: 0px 0px 8px rgba(0, 23, 87, 0.08);
+}
+
+form>input[type=text], form>input[type=password], form>select{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+form>input[type=submit], button {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+form>input[type=submit]:hover, button:hover {
+  background-color: #45a049;
+}
+
+div p {
+  color: #319758;
+}
+
+form div,  .div-box {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+@media (max-width: 900px) {
+
 }

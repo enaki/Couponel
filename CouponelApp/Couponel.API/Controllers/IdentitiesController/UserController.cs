@@ -42,8 +42,20 @@ namespace Couponel.API.Controllers.IdentitiesController
         [HttpPatch]
         public async Task<IActionResult> Update([FromBody]UpdateUserModel model)
         {
-            await _usersService.Update(model);
-            return NoContent();
+            try
+            {
+                await _usersService.Update(model);
+                return NoContent();
+
+            }
+            catch (Exception e)
+            {
+                if (e.Message == "Password is invalid")
+                {
+                    return BadRequest("Password Invalid");
+                }
+                return BadRequest();
+            }
         }
 
     }

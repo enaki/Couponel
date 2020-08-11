@@ -37,9 +37,17 @@ namespace Couponel.Business.Identities.Users.Services.Implementations
             var passwordHash = _passwordHasher.CreateHash(model.Password);
 
             var user = await _repository.GetById(userId);
-            user.Update(model.Email, passwordHash, model.FirstName, model.LastName, model.PhoneNumber, model.Address);
-            _repository.Update(user);
-            await _repository.SaveChanges();
+            if (_passwordHasher.Check(user.PasswordHash, model.ConfirmPassword))
+            {
+                user.Update(model.Email, passwordHash, model.FirstName, model.LastName, model.PhoneNumber, model.Address);
+                _repository.Update(user);
+                await _repository.SaveChanges();
+            }
+            else
+            {
+                throw new Exception("Password is invalid");
+            }
+            
         }
         public async Task<IUserDetailsModel> GetDetailsById(Guid id)
         {

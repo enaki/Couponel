@@ -29,6 +29,10 @@ namespace Couponel.API.Controllers.CouponsController
         public async Task<IActionResult> GetById([FromRoute] Guid redeemedCouponId)
         {
             var result= await _redeemedCouponsService.Get(redeemedCouponId);
+            if (result == null)
+            {
+                return NotFound();
+            }
             return Ok(result);
         }
 
