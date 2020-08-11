@@ -1,12 +1,12 @@
 <div class="page-container">
-  <h1>
+  <h1 style="text-align: center; margin: 20px;">
     My Redeemed Vouchers
   </h1>
-  <div class="coupon-filter">
+  <div class="coupon-filter" style="text-align: center;">
     <form  [formGroup]="formGroup">
-      <select formControlName="couponStatus" class='select-option' >
-        <option value="NotSelected">Not selected</option>
-        <option value="Used">Used</option>
+      <select formControlName="couponStatus" class='select-option'>
+        <option value="NotSelected" [selected]="true">Not selected</option>
+        <option value="Used" selected>Used</option>
         <option value="NotUsed">Not Used</option>
         <option value="Expired">Expired</option>
       </select>

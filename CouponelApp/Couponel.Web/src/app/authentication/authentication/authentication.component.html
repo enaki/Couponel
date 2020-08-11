@@ -60,17 +60,16 @@
     <ng-container *ngIf="isSetRegistered&&isOfferer">
       <select formControlName="universityId" class='select-option' #selectUniversity
               (change)='setSelectedUniversityId(selectUniversity.value)'>
-        <option value="notuniversity">Select a university</option>
         <option class='option'
                 *ngFor='let university of universities'
-                [value]="university.id">{{university.name}}</option>
+                [value]="university.id" [selected]="true">{{university.name}}</option>
       </select>
     </ng-container>
     <ng-container *ngIf="isSetRegistered&&isOfferer&&isSelected">
       <select formControlName="facultyId" class='select-option'>
         <option class='option'
                 *ngFor='let faculty of faculties'
-                [value]="faculty.id">{{faculty.name}}</option>
+                [value]="faculty.id" [selected]="true">{{faculty.name}}</option>
       </select>
     </ng-container>
     <ng-container *ngIf="isSetRegistered">
