@@ -2,69 +2,81 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProfileInfoService } from '../services/profile-info.service';
 import { ProfileInfoModel } from '../models/profile-info.model';
+import {UpdateProfileInfoModel} from '../models/update-profile-info.model';
 
 @Component({
   selector: 'app-profile-info',
   templateUrl: './profile-info.component.html',
   styleUrls: ['./profile-info.component.scss'],
-  providers: [ProfileInfoService,FormBuilder]
+  providers: [ProfileInfoService, FormBuilder]
 })
 export class ProfileInfoComponent implements OnInit {
   public formGroup: FormGroup;
   public profileInfo: ProfileInfoModel;
-  public isEditable=false;
+  public isEditable = false;
 
   constructor(private readonly profileInfoService: ProfileInfoService,
-    private readonly formBuilder: FormBuilder)
+              private readonly formBuilder: FormBuilder)
   {
     this.formGroup = this.formBuilder.group({
-      username: new FormControl(null, [Validators.required, Validators.minLength(5)]),
       email: new FormControl(null, [Validators.required, Validators.email]),
       firstName: new FormControl(null, [Validators.required]),
       lastName: new FormControl(null, [Validators.required]),
+      confirmPassword: new FormControl(null, [Validators.required]),
+      password: new FormControl(null, [Validators.required]),
       phoneNumber: new FormControl(null, [Validators.required]),
-      facultyName: new FormControl(null,[Validators.required]),
-      universityName: new FormControl(null,[Validators.required]),
-
-      role: new FormControl(null, Validators.required),
+      country: new FormControl(null, [Validators.required]),
+      city: new FormControl(null, [Validators.required]),
+      street: new FormControl(null, [Validators.required]),
+      number: new FormControl(null, [Validators.required]),
     });
   }
 
   ngOnInit(): void {
-    const userId = JSON.parse(localStorage.getItem('user'))['userId'];
-    this.profileInfoService.getProfilInfo(userId)
-    .subscribe((data: ProfileInfoModel)=>{
-      this.profileInfo=data;
+    const userId = JSON.parse(localStorage.getItem('user')).userId;
+    this.profileInfoService.getProfileInfo(userId)
+    .subscribe((data: ProfileInfoModel) => {
+      this.profileInfo = data;
       console.log(data);
-
     });
-
   }
 
-  editInfo():void{
-    this.isEditable=true;
-
-    this.formGroup.controls['username'].setValue(this.profileInfo.userName);
-    this.formGroup.controls['email'].setValue(this.profileInfo.email);
-    this.formGroup.controls['firstName'].setValue(this.profileInfo.firstName);
-    this.formGroup.controls['lastName'].setValue(this.profileInfo.lastName);
-    this.formGroup.controls['phoneNumber'].setValue(this.profileInfo.userName);
-    this.formGroup.controls['facultyName'].setValue(this.profileInfo.userName);
-    //de facut setvalue ptr fiecare camp de editat, campu tre sa fie in fromgroup mai sus
-    //,cand folos formbuilder FACUT
-
+  editInfo(): void{
+    this.isEditable = true;
+    this.formGroup.controls.email.setValue(this.profileInfo.email);
+    this.formGroup.controls.firstName.setValue(this.profileInfo.firstName);
+    this.formGroup.controls.lastName.setValue(this.profileInfo.lastName);
+    this.formGroup.controls.phoneNumber.setValue(this.profileInfo.phoneNumber);
+    this.formGroup.controls.country.setValue(this.profileInfo.address.country);
+    this.formGroup.controls.city.setValue(this.profileInfo.address.city);
+    this.formGroup.controls.street.setValue(this.profileInfo.address.street);
+    this.formGroup.controls.number.setValue(this.profileInfo.address.number);
+    this.formGroup.controls.password.setValue('');
+    this.formGroup.controls.confirmPassword.setValue('');
   }
 
-  saveInfo():void{
-    this.formGroup.controls['username'].setValue(this.profileInfo.userName);
-    this.formGroup.controls['email'].setValue(this.profileInfo.email);
-    this.formGroup.controls['firstName'].setValue(this.profileInfo.firstName);
-    this.formGroup.controls['lastName'].setValue(this.profileInfo.lastName);
-    this.formGroup.controls['phoneNumber'].setValue(this.profileInfo.userName);
-    this.formGroup.controls['facultyName'].setValue(this.profileInfo.userName);
+  saveInfo(): void{
+    const data: any = this.formGroup.getRawValue();
+    const dataToSend: UpdateProfileInfoModel = {
+      email: data.email,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      password: data.password,
+      confirmPassword: data.confirmPassword,
+      phoneNumber: data.phoneNumber,
+      address: {
+        country: data.country,
+        city: data.city,
+        street: data.street,
+        number: data.number,
+      }
+    };
+    this.profileInfoService.updateProfileInfo(dataToSend).subscribe(() => {
+      console.log('I am here');
+    });
   }
 
-
-  //de creat o noua metoda de save care sa fie apelata cand apas save
-  // apelez metoda de update din serviciu
+  back(): void {
+    this.isEditable = !this.isEditable;
+  }
 }

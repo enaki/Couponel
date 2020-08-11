@@ -1,89 +1,95 @@
-
-
 <div class="flex-row-space-around">
   <section class="image-section">
 
     <img src="../../assets/images/profilinfo.svg"
-           alt="Voucher image" />
+         alt="Voucher image"/>
 
 
   </section>
-<section class="form-section">
-  <form class="profileInfo-content" >
-    <h4>User info:</h4>
-<ng-container *ngIf="!!profileInfo">
-  <div *ngIf="!isEditable">
-    <label>Username:</label>
-    <p>{{ profileInfo.userName }}</p>
+  <section class="form-section">
+    <form class="profileInfo-content">
+      <h4>User info:</h4>
+      <ng-container *ngIf="!!profileInfo">
+        <div *ngIf="!isEditable">
+          <label>Username:</label>
+          <p>{{ profileInfo.userName }}</p>
 
-    <label>Email:</label>
-    <p>{{ profileInfo.email }}</p>
+          <label>Email:</label>
+          <p>{{ profileInfo.email }}</p>
 
-    <label>First name:</label>
-    <p>{{ profileInfo.firstName }}</p>
+          <label>First name:</label>
+          <p>{{ profileInfo.firstName }}</p>
 
-    <label>Last name:</label>
-    <p>{{ profileInfo.lastName }}</p>
+          <label>Last name:</label>
+          <p>{{ profileInfo.lastName }}</p>
 
-    <label>Phone number:</label>
-    <p>{{ profileInfo.phoneNumber}}</p>
+          <label>Phone number:</label>
+          <p>{{ profileInfo.phoneNumber}}</p>
 
-    <label>Faculty name:</label>
-    <p>{{ profileInfo.facultyName}}</p>
+          <label>Faculty name:</label>
+          <p>{{ profileInfo.facultyName}}</p>
 
-    <label>University name:</label>
-    <p>{{ profileInfo.universityName}}</p>
-  </div>
-  <div *ngIf="isEditable">
-    <form class="authentication-content" [formGroup]="formGroup">
-      <label>Username*</label>
-      <input formControlName="username" type="text" />
-      <div
-        *ngIf="
-          formGroup.controls['username'].invalid &&
-          formGroup.controls['username'].dirty
-        "
-        class="alert"
-      >
-        <div *ngIf="formGroup.controls['username'].errors">
-          Username has to contain at least 5 characters.
+          <label>University name:</label>
+          <p>{{ profileInfo.universityName}}</p>
+
+          <label>Country:</label>
+          <p>{{ profileInfo.address.country}}</p>
+
+          <label>City:</label>
+          <p>{{ profileInfo.address.city}}</p>
+
+          <label>Street:</label>
+          <p>{{ profileInfo.address.street}}</p>
+
+          <label>Number:</label>
+          <p>{{ profileInfo.address.number}}</p>
         </div>
-      </div>
-      <label>First name*</label>
-      <input formControlName="firstName" type="text" />
-      <label>Last name*</label>
-      <input formControlName="lastName" type="text" />
-      <label>Email*</label>
-      <input formControlName="email" type="text" />
-      <div
-        *ngIf="
+        <div *ngIf="isEditable">
+          <form class="editor-content" [formGroup]="formGroup">
+            <label>First name*</label>
+            <input formControlName="firstName" type="text"/><br/>
+            <label>Last name*</label>
+            <input formControlName="lastName" type="text"/><br/>
+            <label>Email*</label>
+            <input formControlName="email" type="text"/><br/>
+            <div
+              *ngIf="
           formGroup.controls['email'].invalid &&
           formGroup.controls['email'].dirty
         "
-        class="alert"
-      >
-        <div *ngIf="formGroup.controls['email'].errors">
-          Email invalid
+              class="alert"
+            >
+              <div *ngIf="formGroup.controls['email'].errors">
+                Email invalid
+              </div>
+            </div>
+            <label>Phone number*</label>
+            <input formControlName="phoneNumber" type="text"/><br/>
+            <label>Password*</label>
+            <input formControlName="password" type="password"/><br/>
+            <label>oldPassword*</label>
+            <input formControlName="confirmPassword" type="password"/><br/>
+            <label>Country*</label>
+            <input formControlName="country" type="text"/><br/>
+            <label>City*</label>
+            <input formControlName="city" type="text"/><br/>
+            <label>Street*</label>
+            <input formControlName="street" type="text"/><br/>
+            <label>Number*</label>
+            <input formControlName="number" type="text"/><br/>
+
+          </form>
         </div>
-      </div>
-      <label>Phone number*</label>
-      <input formControlName="phoneNumber" type="text" />
-      <label>Faculty name*</label>
-      <input formControlName="facultyName" type="text" />
-      <label>University*</label>
-      <input formControlName="universityName" type="text" />
+        <div *ngIf="isEditable">
+          <button (click)="saveInfo()">Save</button>
+          <button (click)="back()">Back</button>
+        </div>
+        <div *ngIf="!isEditable">
+          <button (click)="editInfo()">Edit</button>
+        </div>
+
+        <!--un ngif buton ca dupa ce l apas sa dispara si de adaugat un nou buton (edit sa se transf in save)-->
+      </ng-container>
     </form>
-  </div>
-<div *ngIf="isEditable">
-  <button (click)="editInfo()">Save</button>
-</div>
-<div *ngIf="!isEditable">
-  <button (click)="editInfo()">Edit</button>
-</div>
-
-  <!--un ngif buton ca dupa ce l apas sa dispara si de adaugat un nou buton (edit sa se transf in save)-->
-</ng-container>
-</form>
-
-</section>
+  </section>
 </div>
