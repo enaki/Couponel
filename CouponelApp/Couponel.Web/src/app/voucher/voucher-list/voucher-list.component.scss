@@ -12,3 +12,18 @@
   flex-direction: column;
   padding: 32px;
 }
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.pagination a:hover {
+  background-color: #4CAF50;
+  color: white;
+}

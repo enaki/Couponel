@@ -33,7 +33,9 @@ export class VoucherService {
       };
     return this.http.get<VouchersModel>(`${this.endpoint}?SortColumn=${data.sortColumn}&SortType=${data.sortType}&PageIndex=${data.pageIndex}&PageSize=${data.pageSize}`, this.httpOptions);
   }
-
+  getAllByModel(model: PageModel): Observable<VouchersModel> {
+    return this.http.get<VouchersModel>(`${this.endpoint}?SortColumn=${model.sortColumn}&SortType=${model.sortType}&PageIndex=${model.pageIndex}&PageSize=${model.pageSize}`, this.httpOptions);
+  }
   get(id: string): Observable<VoucherModel> {
     return this.http.get<VoucherModel>(`${this.endpoint}/${id}`, this.httpOptions);
   }

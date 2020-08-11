@@ -6,6 +6,7 @@ import {VoucherService} from '../services/voucher.service';
 import {VoucherImageProvider} from '../services/voucher-image-provider';
 import {UserService} from '../../shared/services';
 import {UserModel} from '../../shared/models/user.model';
+import {PageModel} from '../models/page.model';
 
 @Component({
   selector: 'app-voucher-list',
@@ -15,7 +16,14 @@ import {UserModel} from '../../shared/models/user.model';
 })
 export class VoucherListComponent implements OnInit {
   public voucherList: VoucherModel[];
-  currentUser: UserModel;
+  public pageModel: PageModel;
+
+  public iterablePages: string[] = [];
+  public pageIndex: number;
+
+  public currentUser: UserModel;
+
+
   constructor(
     private router: Router,
     private service: VoucherService,
@@ -31,8 +39,14 @@ export class VoucherListComponent implements OnInit {
     this.userService.token.subscribe(() => {
       this.currentUser = this.userService.getUserDetails();
     });
-    this.service.getAll().subscribe((data: VouchersModel) => {
-      console.log(data.results);
+    this.pageModel = {sortColumn: 'Name', sortType: 0, pageIndex: 1, pageSize: 10};
+    this.service.getAllByModel(this.pageModel).subscribe((data: VouchersModel) => {
+      const numberOfPages = (data.count / data.pageSize);
+      while ( numberOfPages > this.iterablePages.length) {
+        this.iterablePages.push('');
+        console.log('test');
+      }
+      this.pageIndex = data.pageIndex;
       this.voucherList = data.results;
     });
   }
@@ -43,6 +57,12 @@ export class VoucherListComponent implements OnInit {
 
   getCategoryImage(category: string): string{
     return this.imageProvider.getCategoryImage(category);
+  }
+  goToPage(index: number): void {
+    this.pageModel.pageIndex = index;
+    this.service.getAllByModel(this.pageModel).subscribe((data: VouchersModel) => {
+      this.voucherList = data.results;
+    });
   }
 }
 
