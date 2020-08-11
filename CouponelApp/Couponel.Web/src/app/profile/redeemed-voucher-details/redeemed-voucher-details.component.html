@@ -13,7 +13,7 @@
     <br>
     <div class="coupon-description" id="coupon-status">{{redeemedVoucherModel.status}}</div>
     <br>
-    <button class="update-button" (click)="updateRedeemedCoupon()"><span>Use</span></button>
+    <button *ngIf="redeemedVoucherModel.status === 'NotUsed' " class="update-button" (click)="updateRedeemedCoupon()"><span>Use</span></button>
     <button class="delete-button" (click)="deleteRedeemedCoupon()"><span>Delete</span></button>
   </section>
 </div>
