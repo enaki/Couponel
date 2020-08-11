@@ -1,11 +1,11 @@
 <div class="authentication-container">
-  <img src="assets/images/sign_in.svg" />
+  <img src="assets/images/sign_in.svg"/>
   <form class="authentication-content" [formGroup]="formGroup">
     <span class="login-label"
-      >{{ isSetRegistered ? "Register" : "Log in" }}
+    >{{ isSetRegistered ? "Register" : "Log in" }}
     </span>
     <label>Username<span *ngIf="isSetRegistered">*</span></label>
-    <input formControlName="username" type="text" />
+    <input formControlName="username" type="text"/>
     <ng-container *ngIf="isSetRegistered">
       <div
         *ngIf="
@@ -19,11 +19,11 @@
         </div>
       </div>
       <label>First name*</label>
-      <input formControlName="firstName" type="text" />
+      <input formControlName="firstName" type="text"/>
       <label>Last name*</label>
-      <input formControlName="lastName" type="text" />
+      <input formControlName="lastName" type="text"/>
       <label>Email*</label>
-      <input formControlName="email" type="text" />
+      <input formControlName="email" type="text"/>
       <div
         *ngIf="
           formGroup.controls['email'].invalid &&
@@ -37,7 +37,7 @@
       </div>
     </ng-container>
     <label>Password<span *ngIf="isSetRegistered">*</span></label>
-    <input formControlName="password" type="password" />
+    <input formControlName="password" type="password"/>
     <ng-container *ngIf="isSetRegistered">
       <div
         *ngIf="
@@ -53,25 +53,41 @@
     </ng-container>
     <ng-container *ngIf="isSetRegistered">
       <label>Phone Number*</label>
-      <input formControlName="phoneNumber" type="text" />
-    </ng-container>
-    <ng-container *ngIf="isSetRegistered">
-      <label>User Type*</label>
-      <label>
-        <select formControlName="role">
-          <option value="Student">Student</option>
-          <option value="Offerer">Offerer</option>
-        </select>
-      </label>
+      <input formControlName="phoneNumber" type="text"/>
     </ng-container>
 
-    <p *ngIf="isSetRegistered">(*) campuri obligatorii</p>
-    <span class="not-registered">
-      <input type="checkbox" (click)="setRegister()" />
+    <!-- Student credentials -->
+    <ng-container *ngIf="isSetRegistered&&isOfferer">
+      <select formControlName="universityId" class='select-option' #selectUniversity
+              (change)='setSelectedUniversityId(selectUniversity.value)'>
+        <option value="notuniversity">Select a university</option>
+        <option class='option'
+                *ngFor='let university of universities'
+                [value]="university.id">{{university.name}}</option>
+      </select>
+    </ng-container>
+    <ng-container *ngIf="isSetRegistered&&isOfferer&&isSelected">
+      <select formControlName="facultyId" class='select-option'>
+        <option class='option'
+                *ngFor='let faculty of faculties'
+                [value]="faculty.id">{{faculty.name}}</option>
+      </select>
+    </ng-container>
+    <ng-container *ngIf="isSetRegistered">
+      <span class="not-registered">
+      <input type="checkbox" (click)="setOfferer()"/>
       <p>
-        {{ isSetRegistered ? "Go back to log in" : "I am not registered yet" }}
+        {{ isOfferer ? "Uncheck if you're not a student" : "I'm a student" }}
       </p>
-      <br />
+    </span>
+    </ng-container>
+
+
+    <span class="not-registered">
+      <input type="checkbox" (click)="setRegister()"/>
+      <p>
+        {{ isSetRegistered ? "Uncheck if you want to log in" : "Check if you want to register" }}
+      </p>
     </span>
 
     <button type="button" (click)="authenticate()">

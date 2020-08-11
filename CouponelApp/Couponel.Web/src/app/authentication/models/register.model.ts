@@ -6,4 +6,6 @@ export type RegisterModel = {
   password: string;
   phoneNumber: string;
   userType: string;
+  universityId: string;
+  facultyId: string;
 };

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Couponel.Entities.Institutions;
@@ -61,6 +62,11 @@ namespace Couponel.Persistence.Repositories.UniversitiesRepository
 
                 .FirstOrDefaultAsync((university => university.Id == universityId &&
                                                     university.Faculties.Any(faculty => faculty.Id == facultyId)));
+
+        public async Task<IEnumerable<University>> GetAllWithFaculties() =>
+            await this.context.Universities
+                .Include(u => u.Faculties)
+                .ToListAsync();
 
 
         public async Task<University> GetByIdWithFacultiesAndStudents(Guid universityId,Guid facultyId)
