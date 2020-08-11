@@ -16,6 +16,11 @@
                 background="{{getCategoryImage(voucher.category)}}">
       </app-tile>
     </div>
-
+  </div>
+  <div class="pagination">
+    <a *ngFor="let count of iterablePages; let i = index"
+        (click)="goToPage(i+1);">
+      {{i+1}}
+    </a>
   </div>
 </div>
