@@ -8,7 +8,7 @@ We have 2 servers:
 
 These servers communicate with REST/API.
 
-![Project Diagram](https://github.com/enaky/Couponel/blob/master/Documentation/architecture/front-back-diagram.png)
+![Project Diagram](https://github.com/enaky/Couponel/blob/Co-54/Documentation/architecture/front-back-diagram.png)
 
 
 ## Configure The Project
@@ -28,29 +28,40 @@ These servers communicate with REST/API.
    - ```npm install``` (to install required dependencies) (run first time)
    - ```ng serve```
 
-## Screenshots
+## Screenshots Samples
 
 
-* Admin Statistics Page  
+* **`Admin Statistics Page`**  
 ![Admin Statistics Page](https://github.com/enaky/Couponel/blob/master/Documentation/pages/admin-page.png)
 
-* Login Page  
+
+* **`Login Page`**  
 ![Login Page](https://github.com/enaky/Couponel/blob/master/Documentation/pages/login.png)
 
-* All Vouchers Page  
-![All Vouchers Page](https://github.com/enaky/Couponel/blob/master/Documentation/pages/login.png)
 
-* My profile Page  
-![My profile Page](https://github.com/enaky/Couponel/blob/master/Documentation/pages/all-vouchers-student-page.png)
+* **`All Vouchers Page`**  
+![All Vouchers Page](https://github.com/enaky/Couponel/blob/master/Documentation/pages/all-vouchers-student-page.png)
 
-* Profile Edit Page  
+
+* **`Student Redeemed Vouchers Page`**  
+![Student Redeemed Vouchers Page](https://github.com/enaky/Couponel/blob/master/Documentation/pages/my-redeemed-vouchers-student-page.png)
+
+
+* **`My profile Page`**  
+![My profile Page](https://github.com/enaky/Couponel/blob/master/Documentation/pages/my-profile.png)
+
+
+* **`Profile Edit Page`**  
 ![Profile Edit Page](https://github.com/enaky/Couponel/blob/master/Documentation/pages/profile-edit.png)
 
-* Student Coupon Review Page  
+
+* **`Student Coupon Review Page`**  
 ![Student Coupon Review Page](https://github.com/enaky/Couponel/blob/master/Documentation/pages/student-coupon-review.png)
 
-* Student Page  
+
+* **`Student Page`**  
 ![Student Page](https://github.com/enaky/Couponel/blob/master/Documentation/pages/student-page.png)
 
-* Offerer Page  
+
+* **`Offerer Page`**  
 ![Offerer Page](https://github.com/enaky/Couponel/blob/master/Documentation/pages/offerer-page.png)
