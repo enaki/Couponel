@@ -19,13 +19,14 @@ The back-end server is built on multi-tier-architecture:
 * **Presentation Tier** (responsible for the controllers/user interface)
 * **Bussiness Tier** (responsible for the logic and functionality)
 * **Persistence/Database Tier** (responsible for CRUD operations)
+* 
+![N-tier Architecture](https://github.com/enaky/Couponel/blob/Co-54/Documentation/architecture/multi-tier-architecture.png)  
 
-![N-tier Architecture](https://github.com/enaky/Couponel/blob/Co-54/Documentation/diagrams/er-diagram.png)  
 
 ## E-R Diagram
 
-![E-R Diagram](https://github.com/enaky/Couponel/blob/Co-54/Documentation/architecture/multi-tier-architecture.png)  
-
+![E-R Diagram](https://github.com/enaky/Couponel/blob/Co-54/Documentation/diagrams/er-diagram.png)  
+ 
 
 ## Configure The Project
 1. [Install Microsoft Sql Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
