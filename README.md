@@ -12,20 +12,20 @@ The application is built on 2 servers:
 
 These servers communicate with [REST/API](https://restfulapi.net/).
 
-![Project Diagram](https://github.com/enaky/Couponel/blob/Co-54/Documentation/architecture/front-back-diagram.png)
+![Project Diagram](https://github.com/enaki/Couponel/blob/Co-54/Documentation/architecture/front-back-diagram.png)
 
 ## Back-End Notes
-The back-end server is built on multi-tier-architecture:
-* **Presentation Tier** (responsible for the controllers/user interface)
-* **Bussiness Tier** (responsible for the logic and functionality)
-* **Persistence/Database Tier** (responsible for CRUD operations)
-* 
-![N-tier Architecture](https://github.com/enaky/Couponel/blob/Co-54/Documentation/architecture/multi-tier-architecture.png)  
+The back-end server is built on multi-layer-architecture:
+* **Presentation Layer** (responsible for the controllers/user interface)
+* **Bussiness Layer** (responsible for the logic and functionality)
+* **Persistence/Database Layer** (responsible for CRUD operations)
+
+![N-Layer Architecture](https://github.com/enaki/Couponel/blob/Co-54/Documentation/architecture/multi-tier-architecture.png)  
 
 
 ## E-R Diagram
 
-![E-R Diagram](https://github.com/enaky/Couponel/blob/Co-54/Documentation/diagrams/er-diagram.png)  
+![E-R Diagram](https://github.com/enaki/Couponel/blob/Co-54/Documentation/diagrams/er-diagram.png)  
  
 
 ## Configure The Project
@@ -53,36 +53,36 @@ The back-end server is built on multi-tier-architecture:
 
 
 * **`Admin Statistics Page`**  
-![Admin Statistics Page](https://github.com/enaky/Couponel/blob/master/Documentation/pages/admin-page.png)
+![Admin Statistics Page](https://github.com/enaki/Couponel/blob/master/Documentation/pages/admin-page.png)
 
 
 * **`Login Page`**  
-![Login Page](https://github.com/enaky/Couponel/blob/master/Documentation/pages/login.png)
+![Login Page](https://github.com/enaki/Couponel/blob/master/Documentation/pages/login.png)
 
 
 * **`All Vouchers Page`**  
-![All Vouchers Page](https://github.com/enaky/Couponel/blob/master/Documentation/pages/all-vouchers-student-page.png)
+![All Vouchers Page](https://github.com/enaki/Couponel/blob/master/Documentation/pages/all-vouchers-student-page.png)
 
 
 * **`Student Redeemed Vouchers Page`**  
-![Student Redeemed Vouchers Page](https://github.com/enaky/Couponel/blob/master/Documentation/pages/my-redeemed-vouchers-student-page.png)
+![Student Redeemed Vouchers Page](https://github.com/enaki/Couponel/blob/master/Documentation/pages/my-redeemed-vouchers-student-page.png)
 
 
 * **`My profile Page`**  
-![My profile Page](https://github.com/enaky/Couponel/blob/master/Documentation/pages/my-profile.png)
+![My profile Page](https://github.com/enaki/Couponel/blob/master/Documentation/pages/my-profile.png)
 
 
 * **`Profile Edit Page`**  
-![Profile Edit Page](https://github.com/enaky/Couponel/blob/master/Documentation/pages/profile-edit.png)
+![Profile Edit Page](https://github.com/enaki/Couponel/blob/master/Documentation/pages/profile-edit.png)
 
 
 * **`Student Coupon Review Page`**  
-![Student Coupon Review Page](https://github.com/enaky/Couponel/blob/master/Documentation/pages/student-coupon-review.png)
+![Student Coupon Review Page](https://github.com/enaki/Couponel/blob/master/Documentation/pages/student-coupon-review.png)
 
 
 * **`Student Page`**  
-![Student Page](https://github.com/enaky/Couponel/blob/master/Documentation/pages/student-page.png)
+![Student Page](https://github.com/enaki/Couponel/blob/master/Documentation/pages/student-page.png)
 
 
 * **`Offerer Page`**  
-![Offerer Page](https://github.com/enaky/Couponel/blob/master/Documentation/pages/offerer-page.png)
+![Offerer Page](https://github.com/enaki/Couponel/blob/master/Documentation/pages/offerer-page.png)
